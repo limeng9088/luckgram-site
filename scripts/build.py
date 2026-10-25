@@ -3,6 +3,7 @@
 Every piece of copy is written as t("English", "中文"). Edit the page bodies here, then run:
     python3 scripts/build.py
 """
+import hashlib
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,6 +15,8 @@ ANDROID_LATEST = ANDROID_REPO + "/releases/latest"
 UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
 LANGS = ("zh", "en")
 LANG = "zh"  # the language currently being rendered
+# Changes whenever site.css changes, so browsers and Cloudflare never pair new pages with an old stylesheet.
+CSS_VERSION = hashlib.sha1(open(os.path.join(ROOT, "assets", "site.css"), "rb").read()).hexdigest()[:10]
 
 
 def t(en, zh):
@@ -123,7 +126,7 @@ def page(here, title, description, body, current=""):
 <link rel="alternate" hreflang="x-default" href="{alt_zh}">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v={CSS_VERSION}">
 </head>
 <body>
 {header(current, here)}
