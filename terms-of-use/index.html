@@ -18,13 +18,13 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/"><img src="/assets/icon-512.png" alt="" width="30" height="30"><span>Luckgram</span></a>
-    <nav class="nav">
+    <a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="主导航">
       <a href="/features/">功能</a>
-      <a href="/download/">下载</a>
       <a href="https://wiki.luckgram.cc/">帮助</a>
       <a href="/#faq" class="opt">常见问题</a>
       <a class="lang" href="/en/terms-of-use/" hreflang="en" lang="en">EN</a>
+      <a href="/download/" class="get">下载</a>
     </nav>
   </div>
 </header>
@@ -66,15 +66,17 @@
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <div class="cols">
-      <div><h4>Luckgram</h4><ul>
+    <div class="top">
+      <div><a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>独立、开源的 Telegram 客户端。</p></div>
+      <div><h4>产品</h4><ul>
         <li><a href="/download/">下载</a></li>
         <li><a href="/features/">功能</a></li>
         <li><a href="https://wiki.luckgram.cc/">帮助中心</a></li>
       </ul></div>
       <div><h4>源代码</h4><ul>
-        <li><a href="https://github.com/limeng9088/luckgram-ios">Luckgram iOS 版</a></li>
-        <li><a href="https://github.com/limeng9088/luckgram-android">Luckgram Android 版</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">iOS 版</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Android 版</a></li>
       </ul></div>
       <div><h4>法律</h4><ul>
         <li><a href="/privacy-policy/">隐私政策</a></li>
@@ -86,9 +88,23 @@
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
-    <p class="disclaimer">Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
-    <p>&copy; 2026 Luckgram</p>
+    <div class="legal">
+      <p>Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
   </div>
 </footer>
+<script>
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 </html>

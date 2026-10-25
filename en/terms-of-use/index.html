@@ -18,13 +18,13 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/en/"><img src="/assets/icon-512.png" alt="" width="30" height="30"><span>Luckgram</span></a>
-    <nav class="nav">
+    <a class="logo" href="/en/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="Main">
       <a href="/en/features/">Features</a>
-      <a href="/en/download/">Download</a>
       <a href="https://wiki.luckgram.cc/en/">Help</a>
       <a href="/en/#faq" class="opt">FAQ</a>
       <a class="lang" href="/terms-of-use/" hreflang="zh-CN" lang="zh-CN">中文</a>
+      <a href="/en/download/" class="get">Download</a>
     </nav>
   </div>
 </header>
@@ -66,8 +66,10 @@
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <div class="cols">
-      <div><h4>Luckgram</h4><ul>
+    <div class="top">
+      <div><a class="logo" href="/en/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>An independent, open-source Telegram client.</p></div>
+      <div><h4>Product</h4><ul>
         <li><a href="/en/download/">Download</a></li>
         <li><a href="/en/features/">Features</a></li>
         <li><a href="https://wiki.luckgram.cc/en/">Help Center</a></li>
@@ -86,9 +88,23 @@
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
-    <p class="disclaimer">Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.</p>
-    <p>&copy; 2026 Luckgram</p>
+    <div class="legal">
+      <p>Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
   </div>
 </footer>
+<script>
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 </html>

@@ -30,6 +30,11 @@ def wiki(path="/"):
     return WIKI_HOST + (path if LANG == "zh" else "/en" + path)
 
 
+ICON_APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>'
+ICON_ANDROID = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>'
+ICON_GITHUB = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg>'
+
+
 def header(current, here):
     def link(href, label, key, cls=""):
         cur = ' aria-current="page"' if key == current else ""
@@ -39,13 +44,13 @@ def header(current, here):
     switch = f'<a class="lang" href="{other}" hreflang="{"en" if LANG == "zh" else "zh-CN"}" lang="{"en" if LANG == "zh" else "zh-CN"}">{"EN" if LANG == "zh" else "中文"}</a>'
     return f'''<header class="site-header">
   <div class="wrap">
-    <a class="logo" href="{u("/")}"><img src="/assets/icon-512.png" alt="" width="30" height="30"><span>Luckgram</span></a>
-    <nav class="nav">
+    <a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="{t("Main", "主导航")}">
       {link(u("/features/"), t("Features", "功能"), "features")}
-      {link(u("/download/"), t("Download", "下载"), "download")}
       {link(wiki(), t("Help", "帮助"), "help")}
       {link(u("/#faq"), t("FAQ", "常见问题"), "faq", "opt")}
       {switch}
+      {link(u("/download/"), t("Download", "下载"), "download", "get")}
     </nav>
   </div>
 </header>'''
@@ -54,15 +59,17 @@ def header(current, here):
 def footer():
     return f'''<footer class="site-footer">
   <div class="wrap">
-    <div class="cols">
-      <div><h4>Luckgram</h4><ul>
+    <div class="top">
+      <div><a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>{t("An independent, open-source Telegram client.", "独立、开源的 Telegram 客户端。")}</p></div>
+      <div><h4>{t("Product", "产品")}</h4><ul>
         <li><a href="{u("/download/")}">{t("Download", "下载")}</a></li>
         <li><a href="{u("/features/")}">{t("Features", "功能")}</a></li>
         <li><a href="{wiki()}">{t("Help Center", "帮助中心")}</a></li>
       </ul></div>
       <div><h4>{t("Source code", "源代码")}</h4><ul>
-        <li><a href="{IOS_REPO}">{t("Luckgram for iOS", "Luckgram iOS 版")}</a></li>
-        <li><a href="{ANDROID_REPO}">{t("Luckgram for Android", "Luckgram Android 版")}</a></li>
+        <li><a href="{IOS_REPO}">{t("Luckgram for iOS", "iOS 版")}</a></li>
+        <li><a href="{ANDROID_REPO}">{t("Luckgram for Android", "Android 版")}</a></li>
       </ul></div>
       <div><h4>{t("Legal", "法律")}</h4><ul>
         <li><a href="{u("/privacy-policy/")}">{t("Privacy Policy", "隐私政策")}</a></li>
@@ -74,11 +81,26 @@ def footer():
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
-    <p class="disclaimer">{t("Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.",
-                             "Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。")}</p>
-    <p>&copy; 2026 Luckgram</p>
+    <div class="legal">
+      <p>{t("Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.",
+            "Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。")}</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
   </div>
-</footer>'''
+</footer>
+<script>
+// Feature videos load and play only while they are on screen.
+(function () {{
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) {{ if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) {{ s.src = s.dataset.src; }}); v.load(); v.dataset.loaded = 1; }}
+  if (!('IntersectionObserver' in window)) {{ vids.forEach(load); return; }}
+  var io = new IntersectionObserver(function (es) {{
+    es.forEach(function (e) {{ var v = e.target; if (e.isIntersecting) {{ load(v); var p = v.play(); if (p) p.catch(function () {{}}); }} else v.pause(); }});
+  }}, {{rootMargin: '200px 0px'}});
+  vids.forEach(function (v) {{ io.observe(v); }});
+}})();
+</script>'''
+
 
 
 def page(here, title, description, body, current=""):
@@ -135,15 +157,6 @@ def available():
     ]
 
 
-def in_development():
-    return [t(*x) for x in [
-        ("More accounts in one app", "一个应用登录更多账号"), ("Account backup and transfer", "账号备份与迁移"),
-        ("Double Bottom", "双重空间（Double Bottom）"), ("Hidden chats", "隐藏聊天"), ("Quick replies", "快捷回复"),
-        ("Outgoing translation", "发送前翻译"), ("Free speech-to-text", "免费语音转文字"), ("Call recording", "通话录音"),
-        ("Gallery video as round message", "相册视频转圆形视频消息"), ("Keyword folders", "关键词文件夹"),
-        ("Show Telegram ID", "显示 Telegram ID"), ("AI Assistant", "AI 助手")]]
-
-
 def faq():
     return [
         (t("Is Luckgram an official Telegram app?", "Luckgram 是 Telegram 官方应用吗？"),
@@ -173,82 +186,125 @@ def faq():
     ]
 
 
+def video(slug, label, lazy=True):
+    sfx = "" if LANG == "en" else "-zh"   # Chinese pages use the videos with Chinese titles
+    src = "data-src" if lazy else "src"
+    attrs = 'preload="none" data-lazy' if lazy else 'autoplay preload="auto"'
+    return (f'<video muted loop playsinline {attrs} poster="/media/features/{slug}{sfx}.jpg" width="848" height="848" aria-label="{t("Animation", "演示动画")}: {label}">'
+            f'<source {src}="/media/features/{slug}{sfx}.webm" type="video/webm"><source {src}="/media/features/{slug}{sfx}.mp4" type="video/mp4"></video>')
+
+
+def download_buttons(primary=True):
+    cls = "btn platform primary" if primary else "btn platform"
+    return f'''<a class="{cls}" href="{IOS_LATEST}">{ICON_APPLE}<span><small>{t("iPhone and iPad", "iPhone 和 iPad")}</small>{t("Download for iOS", "下载 iOS 版")}</span></a>
+        <a class="btn platform" href="{ANDROID_LATEST}">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>'''
+
+
+def feature_by_slug():
+    return {slug: (short, title, status, body) for _, items in feature_groups() for slug, short, title, status, body, _ in items}
+
+
 def home():
-    cards = "\n".join(
-        f'<div class="card"><span class="tag ok">{t("Available", "已上线")}</span><h3>{a}</h3><p>{d}</p></div>'
-        for a, d in available())
-    wip = "\n".join(f'<li>{x}<span class="tag wip">{t("In development", "开发中")}</span></li>' for x in in_development())
+    feats = feature_by_slug()
+    today = "\n".join(
+        f'<div><span class="tag ok">{t("Available", "已上线")}</span><h3>{a}</h3><p>{d}</p></div>' for a, d in available())
+    cells = []
+    for slug in ("accounts", "double-bottom", "translate-out", "voice-text", "round-video", "ai-summary"):
+        short, title, (key, label), body = feats[slug]
+        cells.append(f'''<div class="cell">{video(slug, t(*title))}
+        <span class="tag {key}">{t(*label)}</span><h3>{t(*title)}</h3><p>{t(*body)}</p></div>''')
     qa = "\n".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faq())
     body = f'''<section class="hero">
   <div class="wrap">
-    <div>
-      <p class="eyebrow">{t("Independent Telegram client", "独立的 Telegram 客户端")}</p>
-      <h1>{t("Luckgram: your Telegram, in a new app", "Luckgram：你的 Telegram，换一个新应用")}</h1>
-      <p class="lede">{t("Luckgram is built on the open-source Telegram apps for iOS and Android. Sign in with your Telegram account and everything works as you know it. More tools are on the way.",
-                         "Luckgram 基于开源的 Telegram iOS 和 Android 应用开发。用你的 Telegram 账号登录，一切用法照旧，更多工具正在路上。")}</p>
+    <div class="hero-text">
+      <h1>{t("Telegram,<br>flying further", "Telegram，<br>飞得更远")}</h1>
+      <p class="lede">{t("Luckgram is an independent, open-source Telegram client for iOS and Android. Sign in with your Telegram account and your chats, channels and calls are all there. More accounts, hidden chats, translation and AI tools are on the way.",
+                         "Luckgram 是独立、开源的 iOS 和 Android Telegram 客户端。用你的 Telegram 账号登录，聊天、频道和通话都在；多账号、隐藏聊天、翻译和 AI 等功能正在陆续加入。")}</p>
       <div class="btns">
-        <a class="btn primary" href="{u("/download/")}">{t("Download Luckgram", "下载 Luckgram")}</a>
-        <a class="btn" href="{u("/features/")}">{t("See the features", "查看功能")}</a>
+        {download_buttons()}
       </div>
+      <p class="fine">{t(f'Free. Installing on iPhone? Read the <a href="{wiki("/getting-started/install.html")}">install guide</a>.', f'免费使用。在 iPhone 上安装，请先看<a href="{wiki("/getting-started/install.html")}">安装指南</a>。')}</p>
     </div>
-    <div class="hero-art"><img src="/assets/icon-512.png" alt="{t("Luckgram app icon", "Luckgram 应用图标")}" width="512" height="512"></div>
+    <figure class="stage" style="margin:0">
+      {video("translate-in", t("Translate messages", "翻译消息"), lazy=False)}
+      <figcaption><span class="tag ok">{t("Available now: translate incoming messages", "现已可用：翻译收到的消息")}</span></figcaption>
+    </figure>
+    <svg class="route" aria-hidden="true"><path id="route"/></svg>
+    <div class="plane" id="plane" aria-hidden="true"></div>
   </div>
 </section>
 
-<section class="block" id="features">
+<section class="block">
   <div class="wrap">
-    <h2>{t("What works today", "现在就能用")}</h2>
-    <p class="sub">{t("Luckgram connects to the Telegram network, so the Telegram features you already use are all here.",
-                      "Luckgram 连接的是 Telegram 网络，你平时用的 Telegram 功能这里都有。")}</p>
-    <div class="grid">
-{cards}
+    <div class="head"><h2>{t("Everything you use in Telegram", "你在 Telegram 里用的，这里都有")}</h2>
+      <p>{t("Luckgram connects to the Telegram network, so the features you rely on work from the first sign-in.", "Luckgram 连接的是 Telegram 网络，你常用的功能从第一次登录起就能用。")}</p></div>
+    <div class="today">
+{today}
     </div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>{t("In development", "开发中")}</h2>
-    <p class="sub">{t("These Luckgram additions are being built. They are not in the app yet, and no release dates are promised.",
-                      "这些是 Luckgram 正在开发的新功能，目前还没有加入应用，我们也不承诺上线时间。")}</p>
-    <ul class="list-wip">
-{wip}
-    </ul>
-    <p class="more"><a href="{u("/features/")}">{t("See every feature and its status &rarr;", "查看全部功能及状态 &rarr;")}</a></p>
+    <div class="head"><h2>{t("What Luckgram adds", "Luckgram 的新功能")}</h2>
+      <p>{t("Each feature is marked with where it stands. Features in development are not in the app yet, and we don't promise release dates.", "每个功能都标明了目前的状态。标注“开发中”的功能还没有加入应用，我们也不承诺上线时间。")}</p></div>
+    <div class="wall">
+{"".join(cells)}
+    </div>
+    <div class="wall-foot"><span>{t("19 features, each with a short demo.", "共 19 个功能，每个都有演示动画。")}</span><a class="btn" href="{u("/features/")}">{t("See all features", "查看全部功能")}</a></div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>{t("Open source and transparent", "开源透明")}</h2>
-    <p class="sub">{t("The complete source code for both apps is public, and every release is built by GitHub Actions from that code.",
-                      "两个应用的完整源代码都已公开，每个版本都由 GitHub Actions 从这些代码构建。")}</p>
-    <div class="grid">
-      <div class="card"><h3>{t("Public source code", "公开的源代码")}</h3><p>{t(f'Read the code for <a href="{IOS_REPO}">iOS</a> and <a href="{ANDROID_REPO}">Android</a> on GitHub.', f'在 GitHub 上查看 <a href="{IOS_REPO}">iOS</a> 和 <a href="{ANDROID_REPO}">Android</a> 的代码。')}</p></div>
-      <div class="card"><h3>{t("No Luckgram message servers", "没有 Luckgram 自己的消息服务器")}</h3><p>{t("Your messages go to Telegram's servers, as they would from any Telegram app. Luckgram does not run its own servers for them.", "你的消息和在任何 Telegram 应用里一样，发送到 Telegram 的服务器。Luckgram 不为消息设立自己的服务器。")}</p></div>
-      <div class="card"><h3>{t("No added trackers", "不加追踪")}</h3><p>{t("Luckgram does not add analytics or advertising SDKs to the apps.", "Luckgram 没有在应用里加入任何统计或广告 SDK。")}</p></div>
+    <div class="head"><h2>{t("Open source, start to finish", "从头到尾都开源")}</h2>
+      <p>{t("The complete code for both apps is public, and every release is built from it by GitHub Actions.", "两个应用的完整代码都已公开，每个版本都由 GitHub Actions 从这些代码构建。")}</p></div>
+    <div class="open">
+      <div><h3>{t("Your messages stay with Telegram", "消息只经过 Telegram")}</h3><p>{t("Messages go to Telegram's servers, as they would from any Telegram app. Luckgram runs no message servers of its own.", "你的消息和在任何 Telegram 应用里一样，发送到 Telegram 的服务器。Luckgram 没有自己的消息服务器。")}</p></div>
+      <div><h3>{t("No added trackers", "不加追踪")}</h3><p>{t("Luckgram does not add analytics or advertising SDKs to the apps.", "Luckgram 没有在应用里加入任何统计或广告 SDK。")}</p></div>
+      <div><h3>{t("Follows Telegram's updates", "跟进 Telegram 更新")}</h3><p>{t("Luckgram is built on the official open-source apps, so new Telegram features arrive with each update.", "Luckgram 基于官方开源应用构建，Telegram 的新功能会随更新一起到来。")}</p></div>
+    </div>
+    <div class="repos">
+      <a class="repo" href="{IOS_REPO}">{ICON_GITHUB}<span><b>limeng9088/luckgram-ios</b>{t("Source code for iPhone and iPad", "iPhone 和 iPad 版源代码")}</span></a>
+      <a class="repo" href="{ANDROID_REPO}">{ICON_GITHUB}<span><b>limeng9088/luckgram-android</b>{t("Source code for Android", "Android 版源代码")}</span></a>
     </div>
   </div>
 </section>
 
-<section class="block" id="download">
+<section class="cta" id="download">
   <div class="wrap">
-    <h2>{t("Get Luckgram", "获取 Luckgram")}</h2>
-    <p class="sub">{t("Free for iOS and Android.", "iOS 和 Android 均可免费使用。")}</p>
+    <div class="mark" aria-hidden="true"></div>
+    <h2>{t("Take your Telegram with you", "带上你的 Telegram，出发")}</h2>
+    <p>{t("Free for iPhone, iPad and Android. Sign in with the account you already have.", "iPhone、iPad 和 Android 均可免费使用，用你现有的账号登录。")}</p>
     <div class="btns">
-      <a class="btn primary" href="{u("/download/")}">{t("Go to downloads", "前往下载")}</a>
-      <a class="btn" href="{wiki("/getting-started/install.html")}">{t("Install guide", "安装指南")}</a>
+      {download_buttons()}
     </div>
   </div>
 </section>
 
 <section class="block" id="faq">
-  <div class="wrap">
-    <h2>{t("Frequently asked questions", "常见问题")}</h2>
-    <p class="sub">{t(f'More answers in the <a href="{wiki()}">Help Center</a>.', f'更多解答请看<a href="{wiki()}">帮助中心</a>。')}</p>
+  <div class="wrap faq">
+    <div class="head solo"><h2>{t("Questions", "常见问题")}</h2>
+      <p>{t(f'More answers in the <a href="{wiki()}">Help Center</a>.', f'更多解答请看<a href="{wiki()}">帮助中心</a>。')}</p></div>
+    <div class="qa">
 {qa}
+    </div>
   </div>
-</section>'''
+</section>
+<script>
+// Draw the paper plane's route from under the buttons to the corner of the demo, then fly it once.
+(function () {{
+  var hero = document.querySelector('.hero .wrap'), path = document.getElementById('route'), plane = document.getElementById('plane');
+  function draw() {{
+    if (window.innerWidth < 980) {{ path.setAttribute('d', ''); plane.style.display = 'none'; return; }}
+    var h = hero.getBoundingClientRect(), b = hero.querySelector('.fine').getBoundingClientRect(), s = hero.querySelector('.stage video').getBoundingClientRect();
+    var x0 = b.left - h.left + 4, y0 = b.bottom - h.top + 44, x1 = s.left - h.left + 18, y1 = s.top - h.top + 6, dx = x1 - x0;
+    var d = 'M' + x0 + ' ' + y0 + ' C' + (x0 + dx * .55) + ' ' + (y0 + 70) + ' ' + (x1 - dx * .5) + ' ' + (y1 + 40) + ' ' + x1 + ' ' + y1;
+    path.setAttribute('d', d); plane.style.display = ''; plane.style.offsetPath = "path('" + d + "')";
+  }}
+  draw(); window.addEventListener('resize', draw);
+}})();
+</script>'''
     page("/", t("Luckgram – an independent Telegram client for iOS and Android", "Luckgram – 独立的 iOS 和 Android Telegram 客户端"),
          t("Luckgram is an independent, open-source Telegram client for iOS and Android. Sign in with your Telegram account and keep everything you use today.",
            "Luckgram 是独立、开源的 iOS 和 Android Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。"),
@@ -256,44 +312,42 @@ def home():
 
 
 def download():
-    body = f'''<section class="hero" style="padding-bottom:32px">
-  <div class="wrap" style="grid-template-columns:1fr">
-    <div>
-      <p class="eyebrow">{t("Download", "下载")}</p>
-      <h1>{t("Get Luckgram", "获取 Luckgram")}</h1>
-      <p class="lede">{t("Luckgram is distributed through GitHub Releases. These links always open the latest build.",
-                         "Luckgram 通过 GitHub Releases 发布，下面的链接始终指向最新版本。")}</p>
-    </div>
+    body = f'''<section class="page-head">
+  <div class="wrap">
+    <h1>{t("Get Luckgram", "下载 Luckgram")}</h1>
+    <p>{t("Luckgram is distributed through GitHub Releases. These links always open the latest build.",
+          "Luckgram 通过 GitHub Releases 发布，下面的链接始终指向最新版本。")}</p>
   </div>
 </section>
-<section class="block" style="border-top:0;padding-top:0">
-  <div class="wrap">
-    <div class="dl">
-      <div class="card">
-        <h3>Android</h3>
-        <ul>
-          <li>{t("Signed APK for 64-bit ARM phones (arm64-v8a)", "已签名的 APK，适用于 64 位 ARM 手机（arm64-v8a）")}</li>
-          <li>{t("Android 6.0 or later", "Android 6.0 及以上")}</li>
-          <li>{t("Allow installs from your browser or file manager when asked", "安装时如有提示，请允许浏览器或文件管理器安装应用")}</li>
-        </ul>
-        <div class="btns"><a class="btn primary" href="{ANDROID_LATEST}">{t("Download APK", "下载 APK")}</a></div>
-      </div>
-      <div class="card">
-        <h3>{t("iPhone and iPad", "iPhone 和 iPad")}</h3>
-        <ul>
-          <li>{t("Unsigned IPA", "未签名的 IPA")}</li>
-          <li>{t("Sign it with Sideloadly, AltStore or your own certificate before installing", "安装前先用 Sideloadly、AltStore 或你自己的证书签名")}</li>
-          <li>{t("iOS 15 or later", "iOS 15 及以上")}</li>
-        </ul>
-        <div class="btns"><a class="btn primary" href="{IOS_LATEST}">{t("Download IPA", "下载 IPA")}</a><a class="btn" href="{wiki("/getting-started/install.html")}">{t("Install guide", "安装指南")}</a></div>
-      </div>
+<div class="wrap">
+  <div class="dl">
+    <div class="dl-card">
+      <svg class="os" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{ICON_ANDROID[ICON_ANDROID.index("<path"):ICON_ANDROID.index("</svg>")]}</svg>
+      <h2>Android</h2>
+      <ul>
+        <li>{t("Signed APK for 64-bit ARM phones (arm64-v8a)", "已签名的 APK，适用于 64 位 ARM 手机（arm64-v8a）")}</li>
+        <li>{t("Android 6.0 or later", "Android 6.0 及以上")}</li>
+        <li>{t("Allow installs from your browser or file manager when asked", "安装时如有提示，请允许浏览器或文件管理器安装应用")}</li>
+      </ul>
+      <div class="btns"><a class="btn primary" href="{ANDROID_LATEST}">{t("Download APK", "下载 APK")}</a></div>
     </div>
-    <p class="note" style="margin-top:24px">{t("If you previously installed a test build of Luckgram on Android, uninstall it first: builds signed with a different key cannot update each other. Only download Luckgram from this page or the GitHub repositories it links to.",
-                                               "如果你之前在 Android 上装过 Luckgram 的测试版，请先卸载：签名密钥不同的版本不能相互覆盖升级。请只从本页或本页链接的 GitHub 仓库下载 Luckgram。")}</p>
+    <div class="dl-card">
+      <svg class="os" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{ICON_APPLE[ICON_APPLE.index("<path"):ICON_APPLE.index("</svg>")]}</svg>
+      <h2>{t("iPhone and iPad", "iPhone 和 iPad")}</h2>
+      <ul>
+        <li>{t("Unsigned IPA", "未签名的 IPA")}</li>
+        <li>{t("Sign it with Sideloadly, AltStore or your own certificate before installing", "安装前先用 Sideloadly、AltStore 或你自己的证书签名")}</li>
+        <li>{t("iOS 15 or later", "iOS 15 及以上")}</li>
+      </ul>
+      <div class="btns"><a class="btn primary" href="{IOS_LATEST}">{t("Download IPA", "下载 IPA")}</a><a class="btn" href="{wiki("/getting-started/install.html")}">{t("Install guide", "安装指南")}</a></div>
+    </div>
   </div>
-</section>'''
+  <p class="note">{t("If you previously installed a test build of Luckgram on Android, uninstall it first: builds signed with a different key cannot update each other. Only download Luckgram from this page or the GitHub repositories it links to.",
+                     "如果你之前在 Android 上装过 Luckgram 的测试版，请先卸载：签名密钥不同的版本不能相互覆盖升级。请只从本页或本页链接的 GitHub 仓库下载 Luckgram。")}</p>
+</div>'''
     page("/download/", t("Download Luckgram for Android and iOS", "下载 Luckgram（Android 和 iOS）"),
          t("Download the latest Luckgram builds for Android (APK) and iOS (IPA).", "下载最新版 Luckgram：Android（APK）和 iOS（IPA）。"), body, "download")
+
 
 
 def privacy():
@@ -399,7 +453,7 @@ def terms():
 
 
 WIP = ("wip", ("In development", "开发中"))
-OK_TG = ("ok", ("Available · Telegram", "已上线 · Telegram 功能"))
+OK_TG = ("ok", ("Available (Telegram feature)", "已上线（Telegram 功能）"))
 
 
 # Feature page: (slug, short name, title, status, body, help path); text pairs are (English, Chinese)
@@ -440,7 +494,7 @@ def feature_groups():
           "用你习惯的语言写，在输入框里翻译成对方的语言再发出去。发送前你能先看到翻译结果。"),
          "/features/translation-and-voice.html"),
         ("voice-text", ("Voice to text", "语音转文字"), ("Read voice messages instead of playing them", "语音消息不用听，直接看"),
-         ("part", ("Telegram Premium · free version in development", "Telegram Premium 功能 · 免费版开发中")),
+         ("part", ("Telegram Premium; free version in development", "Telegram Premium 功能，免费版开发中")),
          ("Turn a voice message into text with one tap, handy in a meeting or on a noisy train. Telegram offers this "
           "with Premium; a free version for Luckgram is being built.",
           "一点就把语音消息转成文字，开会时、在嘈杂的地铁上都方便。Telegram 的这个功能需要 Premium，Luckgram 正在开发免费版。"),
@@ -477,7 +531,7 @@ def feature_groups():
           "一点就能录下通话，挂断后在收藏夹里找到录音。各国对录音的法律规定不同，录音前请先告知对方。"),
          "/features/media-and-calls.html"),
         ("cache", ("Storage", "存储空间"), ("See what takes up space and clear it", "看清空间被谁占用，按需清理"),
-         ("part", ("Available · extra controls in development", "已上线 · 更多设置开发中")),
+         ("part", ("Available; extra controls in development", "已上线，更多设置开发中")),
          ("Storage Usage shows how much space videos, photos, files and music take on your phone, and you clear the "
           "types you choose. More control over what is kept and for how long is on the way.",
           "“存储空间”会显示视频、照片、文件和音乐各占多少空间，你可以按类型清理。对保留哪些内容、保留多久的更多设置正在开发。"),
@@ -517,29 +571,25 @@ def feature_groups():
 
 def features():
     toc, sections = [], []
-    sfx = "" if LANG == "en" else "-zh"   # Chinese pages use the videos with Chinese titles
     for group, items in feature_groups():
         toc.append(f'<li class="toc-group">{t(*group)}</li>')
         for slug, short, title, (key, label), body, help_path in items:
             title = t(*title)
             toc.append(f'<li><a href="#{slug}">{t(*short)}</a></li>')
             sections.append(f'''<section class="feat" id="{slug}">
-  <video class="feat-video" muted loop playsinline preload="none" poster="/media/features/{slug}{sfx}.jpg" width="848" height="848" aria-label="{t("Animation", "演示动画")}: {title}">
-    <source data-src="/media/features/{slug}{sfx}.webm" type="video/webm">
-    <source data-src="/media/features/{slug}{sfx}.mp4" type="video/mp4">
-  </video>
+  {video(slug, title).replace("<video ", '<video class="feat-video" ', 1)}
   <div class="feat-text">
     <span class="tag {key}">{t(*label)}</span>
     <h2>{title}</h2>
     <p>{t(*body)}</p>
-    <p class="feat-more"><a href="{wiki(help_path)}">{t("Learn more in the Help Center &rarr;", "在帮助中心了解更多 &rarr;")}</a></p>
+    <p class="feat-more"><a href="{wiki(help_path)}">{t("Read more in the Help Center", "在帮助中心了解更多")}</a></p>
   </div>
 </section>''')
-    body = f'''<section class="feat-hero">
+    body = f'''<section class="page-head">
   <div class="wrap">
     <h1>{t("Luckgram features", "Luckgram 功能")}</h1>
-    <p class="lede">{t("Everything you use in Telegram already works in Luckgram. Below are the extras we add, each marked with where it stands today. Features in development are not in the app yet, and no release dates are promised.",
-                       "你在 Telegram 里用的一切，Luckgram 里都能用。下面是我们额外增加的功能，每项都标明了目前的状态。标注“开发中”的功能还没有加入应用，我们也不承诺上线时间。")}</p>
+    <p>{t("Everything you use in Telegram already works in Luckgram. Below are the extras we add, each marked with where it stands today. Features in development are not in the app yet, and no release dates are promised.",
+          "你在 Telegram 里用的一切，Luckgram 里都能用。下面是我们额外增加的功能，每项都标明了目前的状态。标注“开发中”的功能还没有加入应用，我们也不承诺上线时间。")}</p>
   </div>
 </section>
 <div class="wrap feat-layout">
@@ -550,27 +600,27 @@ def features():
 {"".join(sections)}
   </div>
 </div>
-<section class="block">
+<section class="cta">
   <div class="wrap">
-    <h2>{t("Built on Telegram, open to everyone", "基于 Telegram，向所有人开放")}</h2>
-    <div class="grid">
-      <div class="card"><h3>{t("The Telegram network", "Telegram 网络")}</h3><p>{t("Luckgram signs in to your Telegram account and follows Telegram's updates, so chats, channels, calls and bots work as you expect.", "Luckgram 登录的是你的 Telegram 账号，并跟进 Telegram 的更新，聊天、频道、通话和机器人都照常可用。")}</p></div>
-      <div class="card"><h3>{t("Your messages stay with Telegram", "消息只在 Telegram")}</h3><p>{t("Messages are sent to and stored on Telegram's servers. Luckgram runs no message servers of its own.", "消息发送到并保存在 Telegram 的服务器上。Luckgram 没有自己的消息服务器。")}</p></div>
-      <div class="card"><h3>{t("Open source", "开源")}</h3><p>{t(f'The code for <a href="{IOS_REPO}">iOS</a> and <a href="{ANDROID_REPO}">Android</a> is public, and every release is built from it by GitHub Actions.', f'<a href="{IOS_REPO}">iOS</a> 和 <a href="{ANDROID_REPO}">Android</a> 的代码都已公开，每个版本都由 GitHub Actions 从这些代码构建。')}</p></div>
+    <div class="mark" aria-hidden="true"></div>
+    <h2>{t("Start with what works today", "先从现在能用的开始")}</h2>
+    <p>{t("Sign in with your Telegram account. New features arrive with updates.", "用你的 Telegram 账号登录，新功能会随更新到来。")}</p>
+    <div class="btns">
+      {download_buttons()}
     </div>
-    <div class="btns" style="margin-top:32px"><a class="btn primary" href="{u("/download/")}">{t("Download Luckgram", "下载 Luckgram")}</a><a class="btn" href="{wiki("/features/")}">{t("Full status in the Help Center", "在帮助中心查看完整状态")}</a></div>
   </div>
 </section>
 <script>
-// Load and play each feature video only while it is on screen.
+// Highlight the feature being read in the list.
 (function () {{
-  var vids = document.querySelectorAll('.feat-video');
-  function load(v) {{ if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) {{ s.src = s.dataset.src; }}); v.load(); v.dataset.loaded = 1; }}
-  if (!('IntersectionObserver' in window)) {{ vids.forEach(load); return; }}
+  var links = {{}}; document.querySelectorAll('.feat-toc a').forEach(function (a) {{ links[a.getAttribute('href').slice(1)] = a; }});
+  if (!('IntersectionObserver' in window)) return;
   var io = new IntersectionObserver(function (es) {{
-    es.forEach(function (e) {{ var v = e.target; if (e.isIntersecting) {{ load(v); var p = v.play(); if (p) p.catch(function () {{}}); }} else v.pause(); }});
-  }}, {{rootMargin: '200px 0px'}});
-  vids.forEach(function (v) {{ io.observe(v); }});
+    es.forEach(function (e) {{ if (!e.isIntersecting) return; var a = links[e.target.id]; if (!a) return;
+      document.querySelectorAll('.feat-toc a.on').forEach(function (x) {{ x.classList.remove('on'); }}); a.classList.add('on');
+      if (window.innerWidth < 980) a.scrollIntoView({{block: 'nearest', inline: 'center'}}); }});
+  }}, {{rootMargin: '-45% 0px -50% 0px'}});
+  document.querySelectorAll('.feat').forEach(function (s) {{ io.observe(s); }});
 }})();
 </script>'''
     page("/features/", t("Luckgram features – what works today and what is coming", "Luckgram 功能 – 现在能用的和即将推出的"),

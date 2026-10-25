@@ -18,96 +18,102 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/en/"><img src="/assets/icon-512.png" alt="" width="30" height="30"><span>Luckgram</span></a>
-    <nav class="nav">
+    <a class="logo" href="/en/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="Main">
       <a href="/en/features/">Features</a>
-      <a href="/en/download/">Download</a>
       <a href="https://wiki.luckgram.cc/en/">Help</a>
       <a href="/en/#faq" class="opt">FAQ</a>
       <a class="lang" href="/" hreflang="zh-CN" lang="zh-CN">中文</a>
+      <a href="/en/download/" class="get">Download</a>
     </nav>
   </div>
 </header>
 <main>
 <section class="hero">
   <div class="wrap">
-    <div>
-      <p class="eyebrow">Independent Telegram client</p>
-      <h1>Luckgram: your Telegram, in a new app</h1>
-      <p class="lede">Luckgram is built on the open-source Telegram apps for iOS and Android. Sign in with your Telegram account and everything works as you know it. More tools are on the way.</p>
+    <div class="hero-text">
+      <h1>Telegram,<br>flying further</h1>
+      <p class="lede">Luckgram is an independent, open-source Telegram client for iOS and Android. Sign in with your Telegram account and your chats, channels and calls are all there. More accounts, hidden chats, translation and AI tools are on the way.</p>
       <div class="btns">
-        <a class="btn primary" href="/en/download/">Download Luckgram</a>
-        <a class="btn" href="/en/features/">See the features</a>
+        <a class="btn platform primary" href="https://github.com/limeng9088/luckgram-ios/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span><small>iPhone and iPad</small>Download for iOS</span></a>
+        <a class="btn platform" href="https://github.com/limeng9088/luckgram-android/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span><small>Android 6.0 or later</small>Download APK</span></a>
       </div>
+      <p class="fine">Free. Installing on iPhone? Read the <a href="https://wiki.luckgram.cc/en/getting-started/install.html">install guide</a>.</p>
     </div>
-    <div class="hero-art"><img src="/assets/icon-512.png" alt="Luckgram app icon" width="512" height="512"></div>
+    <figure class="stage" style="margin:0">
+      <video muted loop playsinline autoplay preload="auto" poster="/media/features/translate-in.jpg" width="848" height="848" aria-label="Animation: Translate messages"><source src="/media/features/translate-in.webm" type="video/webm"><source src="/media/features/translate-in.mp4" type="video/mp4"></video>
+      <figcaption><span class="tag ok">Available now: translate incoming messages</span></figcaption>
+    </figure>
+    <svg class="route" aria-hidden="true"><path id="route"/></svg>
+    <div class="plane" id="plane" aria-hidden="true"></div>
   </div>
 </section>
 
-<section class="block" id="features">
+<section class="block">
   <div class="wrap">
-    <h2>What works today</h2>
-    <p class="sub">Luckgram connects to the Telegram network, so the Telegram features you already use are all here.</p>
-    <div class="grid">
-<div class="card"><span class="tag ok">Available</span><h3>Chats and groups</h3><p>Cloud chats that sync across your devices, groups of up to 200,000 members, replies, reactions and polls.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Channels</h3><p>Follow and run channels, with comments, scheduled posts and statistics where Telegram offers them.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Voice and video calls</h3><p>End-to-end encrypted one-on-one calls, plus group calls and live streams.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Secret Chats</h3><p>Device-to-device encrypted chats with self-destructing messages.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Stories, bots and mini apps</h3><p>Everything that runs on the Telegram platform works in Luckgram.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Several accounts</h3><p>Switch between Telegram accounts in one app, up to Telegram's standard limit.</p></div>
+    <div class="head"><h2>Everything you use in Telegram</h2>
+      <p>Luckgram connects to the Telegram network, so the features you rely on work from the first sign-in.</p></div>
+    <div class="today">
+<div><span class="tag ok">Available</span><h3>Chats and groups</h3><p>Cloud chats that sync across your devices, groups of up to 200,000 members, replies, reactions and polls.</p></div>
+<div><span class="tag ok">Available</span><h3>Channels</h3><p>Follow and run channels, with comments, scheduled posts and statistics where Telegram offers them.</p></div>
+<div><span class="tag ok">Available</span><h3>Voice and video calls</h3><p>End-to-end encrypted one-on-one calls, plus group calls and live streams.</p></div>
+<div><span class="tag ok">Available</span><h3>Secret Chats</h3><p>Device-to-device encrypted chats with self-destructing messages.</p></div>
+<div><span class="tag ok">Available</span><h3>Stories, bots and mini apps</h3><p>Everything that runs on the Telegram platform works in Luckgram.</p></div>
+<div><span class="tag ok">Available</span><h3>Several accounts</h3><p>Switch between Telegram accounts in one app, up to Telegram's standard limit.</p></div>
     </div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>In development</h2>
-    <p class="sub">These Luckgram additions are being built. They are not in the app yet, and no release dates are promised.</p>
-    <ul class="list-wip">
-<li>More accounts in one app<span class="tag wip">In development</span></li>
-<li>Account backup and transfer<span class="tag wip">In development</span></li>
-<li>Double Bottom<span class="tag wip">In development</span></li>
-<li>Hidden chats<span class="tag wip">In development</span></li>
-<li>Quick replies<span class="tag wip">In development</span></li>
-<li>Outgoing translation<span class="tag wip">In development</span></li>
-<li>Free speech-to-text<span class="tag wip">In development</span></li>
-<li>Call recording<span class="tag wip">In development</span></li>
-<li>Gallery video as round message<span class="tag wip">In development</span></li>
-<li>Keyword folders<span class="tag wip">In development</span></li>
-<li>Show Telegram ID<span class="tag wip">In development</span></li>
-<li>AI Assistant<span class="tag wip">In development</span></li>
-    </ul>
-    <p class="more"><a href="/en/features/">See every feature and its status &rarr;</a></p>
+    <div class="head"><h2>What Luckgram adds</h2>
+      <p>Each feature is marked with where it stands. Features in development are not in the app yet, and we don't promise release dates.</p></div>
+    <div class="wall">
+<div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/accounts.jpg" width="848" height="848" aria-label="Animation: More accounts in one app"><source data-src="/media/features/accounts.webm" type="video/webm"><source data-src="/media/features/accounts.mp4" type="video/mp4"></video>
+        <span class="tag wip">In development</span><h3>More accounts in one app</h3><p>Today Luckgram follows Telegram's standard limit for accounts on one device. We are making room for many more, so personal, work and community accounts can sit side by side and you switch between them from Settings.</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/double-bottom.jpg" width="848" height="848" aria-label="Animation: Double Bottom: a second passcode with its own view"><source data-src="/media/features/double-bottom.webm" type="video/webm"><source data-src="/media/features/double-bottom.mp4" type="video/mp4"></video>
+        <span class="tag wip">In development</span><h3>Double Bottom: a second passcode with its own view</h3><p>Set a second passcode that opens Luckgram with only the accounts you pick. Your usual passcode still opens everything, so you decide what shows up when someone else is looking.</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/translate-out.jpg" width="848" height="848" aria-label="Animation: Translate what you write before you send it"><source data-src="/media/features/translate-out.webm" type="video/webm"><source data-src="/media/features/translate-out.mp4" type="video/mp4"></video>
+        <span class="tag wip">In development</span><h3>Translate what you write before you send it</h3><p>Write in the language you think in, then translate the text in the input bar and send it in your contact's language. You see the result before anything is sent.</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/voice-text.jpg" width="848" height="848" aria-label="Animation: Read voice messages instead of playing them"><source data-src="/media/features/voice-text.webm" type="video/webm"><source data-src="/media/features/voice-text.mp4" type="video/mp4"></video>
+        <span class="tag part">Telegram Premium; free version in development</span><h3>Read voice messages instead of playing them</h3><p>Turn a voice message into text with one tap, handy in a meeting or on a noisy train. Telegram offers this with Premium; a free version for Luckgram is being built.</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/round-video.jpg" width="848" height="848" aria-label="Animation: Send gallery videos as round video messages"><source data-src="/media/features/round-video.webm" type="video/webm"><source data-src="/media/features/round-video.mp4" type="video/mp4"></video>
+        <span class="tag wip">In development</span><h3>Send gallery videos as round video messages</h3><p>Pick a video you already recorded and send it as a round video message, the same way as one you film in the chat.</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/ai-summary.jpg" width="848" height="848" aria-label="Animation: Catch up on a busy chat with a summary"><source data-src="/media/features/ai-summary.webm" type="video/webm"><source data-src="/media/features/ai-summary.mp4" type="video/mp4"></video>
+        <span class="tag wip">In development</span><h3>Catch up on a busy chat with a summary</h3><p>Coming back to hundreds of unread messages? Get the decisions, dates and open questions in a few lines before you scroll.</p></div>
+    </div>
+    <div class="wall-foot"><span>19 features, each with a short demo.</span><a class="btn" href="/en/features/">See all features</a></div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>Open source and transparent</h2>
-    <p class="sub">The complete source code for both apps is public, and every release is built by GitHub Actions from that code.</p>
-    <div class="grid">
-      <div class="card"><h3>Public source code</h3><p>Read the code for <a href="https://github.com/limeng9088/luckgram-ios">iOS</a> and <a href="https://github.com/limeng9088/luckgram-android">Android</a> on GitHub.</p></div>
-      <div class="card"><h3>No Luckgram message servers</h3><p>Your messages go to Telegram's servers, as they would from any Telegram app. Luckgram does not run its own servers for them.</p></div>
-      <div class="card"><h3>No added trackers</h3><p>Luckgram does not add analytics or advertising SDKs to the apps.</p></div>
+    <div class="head"><h2>Open source, start to finish</h2>
+      <p>The complete code for both apps is public, and every release is built from it by GitHub Actions.</p></div>
+    <div class="open">
+      <div><h3>Your messages stay with Telegram</h3><p>Messages go to Telegram's servers, as they would from any Telegram app. Luckgram runs no message servers of its own.</p></div>
+      <div><h3>No added trackers</h3><p>Luckgram does not add analytics or advertising SDKs to the apps.</p></div>
+      <div><h3>Follows Telegram's updates</h3><p>Luckgram is built on the official open-source apps, so new Telegram features arrive with each update.</p></div>
+    </div>
+    <div class="repos">
+      <a class="repo" href="https://github.com/limeng9088/luckgram-ios"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg><span><b>limeng9088/luckgram-ios</b>Source code for iPhone and iPad</span></a>
+      <a class="repo" href="https://github.com/limeng9088/luckgram-android"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg><span><b>limeng9088/luckgram-android</b>Source code for Android</span></a>
     </div>
   </div>
 </section>
 
-<section class="block" id="download">
+<section class="cta" id="download">
   <div class="wrap">
-    <h2>Get Luckgram</h2>
-    <p class="sub">Free for iOS and Android.</p>
+    <div class="mark" aria-hidden="true"></div>
+    <h2>Take your Telegram with you</h2>
+    <p>Free for iPhone, iPad and Android. Sign in with the account you already have.</p>
     <div class="btns">
-      <a class="btn primary" href="/en/download/">Go to downloads</a>
-      <a class="btn" href="https://wiki.luckgram.cc/en/getting-started/install.html">Install guide</a>
+      <a class="btn platform primary" href="https://github.com/limeng9088/luckgram-ios/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span><small>iPhone and iPad</small>Download for iOS</span></a>
+        <a class="btn platform" href="https://github.com/limeng9088/luckgram-android/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span><small>Android 6.0 or later</small>Download APK</span></a>
     </div>
   </div>
 </section>
 
 <section class="block" id="faq">
-  <div class="wrap">
-    <h2>Frequently asked questions</h2>
-    <p class="sub">More answers in the <a href="https://wiki.luckgram.cc/en/">Help Center</a>.</p>
+  <div class="wrap faq">
+    <div class="head solo"><h2>Questions</h2>
+      <p>More answers in the <a href="https://wiki.luckgram.cc/en/">Help Center</a>.</p></div>
+    <div class="qa">
 <details><summary>Is Luckgram an official Telegram app?</summary><p>No. Luckgram is an independent app built from the open-source Telegram apps for iOS and Android. It is not made by, affiliated with, or endorsed by Telegram.</p></details>
 <details><summary>Can I use my existing Telegram account?</summary><p>Yes. Sign in with your phone number. Your cloud chats, contacts and channels load from Telegram as they do in any Telegram app.</p></details>
 <details><summary>Is Luckgram free?</summary><p>Yes. Telegram Premium and Telegram Stars are Telegram's own services and are sold and managed by Telegram.</p></details>
@@ -116,13 +122,30 @@
 <details><summary>Which Android phones are supported?</summary><p>Android 6.0 or later on a 64-bit ARM phone (arm64-v8a), which covers almost every phone sold in recent years. Allow installs from your browser or file manager when asked.</p></details>
 <details><summary>Where are the extra features?</summary><p>The features listed under In development are being built. Until they ship, Luckgram works like the Telegram app it is based on. No release dates are promised.</p></details>
 <details><summary>How do I get help?</summary><p>Start with the <a href="https://wiki.luckgram.cc/en/">Help Center</a>. If it does not answer your question, write to <a href="mailto:support@luckgram.cc">support@luckgram.cc</a>.</p></details>
+    </div>
   </div>
 </section>
+<script>
+// Draw the paper plane's route from under the buttons to the corner of the demo, then fly it once.
+(function () {
+  var hero = document.querySelector('.hero .wrap'), path = document.getElementById('route'), plane = document.getElementById('plane');
+  function draw() {
+    if (window.innerWidth < 980) { path.setAttribute('d', ''); plane.style.display = 'none'; return; }
+    var h = hero.getBoundingClientRect(), b = hero.querySelector('.fine').getBoundingClientRect(), s = hero.querySelector('.stage video').getBoundingClientRect();
+    var x0 = b.left - h.left + 4, y0 = b.bottom - h.top + 44, x1 = s.left - h.left + 18, y1 = s.top - h.top + 6, dx = x1 - x0;
+    var d = 'M' + x0 + ' ' + y0 + ' C' + (x0 + dx * .55) + ' ' + (y0 + 70) + ' ' + (x1 - dx * .5) + ' ' + (y1 + 40) + ' ' + x1 + ' ' + y1;
+    path.setAttribute('d', d); plane.style.display = ''; plane.style.offsetPath = "path('" + d + "')";
+  }
+  draw(); window.addEventListener('resize', draw);
+})();
+</script>
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <div class="cols">
-      <div><h4>Luckgram</h4><ul>
+    <div class="top">
+      <div><a class="logo" href="/en/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>An independent, open-source Telegram client.</p></div>
+      <div><h4>Product</h4><ul>
         <li><a href="/en/download/">Download</a></li>
         <li><a href="/en/features/">Features</a></li>
         <li><a href="https://wiki.luckgram.cc/en/">Help Center</a></li>
@@ -141,9 +164,23 @@
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
-    <p class="disclaimer">Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.</p>
-    <p>&copy; 2026 Luckgram</p>
+    <div class="legal">
+      <p>Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
   </div>
 </footer>
+<script>
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 </html>

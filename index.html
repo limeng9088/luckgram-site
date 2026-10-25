@@ -18,96 +18,102 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/"><img src="/assets/icon-512.png" alt="" width="30" height="30"><span>Luckgram</span></a>
-    <nav class="nav">
+    <a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="主导航">
       <a href="/features/">功能</a>
-      <a href="/download/">下载</a>
       <a href="https://wiki.luckgram.cc/">帮助</a>
       <a href="/#faq" class="opt">常见问题</a>
       <a class="lang" href="/en/" hreflang="en" lang="en">EN</a>
+      <a href="/download/" class="get">下载</a>
     </nav>
   </div>
 </header>
 <main>
 <section class="hero">
   <div class="wrap">
-    <div>
-      <p class="eyebrow">独立的 Telegram 客户端</p>
-      <h1>Luckgram：你的 Telegram，换一个新应用</h1>
-      <p class="lede">Luckgram 基于开源的 Telegram iOS 和 Android 应用开发。用你的 Telegram 账号登录，一切用法照旧，更多工具正在路上。</p>
+    <div class="hero-text">
+      <h1>Telegram，<br>飞得更远</h1>
+      <p class="lede">Luckgram 是独立、开源的 iOS 和 Android Telegram 客户端。用你的 Telegram 账号登录，聊天、频道和通话都在；多账号、隐藏聊天、翻译和 AI 等功能正在陆续加入。</p>
       <div class="btns">
-        <a class="btn primary" href="/download/">下载 Luckgram</a>
-        <a class="btn" href="/features/">查看功能</a>
+        <a class="btn platform primary" href="https://github.com/limeng9088/luckgram-ios/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span><small>iPhone 和 iPad</small>下载 iOS 版</span></a>
+        <a class="btn platform" href="https://github.com/limeng9088/luckgram-android/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span><small>Android 6.0 及以上</small>下载 APK</span></a>
       </div>
+      <p class="fine">免费使用。在 iPhone 上安装，请先看<a href="https://wiki.luckgram.cc/getting-started/install.html">安装指南</a>。</p>
     </div>
-    <div class="hero-art"><img src="/assets/icon-512.png" alt="Luckgram 应用图标" width="512" height="512"></div>
+    <figure class="stage" style="margin:0">
+      <video muted loop playsinline autoplay preload="auto" poster="/media/features/translate-in-zh.jpg" width="848" height="848" aria-label="演示动画: 翻译消息"><source src="/media/features/translate-in-zh.webm" type="video/webm"><source src="/media/features/translate-in-zh.mp4" type="video/mp4"></video>
+      <figcaption><span class="tag ok">现已可用：翻译收到的消息</span></figcaption>
+    </figure>
+    <svg class="route" aria-hidden="true"><path id="route"/></svg>
+    <div class="plane" id="plane" aria-hidden="true"></div>
   </div>
 </section>
 
-<section class="block" id="features">
+<section class="block">
   <div class="wrap">
-    <h2>现在就能用</h2>
-    <p class="sub">Luckgram 连接的是 Telegram 网络，你平时用的 Telegram 功能这里都有。</p>
-    <div class="grid">
-<div class="card"><span class="tag ok">已上线</span><h3>聊天和群组</h3><p>在所有设备间同步的云端聊天，最多 20 万人的群组，支持回复、表情回应和投票。</p></div>
-<div class="card"><span class="tag ok">已上线</span><h3>频道</h3><p>关注和运营频道，支持评论、定时发布，以及 Telegram 提供的数据统计。</p></div>
-<div class="card"><span class="tag ok">已上线</span><h3>语音和视频通话</h3><p>端到端加密的一对一通话，还有群组通话和直播。</p></div>
-<div class="card"><span class="tag ok">已上线</span><h3>私密聊天</h3><p>设备之间端到端加密的聊天，支持阅后即焚。</p></div>
-<div class="card"><span class="tag ok">已上线</span><h3>动态、机器人和小程序</h3><p>Telegram 平台上的一切都能在 Luckgram 中使用。</p></div>
-<div class="card"><span class="tag ok">已上线</span><h3>多个账号</h3><p>在一个应用里切换多个 Telegram 账号，上限与 Telegram 官方一致。</p></div>
+    <div class="head"><h2>你在 Telegram 里用的，这里都有</h2>
+      <p>Luckgram 连接的是 Telegram 网络，你常用的功能从第一次登录起就能用。</p></div>
+    <div class="today">
+<div><span class="tag ok">已上线</span><h3>聊天和群组</h3><p>在所有设备间同步的云端聊天，最多 20 万人的群组，支持回复、表情回应和投票。</p></div>
+<div><span class="tag ok">已上线</span><h3>频道</h3><p>关注和运营频道，支持评论、定时发布，以及 Telegram 提供的数据统计。</p></div>
+<div><span class="tag ok">已上线</span><h3>语音和视频通话</h3><p>端到端加密的一对一通话，还有群组通话和直播。</p></div>
+<div><span class="tag ok">已上线</span><h3>私密聊天</h3><p>设备之间端到端加密的聊天，支持阅后即焚。</p></div>
+<div><span class="tag ok">已上线</span><h3>动态、机器人和小程序</h3><p>Telegram 平台上的一切都能在 Luckgram 中使用。</p></div>
+<div><span class="tag ok">已上线</span><h3>多个账号</h3><p>在一个应用里切换多个 Telegram 账号，上限与 Telegram 官方一致。</p></div>
     </div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>开发中</h2>
-    <p class="sub">这些是 Luckgram 正在开发的新功能，目前还没有加入应用，我们也不承诺上线时间。</p>
-    <ul class="list-wip">
-<li>一个应用登录更多账号<span class="tag wip">开发中</span></li>
-<li>账号备份与迁移<span class="tag wip">开发中</span></li>
-<li>双重空间（Double Bottom）<span class="tag wip">开发中</span></li>
-<li>隐藏聊天<span class="tag wip">开发中</span></li>
-<li>快捷回复<span class="tag wip">开发中</span></li>
-<li>发送前翻译<span class="tag wip">开发中</span></li>
-<li>免费语音转文字<span class="tag wip">开发中</span></li>
-<li>通话录音<span class="tag wip">开发中</span></li>
-<li>相册视频转圆形视频消息<span class="tag wip">开发中</span></li>
-<li>关键词文件夹<span class="tag wip">开发中</span></li>
-<li>显示 Telegram ID<span class="tag wip">开发中</span></li>
-<li>AI 助手<span class="tag wip">开发中</span></li>
-    </ul>
-    <p class="more"><a href="/features/">查看全部功能及状态 &rarr;</a></p>
+    <div class="head"><h2>Luckgram 的新功能</h2>
+      <p>每个功能都标明了目前的状态。标注“开发中”的功能还没有加入应用，我们也不承诺上线时间。</p></div>
+    <div class="wall">
+<div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/accounts-zh.jpg" width="848" height="848" aria-label="演示动画: 一个应用登录更多账号"><source data-src="/media/features/accounts-zh.webm" type="video/webm"><source data-src="/media/features/accounts-zh.mp4" type="video/mp4"></video>
+        <span class="tag wip">开发中</span><h3>一个应用登录更多账号</h3><p>目前 Luckgram 在一台设备上可登录的账号数与 Telegram 官方一致。我们正在让它容纳更多账号，个人、工作和社群账号可以并排放着，在设置里一点就能切换。</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/double-bottom-zh.jpg" width="848" height="848" aria-label="演示动画: 双重空间：第二个密码，打开另一套视图"><source data-src="/media/features/double-bottom-zh.webm" type="video/webm"><source data-src="/media/features/double-bottom-zh.mp4" type="video/mp4"></video>
+        <span class="tag wip">开发中</span><h3>双重空间：第二个密码，打开另一套视图</h3><p>设置第二个密码，用它打开 Luckgram 时只显示你挑选的账号；用平时的密码则打开全部。别人在看你手机时显示什么，由你决定。</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/translate-out-zh.jpg" width="848" height="848" aria-label="演示动画: 发送前先翻译你写的内容"><source data-src="/media/features/translate-out-zh.webm" type="video/webm"><source data-src="/media/features/translate-out-zh.mp4" type="video/mp4"></video>
+        <span class="tag wip">开发中</span><h3>发送前先翻译你写的内容</h3><p>用你习惯的语言写，在输入框里翻译成对方的语言再发出去。发送前你能先看到翻译结果。</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/voice-text-zh.jpg" width="848" height="848" aria-label="演示动画: 语音消息不用听，直接看"><source data-src="/media/features/voice-text-zh.webm" type="video/webm"><source data-src="/media/features/voice-text-zh.mp4" type="video/mp4"></video>
+        <span class="tag part">Telegram Premium 功能，免费版开发中</span><h3>语音消息不用听，直接看</h3><p>一点就把语音消息转成文字，开会时、在嘈杂的地铁上都方便。Telegram 的这个功能需要 Premium，Luckgram 正在开发免费版。</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/round-video-zh.jpg" width="848" height="848" aria-label="演示动画: 把相册视频发成圆形视频消息"><source data-src="/media/features/round-video-zh.webm" type="video/webm"><source data-src="/media/features/round-video-zh.mp4" type="video/mp4"></video>
+        <span class="tag wip">开发中</span><h3>把相册视频发成圆形视频消息</h3><p>选一段相册里已有的视频，像在聊天里现拍的一样，发成圆形视频消息。</p></div><div class="cell"><video muted loop playsinline preload="none" data-lazy poster="/media/features/ai-summary-zh.jpg" width="848" height="848" aria-label="演示动画: 用总结快速跟上热闹的群聊"><source data-src="/media/features/ai-summary-zh.webm" type="video/webm"><source data-src="/media/features/ai-summary-zh.mp4" type="video/mp4"></video>
+        <span class="tag wip">开发中</span><h3>用总结快速跟上热闹的群聊</h3><p>回来发现几百条未读？先用几行字看清结论、日期和待解决的问题，再决定要不要往上翻。</p></div>
+    </div>
+    <div class="wall-foot"><span>共 19 个功能，每个都有演示动画。</span><a class="btn" href="/features/">查看全部功能</a></div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>开源透明</h2>
-    <p class="sub">两个应用的完整源代码都已公开，每个版本都由 GitHub Actions 从这些代码构建。</p>
-    <div class="grid">
-      <div class="card"><h3>公开的源代码</h3><p>在 GitHub 上查看 <a href="https://github.com/limeng9088/luckgram-ios">iOS</a> 和 <a href="https://github.com/limeng9088/luckgram-android">Android</a> 的代码。</p></div>
-      <div class="card"><h3>没有 Luckgram 自己的消息服务器</h3><p>你的消息和在任何 Telegram 应用里一样，发送到 Telegram 的服务器。Luckgram 不为消息设立自己的服务器。</p></div>
-      <div class="card"><h3>不加追踪</h3><p>Luckgram 没有在应用里加入任何统计或广告 SDK。</p></div>
+    <div class="head"><h2>从头到尾都开源</h2>
+      <p>两个应用的完整代码都已公开，每个版本都由 GitHub Actions 从这些代码构建。</p></div>
+    <div class="open">
+      <div><h3>消息只经过 Telegram</h3><p>你的消息和在任何 Telegram 应用里一样，发送到 Telegram 的服务器。Luckgram 没有自己的消息服务器。</p></div>
+      <div><h3>不加追踪</h3><p>Luckgram 没有在应用里加入任何统计或广告 SDK。</p></div>
+      <div><h3>跟进 Telegram 更新</h3><p>Luckgram 基于官方开源应用构建，Telegram 的新功能会随更新一起到来。</p></div>
+    </div>
+    <div class="repos">
+      <a class="repo" href="https://github.com/limeng9088/luckgram-ios"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg><span><b>limeng9088/luckgram-ios</b>iPhone 和 iPad 版源代码</span></a>
+      <a class="repo" href="https://github.com/limeng9088/luckgram-android"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg><span><b>limeng9088/luckgram-android</b>Android 版源代码</span></a>
     </div>
   </div>
 </section>
 
-<section class="block" id="download">
+<section class="cta" id="download">
   <div class="wrap">
-    <h2>获取 Luckgram</h2>
-    <p class="sub">iOS 和 Android 均可免费使用。</p>
+    <div class="mark" aria-hidden="true"></div>
+    <h2>带上你的 Telegram，出发</h2>
+    <p>iPhone、iPad 和 Android 均可免费使用，用你现有的账号登录。</p>
     <div class="btns">
-      <a class="btn primary" href="/download/">前往下载</a>
-      <a class="btn" href="https://wiki.luckgram.cc/getting-started/install.html">安装指南</a>
+      <a class="btn platform primary" href="https://github.com/limeng9088/luckgram-ios/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span><small>iPhone 和 iPad</small>下载 iOS 版</span></a>
+        <a class="btn platform" href="https://github.com/limeng9088/luckgram-android/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span><small>Android 6.0 及以上</small>下载 APK</span></a>
     </div>
   </div>
 </section>
 
 <section class="block" id="faq">
-  <div class="wrap">
-    <h2>常见问题</h2>
-    <p class="sub">更多解答请看<a href="https://wiki.luckgram.cc/">帮助中心</a>。</p>
+  <div class="wrap faq">
+    <div class="head solo"><h2>常见问题</h2>
+      <p>更多解答请看<a href="https://wiki.luckgram.cc/">帮助中心</a>。</p></div>
+    <div class="qa">
 <details><summary>Luckgram 是 Telegram 官方应用吗？</summary><p>不是。Luckgram 是基于开源的 Telegram iOS 和 Android 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。</p></details>
 <details><summary>可以用我现有的 Telegram 账号吗？</summary><p>可以。用手机号登录即可，云端聊天、联系人和频道会像在任何 Telegram 应用里一样从 Telegram 加载。</p></details>
 <details><summary>Luckgram 免费吗？</summary><p>免费。Telegram Premium 和 Telegram Stars 是 Telegram 自己的服务，由 Telegram 销售和管理。</p></details>
@@ -116,20 +122,37 @@
 <details><summary>支持哪些 Android 手机？</summary><p>Android 6.0 及以上、64 位 ARM 处理器（arm64-v8a）的手机，近几年卖的手机基本都支持。安装时如有提示，请允许浏览器或文件管理器安装应用。</p></details>
 <details><summary>额外的功能在哪里？</summary><p>标注为“开发中”的功能正在开发。上线之前，Luckgram 的用法和它所基于的 Telegram 应用一样。我们不承诺上线时间。</p></details>
 <details><summary>遇到问题怎么办？</summary><p>先看看<a href="https://wiki.luckgram.cc/">帮助中心</a>。如果没有找到答案，请发邮件到 <a href="mailto:support@luckgram.cc">support@luckgram.cc</a>。</p></details>
+    </div>
   </div>
 </section>
+<script>
+// Draw the paper plane's route from under the buttons to the corner of the demo, then fly it once.
+(function () {
+  var hero = document.querySelector('.hero .wrap'), path = document.getElementById('route'), plane = document.getElementById('plane');
+  function draw() {
+    if (window.innerWidth < 980) { path.setAttribute('d', ''); plane.style.display = 'none'; return; }
+    var h = hero.getBoundingClientRect(), b = hero.querySelector('.fine').getBoundingClientRect(), s = hero.querySelector('.stage video').getBoundingClientRect();
+    var x0 = b.left - h.left + 4, y0 = b.bottom - h.top + 44, x1 = s.left - h.left + 18, y1 = s.top - h.top + 6, dx = x1 - x0;
+    var d = 'M' + x0 + ' ' + y0 + ' C' + (x0 + dx * .55) + ' ' + (y0 + 70) + ' ' + (x1 - dx * .5) + ' ' + (y1 + 40) + ' ' + x1 + ' ' + y1;
+    path.setAttribute('d', d); plane.style.display = ''; plane.style.offsetPath = "path('" + d + "')";
+  }
+  draw(); window.addEventListener('resize', draw);
+})();
+</script>
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <div class="cols">
-      <div><h4>Luckgram</h4><ul>
+    <div class="top">
+      <div><a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>独立、开源的 Telegram 客户端。</p></div>
+      <div><h4>产品</h4><ul>
         <li><a href="/download/">下载</a></li>
         <li><a href="/features/">功能</a></li>
         <li><a href="https://wiki.luckgram.cc/">帮助中心</a></li>
       </ul></div>
       <div><h4>源代码</h4><ul>
-        <li><a href="https://github.com/limeng9088/luckgram-ios">Luckgram iOS 版</a></li>
-        <li><a href="https://github.com/limeng9088/luckgram-android">Luckgram Android 版</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">iOS 版</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Android 版</a></li>
       </ul></div>
       <div><h4>法律</h4><ul>
         <li><a href="/privacy-policy/">隐私政策</a></li>
@@ -141,9 +164,23 @@
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
-    <p class="disclaimer">Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
-    <p>&copy; 2026 Luckgram</p>
+    <div class="legal">
+      <p>Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
   </div>
 </footer>
+<script>
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 </html>
