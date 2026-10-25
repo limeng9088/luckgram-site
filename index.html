@@ -1,13 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Luckgram – an independent Telegram client for iOS and Android</title>
-<meta name="description" content="Luckgram is an independent, open-source Telegram client for iOS and Android. Sign in with your Telegram account and keep everything you use today.">
-<meta property="og:title" content="Luckgram – an independent Telegram client for iOS and Android">
-<meta property="og:description" content="Luckgram is an independent, open-source Telegram client for iOS and Android. Sign in with your Telegram account and keep everything you use today.">
+<title>Luckgram – 独立的 iOS 和 Android Telegram 客户端</title>
+<meta name="description" content="Luckgram 是独立、开源的 iOS 和 Android Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。">
+<meta property="og:title" content="Luckgram – 独立的 iOS 和 Android Telegram 客户端">
+<meta property="og:description" content="Luckgram 是独立、开源的 iOS 和 Android Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。">
 <meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
+<link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/">
+<link rel="alternate" hreflang="en" href="https://luckgram.cc/en/">
+<link rel="alternate" hreflang="x-default" href="https://luckgram.cc/">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
@@ -15,12 +18,13 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/"><img src="/assets/icon-512.png" alt="" width="30" height="30">Luckgram</a>
+    <a class="logo" href="/"><img src="/assets/icon-512.png" alt="" width="30" height="30"><span>Luckgram</span></a>
     <nav class="nav">
-      <a href="/#features" class="opt">Features</a>
-      <a href="/download/">Download</a>
-      <a href="https://wiki.luckgram.cc">Help</a>
-      <a href="/#faq" class="opt">FAQ</a>
+      <a href="/features/">功能</a>
+      <a href="/download/">下载</a>
+      <a href="https://wiki.luckgram.cc/">帮助</a>
+      <a href="/#faq" class="opt">常见问题</a>
+      <a class="lang" href="/en/" hreflang="en" lang="en">EN</a>
     </nav>
   </div>
 </header>
@@ -28,91 +32,90 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <p class="eyebrow">Independent Telegram client</p>
-      <h1>Luckgram: your Telegram, in a new app</h1>
-      <p class="lede">Luckgram is built on the open-source Telegram apps for iOS and Android. Sign in with your
-      Telegram account and everything works as you know it. More tools are on the way.</p>
+      <p class="eyebrow">独立的 Telegram 客户端</p>
+      <h1>Luckgram：你的 Telegram，换一个新应用</h1>
+      <p class="lede">Luckgram 基于开源的 Telegram iOS 和 Android 应用开发。用你的 Telegram 账号登录，一切用法照旧，更多工具正在路上。</p>
       <div class="btns">
-        <a class="btn primary" href="/download/">Download Luckgram</a>
-        <a class="btn" href="https://github.com/limeng9088/luckgram-ios">View the source</a>
+        <a class="btn primary" href="/download/">下载 Luckgram</a>
+        <a class="btn" href="/features/">查看功能</a>
       </div>
     </div>
-    <div class="hero-art"><img src="/assets/icon-512.png" alt="Luckgram app icon" width="512" height="512"></div>
+    <div class="hero-art"><img src="/assets/icon-512.png" alt="Luckgram 应用图标" width="512" height="512"></div>
   </div>
 </section>
 
 <section class="block" id="features">
   <div class="wrap">
-    <h2>What works today</h2>
-    <p class="sub">Luckgram connects to the Telegram network, so the Telegram features you already use are all here.</p>
+    <h2>现在就能用</h2>
+    <p class="sub">Luckgram 连接的是 Telegram 网络，你平时用的 Telegram 功能这里都有。</p>
     <div class="grid">
-<div class="card"><span class="tag ok">Available</span><h3>Chats and groups</h3><p>Cloud chats that sync across your devices, groups of up to 200,000 members, replies, reactions and polls.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Channels</h3><p>Follow and run channels, with comments, scheduled posts and statistics where Telegram offers them.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Voice and video calls</h3><p>End-to-end encrypted one-on-one calls, plus group calls and live streams.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Secret Chats</h3><p>Device-to-device encrypted chats with self-destructing messages.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Stories, bots and mini apps</h3><p>Everything that runs on the Telegram platform works in Luckgram.</p></div>
-<div class="card"><span class="tag ok">Available</span><h3>Several accounts</h3><p>Switch between Telegram accounts in one app, up to Telegram's standard limit.</p></div>
+<div class="card"><span class="tag ok">已上线</span><h3>聊天和群组</h3><p>在所有设备间同步的云端聊天，最多 20 万人的群组，支持回复、表情回应和投票。</p></div>
+<div class="card"><span class="tag ok">已上线</span><h3>频道</h3><p>关注和运营频道，支持评论、定时发布，以及 Telegram 提供的数据统计。</p></div>
+<div class="card"><span class="tag ok">已上线</span><h3>语音和视频通话</h3><p>端到端加密的一对一通话，还有群组通话和直播。</p></div>
+<div class="card"><span class="tag ok">已上线</span><h3>私密聊天</h3><p>设备之间端到端加密的聊天，支持阅后即焚。</p></div>
+<div class="card"><span class="tag ok">已上线</span><h3>动态、机器人和小程序</h3><p>Telegram 平台上的一切都能在 Luckgram 中使用。</p></div>
+<div class="card"><span class="tag ok">已上线</span><h3>多个账号</h3><p>在一个应用里切换多个 Telegram 账号，上限与 Telegram 官方一致。</p></div>
     </div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>In development</h2>
-    <p class="sub">These Luckgram additions are being built. They are not in the app yet, and no release dates are promised.</p>
+    <h2>开发中</h2>
+    <p class="sub">这些是 Luckgram 正在开发的新功能，目前还没有加入应用，我们也不承诺上线时间。</p>
     <ul class="list-wip">
-<li>More accounts in one app<span class="tag wip">In development</span></li>
-<li>Account backup and transfer<span class="tag wip">In development</span></li>
-<li>Double Bottom<span class="tag wip">In development</span></li>
-<li>Hidden chats<span class="tag wip">In development</span></li>
-<li>Quick replies<span class="tag wip">In development</span></li>
-<li>Outgoing translation<span class="tag wip">In development</span></li>
-<li>Free speech-to-text<span class="tag wip">In development</span></li>
-<li>Call recording<span class="tag wip">In development</span></li>
-<li>Gallery video as round message<span class="tag wip">In development</span></li>
-<li>Keyword folders<span class="tag wip">In development</span></li>
-<li>Show Telegram ID<span class="tag wip">In development</span></li>
-<li>AI Assistant<span class="tag wip">In development</span></li>
+<li>一个应用登录更多账号<span class="tag wip">开发中</span></li>
+<li>账号备份与迁移<span class="tag wip">开发中</span></li>
+<li>双重空间（Double Bottom）<span class="tag wip">开发中</span></li>
+<li>隐藏聊天<span class="tag wip">开发中</span></li>
+<li>快捷回复<span class="tag wip">开发中</span></li>
+<li>发送前翻译<span class="tag wip">开发中</span></li>
+<li>免费语音转文字<span class="tag wip">开发中</span></li>
+<li>通话录音<span class="tag wip">开发中</span></li>
+<li>相册视频转圆形视频消息<span class="tag wip">开发中</span></li>
+<li>关键词文件夹<span class="tag wip">开发中</span></li>
+<li>显示 Telegram ID<span class="tag wip">开发中</span></li>
+<li>AI 助手<span class="tag wip">开发中</span></li>
     </ul>
-    <p class="more"><a href="https://wiki.luckgram.cc/features/">See the full feature status in the Help Center &rarr;</a></p>
+    <p class="more"><a href="/features/">查看全部功能及状态 &rarr;</a></p>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <h2>Open source and transparent</h2>
-    <p class="sub">The complete source code for both apps is public, and every release is built by GitHub Actions from that code.</p>
+    <h2>开源透明</h2>
+    <p class="sub">两个应用的完整源代码都已公开，每个版本都由 GitHub Actions 从这些代码构建。</p>
     <div class="grid">
-      <div class="card"><h3>Public source code</h3><p>Read the code for <a href="https://github.com/limeng9088/luckgram-ios">iOS</a> and <a href="https://github.com/limeng9088/luckgram-android">Android</a> on GitHub.</p></div>
-      <div class="card"><h3>No Luckgram message servers</h3><p>Your messages go to Telegram's servers, as they would from any Telegram app. Luckgram does not run its own servers for them.</p></div>
-      <div class="card"><h3>No added trackers</h3><p>Luckgram does not add analytics or advertising SDKs to the apps.</p></div>
+      <div class="card"><h3>公开的源代码</h3><p>在 GitHub 上查看 <a href="https://github.com/limeng9088/luckgram-ios">iOS</a> 和 <a href="https://github.com/limeng9088/luckgram-android">Android</a> 的代码。</p></div>
+      <div class="card"><h3>没有 Luckgram 自己的消息服务器</h3><p>你的消息和在任何 Telegram 应用里一样，发送到 Telegram 的服务器。Luckgram 不为消息设立自己的服务器。</p></div>
+      <div class="card"><h3>不加追踪</h3><p>Luckgram 没有在应用里加入任何统计或广告 SDK。</p></div>
     </div>
   </div>
 </section>
 
 <section class="block" id="download">
   <div class="wrap">
-    <h2>Get Luckgram</h2>
-    <p class="sub">Free for iOS and Android.</p>
+    <h2>获取 Luckgram</h2>
+    <p class="sub">iOS 和 Android 均可免费使用。</p>
     <div class="btns">
-      <a class="btn primary" href="/download/">Go to downloads</a>
-      <a class="btn" href="https://wiki.luckgram.cc/getting-started/install.html">Install guide</a>
+      <a class="btn primary" href="/download/">前往下载</a>
+      <a class="btn" href="https://wiki.luckgram.cc/getting-started/install.html">安装指南</a>
     </div>
   </div>
 </section>
 
 <section class="block" id="faq">
   <div class="wrap">
-    <h2>Frequently asked questions</h2>
-    <p class="sub">More answers in the <a href="https://wiki.luckgram.cc">Help Center</a>.</p>
-<details><summary>Is Luckgram an official Telegram app?</summary><p>No. Luckgram is an independent app built from the open-source Telegram apps for iOS and Android. It is not made by, affiliated with, or endorsed by Telegram.</p></details>
-<details><summary>Can I use my existing Telegram account?</summary><p>Yes. Sign in with your phone number. Your cloud chats, contacts and channels load from Telegram as they do in any Telegram app.</p></details>
-<details><summary>Is Luckgram free?</summary><p>Yes. Telegram Premium and Telegram Stars are Telegram's own services and are sold and managed by Telegram.</p></details>
-<details><summary>Why isn't Luckgram on the App Store or Google Play?</summary><p>Luckgram is currently distributed through GitHub Releases. The Download page always links to the latest build.</p></details>
-<details><summary>How do I install Luckgram on an iPhone?</summary><p>The iOS build is an unsigned IPA. Sign it with a tool such as Sideloadly or AltStore, or with your own Apple developer certificate, then install it. The install guide walks through each step.</p></details>
-<details><summary>Which Android phones are supported?</summary><p>Android 6.0 or later on a 64-bit ARM phone (arm64-v8a), which covers almost every phone sold in recent years. Allow installs from your browser or file manager when asked.</p></details>
-<details><summary>Where are the extra features?</summary><p>The features listed under In development are being built. Until they ship, Luckgram works like the Telegram app it is based on. No release dates are promised.</p></details>
-<details><summary>How do I get help?</summary><p>Start with the <a href="https://wiki.luckgram.cc">Help Center</a>. If it does not answer your question, write to <a href="mailto:support@luckgram.cc">support@luckgram.cc</a>.</p></details>
+    <h2>常见问题</h2>
+    <p class="sub">更多解答请看<a href="https://wiki.luckgram.cc/">帮助中心</a>。</p>
+<details><summary>Luckgram 是 Telegram 官方应用吗？</summary><p>不是。Luckgram 是基于开源的 Telegram iOS 和 Android 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。</p></details>
+<details><summary>可以用我现有的 Telegram 账号吗？</summary><p>可以。用手机号登录即可，云端聊天、联系人和频道会像在任何 Telegram 应用里一样从 Telegram 加载。</p></details>
+<details><summary>Luckgram 免费吗？</summary><p>免费。Telegram Premium 和 Telegram Stars 是 Telegram 自己的服务，由 Telegram 销售和管理。</p></details>
+<details><summary>为什么 App Store 和 Google Play 上找不到 Luckgram？</summary><p>Luckgram 目前通过 GitHub Releases 发布。下载页上的链接始终指向最新版本。</p></details>
+<details><summary>怎么在 iPhone 上安装 Luckgram？</summary><p>iOS 版是未签名的 IPA。先用 Sideloadly、AltStore 等工具或你自己的 Apple 开发者证书签名，再安装。安装指南里有每一步的说明。</p></details>
+<details><summary>支持哪些 Android 手机？</summary><p>Android 6.0 及以上、64 位 ARM 处理器（arm64-v8a）的手机，近几年卖的手机基本都支持。安装时如有提示，请允许浏览器或文件管理器安装应用。</p></details>
+<details><summary>额外的功能在哪里？</summary><p>标注为“开发中”的功能正在开发。上线之前，Luckgram 的用法和它所基于的 Telegram 应用一样。我们不承诺上线时间。</p></details>
+<details><summary>遇到问题怎么办？</summary><p>先看看<a href="https://wiki.luckgram.cc/">帮助中心</a>。如果没有找到答案，请发邮件到 <a href="mailto:support@luckgram.cc">support@luckgram.cc</a>。</p></details>
   </div>
 </section>
 </main>
@@ -120,26 +123,25 @@
   <div class="wrap">
     <div class="cols">
       <div><h4>Luckgram</h4><ul>
-        <li><a href="/download/">Download</a></li>
-        <li><a href="https://wiki.luckgram.cc/features/">Features</a></li>
-        <li><a href="https://wiki.luckgram.cc">Help Center</a></li>
+        <li><a href="/download/">下载</a></li>
+        <li><a href="/features/">功能</a></li>
+        <li><a href="https://wiki.luckgram.cc/">帮助中心</a></li>
       </ul></div>
-      <div><h4>Source code</h4><ul>
-        <li><a href="https://github.com/limeng9088/luckgram-ios">Luckgram for iOS</a></li>
-        <li><a href="https://github.com/limeng9088/luckgram-android">Luckgram for Android</a></li>
+      <div><h4>源代码</h4><ul>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">Luckgram iOS 版</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Luckgram Android 版</a></li>
       </ul></div>
-      <div><h4>Legal</h4><ul>
-        <li><a href="/privacy-policy/">Privacy Policy</a></li>
-        <li><a href="/terms-of-use/">Terms of Use</a></li>
+      <div><h4>法律</h4><ul>
+        <li><a href="/privacy-policy/">隐私政策</a></li>
+        <li><a href="/terms-of-use/">使用条款</a></li>
       </ul></div>
-      <div><h4>Contact</h4><ul>
+      <div><h4>联系我们</h4><ul>
         <li><a href="mailto:support@luckgram.cc">support@luckgram.cc</a></li>
         <li><a href="mailto:contact@luckgram.cc">contact@luckgram.cc</a></li>
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
-    <p class="disclaimer">Luckgram is an independent app based on the open-source Telegram apps. It is not made by,
-    affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.</p>
+    <p class="disclaimer">Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
     <p>&copy; 2026 Luckgram</p>
   </div>
 </footer>
