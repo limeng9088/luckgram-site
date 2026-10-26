@@ -168,7 +168,13 @@ details a { color: var(--ink); }
 
 /* Features page */
 .feat-layout { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; padding-top: 56px; padding-bottom: 40px; }
-.feat-toc { position: sticky; top: 88px; max-height: calc(100vh - 110px); overflow: auto; font-size: 14.5px; }
+.feat-toc { position: sticky; top: 88px; max-height: calc(100vh - 110px); overflow: auto; overscroll-behavior: contain; font-size: 14.5px; padding: 12px 0; scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color .2s;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 24px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(180deg, transparent, #000 24px, #000 calc(100% - 32px), transparent); }
+.feat-toc:hover { scrollbar-color: rgba(255, 255, 255, .18) transparent; }
+.feat-toc::-webkit-scrollbar { width: 6px; height: 0; }
+.feat-toc::-webkit-scrollbar-track { background: transparent; }
+.feat-toc::-webkit-scrollbar-thumb { background: transparent; border-radius: 3px; }
+.feat-toc:hover::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .18); }
 .feat-toc ul { list-style: none; margin: 0; padding: 0; }
 .feat-toc li a { display: block; padding: 5px 0 5px 14px; text-decoration: none; color: var(--muted); border-left: 1px solid var(--line); }
 .feat-toc li a:hover, .feat-toc li a.on { color: var(--ink); border-left-color: var(--blue); }
@@ -215,7 +221,7 @@ details a { color: var(--ink); }
   .faq .head { position: static; }
   .site-footer .top { grid-template-columns: 1fr 1fr; }
   .feat-layout { grid-template-columns: 1fr; gap: 0; padding-top: 0; }
-  .feat-toc { position: sticky; top: 64px; z-index: 5; max-height: none; margin: 0 -24px; padding: 12px 24px; background: rgba(0, 0, 0, .85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line-soft); overflow-x: auto; scrollbar-width: none; }
+  .feat-toc { position: sticky; top: 64px; z-index: 5; max-height: none; margin: 0 -24px; padding: 12px 24px; background: rgba(0, 0, 0, .85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line-soft); overflow-x: auto; scrollbar-width: none; -webkit-mask-image: none; mask-image: none; }
   .feat-toc ul { display: flex; gap: 8px; width: max-content; }
   .feat-toc .toc-group { display: none; }
   .feat-toc li a { padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }

@@ -695,7 +695,10 @@ def features():
   var io = new IntersectionObserver(function (es) {{
     es.forEach(function (e) {{ if (!e.isIntersecting) return; var a = links[e.target.id]; if (!a) return;
       document.querySelectorAll('.feat-toc a.on').forEach(function (x) {{ x.classList.remove('on'); }}); a.classList.add('on');
-      if (window.innerWidth < 980) a.scrollIntoView({{block: 'nearest', inline: 'center'}}); }});
+      // keep the current item centred in the list without moving the page
+      var toc = document.querySelector('.feat-toc'), wide = window.innerWidth >= 980;
+      toc.scrollTo(wide ? {{top: a.offsetTop - toc.clientHeight / 2 + a.offsetHeight / 2, behavior: 'smooth'}}
+                        : {{left: a.offsetLeft - toc.clientWidth / 2 + a.offsetWidth / 2, behavior: 'smooth'}}); }});
   }}, {{rootMargin: '-45% 0px -50% 0px'}});
   document.querySelectorAll('.feat').forEach(function (s) {{ io.observe(s); }});
 }})();
