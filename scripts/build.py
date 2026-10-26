@@ -4,6 +4,7 @@ Every piece of copy is written as t("English", "中文"). Edit the page bodies h
     python3 scripts/build.py
 """
 import hashlib
+import re
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,7 +17,7 @@ UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
 LANGS = ("zh", "en")
 LANG = "zh"  # the language currently being rendered
 # Changes whenever site.css changes, so browsers and Cloudflare never pair new pages with an old stylesheet.
-MEDIA_VERSION = "2"   # bump when the feature videos are re-rendered, so cached copies are skipped
+MEDIA_VERSION = "3"   # bump when the feature videos are re-rendered, so cached copies are skipped
 CSS_VERSION = hashlib.sha1(open(os.path.join(ROOT, "assets", "site.css"), "rb").read()).hexdigest()[:10]
 
 
@@ -145,6 +146,17 @@ def page(here, title, description, body, current=""):
         f.write(html)
 
 
+# 24px line icons for the works-today list, in the same order as available()
+TODAY_ICONS = [
+    '<path d="M4 5h16v11H9l-5 4z"/>',
+    '<path d="M3 10v4l4 1 8 4V5L7 9zM18 9a4 4 0 0 1 0 6"/>',
+    '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/>',
+    '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+    '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/>',
+    '<circle cx="9" cy="9" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0M16 6.5a3 3 0 0 1 0 5.5M18 14.5a5.5 5.5 0 0 1 3 5"/>',
+]
+
+
 def available():
     return [
         (t("Chats and groups", "聊天和群组"), t("Cloud chats that sync across your devices, groups of up to 200,000 members, replies, reactions and polls.",
@@ -192,11 +204,13 @@ def faq():
 
 
 def video(slug, label, lazy=True):
-    sfx = "" if LANG == "en" else "-zh"   # Chinese pages use the videos with Chinese titles
+    # The website cut of each demo (luckgram-promo render-web.sh): just the phone, faded into black, no baked-in title.
+    sfx = "" if LANG == "en" else "-zh"   # Chinese pages use the videos with the Chinese phone UI
     src = "data-src" if lazy else "src"
     attrs = 'preload="none" data-lazy' if lazy else 'autoplay preload="auto"'
-    return (f'<video muted loop playsinline {attrs} poster="/media/features/{slug}{sfx}.jpg?v={MEDIA_VERSION}" width="848" height="848" aria-label="{t("Animation", "演示动画")}: {label}">'
-            f'<source {src}="/media/features/{slug}{sfx}.webm?v={MEDIA_VERSION}" type="video/webm"><source {src}="/media/features/{slug}{sfx}.mp4?v={MEDIA_VERSION}" type="video/mp4"></video>')
+    base = f"/media/web/{slug}{sfx}"
+    return (f'<video class="demo" muted loop playsinline {attrs} poster="{base}.jpg?v={MEDIA_VERSION}" width="576" height="768" aria-label="{t("Animation", "演示动画")}: {label}">'
+            f'<source {src}="{base}.webm?v={MEDIA_VERSION}" type="video/webm"><source {src}="{base}.mp4?v={MEDIA_VERSION}" type="video/mp4"></video>')
 
 
 def download_buttons(primary=True):
@@ -213,12 +227,16 @@ def home():
     feats = feature_by_slug()
     n = len(feats)
     today = "\n".join(
-        f'<div><span class="tag ok">{t("Available", "已上线")}</span><h3>{a}</h3><p>{d}</p></div>' for a, d in available())
+        f'<div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true">{ic}</svg><h3>{a}</h3><p>{d}</p></div>'
+        for ic, (a, d) in zip(TODAY_ICONS, available()))
     cells = []
     for slug in ("accounts", "double-bottom", "translate-out", "voice-text", "round-video", "ai-summary"):
         short, title, (key, label), body = feats[slug]
-        cells.append(f'''<div class="cell">{video(slug, t(*title))}
-        <span class="tag {key}">{t(*label)}</span><h3>{t(*title)}</h3><p>{t(*body)}</p></div>''')
+        # subtitle: the full title, minus a leading "Name: " that would repeat the heading
+        sub = re.sub(r"^.{1,24}?[:：]\s*", "", t(*title)) if t(*title).startswith(t(*short)) else t(*title)
+        sub = sub[:1].upper() + sub[1:]
+        cells.append(f'''<a class="cell" href="{u("/features/")}#{slug}">{video(slug, t(*title))}
+        <span class="tag {key}">{t(*label)}</span><h3>{t(*short)}</h3><p>{sub}</p></a>''')
     qa = "\n".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faq())
     body = f'''<section class="hero">
   <div class="wrap">
@@ -629,7 +647,7 @@ def features():
             title = t(*title)
             toc.append(f'<li><a href="#{slug}">{t(*short)}</a></li>')
             sections.append(f'''<section class="feat" id="{slug}">
-  {video(slug, title).replace("<video ", '<video class="feat-video" ', 1)}
+  {video(slug, title)}
   <div class="feat-text">
     <span class="tag {key}">{t(*label)}</span>
     <h2>{title}</h2>

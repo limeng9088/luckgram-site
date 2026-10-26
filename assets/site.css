@@ -77,9 +77,12 @@ html[lang="zh-CN"] .hero h1 { font-size: clamp(42px, 6vw, 76px); line-height: 1.
 .hero .btns { margin-top: 36px; }
 .hero .fine { margin-top: 18px; font-size: 14px; color: var(--muted); }
 .hero .fine a { color: var(--ink); }
-.stage { position: relative; justify-self: center; width: min(100%, 500px); }
-.stage video { width: 100%; aspect-ratio: 1; border-radius: 28px; background: #000; box-shadow: 0 0 0 1px rgba(150, 140, 255, .25), 0 30px 120px -20px rgba(91, 80, 255, .55); }
-.stage figcaption { margin-top: 14px; display: flex; justify-content: center; font-size: 14px; color: var(--muted); gap: 8px; }
+/* Demo videos are just the phone on black; "screen" drops their black so the page glow shows through. */
+.demo { width: 100%; aspect-ratio: 3 / 4; background: #000; mix-blend-mode: screen; }
+.stage { position: relative; justify-self: center; width: min(100%, 430px); }
+.stage::before { content: ""; position: absolute; inset: 4% -18% 10%; background: radial-gradient(closest-side at 78% 45%, rgba(56, 84, 255, .55), transparent 75%), radial-gradient(closest-side at 18% 80%, rgba(170, 40, 230, .5), transparent 75%); filter: blur(10px); pointer-events: none; }
+.stage video { position: relative; }
+.stage figcaption { position: relative; margin-top: 6px; display: flex; justify-content: center; font-size: 14px; color: var(--muted); gap: 8px; }
 /* The paper plane flies its route once when the page opens. */
 .route { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .route path { fill: none; stroke: rgba(200, 210, 255, .28); stroke-width: 1.4; stroke-dasharray: 2 9; stroke-linecap: round; }
@@ -88,7 +91,7 @@ html[lang="zh-CN"] .hero h1 { font-size: clamp(42px, 6vw, 76px); line-height: 1.
 @media (prefers-reduced-motion: reduce) { .plane { animation: none; } }
 
 /* Section scaffolding */
-.block { padding: 112px 0; border-bottom: 1px solid var(--line-soft); }
+.block { padding: 96px 0; border-bottom: 1px solid var(--line-soft); }
 .head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 56px; }
 .head p { color: var(--muted); font-size: 17px; max-width: 32em; justify-self: end; }
 .head.solo { grid-template-columns: 1fr; }
@@ -98,16 +101,17 @@ html[lang="zh-CN"] .hero h1 { font-size: clamp(42px, 6vw, 76px); line-height: 1.
 .today { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
 .today div { padding: 26px 28px 30px 0; border-bottom: 1px solid var(--line); }
 .today div:not(:nth-child(3n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
-.today h3 { font-size: 18px; margin: 12px 0 8px; }
+.today .ic { width: 26px; height: 26px; fill: none; stroke: var(--blue); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.today h3 { font-size: 18px; margin: 16px 0 8px; }
 .today p { color: var(--muted); font-size: 15px; }
 
 /* Video wall */
-.wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
-.cell { background: var(--void); padding: 22px 22px 28px; display: flex; flex-direction: column; }
-.cell video { width: 100%; aspect-ratio: 1; border-radius: 16px; background: #050508; }
-.cell .tag { margin-top: 20px; }
-.cell h3 { margin-top: 8px; }
-.cell p { margin-top: 8px; color: var(--muted); font-size: 15px; }
+.wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px 40px; }
+.cell { display: flex; flex-direction: column; text-decoration: none; }
+.cell .tag { margin-top: 4px; }
+.cell h3 { margin-top: 10px; font-size: 22px; transition: color .15s; }
+.cell p { margin-top: 6px; color: var(--muted); font-size: 15px; }
+.cell:hover h3 { color: var(--blue); }
 .wall-foot { margin-top: 28px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; color: var(--muted); font-size: 15px; }
 
 /* Open source */
@@ -171,9 +175,9 @@ details a { color: var(--ink); }
 .feat-toc li a:hover, .feat-toc li a.on { color: var(--ink); border-left-color: var(--blue); }
 .feat-toc .toc-group { margin: 22px 0 8px; font-size: 13px; font-weight: 600; color: var(--ink); }
 .feat-toc .toc-group:first-child { margin-top: 0; }
-.feat { display: grid; grid-template-columns: minmax(0, 420px) 1fr; gap: 44px; align-items: center; padding: 44px 0; border-bottom: 1px solid var(--line-soft); scroll-margin-top: 80px; }
+.feat { display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 44px; align-items: center; padding: 44px 0; border-bottom: 1px solid var(--line-soft); scroll-margin-top: 80px; }
 .feat:first-child { padding-top: 0; }
-.feat-video { width: 100%; aspect-ratio: 1; border-radius: 22px; background: #050508; box-shadow: 0 0 0 1px rgba(150, 140, 255, .18), 0 24px 80px -30px rgba(91, 80, 255, .55); }
+
 .feat h2 { margin-top: 12px; font-size: clamp(24px, 2.6vw, 32px); }
 .feat-text > p { margin-top: 14px; color: var(--muted); font-size: 16px; max-width: 34em; }
 .feat-more { margin-top: 18px !important; font-size: 15px !important; }
@@ -204,7 +208,7 @@ details a { color: var(--ink); }
   .stage { width: min(100%, 440px); }
   .head { grid-template-columns: 1fr; gap: 16px; }
   .head p { justify-self: start; }
-  .wall { grid-template-columns: 1fr 1fr; }
+  .wall { grid-template-columns: 1fr 1fr; gap: 48px 28px; }
   .today { grid-template-columns: 1fr 1fr; }
   .today div, .today div:not(:nth-child(3n+1)) { padding: 24px 24px 26px 0; border-left: 0; }
   .today div:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--line); }
@@ -224,9 +228,12 @@ details a { color: var(--ink); }
   .wrap { padding: 0 18px; }
   .block { padding: 80px 0; }
   .head { margin-bottom: 36px; }
-  .wall { grid-template-columns: 1fr; border-radius: 20px; }
-  .today { grid-template-columns: 1fr; }
-  .today div, .today div:nth-child(2n) { padding: 22px 0; border-left: 0; }
+  .wall { grid-template-columns: 1fr; gap: 56px; }
+  .cell video, .feat .demo { max-width: 340px; margin: 0 auto; }
+  .today div, .today div:not(:nth-child(3n+1)) { padding: 20px 14px 22px 0; }
+  .today div:nth-child(2n) { padding-left: 14px; }
+  .today h3 { font-size: 16px; margin-top: 12px; }
+  .today p { font-size: 14px; }
   .open, .repos, .dl { grid-template-columns: 1fr; }
   .open > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .open > div { padding: 26px 0; }
