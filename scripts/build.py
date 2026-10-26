@@ -508,6 +508,13 @@ def feature_groups():
           "whenever you need them.",
           "滑动一下就能把聊天从列表里隐藏，既不删除，也不用退群。需要时一个手势就能找回。"),
          "/features/privacy.html"),
+        ("unblock", ("Restricted channels", "受限频道"), ("Open channels the store apps hide, for free", "免费打开商店版隐藏的频道"), WIP,
+         ("Some channels and groups are hidden only in the App Store and Google Play builds of Telegram. Turn on one "
+          "switch in Settings and Luckgram opens them, free and permanently, with no website login. Channels that "
+          "Telegram blocks for everyone, or that are blocked where you live, stay blocked.",
+          "有些频道和群组只在 App Store 和 Google Play 版的 Telegram 里被隐藏。在设置里打开一个开关，Luckgram 就能打开它们："
+          "免费、永久有效，也不用登录任何网站。Telegram 对所有人封禁的频道，以及你所在地区依法屏蔽的频道，仍然打不开。"),
+         "/features/privacy.html"),
     ]),
     (("Messages and language", "消息与语言"), [
         ("translate-in", ("Translate messages", "翻译消息"), ("Read messages in your language", "用你的语言阅读消息"), OK_TG,
