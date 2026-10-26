@@ -260,7 +260,7 @@ def home():
 
 <section class="block">
   <div class="wrap">
-    <div class="head"><h2>{t("Everything you use in Telegram", "你在 Telegram 里用的，<br>这里都有")}</h2>
+    <div class="head"><h2>{t("Everything you use in Telegram", "你在 Telegram 里用的，这里都有")}</h2>
       <p>{t("Luckgram connects to the Telegram network, so the features you rely on work from the first sign-in.", "Luckgram 连接的是 Telegram 网络，你常用的功能从第一次登录起就能用。")}</p></div>
     <div class="today">
 {today}
