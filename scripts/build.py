@@ -514,7 +514,7 @@ def feature_groups():
           "Telegram blocks for everyone, or that are blocked where you live, stay blocked.",
           "有些频道和群组只在 App Store 和 Google Play 版的 Telegram 里被隐藏。在设置里打开一个开关，Luckgram 就能打开它们："
           "免费、永久有效，也不用登录任何网站。Telegram 对所有人封禁的频道，以及你所在地区依法屏蔽的频道，仍然打不开。"),
-         "/features/privacy.html"),
+         "/features/privacy.html#restricted-channels"),
     ]),
     (("Messages and language", "消息与语言"), [
         ("translate-in", ("Translate messages", "翻译消息"), ("Read messages in your language", "用你的语言阅读消息"), OK_TG,
@@ -593,12 +593,12 @@ def feature_groups():
          ("Write a note on someone's profile, such as where you met or what they ordered. Only you can see it, it shows "
           "at the top of your chat with them, and you can search all your notes at once.",
           "在对方的资料页写一条备注，比如在哪认识、订过什么。只有你能看到，打开和对方的聊天时会显示在顶部，所有备注还能一起搜索。"),
-         "/features/profiles-and-folders.html"),
+         "/features/profiles-and-folders.html#private-notes"),
         ("shared-activity", ("Activity", "共同群动态"), ("See what a contact said in groups you share", "查看联系人在共同群里说了什么"), WIP,
          ("Open a profile and the Activity tab lists that person's latest messages in the groups you are both in, "
           "with a tap to jump to each one. It only shows messages you could already read in those groups.",
           "打开资料页的“动态”标签，就能看到对方最近在你们共同所在的群里发的消息，点一下就跳到原处。只显示你在这些群里本来就能看到的消息。"),
-         "/features/profiles-and-folders.html"),
+         "/features/profiles-and-folders.html#shared-group-activity"),
     ]),
     (("AI", "AI"), [
         ("ai-chat", ("AI assistant", "AI 助手"), ("An AI assistant inside your chats", "聊天里的 AI 助手"), WIP,
@@ -625,23 +625,23 @@ def feature_groups():
           "friendlier, shorter or just fixed grammar. The text is rewritten in place, in your language.",
           "在任何聊天里打完字，点输入框里的 AI 按钮，选你想要的效果：表达更好、更正式、更亲切、更简短，或者只改语法。"
           "文字会在输入框里直接改好，语言保持不变。"),
-         "/features/ai.html"),
+         "/features/ai.html#ai-writing"),
         ("ai-agents", ("AI agents", "AI 智能体"), ("AI agents for every task, or build your own", "各种任务的 AI 智能体，也能自己做一个"), WIP,
          ("Pick an agent made for the job, such as a travel planner, copywriter, language tutor or researcher, and chat "
           "with it like with anyone else. Need something specific? Create your own agent with your own instructions.",
           "挑一个专做这件事的智能体，比如旅行规划、文案、语言陪练或资料查询，像和普通联系人一样聊天。"
           "有特别的需求？用你自己的指令做一个专属智能体。"),
-         "/features/ai.html"),
+         "/features/ai.html#ai-agents"),
         ("ai-image", ("AI images", "AI 画图"), ("Create images from a sentence", "一句话生成图片"), WIP,
          ("Describe the picture you want and it appears in the chat. Send it to any chat or channel, save it, or ask "
           "for another version.",
           "描述你想要的画面，图片就出现在聊天里。可以直接发到任何聊天或频道、保存下来，或者再生成一版。"),
-         "/features/ai.html"),
+         "/features/ai.html#ai-images"),
         ("ai-post", ("AI posts", "AI 写帖子"), ("Channel posts written in your channel's style", "按你频道的风格写帖子"), WIP,
          ("Give a topic and get a ready-to-edit post that matches the tone of your earlier posts. Make it shorter, add "
           "emoji or translate it, then publish from the same screen.",
           "给一个主题，就能得到一篇可以直接修改的帖子，语气和你以前发的保持一致。可以改短、加表情或翻译，在同一个页面直接发布。"),
-         "/features/ai.html"),
+         "/features/ai.html#ai-posts"),
     ]),
     ]
 
