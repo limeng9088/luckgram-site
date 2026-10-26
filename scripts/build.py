@@ -16,6 +16,7 @@ UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
 LANGS = ("zh", "en")
 LANG = "zh"  # the language currently being rendered
 # Changes whenever site.css changes, so browsers and Cloudflare never pair new pages with an old stylesheet.
+MEDIA_VERSION = "2"   # bump when the feature videos are re-rendered, so cached copies are skipped
 CSS_VERSION = hashlib.sha1(open(os.path.join(ROOT, "assets", "site.css"), "rb").read()).hexdigest()[:10]
 
 
@@ -193,8 +194,8 @@ def video(slug, label, lazy=True):
     sfx = "" if LANG == "en" else "-zh"   # Chinese pages use the videos with Chinese titles
     src = "data-src" if lazy else "src"
     attrs = 'preload="none" data-lazy' if lazy else 'autoplay preload="auto"'
-    return (f'<video muted loop playsinline {attrs} poster="/media/features/{slug}{sfx}.jpg" width="848" height="848" aria-label="{t("Animation", "演示动画")}: {label}">'
-            f'<source {src}="/media/features/{slug}{sfx}.webm" type="video/webm"><source {src}="/media/features/{slug}{sfx}.mp4" type="video/mp4"></video>')
+    return (f'<video muted loop playsinline {attrs} poster="/media/features/{slug}{sfx}.jpg?v={MEDIA_VERSION}" width="848" height="848" aria-label="{t("Animation", "演示动画")}: {label}">'
+            f'<source {src}="/media/features/{slug}{sfx}.webm?v={MEDIA_VERSION}" type="video/webm"><source {src}="/media/features/{slug}{sfx}.mp4?v={MEDIA_VERSION}" type="video/mp4"></video>')
 
 
 def download_buttons(primary=True):
@@ -209,6 +210,7 @@ def feature_by_slug():
 
 def home():
     feats = feature_by_slug()
+    n = len(feats)
     today = "\n".join(
         f'<div><span class="tag ok">{t("Available", "已上线")}</span><h3>{a}</h3><p>{d}</p></div>' for a, d in available())
     cells = []
@@ -254,7 +256,7 @@ def home():
     <div class="wall">
 {"".join(cells)}
     </div>
-    <div class="wall-foot"><span>{t("19 features, each with a short demo.", "共 19 个功能，每个都有演示动画。")}</span><a class="btn" href="{u("/features/")}">{t("See all features", "查看全部功能")}</a></div>
+    <div class="wall-foot"><span>{t(f"{n} features, each with a short demo.", f"共 {n} 个功能，每个都有演示动画。")}</span><a class="btn" href="{u("/features/")}">{t("See all features", "查看全部功能")}</a></div>
   </div>
 </section>
 
@@ -464,15 +466,18 @@ def feature_groups():
     return [
     (("Accounts and privacy", "账号与隐私"), [
         ("accounts", ("More accounts", "更多账号"), ("More accounts in one app", "一个应用登录更多账号"), WIP,
-         ("Today Luckgram follows Telegram's standard limit for accounts on one device. We are making room for many more, "
-          "so personal, work and community accounts can sit side by side and you switch between them from Settings.",
-          "目前 Luckgram 在一台设备上可登录的账号数与 Telegram 官方一致。我们正在让它容纳更多账号，"
-          "个人、工作和社群账号可以并排放着，在设置里一点就能切换。"),
+         ("Today Luckgram follows Telegram's standard limit of 3 accounts on one device. We are removing the cap on both "
+          "iOS and Android, so personal, work, client and channel-admin accounts sit side by side, each with its own "
+          "notifications, and you switch between them in a tap.",
+          "目前 Luckgram 在一台设备上可登录的账号数与 Telegram 官方一致（3 个）。我们正在 iOS 和 Android 上取消这个上限，"
+          "个人、工作、客户和频道管理账号可以并排放着，各自的通知互不干扰，一点就能切换。"),
          "/getting-started/accounts.html"),
         ("backup", ("Account backup", "账号备份"), ("Back up your accounts and move them to a new phone", "备份账号，换手机时一起带走"), WIP,
-         ("Choose the accounts you want and save them to one encrypted backup file. Restore it on a new phone or after "
-          "reinstalling, without signing in to each account again.",
-          "选择要备份的账号，保存成一个加密的备份文件。换新手机或重装应用后用它恢复，不用再逐个登录。"),
+         ("Choose the accounts you want and save them to one backup file locked with your own password. Restore it on a "
+          "new phone or after reinstalling, without signing in to each account again, and move between iPhone and "
+          "Android with the same file.",
+          "选择要备份的账号，保存成一个用你自己的密码加密的备份文件。换新手机或重装应用后用它恢复，不用再逐个登录；"
+          "同一个文件在 iPhone 和 Android 之间也能互相迁移。"),
          "/features/privacy.html"),
         ("double-bottom", ("Double Bottom", "双重空间"), ("Double Bottom: a second passcode with its own view", "双重空间：第二个密码，打开另一套视图"), WIP,
          ("Set a second passcode that opens Luckgram with only the accounts you pick. Your usual passcode still opens "
@@ -496,11 +501,13 @@ def feature_groups():
           "language. You see the result before anything is sent.",
           "用你习惯的语言写，在输入框里翻译成对方的语言再发出去。发送前你能先看到翻译结果。"),
          "/features/translation-and-voice.html"),
-        ("voice-text", ("Voice to text", "语音转文字"), ("Read voice messages instead of playing them", "语音消息不用听，直接看"),
+        ("voice-text", ("Voice to text", "语音转文字"), ("Read voice messages, dictate your replies", "语音消息直接看，回复直接说"),
          ("part", ("Telegram Premium; free version in development", "Telegram Premium 功能，免费版开发中")),
-         ("Turn a voice message into text with one tap, handy in a meeting or on a noisy train. Telegram offers this "
-          "with Premium; a free version for Luckgram is being built.",
-          "一点就把语音消息转成文字，开会时、在嘈杂的地铁上都方便。Telegram 的这个功能需要 Premium，Luckgram 正在开发免费版。"),
+         ("Turn voice messages and round videos of any length into text with one tap, handy in a meeting or on a noisy "
+          "train. Dictate instead of typing and watch the words appear as you speak; optional AI cleanup removes filler "
+          "words and fixes punctuation. Telegram offers transcription with Premium; a free version for Luckgram is being built.",
+          "一点就把任意长度的语音消息和圆形视频转成文字，开会时、在嘈杂的地铁上都方便。也可以直接说话代替打字，边说边出字；"
+          "可选的 AI 整理会去掉口头禅、补好标点。Telegram 的转写功能需要 Premium，Luckgram 正在开发免费版。"),
          "/features/translation-and-voice.html"),
         ("quick-replies", ("Quick replies", "快捷回复"), ("Answer with saved quick replies", "用保存好的快捷回复作答"), WIP,
          ("Keep the answers you send all the time, such as running late or I will call you back, and send them with "
@@ -513,8 +520,9 @@ def feature_groups():
           "转发消息时打开“隐藏发送者名字”，消息就像是你自己发的，不会带上原作者。"),
          "/features/messaging.html"),
         ("select-all", ("Select all", "全选"), ("Select every message from one person", "一键选中某人的全部消息"), WIP,
-         ("Long-press a message and select everything that person wrote in the chat at once, ready to forward or delete.",
-          "长按一条消息，就能一次选中这个人在聊天里发的所有消息，方便转发或删除。"),
+         ("Long-press a message and select everything that person wrote in the chat at once, not just the last hundred, "
+          "ready to copy, forward, save or delete.",
+          "长按一条消息，就能一次选中这个人在聊天里发的所有消息（不限 100 条），方便复制、转发、收藏或删除。"),
          "/features/messaging.html"),
         ("save-direct", ("Save in one tap", "一键收藏"), ("Save to Saved Messages in one tap", "一键存到收藏夹"), WIP,
          ("Keep a post or message for later straight from the message menu, without opening the forward screen and "
@@ -528,16 +536,20 @@ def feature_groups():
           "the chat.",
           "选一段相册里已有的视频，像在聊天里现拍的一样，发成圆形视频消息。"),
          "/features/media-and-calls.html"),
-        ("call-rec", ("Call recording", "通话录音"), ("Record calls and keep them in Saved Messages", "通话录音，自动存到收藏夹"), WIP,
-         ("Record a call with one tap and find the recording in Saved Messages when you hang up. Recording laws differ "
-          "by country; let the other person know before you record.",
-          "一点就能录下通话，挂断后在收藏夹里找到录音。各国对录音的法律规定不同，录音前请先告知对方。"),
+        ("call-rec", ("Call recording", "通话录音"), ("Record calls, with a transcript and AI summary", "通话录音，附文字稿和 AI 总结"), WIP,
+         ("Record a call with one tap, on iPhone and Android. When you hang up, the recording lands in Saved Messages or "
+          "any chat you choose, with a searchable transcript and an AI summary of what was agreed. Recording laws "
+          "differ by country; let the other person know before you record.",
+          "一点就能录下通话，iPhone 和 Android 都支持。挂断后录音会存到收藏夹或你指定的聊天，附带可搜索的文字稿和 AI 总结，"
+          "谈好了什么一目了然。各国对录音的法律规定不同，录音前请先告知对方。"),
          "/features/media-and-calls.html"),
         ("cache", ("Storage", "存储空间"), ("See what takes up space and clear it", "看清空间被谁占用，按需清理"),
          ("part", ("Available; extra controls in development", "已上线，更多设置开发中")),
          ("Storage Usage shows how much space videos, photos, files and music take on your phone, and you clear the "
-          "types you choose. More control over what is kept and for how long is on the way.",
-          "“存储空间”会显示视频、照片、文件和音乐各占多少空间，你可以按类型清理。对保留哪些内容、保留多久的更多设置正在开发。"),
+          "types you choose. Coming next: pick any cache size from 1 GB to no limit, keep media from one hour to "
+          "forever, and set different rules for each chat.",
+          "“存储空间”会显示视频、照片、文件和音乐各占多少空间，你可以按类型清理。即将加入：缓存上限可在 1 GB 到不限之间任选，"
+          "媒体保留时间从 1 小时到永久，还能给每个聊天单独设置。"),
          "/features/media-and-calls.html"),
     ]),
     (("Profiles and organizing", "资料与整理"), [
@@ -551,22 +563,58 @@ def feature_groups():
           "word highlighted.",
           "用一个词建文件夹，比如“发票”或“航班”，所有提到这个词的聊天都会归进来，关键词会高亮显示。"),
          "/features/profiles-and-folders.html"),
+        ("user-notes", ("Private notes", "私人备注"), ("Private notes on any contact", "给任何联系人写私人备注"), WIP,
+         ("Write a note on someone's profile, such as where you met or what they ordered. Only you can see it, it shows "
+          "at the top of your chat with them, and you can search all your notes at once.",
+          "在对方的资料页写一条备注，比如在哪认识、订过什么。只有你能看到，打开和对方的聊天时会显示在顶部，所有备注还能一起搜索。"),
+         "/features/profiles-and-folders.html"),
+        ("shared-activity", ("Activity", "共同群动态"), ("See what a contact said in groups you share", "查看联系人在共同群里说了什么"), WIP,
+         ("Open a profile and the Activity tab lists that person's latest messages in the groups you are both in, "
+          "with a tap to jump to each one. It only shows messages you could already read in those groups.",
+          "打开资料页的“动态”标签，就能看到对方最近在你们共同所在的群里发的消息，点一下就跳到原处。只显示你在这些群里本来就能看到的消息。"),
+         "/features/profiles-and-folders.html"),
     ]),
     (("AI", "AI"), [
         ("ai-chat", ("AI assistant", "AI 助手"), ("An AI assistant inside your chats", "聊天里的 AI 助手"), WIP,
-         ("Ask a question, get a topic explained, have a text rewritten or a problem worked through, in a chat like any "
-          "other.",
-          "像平常聊天一样提问：让它讲解一个话题、改写一段文字，或者一步步解一道题。"),
+         ("Ask a question, get a topic explained with an example, have a long text summarized or rewritten, or a math "
+          "problem worked through step by step, in a chat like any other. Share a message, a link or a file with it "
+          "straight from any chat.",
+          "像平常聊天一样提问：让它举例讲解一个话题、总结或改写一段长文，或者一步步解一道数学题。"
+          "任何聊天里的消息、链接和文件都能直接转给它处理。"),
          "/features/ai.html"),
         ("ai-summary", ("Chat summary", "聊天总结"), ("Catch up on a busy chat with a summary", "用总结快速跟上热闹的群聊"), WIP,
          ("Coming back to hundreds of unread messages? Get the decisions, dates and open questions in a few lines "
-          "before you scroll.",
-          "回来发现几百条未读？先用几行字看清结论、日期和待解决的问题，再决定要不要往上翻。"),
+          "before you scroll. Ask your own question, such as what the client agreed to, and tap any point to jump to "
+          "the messages behind it.",
+          "回来发现几百条未读？先用几行字看清结论、日期和待解决的问题，再决定要不要往上翻。"
+          "也可以直接问，比如“客户最后答应了什么”，点任意一条就能跳到对应的原消息。"),
          "/features/ai.html"),
         ("ai-reply", ("Reply drafts", "AI 回复"), ("Turn rough notes into a reply", "把随手写的几个字变成得体的回复"), WIP,
          ("Type what you mean, however quickly, and choose from polished replies that fit the conversation. Edit "
           "the one you pick before you send it.",
           "随手打下你想说的意思，从几条贴合对话的润色回复里挑一条，发送前还可以再改。"),
+         "/features/ai.html"),
+        ("ai-writing", ("AI writing", "AI 写作"), ("Polish any message before you send it", "发送前一键润色任何消息"), WIP,
+         ("Type in any chat, tap the AI button in the input bar and choose what you want: better wording, more formal, "
+          "friendlier, shorter or just fixed grammar. The text is rewritten in place, in your language.",
+          "在任何聊天里打完字，点输入框里的 AI 按钮，选你想要的效果：表达更好、更正式、更亲切、更简短，或者只改语法。"
+          "文字会在输入框里直接改好，语言保持不变。"),
+         "/features/ai.html"),
+        ("ai-agents", ("AI agents", "AI 智能体"), ("AI agents for every task, or build your own", "各种任务的 AI 智能体，也能自己做一个"), WIP,
+         ("Pick an agent made for the job, such as a travel planner, copywriter, language tutor or researcher, and chat "
+          "with it like with anyone else. Need something specific? Create your own agent with your own instructions.",
+          "挑一个专做这件事的智能体，比如旅行规划、文案、语言陪练或资料查询，像和普通联系人一样聊天。"
+          "有特别的需求？用你自己的指令做一个专属智能体。"),
+         "/features/ai.html"),
+        ("ai-image", ("AI images", "AI 画图"), ("Create images from a sentence", "一句话生成图片"), WIP,
+         ("Describe the picture you want and it appears in the chat. Send it to any chat or channel, save it, or ask "
+          "for another version.",
+          "描述你想要的画面，图片就出现在聊天里。可以直接发到任何聊天或频道、保存下来，或者再生成一版。"),
+         "/features/ai.html"),
+        ("ai-post", ("AI posts", "AI 写帖子"), ("Channel posts written in your channel's style", "按你频道的风格写帖子"), WIP,
+         ("Give a topic and get a ready-to-edit post that matches the tone of your earlier posts. Make it shorter, add "
+          "emoji or translate it, then publish from the same screen.",
+          "给一个主题，就能得到一篇可以直接修改的帖子，语气和你以前发的保持一致。可以改短、加表情或翻译，在同一个页面直接发布。"),
          "/features/ai.html"),
     ]),
     ]
