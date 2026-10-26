@@ -125,6 +125,7 @@ def page(here, title, description, body, current=""):
 <link rel="alternate" hreflang="zh-CN" href="{alt_zh}">
 <link rel="alternate" hreflang="en" href="{alt_en}">
 <link rel="alternate" hreflang="x-default" href="{alt_zh}">
+<meta name="heleket" content="16ef8c76" />
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css?v={CSS_VERSION}">
