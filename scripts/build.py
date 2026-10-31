@@ -600,6 +600,22 @@ def feature_groups():
           "打开资料页的“动态”标签，就能看到对方最近在你们共同所在的群里发的消息，点一下就跳到原处。只显示你在这些群里本来就能看到的消息。"),
          "/features/profiles-and-folders.html#shared-group-activity"),
     ]),
+    (("Discover", "发现"), [
+        ("nearby", ("People Nearby", "附近的人"), ("Meet people nearby, only when you choose to", "想认识附近的人时，才让附近的人看到你"), WIP,
+         ("Turn on Visible to people nearby and you see others around you who did the same, then message them in a tap. "
+          "People see only how far away you are, such as within 500 m, never where you are, and it turns itself off after "
+          "24 hours. You can report or block anyone.",
+          "打开“在附近可见”，就能看到附近同样打开了的人，一点就能发消息。别人只能看到你在多远的范围内，比如“500 米内”，"
+          "看不到你的位置；24 小时后自动关闭。任何人都可以举报或拉黑。"),
+         "/features/discover.html#nearby"),
+        ("square", ("Square", "广场"), ("Square: posts from people on Luckgram", "广场：看看 Luckgram 上的人在分享什么"), WIP,
+         ("Scroll a public feed of short posts and photos from people on Luckgram, like and comment, or open the author "
+          "and message them. Anyone can read; to post, link your Telegram account first. New posts are reviewed before "
+          "they appear, and you can report or block anyone.",
+          "浏览 Luckgram 用户发的图文短帖，点赞、评论，或者点开作者直接发消息。谁都能看；想发帖，先绑定你的 Telegram 账号。"
+          "新帖子审核后才会公开，任何人都可以举报或拉黑。"),
+         "/features/discover.html#square"),
+    ]),
     (("AI", "AI"), [
         ("ai-chat", ("AI assistant", "AI 助手"), ("An AI assistant inside your chats", "聊天里的 AI 助手"), WIP,
          ("Ask a question, get a topic explained with an example, have a long text summarized or rewritten, or a math "
