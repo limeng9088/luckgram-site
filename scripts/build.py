@@ -608,12 +608,12 @@ def feature_groups():
           "打开“在附近可见”，就能看到附近同样打开了的人，一点就能发消息。别人只能看到你在多远的范围内，比如“500 米内”，"
           "看不到你的位置；24 小时后自动关闭。任何人都可以举报或拉黑。"),
          "/features/discover.html#nearby"),
-        ("square", ("Square", "广场"), ("Square: posts from people on Luckgram", "广场：看看 Luckgram 上的人在分享什么"), WIP,
-         ("Scroll a public feed of short posts and photos from people on Luckgram, like and comment, or open the author "
-          "and message them. Anyone can read; to post, link your Telegram account first. New posts are reviewed before "
-          "they appear, and you can report or block anyone.",
-          "浏览 Luckgram 用户发的图文短帖，点赞、评论，或者点开作者直接发消息。谁都能看；想发帖，先绑定你的 Telegram 账号。"
-          "新帖子审核后才会公开，任何人都可以举报或拉黑。"),
+        ("square", ("Square", "广场"), ("Square: public posts from the Luckgram community", "广场：Luckgram 社区的公开动态"), WIP,
+         ("Share text and photos to a public feed that every Luckgram user can see. Posts go live as soon as you publish "
+          "them. Browse Latest and Hot, like and comment, or start a private chat from the author's profile. You can "
+          "report inappropriate content and block anyone at any time.",
+          "发布文字和图片动态，所有 Luckgram 用户都能看到，发布后立即公开。浏览「最新」和「热门」，点赞、评论，"
+          "或从作者主页直接发起私聊。遇到不当内容可以举报，也可以随时屏蔽任何用户。"),
          "/features/discover.html#square"),
     ]),
     (("AI", "AI"), [
