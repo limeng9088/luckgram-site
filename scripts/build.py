@@ -609,10 +609,10 @@ def feature_groups():
           "看不到你的位置；24 小时后自动关闭。任何人都可以举报或拉黑。"),
          "/features/discover.html#nearby"),
         ("square", ("Square", "广场"), ("Square: public posts from the Luckgram community", "广场：Luckgram 社区的公开动态"), WIP,
-         ("Share text and photos to a public feed that every Luckgram user can see. Posts go live as soon as you publish "
+         ("Share text, photos and short videos to a public feed that every Luckgram user can see. Posts go live as soon as you publish "
           "them. Browse Latest and Hot, like and comment, or start a private chat from the author's profile. You can "
           "report inappropriate content and block anyone at any time.",
-          "发布文字和图片动态，所有 Luckgram 用户都能看到，发布后立即公开。浏览「最新」和「热门」，点赞、评论，"
+          "发布文字、图片和短视频动态，所有 Luckgram 用户都能看到，发布后立即公开。浏览「最新」和「热门」，点赞、评论，"
           "或从作者主页直接发起私聊。遇到不当内容可以举报，也可以随时屏蔽任何用户。"),
          "/features/discover.html#square"),
     ]),
