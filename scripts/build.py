@@ -14,6 +14,7 @@ ANDROID_REPO = "https://github.com/limeng9088/luckgram-android"
 IOS_LATEST = IOS_REPO + "/releases/latest"
 ANDROID_LATEST = ANDROID_REPO + "/releases/latest"
 UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
+PRIVACY_UPDATED = ("November 2, 2026", "2026 年 11 月 2 日")
 LANGS = ("zh", "en")
 LANG = "zh"  # the language currently being rendered
 # Changes whenever site.css changes, so browsers and Cloudflare never pair new pages with an old stylesheet.
@@ -377,7 +378,7 @@ def download():
 def privacy():
     body = f'''<article class="prose">
 <h1>{t("Privacy Policy", "隐私政策")}</h1>
-<p class="meta">{t("Last updated", "最后更新：")}{" " if LANG == "en" else ""}{t(*UPDATED)}</p>
+<p class="meta">{t("Last updated", "最后更新：")}{" " if LANG == "en" else ""}{t(*PRIVACY_UPDATED)}</p>
 
 <p>{t("This policy explains what happens to your information when you use the Luckgram apps for iOS and Android and the luckgram.cc websites. Luckgram is an independent app built from the open-source Telegram apps.",
       "本政策说明你使用 Luckgram iOS 和 Android 应用以及 luckgram.cc 网站时，你的信息会如何处理。Luckgram 是基于开源 Telegram 应用开发的独立应用。")}</p>
@@ -385,8 +386,30 @@ def privacy():
 <h2>{t("Your Telegram data", "你的 Telegram 数据")}</h2>
 <p>{t('Luckgram is a client for the Telegram network. When you sign in, send messages, make calls or sync contacts, the app exchanges that data directly with Telegram\'s servers. That data is processed by Telegram under the <a href="https://telegram.org/privacy">Telegram Privacy Policy</a>, not by Luckgram.',
       'Luckgram 是 Telegram 网络的客户端。你登录、发消息、打电话或同步联系人时，应用直接与 Telegram 的服务器交换这些数据。这些数据由 Telegram 依据 <a href="https://telegram.org/privacy">Telegram 隐私政策</a>处理，而不是由 Luckgram 处理。')}</p>
-<p>{t("Luckgram does not run its own servers for your messages, calls, contacts or media, and does not receive copies of them.",
-      "Luckgram 没有为你的消息、通话、联系人或媒体设立自己的服务器，也不会收到它们的副本。")}</p>
+<p>{t("Luckgram does not run its own servers for your messages, calls, contacts or media, and does not receive copies of them. The exceptions are the Luckgram features described in the next section, which only send data when you use them.",
+      "Luckgram 没有为你的消息、通话、联系人或媒体设立自己的服务器，也不会收到它们的副本。例外是下一节列出的 Luckgram 功能，只有在你使用这些功能时才会发送数据。")}</p>
+
+<h2>{t("Luckgram features that use our servers", "使用 Luckgram 服务器的功能")}</h2>
+<p>{t("Some Luckgram features run on servers operated by Luckgram on Amazon Web Services in Singapore. Each feature can be turned off in Settings → Luckgram Features.",
+      "部分 Luckgram 功能运行在 Luckgram 运营的服务器上，服务器位于新加坡的 Amazon Web Services。每个功能都可以在「设置 → Luckgram 功能」里关闭。")}</p>
+<ul>
+<li>{t("<b>Device registration.</b> On first use the app registers an anonymous device token together with the platform, app version and language. We store only a hash of the token. A device that has not connected for 180 days is deleted.",
+      "<b>设备登记。</b>首次使用时，应用会登记一个匿名设备令牌，以及系统平台、应用版本和语言。我们只保存令牌的哈希值。180 天没有连接的设备会被删除。")}</li>
+<li>{t("<b>Account link.</b> Features that need an account (AI quotas, People Nearby, Square, Luckgram Pro) link your device to your Telegram user ID through the Luckgram bot. We store only the numeric user ID, not your phone number. You can unlink in Settings → Luckgram Features → Account.",
+      "<b>账号关联。</b>需要账号的功能（AI 额度、附近的人、广场、Luckgram Pro）会通过 Luckgram 机器人，把你的设备和 Telegram 用户 ID 关联起来。我们只保存数字用户 ID，不保存手机号。你可以在「设置 → Luckgram 功能 → 账号」里解除关联。")}</li>
+<li>{t("<b>AI features</b> (assistant, summaries, writing help, reply suggestions, images, posts, voice-to-text and call transcripts). The text, audio or prompt you choose to process is sent through our server to OpenAI to produce the result, and is then returned to you. We do not store or log this content; we keep only usage records (feature, amount, time) for 90 days to enforce quotas. Generated images are kept for 24 hours so you can download them. OpenAI processes the content under its own terms. AI chat history is stored only on your device.",
+      "<b>AI 功能</b>（助手、总结、写作、回复建议、图片、帖子、语音转文字和通话文字稿）。你选择处理的文字、音频或提示词会经由我们的服务器发给 OpenAI 生成结果，再返回给你。我们不保存、也不记录这些内容；只为执行额度保留用量记录（功能、用量、时间）90 天。生成的图片保留 24 小时，供你下载。OpenAI 依据其自身条款处理这些内容。AI 对话历史只保存在你的设备上。")}</li>
+<li>{t("<b>People Nearby</b> (only when you turn on “Visible nearby”). The app rounds your location to a grid of about 1 km on the device before sending it; your exact position never leaves the device. Your card (display name, bio, optional photo and public username) and that rounded location are deleted automatically after 24 hours, or immediately when you turn visibility off, sign out or unlink. Other users see only a distance range, never your coordinates.",
+      "<b>附近的人</b>（仅在你打开「在附近可见」时）。应用会先在设备上把你的位置粗化到约 1 公里的网格再发送，精确位置不会离开设备。你的名片（显示名、简介、可选头像和公开用户名）和粗化后的位置在 24 小时后自动删除；你关闭可见、退出登录或解除关联时立即删除。其他用户只能看到距离范围，看不到你的坐标。")}</li>
+<li>{t("<b>Square.</b> Posts, comments and likes are public to all Luckgram users. Before upload the app resizes photos and removes their metadata, including GPS; videos are re-encoded without metadata. You can delete any post or comment, or remove all your Square data at once in Settings → Luckgram Features → Account. Media from deleted posts is removed within 24 hours, and all copies of deleted data within 30 days. Reported content may be reviewed and hidden.",
+      "<b>广场。</b>帖子、评论和点赞对所有 Luckgram 用户公开。上传前，应用会压缩图片并去掉包括 GPS 在内的元数据；视频会重新编码并去掉元数据。你可以删除任何一条自己的帖子或评论，也可以在「设置 → Luckgram 功能 → 账号」里一键删除全部广场数据。已删除帖子的图片和视频在 24 小时内删除，被删除数据的所有副本在 30 天内清除。被举报的内容可能会被审核和隐藏。")}</li>
+<li>{t("<b>Luckgram Pro.</b> Payments are made with Telegram Stars and processed by Telegram. We store your Telegram user ID and subscription period, not payment details.",
+      "<b>Luckgram Pro。</b>使用 Telegram Stars 付款，由 Telegram 处理。我们只保存你的 Telegram 用户 ID 和会员有效期，不保存付款信息。")}</li>
+<li>{t("<b>Settings, announcements and updates.</b> The app downloads feature settings, in-app announcements and version information from our server. These requests carry only the device token and app version.",
+      "<b>配置、公告和更新。</b>应用会从我们的服务器下载功能配置、应用内公告和版本信息。这些请求只带设备令牌和应用版本。")}</li>
+</ul>
+<p>{t("Server logs record technical details such as the request type, result and timing, never message, post or AI content, and are kept for 30 days. We do not sell your data or use it for advertising.",
+      "服务器日志只记录请求类型、结果和耗时等技术信息，不记录消息、帖子或 AI 内容，保留 30 天。我们不出售你的数据，也不将其用于广告。")}</p>
 
 <h2>{t("Data stored on your device", "存储在你设备上的数据")}</h2>
 <p>{t("Like other Telegram apps, Luckgram keeps a local cache of your chats and media on your device so the app works quickly and offline. You can clear it in the app's storage settings, or remove it by uninstalling the app.",
