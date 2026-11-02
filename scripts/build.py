@@ -18,7 +18,7 @@ PRIVACY_UPDATED = ("November 2, 2026", "2026 年 11 月 2 日")
 LANGS = ("zh", "en")
 LANG = "zh"  # the language currently being rendered
 # Changes whenever site.css changes, so browsers and Cloudflare never pair new pages with an old stylesheet.
-MEDIA_VERSION = "3"   # bump when the feature videos are re-rendered, so cached copies are skipped
+MEDIA_VERSION = "4"   # bump when the feature videos are re-rendered, so cached copies are skipped
 CSS_VERSION = hashlib.sha1(open(os.path.join(ROOT, "assets", "site.css"), "rb").read()).hexdigest()[:10]
 
 
@@ -540,10 +540,15 @@ def feature_groups():
          "/features/privacy.html#restricted-channels"),
     ]),
     (("Messages and language", "消息与语言"), [
-        ("translate-in", ("Translate messages", "翻译消息"), ("Read messages in your language", "用你的语言阅读消息"), OK_TG,
-         ("Tap Translate and messages in another language switch to yours, right in the chat. This is Telegram's own "
-          "translation: single messages are free, and translating a whole chat at once needs Telegram Premium.",
-          "点“翻译”，外语消息就直接在聊天里变成你的语言。这是 Telegram 自带的翻译：翻译单条消息免费，一次翻译整个聊天需要 Telegram Premium。"),
+        ("translate-in", ("Translate messages", "翻译消息"), ("Read messages in your language", "用你的语言阅读消息"), WIP,
+         ("Press and hold a message and tap Translate: the translation appears right under the original, in the same "
+          "bubble, and Undo Translate puts it back. Or turn on the one-tap translate button and tap it next to any "
+          "message in another language; languages you already read get no button. Voice messages can be translated "
+          "once they are turned into text. Free, with no Telegram Premium needed; translating a whole chat at once "
+          "still needs Telegram Premium.",
+          "长按消息点“翻译”，译文直接显示在原文下面、同一个气泡里，点“撤销翻译”就恢复原样。也可以打开一键翻译按钮，"
+          "外语消息旁边点一下就翻译；你看得懂的语言不会出现按钮。语音消息转成文字后也能翻译。免费使用，不需要 Telegram Premium；"
+          "一次翻译整个聊天仍需 Telegram Premium。"),
          "/features/translation-and-voice.html"),
         ("translate-out", ("Translate before sending", "发送前翻译"), ("Translate what you write before you send it", "发送前先翻译你写的内容"), WIP,
          ("Write in the language you think in, then translate the text in the input bar and send it in your contact's "
