@@ -185,8 +185,8 @@
         "en": "Translate what you write before you send it"
       },
       "description": {
-        "zh": "用你习惯的语言写，点输入框的「+」再点“翻译”，把文字翻成对方的语言。翻译结果先显示在输入框里，确认后再发出去。",
-        "en": "Write in the language you think in, then open + in the input bar and tap Translate to turn the text into your contact's language. You see the result in the input bar before anything is sent."
+        "zh": "用你习惯的语言写，在「+」面板里点“翻译”，或者长按发送按钮选“翻译”“翻译成…”。译文直接替换输入框里的文字，发出去之前你能先看到；每个聊天会记住各自的目标语言。",
+        "en": "Write in the language you think in, then tap Translate in the + panel, or hold the send button and choose Translate or Translate to…. The text is replaced in the input bar, so you see it before anything is sent, and the language is remembered for each chat."
       },
       "wiki": "/features/translation-and-voice.html#translate-out",
       "video": true
