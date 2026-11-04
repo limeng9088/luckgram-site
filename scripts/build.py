@@ -95,6 +95,41 @@ def footer():
   </div>
 </footer>
 <script>
+// Download buttons: /download/latest.json is written by the app CI after each master release
+// (luckgram-specs#100). Buttons keep their Release-page link if the file cannot be loaded.
+(function () {{
+  var zh = document.documentElement.lang.indexOf("zh") === 0;
+  function mb(n) {{ return (n / 1048576).toFixed(1) + " MB"; }}
+  function day(s) {{ return (s || "").slice(0, 10); }}
+  function meta(el, r, f) {{
+    if (!el || !f) return;
+    var line = (zh ? "版本 " : "Version ") + r.version + (zh ? " · 构建号 " : " · build ") + r.build +
+      " · " + day(r.published_at) + " · " + mb(f.size);
+    el.textContent = "";
+    var p = document.createElement("p"); p.textContent = line; el.appendChild(p);
+    var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
+    s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
+    el.hidden = false;
+  }}
+  function set(key, r, f) {{
+    if (!f || f.url.indexOf("https://github.com/") !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) {{ a.href = f.url; }});
+    meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
+    return true;
+  }}
+  if (!window.fetch || !document.querySelector("[data-dl]")) return;
+  fetch("/download/latest.json", {{cache: "no-cache"}}).then(function (r) {{ return r.ok ? r.json() : null; }}).then(function (j) {{
+    if (!j) return;
+    if (j.ios) set("ios", j.ios, j.ios);
+    if (j.android) {{
+      set("android", j.android, j.android.arm64);
+      if (set("android-x86_64", j.android, j.android.x86_64)) {{
+        var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
+      }}
+    }}
+  }}).catch(function () {{}});
+}})();
+
 // Feature videos load and play only while they are on screen.
 (function () {{
   var vids = document.querySelectorAll('video[data-lazy]');
@@ -216,8 +251,8 @@ def video(slug, label, lazy=True):
 
 def download_buttons(primary=True):
     cls = "btn platform primary" if primary else "btn platform"
-    return f'''<a class="{cls}" href="{IOS_LATEST}">{ICON_APPLE}<span><small>{t("iPhone and iPad", "iPhone 和 iPad")}</small>{t("Download for iOS", "下载 iOS 版")}</span></a>
-        <a class="btn platform" href="{ANDROID_LATEST}">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>'''
+    return f'''<a class="{cls}" href="{IOS_LATEST}" data-dl="ios">{ICON_APPLE}<span><small>{t("iPhone and iPad", "iPhone 和 iPad")}</small>{t("Download for iOS", "下载 iOS 版")}</span></a>
+        <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>'''
 
 
 def feature_by_slug():
@@ -340,8 +375,8 @@ def download():
     body = f'''<section class="page-head">
   <div class="wrap">
     <h1>{t("Get Luckgram", "下载 Luckgram")}</h1>
-    <p>{t("Luckgram is distributed through GitHub Releases. These links always open the latest build.",
-          "Luckgram 通过 GitHub Releases 发布，下面的链接始终指向最新版本。")}</p>
+    <p>{t("The buttons download the newest build directly. Builds come from GitHub Releases and update automatically after each release.",
+          "点按钮直接下载最新版本。安装包来自 GitHub Releases，每次发布后自动更新。")}</p>
   </div>
 </section>
 <div class="wrap">
@@ -354,7 +389,15 @@ def download():
         <li>{t("Android 6.0 or later", "Android 6.0 及以上")}</li>
         <li>{t("Allow installs from your browser or file manager when asked", "安装时如有提示，请允许浏览器或文件管理器安装应用")}</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="{ANDROID_LATEST}">{t("Download APK", "下载 APK")}</a></div>
+      <div class="btns"><a class="btn primary" href="{ANDROID_LATEST}" data-dl="android">{t("Download APK", "下载 APK")}</a></div>
+      <div class="dl-meta" data-dl-meta="android" hidden></div>
+      <details class="dl-more" data-dl-other="android" hidden>
+        <summary>{t("Other builds", "其他版本")}</summary>
+        <p>{t("x86_64 APK for Android emulators on x86 computers (Windows, Intel Mac). Not for phones.",
+              "x86_64 APK，给 x86 电脑（Windows、Intel Mac）上的 Android 模拟器用，手机请下载上面的版本。")}</p>
+        <p><a class="btn" href="{ANDROID_LATEST}" data-dl="android-x86_64">{t("Download x86_64 APK", "下载 x86_64 APK")}</a></p>
+        <div class="dl-meta" data-dl-meta="android-x86_64"></div>
+      </details>
     </div>
     <div class="dl-card">
       <svg class="os" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{ICON_APPLE[ICON_APPLE.index("<path"):ICON_APPLE.index("</svg>")]}</svg>
@@ -364,7 +407,9 @@ def download():
         <li>{t("Sign it with Sideloadly, AltStore or your own certificate before installing", "安装前先用 Sideloadly、AltStore 或你自己的证书签名")}</li>
         <li>{t("iOS 15 or later", "iOS 15 及以上")}</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="{IOS_LATEST}">{t("Download IPA", "下载 IPA")}</a><a class="btn" href="{wiki("/getting-started/install.html")}">{t("Install guide", "安装指南")}</a></div>
+      <div class="btns"><a class="btn primary" href="{IOS_LATEST}" data-dl="ios">{t("Download IPA", "下载 IPA")}</a><a class="btn" href="{wiki("/getting-started/install.html")}">{t("Install guide", "安装指南")}</a></div>
+      <p class="dl-sign">{t("You need to sign the IPA yourself before it can be installed.", "需要自行签名后才能安装。")}</p>
+      <div class="dl-meta" data-dl-meta="ios" hidden></div>
     </div>
   </div>
   <p class="note">{t("If you previously installed a test build of Luckgram on Android, uninstall it first: builds signed with a different key cannot update each other. Only download Luckgram from this page or the GitHub repositories it links to.",

@@ -193,6 +193,19 @@ details a { color: var(--ink); }
 .dl-card ul { margin: 20px 0 30px; padding-left: 18px; color: var(--muted); }
 .dl-card li + li { margin-top: 6px; }
 .note { color: var(--muted); font-size: 14.5px; max-width: 52em; padding-bottom: 96px; }
+.dl-sign { margin: 14px 0 0; color: var(--wip); font-size: 14px; }
+.dl-meta { margin-top: 16px; color: var(--muted); font-size: 13.5px; }
+.dl-meta p { margin: 0; padding: 0; }
+/* compact disclosure for the file details (the global details/summary style is the FAQ's) */
+.dl-card details { border-bottom: 0; }
+.dl-card summary { display: inline-flex; gap: 6px; padding: 0; font-size: inherit; font-weight: 600; color: var(--ink); }
+.dl-card summary::after { content: "+"; font: 400 16px/1 var(--body); }
+.dl-card summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+.dl-meta details { margin-top: 8px; }
+.dl-meta summary { font-weight: 500; color: var(--muted); }
+.dl-meta code { display: block; margin-top: 6px; font-size: 12px; word-break: break-all; color: var(--ink); opacity: .8; }
+.dl-more { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line-soft); color: var(--muted); font-size: 14.5px; }
+.dl-more > p { margin: 12px 0 0; padding: 0; max-width: none; }
 
 /* Long text pages */
 .prose { max-width: 720px; margin: 0 auto; padding: 88px 24px 112px; }
