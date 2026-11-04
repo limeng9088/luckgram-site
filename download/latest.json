@@ -18,12 +18,12 @@
   },
   "ios": {
     "version": "13.1.1",
-    "build": 36211,
-    "commit": "9e5e6e4",
-    "tag": "ios-13.1.1-36211",
-    "published_at": "2026-11-04T03:18:04Z",
-    "url": "https://github.com/limeng9088/luckgram-ios/releases/download/ios-13.1.1-36211/Luckgram-13.1.1-36211.ipa",
-    "sha256": "8fc51f2adec15c259547b969e9f2225bb0530dc72c04bb06554932556f094bc4",
-    "size": 78298144
+    "build": 36217,
+    "commit": "c0b76c3",
+    "tag": "ios-13.1.1-36217",
+    "published_at": "2026-11-04T04:36:48Z",
+    "url": "https://github.com/limeng9088/luckgram-ios/releases/download/ios-13.1.1-36217/Luckgram-13.1.1-36217.ipa",
+    "sha256": "a241c187897713e2e7e15f13197818ccd8121e4521c92e86166eaf753f1f5e1a",
+    "size": 78299900
   }
 }
