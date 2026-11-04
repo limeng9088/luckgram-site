@@ -1,19 +1,19 @@
 {
   "android": {
     "version": "13.0.3",
-    "build": 298,
-    "commit": "f279ec5",
-    "tag": "android-13.0.3-298",
-    "published_at": "2026-11-04T06:30:38Z",
+    "build": 301,
+    "commit": "334463c",
+    "tag": "android-13.0.3-301",
+    "published_at": "2026-11-04T06:45:05Z",
     "arm64": {
-      "url": "https://github.com/limeng9088/luckgram-android/releases/download/android-13.0.3-298/luckgram-13.0.3-arm64-v8a.apk",
-      "sha256": "7e33393cf890e5d1c3178995ba85318cd1fb1d1308bbe2c08b30348d7bab18bd",
-      "size": 46803887
+      "url": "https://github.com/limeng9088/luckgram-android/releases/download/android-13.0.3-301/luckgram-13.0.3-arm64-v8a.apk",
+      "sha256": "e9e5c1ef317896534523141738e8c9f6e66a505dc2a1ada49469d1e804dbede7",
+      "size": 46822192
     },
     "x86_64": {
-      "url": "https://github.com/limeng9088/luckgram-android/releases/download/android-13.0.3-298/luckgram-13.0.3-x86_64.apk",
-      "sha256": "0ee51b9c46c40fa9bb347d2adc7c1b784f5e48b0c7ddbe1c8c5ef50a93edd5db",
-      "size": 47277176
+      "url": "https://github.com/limeng9088/luckgram-android/releases/download/android-13.0.3-301/luckgram-13.0.3-x86_64.apk",
+      "sha256": "7eefc55ccdf0b04a5b5b58836bf5cd6be2ea02e0020fbf5dd5a5b84c90d1f5de",
+      "size": 47295484
     }
   },
   "ios": {
