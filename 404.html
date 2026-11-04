@@ -14,7 +14,7 @@
 <meta name="heleket" content="16ef8c76" />
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/site.css?v=35463b84cc">
+<link rel="stylesheet" href="/assets/site.css?v=f934b62ac5">
 </head>
 <body>
 <header class="site-header">
@@ -67,6 +67,41 @@
   </div>
 </footer>
 <script>
+// Download buttons: /download/latest.json is written by the app CI after each master release
+// (luckgram-specs#100). Buttons keep their Release-page link if the file cannot be loaded.
+(function () {
+  var zh = document.documentElement.lang.indexOf("zh") === 0;
+  function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
+  function day(s) { return (s || "").slice(0, 10); }
+  function meta(el, r, f) {
+    if (!el || !f) return;
+    var line = (zh ? "版本 " : "Version ") + r.version + (zh ? " · 构建号 " : " · build ") + r.build +
+      " · " + day(r.published_at) + " · " + mb(f.size);
+    el.textContent = "";
+    var p = document.createElement("p"); p.textContent = line; el.appendChild(p);
+    var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
+    s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
+    el.hidden = false;
+  }
+  function set(key, r, f) {
+    if (!f || f.url.indexOf("https://github.com/") !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = f.url; });
+    meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
+    return true;
+  }
+  if (!window.fetch || !document.querySelector("[data-dl]")) return;
+  fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (!j) return;
+    if (j.ios) set("ios", j.ios, j.ios);
+    if (j.android) {
+      set("android", j.android, j.android.arm64);
+      if (set("android-x86_64", j.android, j.android.x86_64)) {
+        var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
+      }
+    }
+  }).catch(function () {});
+})();
+
 // Feature videos load and play only while they are on screen.
 (function () {
   var vids = document.querySelectorAll('video[data-lazy]');
