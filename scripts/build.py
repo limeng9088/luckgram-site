@@ -15,7 +15,7 @@ ANDROID_REPO = "https://github.com/limeng9088/luckgram-android"
 IOS_LATEST = IOS_REPO + "/releases/latest"
 ANDROID_LATEST = ANDROID_REPO + "/releases/latest"
 UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
-PRIVACY_UPDATED = ("November 2, 2026", "2026 年 11 月 2 日")
+PRIVACY_UPDATED = ("November 4, 2026", "2026 年 11 月 4 日")
 LANGS = ("zh", "en")
 LANG = "zh"  # the language currently being rendered
 # Changes whenever site.css changes, so browsers and Cloudflare never pair new pages with an old stylesheet.
@@ -449,6 +449,8 @@ def privacy():
       "<b>附近的人</b>（仅在你打开「在附近可见」时）。应用会先在设备上把你的位置粗化到约 1 公里的网格再发送，精确位置不会离开设备。你的名片（显示名、简介、可选头像和公开用户名）和粗化后的位置在 24 小时后自动删除；你关闭可见、退出登录或解除关联时立即删除。其他用户只能看到距离范围，看不到你的坐标。")}</li>
 <li>{t("<b>Square.</b> Posts, comments and likes are public to all Luckgram users. Before upload the app resizes photos and removes their metadata, including GPS; videos are re-encoded without metadata. You can delete any post or comment, or remove all your Square data at once in Settings → Luckgram Features → Account. Media from deleted posts is removed within 24 hours, and all copies of deleted data within 30 days. Reported content may be reviewed and hidden.",
       "<b>广场。</b>帖子、评论和点赞对所有 Luckgram 用户公开。上传前，应用会压缩图片并去掉包括 GPS 在内的元数据；视频会重新编码并去掉元数据。你可以删除任何一条自己的帖子或评论，也可以在「设置 → Luckgram 功能 → 账号」里一键删除全部广场数据。已删除帖子的图片和视频在 24 小时内删除，被删除数据的所有副本在 30 天内清除。被举报的内容可能会被审核和隐藏。")}</li>
+<li>{t("<b>Square recommendations.</b> To recommend Square posts you may like, Luckgram records how you browse and interact in Square: which posts you saw, how long you stayed, and when you open, like, comment on, share, report or mark a post “Not interested”. These records are linked only to an opaque device or user identifier, contain no post text and none of your chats, are used only to recommend and rank Square posts (including improving those recommendations), are not used anywhere else and are never combined with data from other apps or websites (no cross-app tracking). They are deleted automatically after 90 days.",
+      "<b>广场推荐。</b>为了在广场里给你推荐可能感兴趣的帖子，Luckgram 会记录你在广场里的浏览和互动：看到了哪些帖子、停留多久、点开、点赞、评论、分享、举报和「不感兴趣」。这些记录只和一个不透明的设备或用户标识关联，不包含帖子文字或你的聊天内容，只用于广场的推荐和排序（包括改进推荐效果），不会用于广场以外的地方，也不会和其他 App 或网站的数据关联（不做跨 App 追踪），90 天后自动删除。")}</li>
 <li>{t("<b>Luckgram Pro.</b> Payments are made with Telegram Stars and processed by Telegram. We store your Telegram user ID and subscription period, not payment details.",
       "<b>Luckgram Pro。</b>使用 Telegram Stars 付款，由 Telegram 处理。我们只保存你的 Telegram 用户 ID 和会员有效期，不保存付款信息。")}</li>
 <li>{t("<b>Settings, announcements and updates.</b> The app downloads feature settings, in-app announcements and version information from our server. These requests carry only the device token and app version.",
