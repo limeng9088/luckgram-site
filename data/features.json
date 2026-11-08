@@ -732,12 +732,12 @@
         "en": "Proxy settings"
       },
       "title": {
-        "zh": "登录前就能配置代理，还能看清出口 IP",
-        "en": "Set up a proxy before you sign in, and see where it exits"
+        "zh": "扫码、粘贴链接或导入订阅就能加代理，登录前就能用",
+        "en": "Add proxies from a QR code, a link or a subscription, even before you sign in"
       },
       "description": {
-        "zh": "连不上 Telegram？登录流程的每一页右上角都有代理按钮，收验证码之前就能添加 SOCKS5 或 MTProto 代理。登录后，在聊天列表右上角「⋮」菜单的最上面就能找到“代理配置”，旁边显示当前状态。代理列表里，每个 SOCKS5 代理下面会显示它的出口国家和 IP；最上面的“直连”一行显示不用代理时你自己的出口。切换之前就知道会从哪里连出去。",
-        "en": "Can't reach Telegram? The proxy button sits in the top-right corner of every sign-in screen, so you can add a SOCKS5 or MTProto proxy before you get your code. After signing in, find Proxy settings, with its status, at the top of the ⋮ menu in the chat list. The proxy list shows the exit country and IP of every SOCKS5 proxy, and a Direct row at the top shows your own exit without one, so you know where you will come out before you switch."
+        "zh": "连不上 Telegram？登录流程的每一页右上角都有代理按钮，收验证码之前就能添加 SOCKS5 或 MTProto 代理。新增两种加代理的方式：一是扫码或粘贴链接，扫一下代理二维码，或者粘贴 tg://、t.me 或 socks5:// 链接，代理就加进列表，不用逐项填服务器和端口；二是导入订阅，粘贴 Clash / mihomo 订阅网址，里面的 SOCKS5 节点一次全部导入，之后可以一键刷新，订阅删了，它导入的代理也一起删。代理列表里，每个 SOCKS5 代理下面会显示它的出口国家和 IP，最上面的“直连”一行显示不用代理时你自己的出口。登录后，在聊天列表右上角「⋮」菜单的最上面就能找到“代理配置”。",
+        "en": "Can't reach Telegram? The proxy button sits in the top-right corner of every sign-in screen, so you can add a SOCKS5 or MTProto proxy before you get your code. There are now two faster ways to add one. Scan a proxy QR code or paste a tg://, t.me or socks5:// link, and it goes straight into your list, with no server and port to type. Or paste a Clash or mihomo subscription URL to import all its SOCKS5 proxies at once; refresh it with one tap, and deleting the subscription removes the proxies it added. The proxy list shows the exit country and IP of every SOCKS5 proxy, and a Direct row at the top shows your own exit without one. After signing in, find Proxy settings at the top of the ⋮ menu in the chat list."
       },
       "wiki": "/features/sign-in-and-network.html#proxy",
       "video": true
