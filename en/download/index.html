@@ -46,12 +46,12 @@
         <li>Android 6.0 or later</li>
         <li>Allow installs from your browser or file manager when asked</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="https://github.com/limeng9088/luckgram-android/releases/latest" data-dl="android">Download APK</a></div>
+      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/android/android-13.0.3-323/luckgram-13.0.3-arm64-v8a.apk" data-dl="android">Download APK</a></div>
       <div class="dl-meta" data-dl-meta="android" hidden></div>
       <details class="dl-more" data-dl-other="android" hidden>
         <summary>Other builds</summary>
         <p>x86_64 APK for Android emulators on x86 computers (Windows, Intel Mac). Not for phones.</p>
-        <p><a class="btn" href="https://github.com/limeng9088/luckgram-android/releases/latest" data-dl="android-x86_64">Download x86_64 APK</a></p>
+        <p><a class="btn" href="https://dl.luckgram.cc/android/android-13.0.3-323/luckgram-13.0.3-x86_64.apk" data-dl="android-x86_64">Download x86_64 APK</a></p>
         <div class="dl-meta" data-dl-meta="android-x86_64"></div>
       </details>
     </div>
@@ -63,7 +63,7 @@
         <li>Sign it with Sideloadly, AltStore or your own certificate before installing</li>
         <li>iOS 15 or later</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="https://github.com/limeng9088/luckgram-ios/releases/latest" data-dl="ios">Download IPA</a><a class="btn" href="https://wiki.luckgram.cc/en/getting-started/install.html">Install guide</a></div>
+      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/ios/ios-13.1.1-36292/Luckgram-13.1.1-36292.ipa" data-dl="ios">Download IPA</a><a class="btn" href="https://wiki.luckgram.cc/en/getting-started/install.html">Install guide</a></div>
       <p class="dl-sign">You need to sign the IPA yourself before it can be installed.</p>
       <div class="dl-meta" data-dl-meta="ios" hidden></div>
     </div>
@@ -103,7 +103,7 @@
 </footer>
 <script>
 // Download buttons: /download/latest.json is written by the app CI after each master release
-// (luckgram-specs#100). Buttons keep their Release-page link if the file cannot be loaded.
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
 (function () {
   var zh = document.documentElement.lang.indexOf("zh") === 0;
   function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
@@ -119,7 +119,7 @@
     el.hidden = false;
   }
   function set(key, r, f) {
-    if (!f || f.url.indexOf("https://github.com/") !== 0) return false;
+    if (!f || f.url.indexOf("https://dl.luckgram.cc/") !== 0) return false;
     document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = f.url; });
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;

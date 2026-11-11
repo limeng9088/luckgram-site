@@ -97,7 +97,7 @@
 </footer>
 <script>
 // Download buttons: /download/latest.json is written by the app CI after each master release
-// (luckgram-specs#100). Buttons keep their Release-page link if the file cannot be loaded.
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
 (function () {
   var zh = document.documentElement.lang.indexOf("zh") === 0;
   function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
@@ -113,7 +113,7 @@
     el.hidden = false;
   }
   function set(key, r, f) {
-    if (!f || f.url.indexOf("https://github.com/") !== 0) return false;
+    if (!f || f.url.indexOf("https://dl.luckgram.cc/") !== 0) return false;
     document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = f.url; });
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;

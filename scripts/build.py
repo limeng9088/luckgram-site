@@ -12,8 +12,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WIKI_HOST = "https://wiki.luckgram.cc"
 IOS_REPO = "https://github.com/limeng9088/luckgram-ios"
 ANDROID_REPO = "https://github.com/limeng9088/luckgram-android"
-IOS_LATEST = IOS_REPO + "/releases/latest"
-ANDROID_LATEST = ANDROID_REPO + "/releases/latest"
+# Downloads come from dl.luckgram.cc (Cloudflare in front of S3), never from GitHub.
+# The buttons get the newest file from download/latest.json at page load; these
+# build-time links are the fallback when that file can't be loaded.
+def _latest():
+    import json as _j
+    try:
+        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "download", "latest.json"), encoding="utf-8") as f:
+            return _j.load(f)
+    except (OSError, ValueError):
+        return {}
+_L = _latest()
+IOS_LATEST = _L.get("ios", {}).get("url", "/download/")
+ANDROID_LATEST = _L.get("android", {}).get("arm64", {}).get("url", "/download/")
+ANDROID_X86_LATEST = _L.get("android", {}).get("x86_64", {}).get("url", ANDROID_LATEST)
 UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
 PRIVACY_UPDATED = ("November 4, 2026", "2026 年 11 月 4 日")
 LANGS = ("zh", "en")
@@ -97,7 +109,7 @@ def footer():
 </footer>
 <script>
 // Download buttons: /download/latest.json is written by the app CI after each master release
-// (luckgram-specs#100). Buttons keep their Release-page link if the file cannot be loaded.
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
 (function () {{
   var zh = document.documentElement.lang.indexOf("zh") === 0;
   function mb(n) {{ return (n / 1048576).toFixed(1) + " MB"; }}
@@ -113,7 +125,7 @@ def footer():
     el.hidden = false;
   }}
   function set(key, r, f) {{
-    if (!f || f.url.indexOf("https://github.com/") !== 0) return false;
+    if (!f || f.url.indexOf("https://dl.luckgram.cc/") !== 0) return false;
     document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) {{ a.href = f.url; }});
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;
@@ -396,7 +408,7 @@ def download():
         <summary>{t("Other builds", "其他版本")}</summary>
         <p>{t("x86_64 APK for Android emulators on x86 computers (Windows, Intel Mac). Not for phones.",
               "x86_64 APK，给 x86 电脑（Windows、Intel Mac）上的 Android 模拟器用，手机请下载上面的版本。")}</p>
-        <p><a class="btn" href="{ANDROID_LATEST}" data-dl="android-x86_64">{t("Download x86_64 APK", "下载 x86_64 APK")}</a></p>
+        <p><a class="btn" href="{ANDROID_X86_LATEST}" data-dl="android-x86_64">{t("Download x86_64 APK", "下载 x86_64 APK")}</a></p>
         <div class="dl-meta" data-dl-meta="android-x86_64"></div>
       </details>
     </div>
@@ -472,8 +484,8 @@ def privacy():
       "应用会使用操作系统或 Telegram 代码中内置的服务：iOS 上的推送通知通过 Apple 推送通知服务送达，Android 上通过 Firebase Cloud Messaging 送达；Android 上的地图和定位功能可能使用 Google Play 服务。这些服务商依据各自的隐私政策处理数据。")}</p>
 
 <h2>{t("Downloads", "下载")}</h2>
-<p>{t('App builds are hosted on GitHub. When you download one, GitHub processes your request under the <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.',
-      '应用安装包托管在 GitHub 上。你下载时，GitHub 依据 <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隐私声明</a>处理你的请求。')}</p>
+<p>{t("App builds are downloaded from dl.luckgram.cc. The files are stored with Amazon Web Services and delivered through Cloudflare, which may process technical data such as your IP address to deliver them. We don't keep download logs of our own.",
+      "应用安装包从 dl.luckgram.cc 下载，文件存放在 Amazon Web Services，经由 Cloudflare 分发。分发过程中 Cloudflare 可能会处理 IP 地址等技术数据。我们自己不记录下载日志。")}</p>
 
 <h2>{t("Our websites", "我们的网站")}</h2>
 <p>{t("luckgram.cc and wiki.luckgram.cc are static websites hosted on GitHub Pages and served through Cloudflare. These providers may process technical data such as your IP address and browser type to deliver and protect the sites. The sites do not use cookies or analytics of their own.",

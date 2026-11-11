@@ -64,7 +64,7 @@
 <p>应用会使用操作系统或 Telegram 代码中内置的服务：iOS 上的推送通知通过 Apple 推送通知服务送达，Android 上通过 Firebase Cloud Messaging 送达；Android 上的地图和定位功能可能使用 Google Play 服务。这些服务商依据各自的隐私政策处理数据。</p>
 
 <h2>下载</h2>
-<p>应用安装包托管在 GitHub 上。你下载时，GitHub 依据 <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隐私声明</a>处理你的请求。</p>
+<p>应用安装包从 dl.luckgram.cc 下载，文件存放在 Amazon Web Services，经由 Cloudflare 分发。分发过程中 Cloudflare 可能会处理 IP 地址等技术数据。我们自己不记录下载日志。</p>
 
 <h2>我们的网站</h2>
 <p>luckgram.cc 和 wiki.luckgram.cc 是托管在 GitHub Pages、经由 Cloudflare 提供访问的静态网站。这些服务商可能会处理 IP 地址、浏览器类型等技术数据，用于提供和保护网站。网站本身不使用 Cookie，也没有自己的统计。</p>
@@ -115,7 +115,7 @@
 </footer>
 <script>
 // Download buttons: /download/latest.json is written by the app CI after each master release
-// (luckgram-specs#100). Buttons keep their Release-page link if the file cannot be loaded.
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
 (function () {
   var zh = document.documentElement.lang.indexOf("zh") === 0;
   function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
@@ -131,7 +131,7 @@
     el.hidden = false;
   }
   function set(key, r, f) {
-    if (!f || f.url.indexOf("https://github.com/") !== 0) return false;
+    if (!f || f.url.indexOf("https://dl.luckgram.cc/") !== 0) return false;
     document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = f.url; });
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;
