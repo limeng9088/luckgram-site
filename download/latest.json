@@ -6,12 +6,12 @@
     "tag": "android-13.0.3-324",
     "published_at": "2026-11-11T13:33:56Z",
     "arm64": {
-      "url": "https://github.com/limeng9088/luckgram-android/releases/download/android-13.0.3-324/luckgram-13.0.3-arm64-v8a.apk",
+      "url": "https://dl.luckgram.cc/android/android-13.0.3-324/luckgram-13.0.3-arm64-v8a.apk",
       "sha256": "91a90e09c725150859da276ac4fee9c8ed83ed2bf1d3b6020b580986096cb342",
       "size": 58592376
     },
     "x86_64": {
-      "url": "https://github.com/limeng9088/luckgram-android/releases/download/android-13.0.3-324/luckgram-13.0.3-x86_64.apk",
+      "url": "https://dl.luckgram.cc/android/android-13.0.3-324/luckgram-13.0.3-x86_64.apk",
       "sha256": "7657f1bb5aa6ff83719a7c13d5977a558e82f929f3714af2c93d7e130a17e92a",
       "size": 60108532
     }
@@ -22,7 +22,7 @@
     "commit": "b2cada1",
     "tag": "ios-13.1.1-36294",
     "published_at": "2026-11-11T13:33:32Z",
-    "url": "https://github.com/limeng9088/luckgram-ios/releases/download/ios-13.1.1-36294/Luckgram-13.1.1-36294.ipa",
+    "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36294/Luckgram-13.1.1-36294.ipa",
     "sha256": "43814c2a709f848552b540c9237100bccb0aed50b185f563966d08ca293a7c93",
     "size": 89492735
   }
