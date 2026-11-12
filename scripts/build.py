@@ -218,8 +218,8 @@ def available():
                                       "设备之间端到端加密的聊天，支持阅后即焚。")),
         (t("Stories, bots and mini apps", "动态、机器人和小程序"), t("Everything that runs on the Telegram platform works in Luckgram.",
                                                          "Telegram 平台上的一切都能在 Luckgram 中使用。")),
-        (t("Several accounts", "多个账号"), t("Switch between up to 20 Telegram accounts in one app, or 50 with Luckgram Pro (Telegram itself allows 3).",
-                                          "在一个应用里切换最多 20 个 Telegram 账号，开通 Luckgram Pro 后最多 50 个（Telegram 官方是 3 个）。")),
+        (t("Several accounts", "多个账号"), t("Switch between Telegram accounts in one app: 5 for free, unlimited with Luckgram Pro (Telegram itself allows 3).",
+                                          "在一个应用里切换多个 Telegram 账号：免费 5 个，开通 Luckgram Pro 后不限数量（Telegram 官方是 3 个）。")),
     ]
 
 
@@ -232,8 +232,8 @@ def faq():
          t("Yes. Sign in with your phone number. Your cloud chats, contacts and channels load from Telegram as they do in any Telegram app.",
            "可以。用手机号登录即可，云端聊天、联系人和频道会像在任何 Telegram 应用里一样从 Telegram 加载。")),
         (t("Is Luckgram free?", "Luckgram 免费吗？"),
-         t("Yes. Every feature not marked Pro is free. Luckgram Pro is an optional membership with more AI, up to 50 accounts, cloud backup and no sponsored messages. Telegram Premium and Telegram Stars are Telegram's own services and are sold and managed by Telegram.",
-           "免费。没有标注“Pro 专享”的功能都免费使用。Luckgram Pro 是可选的会员，提供更多 AI、最多 50 个账号、云备份和去除赞助消息。Telegram Premium 和 Telegram Stars 是 Telegram 自己的服务，由 Telegram 销售和管理。")),
+         t("Yes. Every feature not marked Pro is free. Luckgram Pro is an optional membership with more AI, unlimited accounts, cloud backup and no sponsored messages. Telegram Premium and Telegram Stars are Telegram's own services and are sold and managed by Telegram.",
+           "免费。没有标注“Pro 专享”的功能都免费使用。Luckgram Pro 是可选的会员，提供更多 AI、不限数量的账号、云备份和去除赞助消息。Telegram Premium 和 Telegram Stars 是 Telegram 自己的服务，由 Telegram 销售和管理。")),
         (t("Why isn't Luckgram on the App Store or Google Play?", "为什么 App Store 和 Google Play 上找不到 Luckgram？"),
          t("Luckgram is currently distributed through GitHub Releases. The Download page always links to the latest build.",
            "Luckgram 目前通过 GitHub Releases 发布。下载页上的链接始终指向最新版本。")),
