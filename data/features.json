@@ -590,8 +590,8 @@
         "en": "Polish any message before you send it"
       },
       "description": {
-        "zh": "在任何聊天里打完字，点输入框的「+」再点“AI 写作”，选你想要的效果：表达更好、更正式、更亲切、更简短，或者只改语法。文字会在输入框里直接改好，语言保持不变。",
-        "en": "Type in any chat, open + in the input bar, tap AI writing and choose what you want: better wording, more formal, friendlier, shorter or just fixed grammar. The text is rewritten in place, in your language."
+        "zh": "在任何聊天里打完字，长按发送键选“AI 写作”，选你想要的效果：表达更好、更正式、更亲切、更简短，或者只改语法。文字会在输入框里直接改好，语言保持不变。",
+        "en": "Type in any chat, long-press the send button, pick AI writing and choose what you want: better wording, more formal, friendlier, shorter or just fixed grammar. The text is rewritten in place, in your language."
       },
       "wiki": "/features/ai.html#ai-writing",
       "video": true
