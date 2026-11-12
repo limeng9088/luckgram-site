@@ -1,19 +1,19 @@
 {
   "android": {
     "version": "13.0.3",
-    "build": 356,
-    "commit": "869ea0b",
-    "tag": "android-13.0.3-356",
-    "published_at": "2026-11-12T10:09:50Z",
+    "build": 359,
+    "commit": "888339f",
+    "tag": "android-13.0.3-359",
+    "published_at": "2026-11-12T12:17:10Z",
     "arm64": {
-      "url": "https://dl.luckgram.cc/android/android-13.0.3-356/luckgram-13.0.3-arm64-v8a.apk",
-      "sha256": "1a88089fafe19330923aa5aad4fdc5198dcca5adb3014f7eb2a7e0c767590073",
-      "size": 58606595
+      "url": "https://dl.luckgram.cc/android/android-13.0.3-359/luckgram-13.0.3-arm64-v8a.apk",
+      "sha256": "41e47963bb72cecd27fe8a0b508c9690254dbcd4f40537ce9ad75711944d16f4",
+      "size": 58607087
     },
     "x86_64": {
-      "url": "https://dl.luckgram.cc/android/android-13.0.3-356/luckgram-13.0.3-x86_64.apk",
-      "sha256": "08c19f7ec46b8faba80a75f23eb8e96e8f4c3d0e145efa80335e0dd56e2f08ab",
-      "size": 60122744
+      "url": "https://dl.luckgram.cc/android/android-13.0.3-359/luckgram-13.0.3-x86_64.apk",
+      "sha256": "631df385c2b91ad6656ed0ff6f9e46ffa454ca9f80171094c967d5c7acf4dfad",
+      "size": 60123246
     }
   },
   "ios": {
