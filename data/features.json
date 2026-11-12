@@ -86,12 +86,12 @@
         "en": "More accounts"
       },
       "title": {
-        "zh": "免费 5 个账号，Pro 不限数量",
-        "en": "5 accounts free, unlimited with Pro"
+        "zh": "免费 10 个账号，Pro 不限数量",
+        "en": "10 accounts free, unlimited with Pro"
       },
       "description": {
-        "zh": "Telegram 官方一台设备最多登录 3 个账号。Luckgram 免费可以登录 5 个，开通 Luckgram Pro 后不限数量。个人、工作、客户和频道管理账号可以并排放着，各自的通知互不干扰，一点就能切换。",
-        "en": "Telegram allows 3 accounts on one device. Luckgram lets you sign in to 5 for free, and as many as you like with Luckgram Pro, so personal, work, client and channel-admin accounts sit side by side, each with its own notifications, and you switch between them in a tap."
+        "zh": "Telegram 官方一台设备最多登录 3 个账号。Luckgram 免费可以登录 10 个，开通 Luckgram Pro 后不限数量。个人、工作、客户和频道管理账号可以并排放着，各自的通知互不干扰，一点就能切换。",
+        "en": "Telegram allows 3 accounts on one device. Luckgram lets you sign in to 10 for free, and as many as you like with Luckgram Pro, so personal, work, client and channel-admin accounts sit side by side, each with its own notifications, and you switch between them in a tap."
       },
       "wiki": "/features/privacy.html#accounts",
       "video": true

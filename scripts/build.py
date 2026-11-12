@@ -220,8 +220,8 @@ def available():
                                       "设备之间端到端加密的聊天，支持阅后即焚。")),
         (t("Stories, bots and mini apps", "动态、机器人和小程序"), t("Everything that runs on the Telegram platform works in Luckgram.",
                                                          "Telegram 平台上的一切都能在 Luckgram 中使用。")),
-        (t("Several accounts", "多个账号"), t("Switch between Telegram accounts in one app: 5 for free, unlimited with Luckgram Pro (Telegram itself allows 3).",
-                                          "在一个应用里切换多个 Telegram 账号：免费 5 个，开通 Luckgram Pro 后不限数量（Telegram 官方是 3 个）。")),
+        (t("Several accounts", "多个账号"), t("Switch between Telegram accounts in one app: 10 for free, unlimited with Luckgram Pro (Telegram itself allows 3).",
+                                          "在一个应用里切换多个 Telegram 账号：免费 10 个，开通 Luckgram Pro 后不限数量（Telegram 官方是 3 个）。")),
     ]
 
 
