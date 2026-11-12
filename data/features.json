@@ -189,7 +189,10 @@
         "en": "Write in the language you think in, then tap Translate in the + panel, or hold the send button and choose Translate or Translate to…. The text is replaced in the input bar, so you see it before anything is sent, and the language is remembered for each chat."
       },
       "wiki": "/features/translation-and-voice.html#translate-out",
-      "video": true
+      "video": true,
+      "demo": {
+        "android": "/media/demos/translate-out-android.mp4"
+      }
     },
     {
       "id": "voice-text",
@@ -550,7 +553,10 @@
         "en": "Coming back to hundreds of unread messages? Get the decisions, dates and open questions in a few lines before you scroll. Ask your own question, such as what the client agreed to, and tap any point to jump to the messages behind it."
       },
       "wiki": "/features/ai.html#ai-summary",
-      "video": true
+      "video": true,
+      "demo": {
+        "android": "/media/demos/ai-summary-android.mp4"
+      }
     },
     {
       "id": "ai-reply",
@@ -626,7 +632,10 @@
         "en": "Open Agents in the AI assistant and switch to Market: browse by category, search, read what each agent does and start a chat in a tap. New agents are added on our side, no update needed. Agents marked Pro need Luckgram Pro."
       },
       "wiki": "/features/ai.html#agent-market",
-      "video": false
+      "video": false,
+      "demo": {
+        "android": "/media/demos/agent-market-android.mp4"
+      }
     },
     {
       "id": "ai-image",
