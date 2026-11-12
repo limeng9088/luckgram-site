@@ -66,6 +66,7 @@ def header(current, here):
     <a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
     <nav class="nav" aria-label="{t("Main", "主导航")}">
       {link(u("/features/"), t("Features", "功能"), "features")}
+      {link("https://web.luckgram.cc/", t("Web", "网页版"), "web")}
       {link(wiki(), t("Help", "帮助"), "help")}
       {link(u("/#faq"), t("FAQ", "常见问题"), "faq", "opt")}
       {switch}
@@ -84,6 +85,7 @@ def footer():
       <div><h4>{t("Product", "产品")}</h4><ul>
         <li><a href="{u("/download/")}">{t("Download", "下载")}</a></li>
         <li><a href="{u("/features/")}">{t("Features", "功能")}</a></li>
+        <li><a href="https://web.luckgram.cc/">{t("Web version", "网页版")}</a></li>
         <li><a href="{wiki()}">{t("Help Center", "帮助中心")}</a></li>
       </ul></div>
       <div><h4>{t("Source code", "源代码")}</h4><ul>
