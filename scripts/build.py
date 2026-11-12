@@ -55,10 +55,11 @@ ICON_GITHUB = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><
 
 
 def header(current, here):
-    def link(href, label, key, cls=""):
+    def link(href, label, key, cls="", new_tab=False):
         cur = ' aria-current="page"' if key == current else ""
         c = f' class="{cls}"' if cls else ""
-        return f'<a href="{href}"{c}{cur}>{label}</a>'
+        nt = ' target="_blank" rel="noopener"' if new_tab else ""
+        return f'<a href="{href}"{c}{cur}{nt}>{label}</a>'
     other = ("/en" + here) if LANG == "zh" else here
     switch = f'<a class="lang" href="{other}" hreflang="{"en" if LANG == "zh" else "zh-CN"}" lang="{"en" if LANG == "zh" else "zh-CN"}">{"EN" if LANG == "zh" else "中文"}</a>'
     return f'''<header class="site-header">
@@ -66,7 +67,7 @@ def header(current, here):
     <a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
     <nav class="nav" aria-label="{t("Main", "主导航")}">
       {link(u("/features/"), t("Features", "功能"), "features")}
-      {link("https://web.luckgram.cc/", t("Web", "网页版"), "web")}
+      {link("https://web.luckgram.cc/", t("Web", "网页版"), "web", new_tab=True)}
       {link(wiki(), t("Help", "帮助"), "help")}
       {link(u("/#faq"), t("FAQ", "常见问题"), "faq", "opt")}
       {switch}
@@ -85,7 +86,7 @@ def footer():
       <div><h4>{t("Product", "产品")}</h4><ul>
         <li><a href="{u("/download/")}">{t("Download", "下载")}</a></li>
         <li><a href="{u("/features/")}">{t("Features", "功能")}</a></li>
-        <li><a href="https://web.luckgram.cc/">{t("Web version", "网页版")}</a></li>
+        <li><a href="https://web.luckgram.cc/" target="_blank" rel="noopener">{t("Web version", "网页版")}</a></li>
         <li><a href="{wiki()}">{t("Help Center", "帮助中心")}</a></li>
       </ul></div>
       <div><h4>{t("Source code", "源代码")}</h4><ul>
