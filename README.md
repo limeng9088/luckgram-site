@@ -33,6 +33,8 @@ served under cat158.com by the Worker `luckgram-mirror` (`edge/mirror-worker.js`
   `Location`s point at the mirrors; relative links work unchanged. `canonical` and
   `hreflang` links keep naming the main host (a canonical is added if the page has none),
   and every response has `X-Robots-Tag: noindex`.
+- `web.luckgram.cc` links point at `lgweb.cat158.com`, the web app's own backup entrance
+  (a second custom domain of Pages project `luckgram-web`, not proxied by this Worker).
 - Downloads: bytes, `Range` (206) and SHA-256 are the main host's. On the download page the
   buttons use `lg-dl.cat158.com` when the page is opened on `lg-www.cat158.com`, or when
   `dl.luckgram.cc` doesn't answer within 6 s (script in `scripts/build.py`).

@@ -14,7 +14,10 @@ export const MIRRORS = {
   "lg-wiki.cat158.com": "wiki.luckgram.cc",
   "lg-dl.cat158.com": "dl.luckgram.cc",
 };
-const TO_MIRROR = { "www.luckgram.cc": "lg-www.cat158.com" };
+// Links-only: hosts with a backup entrance of their own that this Worker does not proxy.
+// web.luckgram.cc is Cloudflare Pages project luckgram-web, which also answers on
+// lgweb.cat158.com (luckgram-web release.yml; its relay and API backups are lgws/lg.cat158.com).
+const TO_MIRROR = { "www.luckgram.cc": "lg-www.cat158.com", "web.luckgram.cc": "lgweb.cat158.com" };
 for (const [m, h] of Object.entries(MIRRORS)) TO_MIRROR[h] = m;
 
 // Request headers passed to the main host (everything else, cookies included, is dropped).
