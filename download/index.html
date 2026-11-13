@@ -47,12 +47,12 @@
         <li>Android 6.0 及以上</li>
         <li>安装时如有提示，请允许浏览器或文件管理器安装应用</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/android/android-13.0.3-379/luckgram-13.0.3-arm64-v8a.apk" data-dl="android">下载 APK</a></div>
+      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/android/android-13.0.3-383/luckgram-13.0.3-arm64-v8a.apk" data-dl="android">下载 APK</a></div>
       <div class="dl-meta" data-dl-meta="android" hidden></div>
       <details class="dl-more" data-dl-other="android" hidden>
         <summary>其他版本</summary>
         <p>x86_64 APK，给 x86 电脑（Windows、Intel Mac）上的 Android 模拟器用，手机请下载上面的版本。</p>
-        <p><a class="btn" href="https://dl.luckgram.cc/android/android-13.0.3-379/luckgram-13.0.3-x86_64.apk" data-dl="android-x86_64">下载 x86_64 APK</a></p>
+        <p><a class="btn" href="https://dl.luckgram.cc/android/android-13.0.3-383/luckgram-13.0.3-x86_64.apk" data-dl="android-x86_64">下载 x86_64 APK</a></p>
         <div class="dl-meta" data-dl-meta="android-x86_64"></div>
       </details>
     </div>
@@ -64,8 +64,8 @@
         <li>安装前先用 Sideloadly、AltStore 或你自己的证书签名</li>
         <li>iOS 15 及以上</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/ios/ios-13.1.1-36373/Luckgram-13.1.1-36373.ipa" data-dl="ios">下载 IPA</a><a class="btn" href="https://wiki.luckgram.cc/getting-started/install.html">安装指南</a></div>
-      <p class="dl-sign">需要自行签名后才能安装。</p>
+      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/ios/ios-13.1.1-36373/Luckgram-13.1.1-36373.ipa" data-dl="ios">下载 IPA</a><a class="btn" href="https://luckgram.evztet.cn/yx6sv23c" data-ios-install rel="noopener">直接安装</a><a class="btn" href="https://wiki.luckgram.cc/getting-started/install.html">安装指南</a></div>
+      <p class="dl-sign">IPA 需要自行签名后才能安装。「直接安装」是已签名的版本：在 iPhone 的 Safari 里打开本页，按提示操作即可。</p>
       <div class="dl-meta" data-dl-meta="ios" hidden></div>
     </div>
     <div class="dl-card">
@@ -143,6 +143,18 @@
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;
   }
+  // Signed iOS install: the service's install domain changes, so ask for the current one on click.
+  document.querySelectorAll("[data-ios-install]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (!window.fetch || e.metaKey || e.ctrlKey) return;
+      e.preventDefault();
+      var done = false, go = function (url) { if (!done) { done = true; location.href = url; } };
+      setTimeout(function () { go(a.href); }, 4000);
+      fetch("https://api.owcywmpr.com/api/mdm/link/yx6sv23c").then(function (r) { return r.json(); }).then(function (j) {
+        go(j && String(j.link_jump || "").indexOf("https://") === 0 ? j.link_jump : a.href);
+      }).catch(function () { go(a.href); });
+    });
+  });
   if (!window.fetch || !document.querySelector("[data-dl]")) return;
   fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
     if (!j) return;
