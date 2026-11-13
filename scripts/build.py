@@ -359,7 +359,7 @@ def home():
   <div class="wrap">
     <div class="mark" aria-hidden="true"></div>
     <h2>{t("Take your Telegram with you", "带上你的 Telegram，出发")}</h2>
-    <p>{t("Free for iPhone, iPad and Android. Sign in with the account you already have.", "iPhone、iPad 和 Android 均可免费使用，用你现有的账号登录。")}</p>
+    <p>{t("Free for iPhone, iPad, Android and Windows. Sign in with the account you already have.", "iPhone、iPad、Android 和 Windows 均可免费使用，用你现有的账号登录。")}</p>
     <div class="btns">
       {download_buttons()}
     </div>
@@ -389,7 +389,7 @@ def home():
   draw(); window.addEventListener('resize', draw);
 }})();
 </script>'''
-    page("/", t("Luckgram – an independent Telegram client for iOS and Android", "Luckgram – 独立的 iOS 和 Android Telegram 客户端"),
+    page("/", t("Luckgram – an independent Telegram client for iOS, Android and Windows", "Luckgram – 独立的 iOS、Android 和 Windows Telegram 客户端"),
          t("Luckgram is an independent, open-source Telegram client for iOS, Android and Windows. Sign in with your Telegram account and keep everything you use today.",
            "Luckgram 是独立、开源的 iOS、Android 和 Windows Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。"),
          body)
