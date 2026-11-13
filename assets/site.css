@@ -185,6 +185,9 @@ details a { color: var(--ink); }
 
 .feat h2 { margin-top: 12px; font-size: clamp(24px, 2.6vw, 32px); }
 .feat-text > p { margin-top: 14px; color: var(--muted); font-size: 16px; max-width: 34em; }
+.feat-web { margin-top: 14px !important; font-size: 15px !important; color: var(--muted); }
+.feat-web .tag { margin-right: 6px; }
+.feat-web a { color: var(--ink); text-underline-offset: 4px; white-space: nowrap; }
 .feat-more { margin-top: 18px !important; font-size: 15px !important; }
 .feat-more a { color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 4px; }
 .feat-more a:hover { text-decoration-color: var(--ink); }
