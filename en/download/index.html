@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Download Luckgram for Android and iOS</title>
-<meta name="description" content="Download the latest Luckgram builds for Android (APK) and iOS (IPA).">
-<meta property="og:title" content="Download Luckgram for Android and iOS">
-<meta property="og:description" content="Download the latest Luckgram builds for Android (APK) and iOS (IPA).">
+<title>Download Luckgram for Android, iOS and Windows</title>
+<meta name="description" content="Download the latest Luckgram builds for Android (APK), iOS (IPA) and Windows.">
+<meta property="og:title" content="Download Luckgram for Android, iOS and Windows">
+<meta property="og:description" content="Download the latest Luckgram builds for Android (APK), iOS (IPA) and Windows.">
 <meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
 <link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/download/">
 <link rel="alternate" hreflang="en" href="https://luckgram.cc/en/download/">
@@ -14,7 +14,7 @@
 <meta name="heleket" content="16ef8c76" />
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/site.css?v=89f421cddd">
+<link rel="stylesheet" href="/assets/site.css?v=9ce19a31be">
 </head>
 <body>
 <header class="site-header">
@@ -34,7 +34,7 @@
 <section class="page-head">
   <div class="wrap">
     <h1>Get Luckgram</h1>
-    <p>The buttons download the newest build directly. Builds come from GitHub Releases and update automatically after each release.</p>
+    <p>The buttons download the newest build directly. Links update automatically after each release.</p>
   </div>
 </section>
 <div class="wrap">
@@ -47,12 +47,12 @@
         <li>Android 6.0 or later</li>
         <li>Allow installs from your browser or file manager when asked</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/android/android-13.0.3-356/luckgram-13.0.3-arm64-v8a.apk" data-dl="android">Download APK</a></div>
+      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/android/android-13.0.3-379/luckgram-13.0.3-arm64-v8a.apk" data-dl="android">Download APK</a></div>
       <div class="dl-meta" data-dl-meta="android" hidden></div>
       <details class="dl-more" data-dl-other="android" hidden>
         <summary>Other builds</summary>
         <p>x86_64 APK for Android emulators on x86 computers (Windows, Intel Mac). Not for phones.</p>
-        <p><a class="btn" href="https://dl.luckgram.cc/android/android-13.0.3-356/luckgram-13.0.3-x86_64.apk" data-dl="android-x86_64">Download x86_64 APK</a></p>
+        <p><a class="btn" href="https://dl.luckgram.cc/android/android-13.0.3-379/luckgram-13.0.3-x86_64.apk" data-dl="android-x86_64">Download x86_64 APK</a></p>
         <div class="dl-meta" data-dl-meta="android-x86_64"></div>
       </details>
     </div>
@@ -64,9 +64,26 @@
         <li>Sign it with Sideloadly, AltStore or your own certificate before installing</li>
         <li>iOS 15 or later</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/ios/ios-13.1.1-36341/Luckgram-13.1.1-36341.ipa" data-dl="ios">Download IPA</a><a class="btn" href="https://wiki.luckgram.cc/en/getting-started/install.html">Install guide</a></div>
+      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/ios/ios-13.1.1-36373/Luckgram-13.1.1-36373.ipa" data-dl="ios">Download IPA</a><a class="btn" href="https://wiki.luckgram.cc/en/getting-started/install.html">Install guide</a></div>
       <p class="dl-sign">You need to sign the IPA yourself before it can be installed.</p>
       <div class="dl-meta" data-dl-meta="ios" hidden></div>
+    </div>
+    <div class="dl-card">
+      <svg class="os" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.1l7.4-1v7.2H3V5.1zm8.3-1.2L21 2.5v8.8h-9.7V3.9zM3 12.7h7.4v7.2L3 18.9v-6.2zm8.3 0H21v8.8l-9.7-1.4v-7.4z"/></svg>
+      <h2>Windows (beta)</h2>
+      <ul>
+        <li>Windows 10 or 11, 64-bit</li>
+        <li>Installs for your user only, no administrator rights needed</li>
+        <li>Not code-signed yet: if SmartScreen warns, click More info → Run anyway</li>
+      </ul>
+      <div class="btns"><a class="btn primary" href="https://dl.luckgram.cc/windows/windows-7.4.2-15/Luckgram-Setup-7.4.2-15-x64.exe" data-dl="windows">Download installer</a></div>
+      <div class="dl-meta" data-dl-meta="windows" hidden></div>
+      <details class="dl-more">
+        <summary>Other builds</summary>
+        <p>Portable ZIP: unzip and run Luckgram.exe, data stays in that folder.</p>
+        <p><a class="btn" href="https://dl.luckgram.cc/windows/windows-7.4.2-15/Luckgram-7.4.2-15-x64-portable.zip" data-dl="windows-portable">Download portable ZIP</a></p>
+        <div class="dl-meta" data-dl-meta="windows-portable"></div>
+      </details>
     </div>
   </div>
   <p class="note">If you previously installed a test build of Luckgram on Android, uninstall it first: builds signed with a different key cannot update each other. Only download Luckgram from this page or the GitHub repositories it links to.</p>
@@ -135,6 +152,10 @@
       if (set("android-x86_64", j.android, j.android.x86_64)) {
         var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
       }
+    }
+    if (j.windows) {
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
     }
   }).catch(function () {});
 })();

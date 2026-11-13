@@ -26,6 +26,8 @@ _L = _latest()
 IOS_LATEST = _L.get("ios", {}).get("url", "/download/")
 ANDROID_LATEST = _L.get("android", {}).get("arm64", {}).get("url", "/download/")
 ANDROID_X86_LATEST = _L.get("android", {}).get("x86_64", {}).get("url", ANDROID_LATEST)
+WIN_LATEST = _L.get("windows", {}).get("setup", {}).get("url", "/download/")
+WIN_PORTABLE_LATEST = _L.get("windows", {}).get("portable", {}).get("url", WIN_LATEST)
 UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
 PRIVACY_UPDATED = ("November 4, 2026", "2026 年 11 月 4 日")
 LANGS = ("zh", "en")
@@ -50,6 +52,7 @@ def wiki(path="/"):
 
 
 ICON_APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>'
+ICON_WINDOWS = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.1l7.4-1v7.2H3V5.1zm8.3-1.2L21 2.5v8.8h-9.7V3.9zM3 12.7h7.4v7.2L3 18.9v-6.2zm8.3 0H21v8.8l-9.7-1.4v-7.4z"/></svg>'
 ICON_ANDROID = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>'
 ICON_GITHUB = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg>'
 
@@ -142,6 +145,10 @@ def footer():
       if (set("android-x86_64", j.android, j.android.x86_64)) {{
         var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
       }}
+    }}
+    if (j.windows) {{
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
     }}
   }}).catch(function () {{}});
 }})();
@@ -268,7 +275,8 @@ def video(slug, label, lazy=True):
 def download_buttons(primary=True):
     cls = "btn platform primary" if primary else "btn platform"
     return f'''<a class="{cls}" href="{IOS_LATEST}" data-dl="ios">{ICON_APPLE}<span><small>{t("iPhone and iPad", "iPhone 和 iPad")}</small>{t("Download for iOS", "下载 iOS 版")}</span></a>
-        <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>'''
+        <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>
+        <a class="btn platform" href="{WIN_LATEST}" data-dl="windows">{ICON_WINDOWS}<span><small>{t("Windows 10/11 · beta", "Windows 10/11 · 测试版")}</small>{t("Download for Windows", "下载 Windows 版")}</span></a>'''
 
 
 def feature_by_slug():
@@ -294,8 +302,8 @@ def home():
   <div class="wrap">
     <div class="hero-text">
       <h1>{t("Telegram,<br>flying further", "Telegram，<br>飞得更远")}</h1>
-      <p class="lede">{t("Luckgram is an independent, open-source Telegram client for iOS and Android. Sign in with your Telegram account and your chats, channels and calls are all there, plus more accounts, hidden chats, free translation and AI tools.",
-                         "Luckgram 是独立、开源的 iOS 和 Android Telegram 客户端。用你的 Telegram 账号登录，聊天、频道和通话都在，还有多账号、隐藏聊天、免费翻译和 AI 等功能。")}</p>
+      <p class="lede">{t("Luckgram is an independent, open-source Telegram client for iOS, Android and Windows. Sign in with your Telegram account and your chats, channels and calls are all there, plus more accounts, hidden chats, free translation and AI tools.",
+                         "Luckgram 是独立、开源的 iOS、Android 和 Windows Telegram 客户端。用你的 Telegram 账号登录，聊天、频道和通话都在，还有多账号、隐藏聊天、免费翻译和 AI 等功能。")}</p>
       <div class="btns">
         {download_buttons()}
       </div>
@@ -382,8 +390,8 @@ def home():
 }})();
 </script>'''
     page("/", t("Luckgram – an independent Telegram client for iOS and Android", "Luckgram – 独立的 iOS 和 Android Telegram 客户端"),
-         t("Luckgram is an independent, open-source Telegram client for iOS and Android. Sign in with your Telegram account and keep everything you use today.",
-           "Luckgram 是独立、开源的 iOS 和 Android Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。"),
+         t("Luckgram is an independent, open-source Telegram client for iOS, Android and Windows. Sign in with your Telegram account and keep everything you use today.",
+           "Luckgram 是独立、开源的 iOS、Android 和 Windows Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。"),
          body)
 
 
@@ -391,8 +399,8 @@ def download():
     body = f'''<section class="page-head">
   <div class="wrap">
     <h1>{t("Get Luckgram", "下载 Luckgram")}</h1>
-    <p>{t("The buttons download the newest build directly. Builds come from GitHub Releases and update automatically after each release.",
-          "点按钮直接下载最新版本。安装包来自 GitHub Releases，每次发布后自动更新。")}</p>
+    <p>{t("The buttons download the newest build directly. Links update automatically after each release.",
+          "点按钮直接下载最新版本。每次发布后链接自动更新。")}</p>
   </div>
 </section>
 <div class="wrap">
@@ -427,12 +435,29 @@ def download():
       <p class="dl-sign">{t("You need to sign the IPA yourself before it can be installed.", "需要自行签名后才能安装。")}</p>
       <div class="dl-meta" data-dl-meta="ios" hidden></div>
     </div>
+    <div class="dl-card">
+      <svg class="os" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{ICON_WINDOWS[ICON_WINDOWS.index("<path"):ICON_WINDOWS.index("</svg>")]}</svg>
+      <h2>{t("Windows (beta)", "Windows（测试版）")}</h2>
+      <ul>
+        <li>{t("Windows 10 or 11, 64-bit", "Windows 10 或 11，64 位")}</li>
+        <li>{t("Installs for your user only, no administrator rights needed", "只装给当前用户，不需要管理员权限")}</li>
+        <li>{t("Not code-signed yet: if SmartScreen warns, click More info → Run anyway", "暂未做代码签名：如果 SmartScreen 拦截，点「更多信息 → 仍要运行」")}</li>
+      </ul>
+      <div class="btns"><a class="btn primary" href="{WIN_LATEST}" data-dl="windows">{t("Download installer", "下载安装包")}</a></div>
+      <div class="dl-meta" data-dl-meta="windows" hidden></div>
+      <details class="dl-more">
+        <summary>{t("Other builds", "其他版本")}</summary>
+        <p>{t("Portable ZIP: unzip and run Luckgram.exe, data stays in that folder.", "便携版 ZIP：解压后直接运行 Luckgram.exe，数据保存在同一个文件夹里。")}</p>
+        <p><a class="btn" href="{WIN_PORTABLE_LATEST}" data-dl="windows-portable">{t("Download portable ZIP", "下载便携版 ZIP")}</a></p>
+        <div class="dl-meta" data-dl-meta="windows-portable"></div>
+      </details>
+    </div>
   </div>
   <p class="note">{t("If you previously installed a test build of Luckgram on Android, uninstall it first: builds signed with a different key cannot update each other. Only download Luckgram from this page or the GitHub repositories it links to.",
                      "如果你之前在 Android 上装过 Luckgram 的测试版，请先卸载：签名密钥不同的版本不能相互覆盖升级。请只从本页或本页链接的 GitHub 仓库下载 Luckgram。")}</p>
 </div>'''
-    page("/download/", t("Download Luckgram for Android and iOS", "下载 Luckgram（Android 和 iOS）"),
-         t("Download the latest Luckgram builds for Android (APK) and iOS (IPA).", "下载最新版 Luckgram：Android（APK）和 iOS（IPA）。"), body, "download")
+    page("/download/", t("Download Luckgram for Android, iOS and Windows", "下载 Luckgram（Android、iOS 和 Windows）"),
+         t("Download the latest Luckgram builds for Android (APK), iOS (IPA) and Windows.", "下载最新版 Luckgram：Android（APK）、iOS（IPA）和 Windows。"), body, "download")
 
 
 

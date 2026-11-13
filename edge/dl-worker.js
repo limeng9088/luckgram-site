@@ -3,8 +3,11 @@
 // ORIGIN_REFERER value (bucket policy), so files can't be pulled from S3 directly.
 // Paths are versioned (/<platform>/<tag>/<file>) and never change, so they are cached
 // for a year. Bindings: ORIGIN_BASE (plain text), ORIGIN_REFERER (secret).
-const PATH = /^\/(android|ios)\/[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+\.(apk|ipa)$/;
-const TYPES = { apk: "application/vnd.android.package-archive", ipa: "application/octet-stream" };
+const PATH = /^\/(android|ios|windows|macos)\/[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+\.(apk|ipa|exe|zip|dmg)$/;
+const TYPES = {
+  apk: "application/vnd.android.package-archive", ipa: "application/octet-stream",
+  exe: "application/vnd.microsoft.portable-executable", zip: "application/zip", dmg: "application/x-apple-diskimage",
+};
 
 export default {
   async fetch(request, env) {

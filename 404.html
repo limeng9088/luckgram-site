@@ -14,7 +14,7 @@
 <meta name="heleket" content="16ef8c76" />
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/site.css?v=89f421cddd">
+<link rel="stylesheet" href="/assets/site.css?v=9ce19a31be">
 </head>
 <body>
 <header class="site-header">
@@ -100,6 +100,10 @@
       if (set("android-x86_64", j.android, j.android.x86_64)) {
         var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
       }
+    }
+    if (j.windows) {
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
     }
   }).catch(function () {});
 })();
