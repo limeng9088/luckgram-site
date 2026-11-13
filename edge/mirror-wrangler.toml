@@ -1,0 +1,12 @@
+# Mirror domains (luckgram-specs#160), in the Cloudflare account that holds the cat158.com zone:
+#   cd edge && npx wrangler deploy -c mirror-wrangler.toml
+# custom_domain routes create the DNS records and certificates.
+name = "luckgram-mirror"
+main = "mirror-worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = false
+routes = [
+  { pattern = "lg-www.cat158.com", custom_domain = true },
+  { pattern = "lg-wiki.cat158.com", custom_domain = true },
+  { pattern = "lg-dl.cat158.com", custom_domain = true },
+]

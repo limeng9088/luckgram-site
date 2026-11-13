@@ -15,3 +15,27 @@ catalog and the status line on each feature page.
 
 When a feature ships or changes, edit `data/features.json`, run
 `python3 scripts/build.py`, and then sync the wiki.
+
+## Mirror domains (cat158.com)
+
+Some networks block luckgram.cc by domain name (luckgram-specs#160). The same content is
+served under cat158.com by the Worker `luckgram-mirror` (`edge/mirror-worker.js`):
+
+| Main | Mirror |
+|---|---|
+| `luckgram.cc` (this site, GitHub Pages) | `lg-www.cat158.com` |
+| `wiki.luckgram.cc` (Help Center, GitHub Pages) | `lg-wiki.cat158.com` |
+| `dl.luckgram.cc` (downloads, `edge/dl-worker.js`) | `lg-dl.cat158.com` |
+
+- The Worker proxies the main host on every request, so the mirrors follow the main site
+  with no extra step. GitHub Pages' custom domain (`CNAME`) stays as it is.
+- HTML: absolute links to the three main hosts (and `www.luckgram.cc`) and redirect
+  `Location`s point at the mirrors; relative links work unchanged. `canonical` and
+  `hreflang` links keep naming the main host (a canonical is added if the page has none),
+  and every response has `X-Robots-Tag: noindex`.
+- Downloads: bytes, `Range` (206) and SHA-256 are the main host's. On the download page the
+  buttons use `lg-dl.cat158.com` when the page is opened on `lg-www.cat158.com`, or when
+  `dl.luckgram.cc` doesn't answer within 6 s (script in `scripts/build.py`).
+- Deploy (Cloudflare account that holds the `cat158.com` zone):
+  `cd edge && npx wrangler deploy -c mirror-wrangler.toml`. No secrets or bindings.
+- Tests: `node --test edge/mirror-worker.test.mjs`.
