@@ -14,13 +14,14 @@ test("main hosts map to their mirrors", () => {
     ["https://luckgram.cc?x=1", "https://lg-www.cat158.com?x=1"],
     ["https://DL.luckgram.cc/android/android-13.0.3-383/luckgram-13.0.3-arm64-v8a.apk",
      "https://lg-dl.cat158.com/android/android-13.0.3-383/luckgram-13.0.3-arm64-v8a.apk"],
+    ["https://web.luckgram.cc/", "https://lgweb.cat158.com/"],
   ]) assert.equal(mirrorURL(from), to, from);
 });
 
 test("everything else is left alone", () => {
   for (const s of [
     "/download/", "features/", "#faq", "", "mailto:support@luckgram.cc",
-    "https://web.luckgram.cc/", "https://api.luckgram.cc/v1/health",
+    "https://web-dev.luckgram.cc/", "https://api.luckgram.cc/v1/health",
     "https://luckgram.cc.evil.example/", "https://example-luckgram.cc/", "https://luckgram.cc:8443/",
     "https://github.com/limeng9088/luckgram-ios", "https://luckgram.evztet.cn/yx6sv23c",
   ]) assert.equal(mirrorURL(s), s, s);
