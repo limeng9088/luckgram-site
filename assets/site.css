@@ -190,7 +190,7 @@ details a { color: var(--ink); }
 .feat-more a:hover { text-decoration-color: var(--ink); }
 
 /* Download page */
-.dl { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 64px 0 24px; }
+.dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 64px 0 24px; }
 .dl-card { position: relative; overflow: hidden; padding: 36px; border: 1px solid var(--line); border-radius: 24px; background: var(--raise); }
 .dl-card svg.os { width: 40px; height: 40px; margin-bottom: 22px; }
 .dl-card h2 { font-size: 30px; }

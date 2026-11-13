@@ -25,5 +25,22 @@
     "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36373/Luckgram-13.1.1-36373.ipa",
     "sha256": "46993ac4b5e81460df723dc3643fc46362ae6f6823b8db44130bbcea9844763d",
     "size": 89535644
+  },
+  "windows": {
+    "version": "7.4.2",
+    "build": 15,
+    "commit": "74840d3",
+    "tag": "windows-7.4.2-15",
+    "published_at": "2026-11-12T23:28:53Z",
+    "setup": {
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-15/Luckgram-Setup-7.4.2-15-x64.exe",
+      "sha256": "b05b605f768cbc04fd49ab54ba3d45618a3812e3eb485c3d114073b330384835",
+      "size": 66594062
+    },
+    "portable": {
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-15/Luckgram-7.4.2-15-x64-portable.zip",
+      "sha256": "84abdc1710994a94402c9ac514a5cad0c964cf10e827fed493596255902e63c1",
+      "size": 89859807
+    }
   }
 }

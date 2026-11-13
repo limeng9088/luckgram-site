@@ -35,11 +35,11 @@ def asset(repo, tag, path, base=None, platform=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("platform", choices=["ios", "android"])
+    ap.add_argument("platform", choices=["ios", "android", "windows"])
     for k in ("repo", "tag", "version", "build", "commit", "published-at"):
         ap.add_argument("--" + k, required=True)
     ap.add_argument("--url-base", help="download host the files were uploaded to, e.g. https://dl.luckgram.cc")
-    ap.add_argument("--file", action="append", required=True, help="kind=path (ios: ipa; android: arm64, x86_64)")
+    ap.add_argument("--file", action="append", required=True, help="kind=path (ios: ipa; android: arm64, x86_64; windows: setup, portable)")
     a = ap.parse_args()
     files = dict(f.split("=", 1) for f in a.file)
 
@@ -47,6 +47,12 @@ def main():
              "tag": a.tag, "published_at": a.published_at}
     if a.platform == "ios":
         entry.update(asset(a.repo, a.tag, files["ipa"], a.url_base, "ios"))
+    elif a.platform == "windows":
+        if "setup" not in files:
+            sys.exit("windows needs --file setup=...")
+        for kind in ("setup", "portable"):
+            if kind in files and os.path.exists(files[kind]):
+                entry[kind] = asset(a.repo, a.tag, files[kind], a.url_base, "windows")
     else:
         if "arm64" not in files:
             sys.exit("android needs --file arm64=...")
