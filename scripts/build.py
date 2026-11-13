@@ -440,13 +440,13 @@ def download():
         <li>{t("Android 6.0 or later", "Android 6.0 及以上")}</li>
         <li>{t("Allow installs from your browser or file manager when asked", "安装时如有提示，请允许浏览器或文件管理器安装应用")}</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="{ANDROID_LATEST}" data-dl="android">{t("Download APK", "下载 APK")}</a></div>
+      <div class="btns"><a class="btn primary" href="{ANDROID_LATEST}" data-dl="android" target="_blank" rel="noopener">{t("Download APK", "下载 APK")}</a></div>
       <div class="dl-meta" data-dl-meta="android" hidden></div>
       <details class="dl-more" data-dl-other="android" hidden>
         <summary>{t("Other builds", "其他版本")}</summary>
         <p>{t("x86_64 APK for Android emulators on x86 computers (Windows, Intel Mac). Not for phones.",
               "x86_64 APK，给 x86 电脑（Windows、Intel Mac）上的 Android 模拟器用，手机请下载上面的版本。")}</p>
-        <p><a class="btn" href="{ANDROID_X86_LATEST}" data-dl="android-x86_64">{t("Download x86_64 APK", "下载 x86_64 APK")}</a></p>
+        <p><a class="btn" href="{ANDROID_X86_LATEST}" data-dl="android-x86_64" target="_blank" rel="noopener">{t("Download x86_64 APK", "下载 x86_64 APK")}</a></p>
         <div class="dl-meta" data-dl-meta="android-x86_64"></div>
       </details>
     </div>
@@ -458,7 +458,7 @@ def download():
         <li>{t("Sign it with Sideloadly, AltStore or your own certificate before installing", "安装前先用 Sideloadly、AltStore 或你自己的证书签名")}</li>
         <li>{t("iOS 15 or later", "iOS 15 及以上")}</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="{IOS_LATEST}" data-dl="ios">{t("Download IPA", "下载 IPA")}</a><a class="btn" href="{IOS_INSTALL}" data-ios-install rel="noopener">{t("Install on iPhone", "直接安装")}</a><a class="btn" href="{wiki("/getting-started/install.html")}">{t("Install guide", "安装指南")}</a></div>
+      <div class="btns"><a class="btn primary" href="{IOS_LATEST}" data-dl="ios" target="_blank" rel="noopener">{t("Download IPA", "下载 IPA")}</a><a class="btn" href="{IOS_INSTALL}" data-ios-install target="_blank" rel="noopener">{t("Install on iPhone", "直接安装")}</a><a class="btn" href="{wiki("/getting-started/install.html")}">{t("Install guide", "安装指南")}</a></div>
       <p class="dl-sign">{t("The IPA must be signed by you before it can be installed. “Install on iPhone” is a signed build: open this page in Safari on the device and follow the steps.", "IPA 需要自行签名后才能安装。「直接安装」是已签名的版本：在 iPhone 的 Safari 里打开本页，按提示操作即可。")}</p>
       <div class="dl-meta" data-dl-meta="ios" hidden></div>
     </div>
@@ -470,12 +470,12 @@ def download():
         <li>{t("Installs for your user only, no administrator rights needed", "只装给当前用户，不需要管理员权限")}</li>
         <li>{t("Not code-signed yet: if SmartScreen warns, click More info → Run anyway", "暂未做代码签名：如果 SmartScreen 拦截，点「更多信息 → 仍要运行」")}</li>
       </ul>
-      <div class="btns"><a class="btn primary" href="{WIN_LATEST}" data-dl="windows">{t("Download installer", "下载安装包")}</a></div>
+      <div class="btns"><a class="btn primary" href="{WIN_LATEST}" data-dl="windows" target="_blank" rel="noopener">{t("Download installer", "下载安装包")}</a></div>
       <div class="dl-meta" data-dl-meta="windows" hidden></div>
       <details class="dl-more">
         <summary>{t("Other builds", "其他版本")}</summary>
         <p>{t("Portable ZIP: unzip and run Luckgram.exe, data stays in that folder.", "便携版 ZIP：解压后直接运行 Luckgram.exe，数据保存在同一个文件夹里。")}</p>
-        <p><a class="btn" href="{WIN_PORTABLE_LATEST}" data-dl="windows-portable">{t("Download portable ZIP", "下载便携版 ZIP")}</a></p>
+        <p><a class="btn" href="{WIN_PORTABLE_LATEST}" data-dl="windows-portable" target="_blank" rel="noopener">{t("Download portable ZIP", "下载便携版 ZIP")}</a></p>
         <div class="dl-meta" data-dl-meta="windows-portable"></div>
       </details>
     </div>
