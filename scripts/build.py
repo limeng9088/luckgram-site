@@ -29,8 +29,8 @@ ANDROID_X86_LATEST = _L.get("android", {}).get("x86_64", {}).get("url", ANDROID_
 WIN_LATEST = _L.get("windows", {}).get("setup", {}).get("url", "/download/")
 WIN_PORTABLE_LATEST = _L.get("windows", {}).get("portable", {}).get("url", WIN_LATEST)
 # Signed iOS build: installs straight from Safari, no computer. The signing service rotates its
-# install domain, so the button asks IOS_INSTALL_API for the current address on click and falls
-# back to IOS_INSTALL when that request fails.
+# install domain, so the buttons get the current address from IOS_INSTALL_API at page load and keep
+# IOS_INSTALL when that request fails.
 IOS_INSTALL_API = "https://api.owcywmpr.com/api/mdm/link/yx6sv23c"
 IOS_INSTALL = "https://luckgram.evztet.cn/yx6sv23c"
 UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
@@ -155,18 +155,13 @@ def footer():
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;
   }}
-  // Signed iOS install: the service's install domain changes, so ask for the current one on click.
-  document.querySelectorAll("[data-ios-install]").forEach(function (a) {{
-    a.addEventListener("click", function (e) {{
-      if (!window.fetch || e.metaKey || e.ctrlKey) return;
-      e.preventDefault();
-      var done = false, go = function (url) {{ if (!done) {{ done = true; location.href = url; }} }};
-      setTimeout(function () {{ go(a.href); }}, 4000);
-      fetch("{IOS_INSTALL_API}").then(function (r) {{ return r.json(); }}).then(function (j) {{
-        go(j && String(j.link_jump || "").indexOf("https://") === 0 ? j.link_jump : a.href);
-      }}).catch(function () {{ go(a.href); }});
-    }});
-  }});
+  // Signed iOS install: the service's install domain changes, so the buttons get the current one at page load.
+  if (window.fetch && document.querySelector("[data-ios-install]")) {{
+    fetch("{IOS_INSTALL_API}").then(function (r) {{ return r.json(); }}).then(function (j) {{
+      if (!j || String(j.link_jump || "").indexOf("https://") !== 0) return;
+      document.querySelectorAll("[data-ios-install]").forEach(function (a) {{ a.href = j.link_jump; }});
+    }}).catch(function () {{}});
+  }}
   if (!window.fetch || !document.querySelector("[data-dl]")) return;
   fetch("/download/latest.json", {{cache: "no-cache"}}).then(function (r) {{ return r.ok ? r.json() : null; }}).then(function (j) {{
     if (!j) return;
@@ -305,10 +300,10 @@ def video(slug, label, lazy=True):
 
 def download_buttons(primary=True):
     cls = "btn platform primary" if primary else "btn platform"
-    return f'''<a class="{cls}" href="{IOS_LATEST}" data-dl="ios">{ICON_APPLE}<span><small>{t("iPhone and iPad · sign it yourself", "iPhone 和 iPad · 需自行签名")}</small>{t("Download IPA", "下载 IPA")}</span></a>
-        <a class="btn platform" href="{IOS_INSTALL}" data-ios-install rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · no computer needed", "iPhone 和 iPad · 无需电脑")}</small>{t("Install on iPhone", "直接安装 iOS 版")}</span></a>
-        <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>
-        <a class="btn platform" href="{WIN_LATEST}" data-dl="windows">{ICON_WINDOWS}<span><small>{t("Windows 10/11 · beta", "Windows 10/11 · 测试版")}</small>{t("Download for Windows", "下载 Windows 版")}</span></a>'''
+    return f'''<a class="{cls}" href="{IOS_LATEST}" data-dl="ios" target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · sign it yourself", "iPhone 和 iPad · 需自行签名")}</small>{t("Download IPA", "下载 IPA")}</span></a>
+        <a class="btn platform" href="{IOS_INSTALL}" data-ios-install target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · no computer needed", "iPhone 和 iPad · 无需电脑")}</small>{t("Install on iPhone", "直接安装 iOS 版")}</span></a>
+        <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android" target="_blank" rel="noopener">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>
+        <a class="btn platform" href="{WIN_LATEST}" data-dl="windows" target="_blank" rel="noopener">{ICON_WINDOWS}<span><small>{t("Windows 10/11 · beta", "Windows 10/11 · 测试版")}</small>{t("Download for Windows", "下载 Windows 版")}</span></a>'''
 
 
 def feature_by_slug():
