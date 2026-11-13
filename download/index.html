@@ -137,9 +137,23 @@
     s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
     el.hidden = false;
   }
+  // Mirror (specs#160): on lg-www.cat158.com, or when dl.luckgram.cc can't be reached from this
+  // network, the buttons use lg-dl.cat158.com, which serves the same files.
+  var DL = "https://dl.luckgram.cc/", ALT = "https://lg-dl.cat158.com/";
+  var dlBase = location.hostname === "lg-www.cat158.com" ? ALT : DL;
+  function dlURL(u) { return u.indexOf(DL) === 0 ? dlBase + u.slice(DL.length) : u; }
+  function useAlt() {
+    dlBase = ALT;
+    document.querySelectorAll("[data-dl]").forEach(function (a) { a.href = dlURL(a.href); });
+  }
+  if (window.fetch && dlBase === DL && document.querySelector("[data-dl]")) {
+    var probe = setTimeout(useAlt, 6000);
+    fetch(DL + "ping", {method: "HEAD", mode: "no-cors", cache: "no-store"})
+      .then(function () { clearTimeout(probe); }, function () { clearTimeout(probe); useAlt(); });
+  }
   function set(key, r, f) {
-    if (!f || f.url.indexOf("https://dl.luckgram.cc/") !== 0) return false;
-    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = f.url; });
+    if (!f || f.url.indexOf(DL) !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = dlURL(f.url); });
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;
   }
