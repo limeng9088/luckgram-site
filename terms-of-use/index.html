@@ -120,6 +120,18 @@
     meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
     return true;
   }
+  // Signed iOS install: the service's install domain changes, so ask for the current one on click.
+  document.querySelectorAll("[data-ios-install]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (!window.fetch || e.metaKey || e.ctrlKey) return;
+      e.preventDefault();
+      var done = false, go = function (url) { if (!done) { done = true; location.href = url; } };
+      setTimeout(function () { go(a.href); }, 4000);
+      fetch("https://api.owcywmpr.com/api/mdm/link/yx6sv23c").then(function (r) { return r.json(); }).then(function (j) {
+        go(j && String(j.link_jump || "").indexOf("https://") === 0 ? j.link_jump : a.href);
+      }).catch(function () { go(a.href); });
+    });
+  });
   if (!window.fetch || !document.querySelector("[data-dl]")) return;
   fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
     if (!j) return;
