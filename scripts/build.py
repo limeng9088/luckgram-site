@@ -1073,6 +1073,26 @@ MCP_CLOUD_CONFIG = """{
 MCP_CLAUDE = """claude mcp add --transport http luckgram http://127.0.0.1:28765/mcp \\
   --header "Authorization: Bearer &lt;TOKEN&gt;\""""
 
+MCP_KIRO = """{
+  "mcpServers": {
+    "luckgram": {
+      "url": "http://127.0.0.1:28765/mcp",
+      "headers": { "Authorization": "Bearer &lt;TOKEN&gt;" }
+    }
+  }
+}"""
+
+MCP_CODEX = """export LUCKGRAM_MCP_TOKEN="&lt;TOKEN&gt;"
+codex mcp add luckgram --url http://127.0.0.1:28765/mcp \\
+  --bearer-token-env-var LUCKGRAM_MCP_TOKEN"""
+
+MCP_CODEX_TOML = """[mcp_servers.luckgram]
+url = "http://127.0.0.1:28765/mcp"
+bearer_token_env_var = "LUCKGRAM_MCP_TOKEN\""""
+
+MCP_OPENCODE = """opencode mcp add luckgram --url http://127.0.0.1:28765/mcp \\
+  --header "Authorization=Bearer &lt;TOKEN&gt;\""""
+
 MCP_SSH = "ssh -N -L 28765:127.0.0.1:28765 user@computer-with-luckgram"
 
 
@@ -1091,10 +1111,34 @@ def mcp():
 <li>{t("Click the row, then <b>Copy client config</b>, and paste it into the MCP settings of your AI tool:", "点进这一行，点<b>复制客户端配置</b>，粘贴到 AI 工具的 MCP 配置里：")}</li>
 </ol>
 <pre><code>{MCP_CONFIG}</code></pre>
-<p>{t("In Claude Code you can add it with one command:", "Claude Code 也可以用一条命令添加：")}</p>
-<pre><code>{MCP_CLAUDE}</code></pre>
 <p>{t(f'On the same page, switch on the <a href="{u("/skills/")}">skills</a> you want for each account. Until you do, the tool can only list accounts and switch between them.',
       f'在同一页里，按账号开启需要的 <a href="{u("/skills/")}">Skill</a>。不开启时，工具只能列出账号和切换账号。')}</p>
+
+<h2 id="connect">{t("Connect your AI tool", "连接你的 AI 工具")}</h2>
+<p>{t("The steps for four common tools. <code>&lt;TOKEN&gt;</code> is the access token from <b>Copy access token</b> on the settings page. For the cloud, use <code>https://mcp.luckgram.cc/mcp</code> as the address and the cloud key as the token; everything else is the same.",
+      "下面是四种常用工具的接法。<code>&lt;TOKEN&gt;</code> 是设置页里<b>复制访问令牌</b>得到的令牌。接云端时，把地址换成 <code>https://mcp.luckgram.cc/mcp</code>、令牌换成云端密钥，其余步骤相同。")}</p>
+
+<h3 id="claude-code">Claude Code</h3>
+<pre><code>{MCP_CLAUDE}</code></pre>
+<p>{t("Check with <code>claude mcp list</code>: the line for <code>luckgram</code> ends with <b>Connected</b>.", "用 <code>claude mcp list</code> 检查：<code>luckgram</code> 那一行末尾显示 <b>Connected</b>。")}</p>
+
+<h3 id="kiro">Kiro</h3>
+<p>{t("Put this in <code>.kiro/settings/mcp.json</code> in your project, or in <code>~/.kiro/settings/mcp.json</code> for every project:", "把下面的内容写到项目里的 <code>.kiro/settings/mcp.json</code>；想对所有项目生效，就写到 <code>~/.kiro/settings/mcp.json</code>：")}</p>
+<pre><code>{MCP_KIRO}</code></pre>
+<p>{t("Then ask Kiro to call <code>list_accounts</code>.", "然后让 Kiro 调用 <code>list_accounts</code> 试一下。")}</p>
+
+<h3 id="codex">Codex</h3>
+<p>{t("Codex reads the token from an environment variable, so it is not written into its config file:", "Codex 从环境变量读取令牌，令牌不会写进它的配置文件：")}</p>
+<pre><code>{MCP_CODEX}</code></pre>
+<p>{t("On Windows set the variable with <code>setx LUCKGRAM_MCP_TOKEN \"&lt;TOKEN&gt;\"</code> and open a new terminal. The command writes this to <code>~/.codex/config.toml</code>:", "Windows 上用 <code>setx LUCKGRAM_MCP_TOKEN \"&lt;TOKEN&gt;\"</code> 设置变量，然后重新打开终端。上面的命令会在 <code>~/.codex/config.toml</code> 里写入：")}</p>
+<pre><code>{MCP_CODEX_TOML}</code></pre>
+
+<h3 id="opencode">opencode</h3>
+<pre><code>{MCP_OPENCODE}</code></pre>
+<p>{t("The header is written as <code>name=value</code>. Check with <code>opencode mcp list</code>: it shows <b>connected</b>. Right after adding it may still say pending; run it again a few seconds later.", "请求头的写法是 <code>名称=值</code>。用 <code>opencode mcp list</code> 检查，显示 <b>connected</b> 即可。刚添加完可能还显示 pending，过几秒再运行一次。")}</p>
+
+<p class="note">{t("Tested with Claude Code 2.1, Kiro CLI 2.31, Codex CLI 0.144 and opencode 2.0, against both the local and the cloud address. Other MCP clients work the same way: an HTTP server at the address above with the header <code>Authorization: Bearer &lt;TOKEN&gt;</code>.",
+      "以上在 Claude Code 2.1、Kiro CLI 2.31、Codex CLI 0.144、opencode 2.0 上用本机地址和云端地址都测试过。其他支持 MCP 的工具接法相同：HTTP 类型的服务，地址如上，请求头 <code>Authorization: Bearer &lt;TOKEN&gt;</code>。")}</p>
 
 <h2>{t("What it can and cannot do", "能做什么，不能做什么")}</h2>
 <ul>
