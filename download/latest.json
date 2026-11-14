@@ -28,19 +28,19 @@
   },
   "windows": {
     "version": "7.4.2",
-    "build": 120,
-    "commit": "10dad2d",
-    "tag": "windows-7.4.2-120",
-    "published_at": "2026-11-14T05:40:26Z",
+    "build": 124,
+    "commit": "4bfefbe",
+    "tag": "windows-7.4.2-124",
+    "published_at": "2026-11-14T05:51:09Z",
     "setup": {
-      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-120/Luckgram-Setup-7.4.2-120-x64.exe",
-      "sha256": "25c1a490078809cca960e4d7284f1646463995ba9aa6b1618a4a05ea13267494",
-      "size": 76663181
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-124/Luckgram-Setup-7.4.2-124-x64.exe",
+      "sha256": "68792980912ed564bd581d38454d9c3c1ace11b308f8ddba9fac81b5d73502f2",
+      "size": 76700269
     },
     "portable": {
-      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-120/Luckgram-7.4.2-120-x64-portable.zip",
-      "sha256": "c2693d5aa5a61493d304ca5188d53c198a2e4ec77d91130812d034e409aaa305",
-      "size": 107782202
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-124/Luckgram-7.4.2-124-x64-portable.zip",
+      "sha256": "80b9f550e48bea49f1b4132816c37d521e7d187ee79d331939f72a4c0ca87e04",
+      "size": 107826716
     }
   }
 }
