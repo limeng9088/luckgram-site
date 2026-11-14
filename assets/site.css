@@ -292,23 +292,171 @@ html:lang(zh) .page-head h1, html:lang(ar) .page-head h1, html:lang(fa) .page-he
 .prose li { color: var(--soft); margin-bottom: 10px; }
 .prose a { color: var(--ink); text-underline-offset: 3px; }
 .prose .note { padding: 0; margin-top: 32px; }
-/* Documentation pages (MCP, Skills): code, lists and tables inside .prose */
-.doc { max-width: 860px; }
+/* ---- MCP documentation and the Skill market ---- */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.crumbs { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--ink); }
+
+/* A skill's logo: its mark on a tile in its own colour (--h). */
+.sk-logo { --h: var(--blue); display: inline-grid; place-items: center; inline-size: 56px; block-size: 56px; flex: none; border-radius: 30%; color: var(--h); background: color-mix(in srgb, var(--h) 16%, #0a0c14); border: 1px solid color-mix(in srgb, var(--h) 42%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--h) 30%, transparent); }
+.sk-logo svg { inline-size: 54%; block-size: 54%; }
+.sk-logo.l { inline-size: 88px; block-size: 88px; }
+.sk-logo.s { inline-size: 40px; block-size: 40px; }
+.sk-logo.xs { inline-size: 30px; block-size: 30px; }
+.k-write { color: #ffb38a; }
+.k-read, .k-always { color: #8fe0b4; }
+
+/* Head of the documentation page */
+.doc-head { border-bottom: 1px solid var(--line-soft); padding: 72px 0 56px; }
+.doc-head h1, .market-head h1, .skill-head h1 { font-size: clamp(38px, 5.4vw, 64px); font-weight: 640; letter-spacing: var(--tight); line-height: 1.05; }
+.lede { margin-top: 18px; max-width: 40em; font-size: 18px; color: var(--soft); }
+.doc-facts { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.doc-facts li { padding: 20px 28px 0 0; color: var(--muted); font-size: 15px; }
+.doc-facts li + li { padding-inline-start: 28px; border-inline-start: 1px solid var(--line); }
+.doc-facts b { display: block; color: var(--ink); font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+
+/* Side list + article */
+.doc-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; align-items: start; padding-top: 48px; padding-bottom: 112px; }
+.doc-nav { position: sticky; top: 96px; font-size: 14.5px; }
+.doc-nav ul { list-style: none; margin: 0; padding: 0; border-inline-start: 1px solid var(--line); }
+.doc-nav a { display: block; padding: 7px 0 7px 16px; padding-inline: 16px 0; margin-inline-start: -1px; border-inline-start: 1px solid transparent; color: var(--muted); text-decoration: none; }
+.doc-nav a:hover { color: var(--ink); }
+.doc-nav a.on { color: var(--ink); border-inline-start-color: var(--ink); }
+
+.doc { min-width: 0; max-width: 820px; }
+.doc h2 { font-size: 26px; font-weight: 620; letter-spacing: -.015em; line-height: 1.25; margin: 56px 0 14px; scroll-margin-top: 92px; }
+.doc > h2:first-child { margin-top: 0; }
+.doc h3 { font-size: 17px; margin: 0 0 12px; letter-spacing: 0; }
+.doc p { margin: 0 0 14px; color: var(--soft); }
+.doc a { color: var(--ink); text-underline-offset: 3px; }
 .doc ul, .doc ol { margin: 0 0 14px; padding-inline-start: 22px; color: var(--soft); }
 .doc li { margin-bottom: 8px; }
+.doc .fine { font-size: 14px; color: var(--muted); }
+.doc .note { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line-soft); font-size: 14px; color: var(--muted); }
+.doc .about { font-size: 18px; color: var(--ink); max-width: 38em; }
 .doc code { font: 13.5px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--raise); border: 1px solid var(--line-soft); border-radius: 6px; padding: 1px 6px; }
-.doc pre { margin: 0 0 18px; padding: 16px 18px; background: var(--raise); border: 1px solid var(--line); border-radius: 14px; overflow-x: auto; }
-.doc pre code { background: none; border: 0; padding: 0; white-space: pre; }
-.doc h3 { font-size: 17px; margin: 28px 0 10px; letter-spacing: 0; }
-.doc h2 code { font-size: 14px; margin-inline-start: 6px; color: var(--muted); }
-.doc .soon, .doc .kind { display: inline-block; margin-inline-start: 10px; padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; font: 600 12px/1.6 var(--body); color: var(--muted); vertical-align: middle; white-space: nowrap; }
-.doc .kind { margin-inline-start: 4px; }
-.doc .tbl { overflow-x: auto; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 14px; }
-.doc table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 14.5px; }
-.doc th, .doc td { text-align: start; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line-soft); color: var(--soft); }
-.doc th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+.doc pre { position: relative; margin: 0 0 18px; padding: 16px 18px; background: #07080d; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; direction: ltr; text-align: start; }
+.doc pre code { background: none; border: 0; padding: 0; white-space: pre; color: #dfe3f0; }
+.doc pre .copy { position: absolute; inset-block-start: 8px; inset-inline-end: 8px; padding: 4px 10px; font: 600 12px/1.5 var(--body); color: var(--muted); background: #12141d; border: 1px solid var(--line); border-radius: 7px; cursor: pointer; opacity: 0; transition: opacity .12s; }
+.doc pre:hover .copy, .doc pre .copy:focus-visible { opacity: 1; }
+.doc pre .copy:hover { color: var(--ink); }
+
+/* Numbered steps: the order matters, so the numbers are shown as part of the list. */
+.doc ol.steps { list-style: none; padding: 0; counter-reset: step; }
+.doc ol.steps > li { counter-increment: step; position: relative; padding-inline-start: 44px; margin-bottom: 14px; min-block-size: 28px; }
+.doc ol.steps > li::before { content: counter(step); position: absolute; inset-inline-start: 0; inset-block-start: -1px; inline-size: 28px; block-size: 28px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; font: 600 13px/1 var(--body); color: var(--ink); }
+.doc ol.steps pre { margin-top: 12px; }
+
+/* Tabs. Without the script every panel is shown under its own heading. */
+.tabs { margin-bottom: 14px; }
+.tab-list { display: none; }
+.tabs [role=tabpanel] { margin-bottom: 22px; }
+.tabs.on { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.tabs.on .tab-list { display: flex; gap: 2px; padding: 6px; border-bottom: 1px solid var(--line); background: var(--raise); overflow-x: auto; }
+.tabs.on [role=tab] { padding: 8px 14px; border: 0; border-radius: 9px; background: none; color: var(--muted); font: 600 14.5px/1.3 var(--body); cursor: pointer; white-space: nowrap; }
+.tabs.on [role=tab]:hover { color: var(--ink); }
+.tabs.on [role=tab][aria-selected=true] { background: #1a1d2a; color: var(--ink); }
+.tabs.on [role=tabpanel] { margin: 0; padding: 20px 20px 6px; }
+.tabs.on [role=tabpanel] h3 { display: none; }
+
+.doc .tbl { overflow-x: auto; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 12px; }
+.doc table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14.5px; }
+.doc th, .doc td { text-align: start; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line-soft); color: var(--soft); }
+.doc th { color: var(--muted); font-weight: 600; white-space: nowrap; background: var(--raise); }
 .doc tr:last-child td { border-bottom: 0; }
 .doc td:first-child { white-space: nowrap; }
+.doc td:first-child:not(:has(code)) { white-space: normal; color: var(--ink); min-width: 220px; }
+
+/* A skill in one line: logo, name, what it does, its type */
+.sk-rows { border-top: 1px solid var(--line); margin-bottom: 18px; }
+.sk-row { display: flex; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--line); text-decoration: none; }
+.sk-row span:not(.sk-logo) { flex: 1; min-width: 0; }
+.sk-row b { display: block; color: var(--ink); font-weight: 600; }
+.sk-row i { display: block; font-style: normal; color: var(--muted); font-size: 14.5px; }
+.sk-row em { font-style: normal; font-size: 13.5px; color: var(--muted); white-space: nowrap; }
+.sk-row:hover b { text-decoration: underline; text-underline-offset: 3px; }
+
+/* The market */
+.market-head { border-bottom: 1px solid var(--line-soft); padding: 72px 0 64px; overflow: hidden; }
+.market-head .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; }
+.market-head .btns { margin-top: 30px; }
+.board { margin: 0; padding: 22px 24px 18px; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(180deg, #0c0e17, #07080d); }
+.board table { width: 100%; border-collapse: collapse; }
+.board thead th { padding: 0 0 14px; text-align: center; }
+.board tbody th { text-align: start; padding: 13px 12px 13px 0; padding-inline: 0 12px; border-top: 1px solid var(--line-soft); font-weight: 400; white-space: nowrap; }
+.board tbody th b { display: block; font-weight: 600; }
+.board tbody th i { display: block; font-style: normal; font-size: 13px; color: var(--muted); }
+.board tbody td { text-align: center; border-top: 1px solid var(--line-soft); }
+.sw { --h: var(--blue); display: inline-block; position: relative; inline-size: 38px; block-size: 22px; border-radius: 999px; background: #1b1e2b; border: 1px solid var(--line); vertical-align: middle; }
+.sw::after { content: ""; position: absolute; inset-block-start: 2px; inset-inline-start: 2px; inline-size: 16px; block-size: 16px; border-radius: 50%; background: #6b7085; }
+.sw.on { background: color-mix(in srgb, var(--h) 55%, #0a0c14); border-color: color-mix(in srgb, var(--h) 70%, transparent); }
+.sw.on::after { inset-inline-start: 18px; background: #fff; }
+.board figcaption { margin-top: 16px; font-size: 13.5px; color: var(--muted); }
+
+.market { padding-top: 48px; padding-bottom: 32px; }
+.sk-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.sk-filter button { padding: 8px 15px; border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--muted); font: 600 14.5px/1.3 var(--body); cursor: pointer; }
+.sk-filter button span { margin-inline-start: 4px; font-weight: 500; opacity: .7; }
+.sk-filter button:hover { color: var(--ink); }
+.sk-filter button[aria-pressed=true] { background: var(--ink); border-color: var(--ink); color: #000; }
+.sk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sk-card { display: flex; flex-direction: column; padding: 24px 24px 20px; border: 1px solid var(--line); border-radius: 20px; background: var(--raise); text-decoration: none; transition: border-color .15s, background .15s; }
+.sk-card[hidden] { display: none; }
+.sk-card:hover { border-color: rgba(255, 255, 255, .28); background: rgba(255, 255, 255, .06); }
+.sk-card h3 { margin-top: 20px; font-size: 21px; font-weight: 620; letter-spacing: -.01em; }
+.sk-card p { margin-top: 8px; color: var(--soft); font-size: 15.5px; flex: 1; }
+.sk-card dl, .skill-facts dl { margin: 22px 0 0; border-top: 1px solid var(--line-soft); }
+.sk-card dl div, .skill-facts dl div { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line-soft); font-size: 14px; }
+.sk-card dl div:last-child { border-bottom: 0; padding-bottom: 0; }
+.sk-card dt, .skill-facts dt { color: var(--muted); }
+.sk-card dd, .skill-facts dd { margin: 0; text-align: end; color: var(--ink); }
+
+.market-how { padding-top: 64px; padding-bottom: 32px; }
+.market-how h2, .market-agent h2 { font-size: 30px; font-weight: 620; letter-spacing: -.02em; margin: 0 0 26px; }
+.market-how ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); counter-reset: how; border-top: 1px solid var(--line); }
+.market-how li { counter-increment: how; padding: 22px 28px 0 0; color: var(--muted); font-size: 15.5px; }
+.market-how li + li { padding-inline-start: 28px; border-inline-start: 1px solid var(--line); }
+.market-how li::before { content: counter(how); display: block; font: 600 14px/1 var(--body); color: var(--muted); margin-bottom: 14px; }
+.market-how b { display: block; color: var(--ink); font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+.market-how a { color: var(--ink); text-underline-offset: 3px; }
+.market-agent.doc { max-width: var(--max); }
+.market-agent { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; padding-top: 72px; padding-bottom: 112px; }
+.market-agent h2 { margin-bottom: 14px; }
+.market-agent .plain { margin-inline-start: 16px; font-size: 15px; }
+
+/* One skill */
+.skill-head { --h: var(--blue); border-bottom: 1px solid var(--line-soft); padding: 64px 0 52px; background: radial-gradient(600px 260px at 12% 0%, color-mix(in srgb, var(--h) 14%, transparent), transparent 70%); }
+.skill-title { display: flex; align-items: center; gap: 26px; }
+.skill-title .lede { margin-top: 10px; }
+.skill-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 64px; align-items: start; padding-top: 48px; padding-bottom: 112px; }
+.skill-facts { position: sticky; top: 96px; padding: 6px 22px 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--raise); }
+.skill-facts dl { margin: 0 0 18px; border-top: 0; }
+.skill-facts .btn { width: 100%; justify-content: center; }
+.doc .prompts { list-style: none; padding: 0; }
+.doc .prompts li { margin-bottom: 10px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 14px 14px 14px 4px; background: var(--raise); color: var(--ink); max-width: 36em; inline-size: fit-content; }
+
+@media (max-width: 980px) {
+  .doc-layout { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 0; }
+  .doc-nav { position: static; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter); border-bottom: 1px solid var(--line-soft); overflow-x: auto; margin-bottom: 36px; }
+  .doc-nav ul { display: flex; gap: 22px; border: 0; white-space: nowrap; }
+  .doc-nav a { padding: 14px 0; margin: 0; border-inline-start: 0; border-bottom: 2px solid transparent; }
+  .doc-nav a.on { border-bottom-color: var(--ink); }
+  .market-head .wrap, .market-agent { grid-template-columns: minmax(0, 1fr); }
+  .sk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skill-layout { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .skill-facts { position: static; order: -1; }
+}
+@media (max-width: 640px) {
+  .doc-facts, .market-how ol { grid-template-columns: 1fr; }
+  .doc-facts li + li, .market-how li + li { padding-inline-start: 0; border-inline-start: 0; border-top: 1px solid var(--line); margin-top: 20px; }
+  .sk-grid { grid-template-columns: minmax(0, 1fr); }
+  .skill-title { gap: 18px; }
+  .sk-logo.l { inline-size: 64px; block-size: 64px; }
+  .sk-row em { display: none; }
+  .board { padding: 16px 14px 14px; }
+  .board tbody th i { display: none; }
+}
 .langs-list { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; }
 
 /* Responsive */
