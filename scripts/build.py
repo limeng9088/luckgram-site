@@ -1133,6 +1133,7 @@ def mcp():
 <li>{t(f'<a href="{u("/skills/")}">Skills</a> stay per account and are switched on in the app on each computer. Rate limits are counted on each computer too.', f'<a href="{u("/skills/")}">Skill</a> 仍然按账号开启，在每台电脑各自的应用里设置。频率上限也在每台电脑上各自计数。')}</li>
 <li>{t("The cloud only passes requests on. It does not store arguments, results or chats, and it does not store the cloud key itself.", "云端只转发请求：不保存参数和结果，不保存聊天内容，也不保存云端密钥本身。")}</li>
 <li>{t("<code>list_recent_calls</code> shows the last 200 calls that went through the cloud: time, tool, computer, account, failed or not.", "<code>list_recent_calls</code> 可以查看最近 200 次经过云端的调用：时间、工具、电脑、账号、是否失败。")}</li>
+<li>{t("If <code>luckgram.cc</code> does not open on your network, use the backup address <code>https://lg-mcp.cat158.com/mcp</code> in your AI tool. It is the same service with the same computers, and Luckgram Desktop switches to it by itself.", "如果你的网络打不开 <code>luckgram.cc</code>，在 AI 工具里把地址换成备用地址 <code>https://lg-mcp.cat158.com/mcp</code>。它是同一个服务、同一批电脑，桌面版会自己切换过去。")}</li>
 <li>{t("Whoever has the cloud key can use what is switched on, on every computer of that key. If it leaks, regenerate it on the same page: the old key stops working at once.", "拿到云端密钥的人可以使用所有接入电脑上已开启的功能。密钥泄露后请在同一页重新生成，旧密钥立即失效。")}</li>
 </ul>
 
