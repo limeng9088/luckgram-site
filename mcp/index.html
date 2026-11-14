@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luckgram MCP – 让 AI 工具操作你的 Telegram 账号</title>
+<meta name="description" content="Luckgram 桌面版内置 MCP 接口：AI 工具可以列出账号、切换账号，并使用你为每个账号开启的 Skill。">
+<link rel="canonical" href="https://luckgram.cc/mcp/">
+<link rel="alternate" hreflang="zh-Hans" href="https://luckgram.cc/mcp/">
+<link rel="alternate" hreflang="en" href="https://luckgram.cc/en/mcp/">
+<link rel="alternate" hreflang="x-default" href="https://luckgram.cc/en/mcp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Luckgram">
+<meta property="og:url" content="https://luckgram.cc/mcp/">
+<meta property="og:title" content="Luckgram MCP – 让 AI 工具操作你的 Telegram 账号">
+<meta property="og:description" content="Luckgram 桌面版内置 MCP 接口：AI 工具可以列出账号、切换账号，并使用你为每个账号开启的 Skill。">
+<meta property="og:image" content="https://luckgram.cc/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<meta name="heleket" content="16ef8c76" />
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=37b52cb773">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://luckgram.cc/#org","name":"Luckgram","url":"https://luckgram.cc/","logo":"https://luckgram.cc/assets/icon-512.png","email":"support@luckgram.cc","sameAs":["https://github.com/limeng9088/luckgram-ios","https://github.com/limeng9088/luckgram-android"]},{"@type":"WebSite","@id":"https://luckgram.cc/#site","url":"https://luckgram.cc/","name":"Luckgram","publisher":{"@id":"https://luckgram.cc/#org"},"inLanguage":["zh-Hans","en","zh-Hant","ru","es","pt-BR","ar","fa","id","tr"]},{"@type":"WebPage","@id":"https://luckgram.cc/mcp/#page","url":"https://luckgram.cc/mcp/","name":"Luckgram MCP – 让 AI 工具操作你的 Telegram 账号","description":"Luckgram 桌面版内置 MCP 接口：AI 工具可以列出账号、切换账号，并使用你为每个账号开启的 Skill。","inLanguage":"zh-Hans","isPartOf":{"@id":"https://luckgram.cc/#site"},"dateModified":"2026-11-14"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Luckgram","item":"https://luckgram.cc/"},{"@type":"ListItem","position":2,"name":"MCP","item":"https://luckgram.cc/mcp/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="主导航">
+        <a href="/features/">功能</a>
+        <a href="https://web.luckgram.cc/" target="_blank" rel="noopener">网页版</a>
+        <a href="/mcp/" aria-current="page">MCP</a>
+        <a href="/skills/">Skill</a>
+        <a href="https://wiki.luckgram.cc/">帮助</a>
+        <a href="/#faq">常见问题</a>
+    </nav>
+    <div class="tools">
+      <details class="menu langs">
+        <summary aria-label="语言"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg><span>简体中文</span></summary>
+        <ul><li><a href="/mcp/" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a></li><li><a href="/en/mcp/" hreflang="en" lang="en">English</a></li></ul>
+      </details>
+      <a class="get" href="/download/">下载</a>
+      <details class="menu more">
+        <summary aria-label="菜单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav aria-label="主导航">
+        <a href="/features/">功能</a>
+        <a href="https://web.luckgram.cc/" target="_blank" rel="noopener">网页版</a>
+        <a href="/mcp/" aria-current="page">MCP</a>
+        <a href="/skills/">Skill</a>
+        <a href="https://wiki.luckgram.cc/">帮助</a>
+        <a href="/#faq">常见问题</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<main id="main">
+<article class="prose doc">
+<h1>Luckgram MCP</h1>
+<p class="meta">让你的 AI 工具直接操作 Luckgram 桌面版里的 Telegram 账号。</p>
+
+<p>Luckgram 桌面版内置了 <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a> 接口。打开开关，把一段配置粘贴到 Claude Code、Cursor 或其他支持 MCP 的工具里，它就能看到这台电脑上已登录的账号、在账号之间切换，并使用你为每个账号开启的 Skill。</p>
+
+<h2>本机版：在自己的电脑上用</h2>
+<ol>
+<li>安装 Windows 版 <a href="/download/">Luckgram 桌面版</a>并登录账号。</li>
+<li>打开 设置 → Luckgram 功能 → <b>本机 MCP 接口</b>，把开关打开。默认是关闭的。</li>
+<li>点进这一行，点<b>复制客户端配置</b>，粘贴到 AI 工具的 MCP 配置里：</li>
+</ol>
+<pre><code>{
+  "mcpServers": {
+    "luckgram": {
+      "type": "http",
+      "url": "http://127.0.0.1:28765/mcp",
+      "headers": { "Authorization": "Bearer &lt;TOKEN&gt;" }
+    }
+  }
+}</code></pre>
+<p>Claude Code 也可以用一条命令添加：</p>
+<pre><code>claude mcp add --transport http luckgram http://127.0.0.1:28765/mcp \
+  --header "Authorization: Bearer &lt;TOKEN&gt;"</code></pre>
+<p>在同一页里，按账号开启需要的 <a href="/skills/">Skill</a>。不开启时，工具只能列出账号和切换账号。</p>
+
+<h2>能做什么，不能做什么</h2>
+<ul>
+<li>列出账号、切换当前账号，以及运行你已开启的 Skill 里的工具。</li>
+<li>每个 Skill 都按账号单独开启，默认全部关闭。会改动账号的 Skill 在开启时要你确认一次。</li>
+<li>读消息和发消息是两个单独的 Skill。不开启时，工具读不到消息内容，也不能发消息。</li>
+<li>会改动账号的工具按账号限制频率，避免工具陷入循环导致账号被 Telegram 限制。</li>
+<li>Luckgram 被本地密码锁住时，不列出任何账号，也不执行任何操作。</li>
+</ul>
+
+<h2>安全</h2>
+<ul>
+<li>只监听 <code>127.0.0.1</code>，局域网和外网都连不上。</li>
+<li>每个请求都要带访问令牌。令牌在你的电脑上生成，保存在系统凭据库里，随时可以重新生成。</li>
+<li>来自网页的请求会被拒绝，你访问的网站无法借浏览器调用它。</li>
+<li>拿到令牌的本机程序都能使用你已开启的功能，请不要把令牌发给别人。</li>
+</ul>
+
+<h2>从另一台电脑调用</h2>
+<p>本机接口不对外开放。AI 工具运行在别的机器上时，用 SSH 把端口转发过去，再像本机一样连接：</p>
+<pre><code>ssh -N -L 28765:127.0.0.1:28765 user@computer-with-luckgram</code></pre>
+
+<h2 id="cloud">云端版：一个地址管理所有电脑</h2>
+<p>本机接口只能在一台电脑上用。打开云端 MCP 后，桌面版会主动连到 <code>mcp.luckgram.cc</code>，AI 工具从任何地方都能连上，多台电脑共用一个地址。不需要公网 IP，也不需要端口转发。</p>
+<ol>
+<li>在第一台电脑上：设置 → Luckgram 功能 → 本机 MCP 接口 → 打开<b>通过云端连接</b>。云端密钥在你的电脑上生成。</li>
+<li>点<b>复制云端客户端配置</b>，粘贴到 AI 工具里：</li>
+</ol>
+<pre><code>{
+  "mcpServers": {
+    "luckgram-cloud": {
+      "type": "http",
+      "url": "https://mcp.luckgram.cc/mcp",
+      "headers": { "Authorization": "Bearer lgc_..." }
+    }
+  }
+}</code></pre>
+<ol start="3">
+<li>在其他每台电脑上：同一页 → <b>使用另一台电脑的云端密钥</b>，粘贴密钥，再打开<b>通过云端连接</b>。</li>
+</ol>
+<ul>
+<li>工具和本机版相同，每个工具多一个 <code>device</code> 参数。AI 工具先调用 <code>list_devices</code> 查看你的电脑和在线状态。</li>
+<li><a href="/skills/">Skill</a> 仍然按账号开启，在每台电脑各自的应用里设置。频率上限也在每台电脑上各自计数。</li>
+<li>云端只转发请求：不保存参数和结果，不保存聊天内容，也不保存云端密钥本身。</li>
+<li><code>list_recent_calls</code> 可以查看最近 200 次经过云端的调用：时间、工具、电脑、账号、是否失败。</li>
+<li>拿到云端密钥的人可以使用所有接入电脑上已开启的功能。密钥泄露后请在同一页重新生成，旧密钥立即失效。</li>
+</ul>
+
+<p class="note">Luckgram 是使用 Telegram API 的第三方客户端，不是 Telegram 官方应用。请在 Telegram 服务条款允许的范围内使用自动化功能。</p>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="top">
+      <div class="about"><a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>独立、开源的 Telegram 客户端。</p></div>
+      <div><h2>产品</h2><ul>
+        <li><a href="/download/">下载</a></li>
+        <li><a href="/features/">功能</a></li>
+        <li><a href="https://web.luckgram.cc/" target="_blank" rel="noopener">网页版</a></li>
+        <li><a href="https://wiki.luckgram.cc/">帮助中心</a></li>
+      </ul></div>
+      <div><h2>源代码</h2><ul>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">iOS 版</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Android 版</a></li>
+      </ul></div>
+      <div><h2>法律</h2><ul>
+        <li><a href="/privacy-policy/">隐私政策</a></li>
+        <li><a href="/terms-of-use/">使用条款</a></li>
+      </ul></div>
+      <div><h2>联系我们</h2><ul>
+        <li><a href="mailto:support@luckgram.cc">support@luckgram.cc</a></li>
+        <li><a href="mailto:contact@luckgram.cc">contact@luckgram.cc</a></li>
+        <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
+      </ul></div>
+    </div>
+    <nav class="all-langs" aria-label="语言"><ul><li><a href="/mcp/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="/en/mcp/" hreflang="en" lang="en">English</a></li></ul></nav>
+    <div class="legal">
+      <p>Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
+  </div>
+</footer>
+<script>
+// Menus (language, navigation on a phone): one open at a time, closed by Escape or a click elsewhere.
+(function () {
+  var menus = document.querySelectorAll("details.menu");
+  function close(except) { menus.forEach(function (m) { if (m !== except) m.open = false; }); }
+  menus.forEach(function (m) { m.addEventListener("toggle", function () { if (m.open) close(m); }); });
+  document.addEventListener("click", function (e) { if (!e.target.closest || !e.target.closest("details.menu")) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+})();
+
+// The page is never changed for the visitor: when the browser asks for another language this page
+// has, a bar offers it, in that language. Closing it is remembered.
+(function () {
+  var offers = {"zh-hans": ["/mcp/", "本页有简体中文版", "切换", "关闭"], "en": ["/en/mcp/", "This page is available in English", "Switch", "Close"]}, here = document.documentElement.lang.toLowerCase(), wanted = navigator.languages || [navigator.language || ""];
+  function match(l) {
+    l = String(l).toLowerCase();
+    if (l.indexOf("zh") === 0) return /hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans";
+    if (offers[l]) return l;
+    var base = l.split("-")[0];
+    for (var k in offers) if (k.split("-")[0] === base) return k;
+  }
+  var want = match(wanted[0]);
+  try { if (localStorage.getItem("lg-lang-offer") === "no") return; } catch (e) {}
+  if (!want || want === here || !offers[want]) return;
+  var o = offers[want], bar = document.createElement("div"), a = document.createElement("a"), x = document.createElement("button");
+  bar.className = "offer"; bar.lang = want; bar.dir = /^(ar|fa)/.test(want) ? "rtl" : "ltr";
+  bar.appendChild(document.createTextNode(o[1] + " "));
+  a.href = o[0]; a.textContent = o[2]; a.hreflang = want; bar.appendChild(a);
+  x.type = "button"; x.textContent = "\u00d7"; x.setAttribute("aria-label", o[3]);
+  x.onclick = function () { bar.remove(); try { localStorage.setItem("lg-lang-offer", "no"); } catch (e) {} };
+  bar.appendChild(x); document.body.insertBefore(bar, document.body.firstChild);
+})();
+
+// The download buttons of this visitor's device come first.
+(function () {
+  var ua = navigator.userAgent, os = /Android/i.test(ua) ? "android" : (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) ? "ios" : /Windows/i.test(ua) ? "windows" : "";
+  if (!os) return;
+  document.querySelectorAll("[data-smart]").forEach(function (box) {
+    var mine = box.querySelectorAll('[data-os="' + os + '"]'); if (!mine.length) return;
+    box.setAttribute("data-smart", os);
+    box.querySelectorAll("[data-os]").forEach(function (b) { b.classList.remove("primary"); });
+    // on an iPhone the build that installs without a computer is the one to offer first
+    var first = (os === "ios" && box.querySelector("[data-ios-install]")) || mine[0];
+    mine.forEach(function (b) { b.classList.add("mine"); }); first.classList.add("primary", "first");
+  });
+})();
+
+// Download buttons: /download/latest.json is written by the app CI after each master release
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
+(function () {
+  var words = {"version": "版本", "build": "构建号"};
+  function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
+  function day(s) { return (s || "").slice(0, 10); }
+  function meta(el, r, f) {
+    if (!el || !f) return;
+    var line = words.version + " " + r.version + " \u00b7 " + words.build + " " + r.build +
+      " \u00b7 " + day(r.published_at) + " \u00b7 " + mb(f.size);
+    el.textContent = "";
+    var p = document.createElement("p"); p.textContent = line; p.dir = "auto"; el.appendChild(p);
+    var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
+    s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
+    el.hidden = false;
+  }
+  // Mirror (specs#160): on lg-www.cat158.com, or when dl.luckgram.cc can't be reached from this
+  // network, the buttons use lg-dl.cat158.com, which serves the same files.
+  var DL = "https://dl.luckgram.cc/", ALT = "https://lg-dl.cat158.com/";
+  var dlBase = location.hostname === "lg-www.cat158.com" ? ALT : DL;
+  function dlURL(u) { return u.indexOf(DL) === 0 ? dlBase + u.slice(DL.length) : u; }
+  function useAlt() {
+    dlBase = ALT;
+    document.querySelectorAll("[data-dl]").forEach(function (a) { a.href = dlURL(a.href); });
+  }
+  if (window.fetch && dlBase === DL && document.querySelector("[data-dl]")) {
+    var probe = setTimeout(useAlt, 6000);
+    fetch(DL + "ping", {method: "HEAD", mode: "no-cors", cache: "no-store"})
+      .then(function () { clearTimeout(probe); }, function () { clearTimeout(probe); useAlt(); });
+  }
+  function set(key, r, f) {
+    if (!f || f.url.indexOf(DL) !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = dlURL(f.url); });
+    meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
+    return true;
+  }
+  // Signed iOS install: the service's install domain changes, so the buttons get the current one at page load.
+  if (window.fetch && document.querySelector("[data-ios-install]")) {
+    fetch("https://api.owcywmpr.com/api/mdm/link/yx6sv23c").then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || String(j.link_jump || "").indexOf("https://") !== 0) return;
+      document.querySelectorAll("[data-ios-install]").forEach(function (a) { a.href = j.link_jump; });
+    }).catch(function () {});
+  }
+  if (!window.fetch || !document.querySelector("[data-dl]")) return;
+  fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (!j) return;
+    if (j.ios) set("ios", j.ios, j.ios);
+    if (j.android) {
+      set("android", j.android, j.android.arm64);
+      if (set("android-x86_64", j.android, j.android.x86_64)) {
+        var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
+      }
+    }
+    if (j.windows) {
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
+    }
+  }).catch(function () {});
+})();
+
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
+</body>
+</html>
