@@ -191,7 +191,8 @@
       "wiki": "/features/translation-and-voice.html#translate-out",
       "video": true,
       "demo": {
-        "android": "/media/demos/translate-out-android.mp4"
+        "android": "/media/demos/translate-out-android.mp4",
+        "ios": "/media/demos/translate-out-ios.mp4"
       }
     },
     {
@@ -555,7 +556,8 @@
       "wiki": "/features/ai.html#ai-summary",
       "video": true,
       "demo": {
-        "android": "/media/demos/ai-summary-android.mp4"
+        "android": "/media/demos/ai-summary-android.mp4",
+        "ios": "/media/demos/ai-summary-ios.mp4"
       }
     },
     {
@@ -594,7 +596,10 @@
         "en": "Type in any chat, long-press the send button, pick AI writing and choose what you want: better wording, more formal, friendlier, shorter or just fixed grammar. The text is rewritten in place, in your language."
       },
       "wiki": "/features/ai.html#ai-writing",
-      "video": true
+      "video": true,
+      "demo": {
+        "ios": "/media/demos/ai-writing-ios.mp4"
+      }
     },
     {
       "id": "ai-agents",
@@ -634,7 +639,8 @@
       "wiki": "/features/ai.html#agent-market",
       "video": false,
       "demo": {
-        "android": "/media/demos/agent-market-android.mp4"
+        "android": "/media/demos/agent-market-android.mp4",
+        "ios": "/media/demos/agent-market-ios.mp4"
       }
     },
     {
