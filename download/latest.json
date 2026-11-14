@@ -1,46 +1,46 @@
 {
   "android": {
     "version": "13.0.3",
-    "build": 403,
-    "commit": "7a857b4",
-    "tag": "android-13.0.3-403",
-    "published_at": "2026-11-13T13:24:56Z",
+    "build": 414,
+    "commit": "b349a52",
+    "tag": "android-13.0.3-414",
+    "published_at": "2026-11-14T06:39:59Z",
     "arm64": {
-      "url": "https://dl.luckgram.cc/android/android-13.0.3-403/luckgram-13.0.3-arm64-v8a.apk",
-      "sha256": "a1a3376052507cfc58e886b1831b2d52b63da3c8cddab08be60d6393feba2ff4",
-      "size": 58504446
+      "url": "https://dl.luckgram.cc/android/android-13.0.3-414/luckgram-13.0.3-arm64-v8a.apk",
+      "sha256": "9f8081ef90f8fbfb522a609b50f19788926c84f3a1e61fc713bf4373f9e3cfe9",
+      "size": 58505615
     },
     "x86_64": {
-      "url": "https://dl.luckgram.cc/android/android-13.0.3-403/luckgram-13.0.3-x86_64.apk",
-      "sha256": "fc74b1afa06191ad5f3b60ace40cac869ea54dd6dfcd91e4c1f63bec403b6063",
-      "size": 60020597
+      "url": "https://dl.luckgram.cc/android/android-13.0.3-414/luckgram-13.0.3-x86_64.apk",
+      "sha256": "a85a83829015307626d3d7d17cc6081d765767ef0e8142586c9f275c8c679231",
+      "size": 60021759
     }
   },
   "ios": {
     "version": "13.1.1",
-    "build": 36424,
-    "commit": "7ac9539",
-    "tag": "ios-13.1.1-36424",
-    "published_at": "2026-11-13T15:15:16Z",
-    "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36424/Luckgram-13.1.1-36424.ipa",
-    "sha256": "d99a43a497185b85e89acdf7b2d889cfbde3afd098a26cf5f33f31202a7d88ad",
-    "size": 84991863
+    "build": 36444,
+    "commit": "fcc8471",
+    "tag": "ios-13.1.1-36444",
+    "published_at": "2026-11-14T15:08:13Z",
+    "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36444/Luckgram-13.1.1-36444.ipa",
+    "sha256": "7f94833a4062537865b641ffade601b0db072368e3e6e9869e810462383ed67c",
+    "size": 85005770
   },
   "windows": {
     "version": "7.4.2",
-    "build": 17,
-    "commit": "2cf9cb3",
-    "tag": "windows-7.4.2-17",
-    "published_at": "2026-11-13T01:38:43Z",
+    "build": 145,
+    "commit": "480d81d",
+    "tag": "windows-7.4.2-145",
+    "published_at": "2026-11-14T14:21:39Z",
     "setup": {
-      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-17/Luckgram-Setup-7.4.2-17-x64.exe",
-      "sha256": "9772480f687ddf5bb696eedc310cc78eec80048d0c567093dbe5ed76e5778b55",
-      "size": 66621059
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-145/Luckgram-Setup-7.4.2-145-x64.exe",
+      "sha256": "b9b13376c3b945cb86794abacabfcde94adfc4d03fffd6190b3b3871c0427441",
+      "size": 76729221
     },
     "portable": {
-      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-17/Luckgram-7.4.2-17-x64-portable.zip",
-      "sha256": "73c4d9f98beb57849e9c6b2ad544c0f2d217f11750048842ce5ecff756bfd976",
-      "size": 89873744
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-145/Luckgram-7.4.2-145-x64-portable.zip",
+      "sha256": "75607d1c3cc287eef4ec83be4114718dedd1e927087c33f967bcfa61a1e02047",
+      "size": 107863589
     }
   }
 }

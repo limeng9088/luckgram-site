@@ -1,0 +1,5 @@
+# luckgram.cc: everything here is public and may be read by search engines and AI assistants.
+User-agent: *
+Allow: /
+
+Sitemap: https://luckgram.cc/sitemap.xml

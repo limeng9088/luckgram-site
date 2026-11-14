@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funciones de Luckgram: todo lo que añade a Telegram</title>
+<meta name="description" content="Todas las funciones que Luckgram añade a Telegram, con su estado: disponible para todos o parte de Luckgram Pro.">
+<link rel="canonical" href="https://luckgram.cc/es/features/">
+<link rel="alternate" hreflang="zh-Hans" href="https://luckgram.cc/features/">
+<link rel="alternate" hreflang="en" href="https://luckgram.cc/en/features/">
+<link rel="alternate" hreflang="zh-Hant" href="https://luckgram.cc/zh-hant/features/">
+<link rel="alternate" hreflang="ru" href="https://luckgram.cc/ru/features/">
+<link rel="alternate" hreflang="es" href="https://luckgram.cc/es/features/">
+<link rel="alternate" hreflang="pt-BR" href="https://luckgram.cc/pt-br/features/">
+<link rel="alternate" hreflang="ar" href="https://luckgram.cc/ar/features/">
+<link rel="alternate" hreflang="fa" href="https://luckgram.cc/fa/features/">
+<link rel="alternate" hreflang="id" href="https://luckgram.cc/id/features/">
+<link rel="alternate" hreflang="tr" href="https://luckgram.cc/tr/features/">
+<link rel="alternate" hreflang="x-default" href="https://luckgram.cc/en/features/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Luckgram">
+<meta property="og:url" content="https://luckgram.cc/es/features/">
+<meta property="og:title" content="Funciones de Luckgram: todo lo que añade a Telegram">
+<meta property="og:description" content="Todas las funciones que Luckgram añade a Telegram, con su estado: disponible para todos o parte de Luckgram Pro.">
+<meta property="og:image" content="https://luckgram.cc/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:locale:alternate" content="fa_IR">
+<meta property="og:locale:alternate" content="id_ID">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<meta name="heleket" content="16ef8c76" />
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=e0dd8ef8eb">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://luckgram.cc/#org","name":"Luckgram","url":"https://luckgram.cc/","logo":"https://luckgram.cc/assets/icon-512.png","email":"support@luckgram.cc","sameAs":["https://github.com/limeng9088/luckgram-ios","https://github.com/limeng9088/luckgram-android"]},{"@type":"WebSite","@id":"https://luckgram.cc/#site","url":"https://luckgram.cc/","name":"Luckgram","publisher":{"@id":"https://luckgram.cc/#org"},"inLanguage":["zh-Hans","en","zh-Hant","ru","es","pt-BR","ar","fa","id","tr"]},{"@type":"WebPage","@id":"https://luckgram.cc/es/features/#page","url":"https://luckgram.cc/es/features/","name":"Funciones de Luckgram: todo lo que añade a Telegram","description":"Todas las funciones que Luckgram añade a Telegram, con su estado: disponible para todos o parte de Luckgram Pro.","inLanguage":"es","isPartOf":{"@id":"https://luckgram.cc/#site"},"dateModified":"2026-11-14"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Luckgram","item":"https://luckgram.cc/es/"},{"@type":"ListItem","position":2,"name":"Funciones","item":"https://luckgram.cc/es/features/"}]},{"@type":"ItemList","@id":"https://luckgram.cc/es/features/#list","name":"Funciones de Luckgram","numberOfItems":36,"itemListElement":[{"@type":"ListItem","position":1,"name":"10 cuentas gratis, ilimitadas con Pro","url":"https://luckgram.cc/es/features/#accounts"},{"@type":"ListItem","position":2,"name":"Doble fondo: un segundo código de acceso con su propia vista","url":"https://luckgram.cc/es/features/#double-bottom"},{"@type":"ListItem","position":3,"name":"Oculta chats sin eliminarlos","url":"https://luckgram.cc/es/features/#hidden-chats"},{"@type":"ListItem","position":4,"name":"Abre gratis los canales que ocultan las apps de las tiendas","url":"https://luckgram.cc/es/features/#unblock"},{"@type":"ListItem","position":5,"name":"Lee los mensajes en tu idioma","url":"https://luckgram.cc/es/features/#translate-in"},{"@type":"ListItem","position":6,"name":"Traduce lo que escribes antes de enviarlo","url":"https://luckgram.cc/es/features/#translate-out"},{"@type":"ListItem","position":7,"name":"Lee los mensajes de voz y dicta tus respuestas","url":"https://luckgram.cc/es/features/#voice-text"},{"@type":"ListItem","position":8,"name":"Una barra de escritura más limpia, con todo en el +","url":"https://luckgram.cc/es/features/#plus-panel"},{"@type":"ListItem","position":9,"name":"Responde con respuestas rápidas guardadas","url":"https://luckgram.cc/es/features/#quick-replies"},{"@type":"ListItem","position":10,"name":"Reenvía sin el nombre del remitente","url":"https://luckgram.cc/es/features/#forward-anon"},{"@type":"ListItem","position":11,"name":"Selecciona todos los mensajes de una persona","url":"https://luckgram.cc/es/features/#select-all"},{"@type":"ListItem","position":12,"name":"Guarda en Mensajes guardados con un toque","url":"https://luckgram.cc/es/features/#save-direct"},{"@type":"ListItem","position":13,"name":"Envía videos de la galería como videomensajes","url":"https://luckgram.cc/es/features/#round-video"},{"@type":"ListItem","position":14,"name":"Graba llamadas, con transcripción y resumen de IA","url":"https://luckgram.cc/es/features/#call-rec"},{"@type":"ListItem","position":15,"name":"Mira qué ocupa espacio y libéralo","url":"https://luckgram.cc/es/features/#cache"},{"@type":"ListItem","position":16,"name":"ID de Telegram, fecha de registro y enlaces activos en la biografía","url":"https://luckgram.cc/es/features/#profile-info"},{"@type":"ListItem","position":17,"name":"Carpetas por palabra clave que encuentran los chats por ti","url":"https://luckgram.cc/es/features/#keyword-folders"},{"@type":"ListItem","position":18,"name":"Notas privadas sobre cualquier contacto","url":"https://luckgram.cc/es/features/#user-notes"},{"@type":"ListItem","position":19,"name":"Mira lo que dijo un contacto en los grupos en común","url":"https://luckgram.cc/es/features/#shared-activity"},{"@type":"ListItem","position":20,"name":"Una pestaña Descubrir para Plaza y Personas cerca","url":"https://luckgram.cc/es/features/#discover-tab"},{"@type":"ListItem","position":21,"name":"Conoce gente cerca, solo cuando tú quieras","url":"https://luckgram.cc/es/features/#nearby"},{"@type":"ListItem","position":22,"name":"Plaza: publicaciones públicas de la comunidad de Luckgram","url":"https://luckgram.cc/es/features/#square"},{"@type":"ListItem","position":23,"name":"Escanea un código QR para añadir a un amigo","url":"https://luckgram.cc/es/features/#scan"},{"@type":"ListItem","position":24,"name":"Un asistente de IA dentro de tus chats","url":"https://luckgram.cc/es/features/#ai-chat"},{"@type":"ListItem","position":25,"name":"Ponte al día en un chat muy activo con un resumen","url":"https://luckgram.cc/es/features/#ai-summary"},{"@type":"ListItem","position":26,"name":"Convierte unas notas rápidas en una respuesta","url":"https://luckgram.cc/es/features/#ai-reply"},{"@type":"ListItem","position":27,"name":"Pule cualquier mensaje antes de enviarlo","url":"https://luckgram.cc/es/features/#ai-writing"},{"@type":"ListItem","position":28,"name":"Agentes de IA para cada tarea, o crea el tuyo","url":"https://luckgram.cc/es/features/#ai-agents"},{"@type":"ListItem","position":29,"name":"Explora agentes de IA listos para usar en el mercado","url":"https://luckgram.cc/es/features/#agent-market"},{"@type":"ListItem","position":30,"name":"Crea imágenes a partir de una frase","url":"https://luckgram.cc/es/features/#ai-image"},{"@type":"ListItem","position":31,"name":"Publicaciones escritas con el estilo de tu canal","url":"https://luckgram.cc/es/features/#ai-post"},{"@type":"ListItem","position":32,"name":"Luckgram Pro: más IA, más cuentas, sin mensajes patrocinados","url":"https://luckgram.cc/es/features/#pro"},{"@type":"ListItem","position":33,"name":"Haz una copia de seguridad cifrada de tus cuentas en la nube","url":"https://luckgram.cc/es/features/#cloud-backup"},{"@type":"ListItem","position":34,"name":"Únete al grupo privado para miembros Pro","url":"https://luckgram.cc/es/features/#pro-community"},{"@type":"ListItem","position":35,"name":"Añade proxies desde un código QR, un enlace o una suscripción, incluso antes de iniciar sesión","url":"https://luckgram.cc/es/features/#proxy"},{"@type":"ListItem","position":36,"name":"Averigua adónde llegó tu código de inicio de sesión","url":"https://luckgram.cc/es/features/#login-code"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Ir al contenido</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/es/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="Principal">
+        <a href="/es/features/" aria-current="page">Funciones</a>
+        <a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Web</a>
+        <a href="/es/mcp/">MCP</a>
+        <a href="/es/skills/">Skill</a>
+        <a href="https://wiki.luckgram.cc/en/">Ayuda</a>
+        <a href="/es/#faq">Preguntas frecuentes</a>
+    </nav>
+    <div class="tools">
+      <details class="menu langs">
+        <summary aria-label="Idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg><span>Español</span></summary>
+        <ul><li><a href="/features/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="/en/features/" hreflang="en" lang="en">English</a></li><li><a href="/zh-hant/features/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li><li><a href="/ru/features/" hreflang="ru" lang="ru">Русский</a></li><li><a href="/es/features/" hreflang="es" lang="es" aria-current="true">Español</a></li><li><a href="/pt-br/features/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/ar/features/" hreflang="ar" lang="ar">العربية</a></li><li><a href="/fa/features/" hreflang="fa" lang="fa">فارسی</a></li><li><a href="/id/features/" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/tr/features/" hreflang="tr" lang="tr">Türkçe</a></li></ul>
+      </details>
+      <a class="get" href="/es/download/">Descargar</a>
+      <details class="menu more">
+        <summary aria-label="Menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav aria-label="Principal">
+        <a href="/es/features/" aria-current="page">Funciones</a>
+        <a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Web</a>
+        <a href="/es/mcp/">MCP</a>
+        <a href="/es/skills/">Skill</a>
+        <a href="https://wiki.luckgram.cc/en/">Ayuda</a>
+        <a href="/es/#faq">Preguntas frecuentes</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <h1>Funciones de Luckgram</h1>
+    <p>Todo lo que usas en Telegram ya funciona en Luckgram. Abajo están los extras que añadimos, cada uno con su estado: “Disponible” para todos, o “Pro” para los miembros de Luckgram Pro. Cada uno enlaza a su página del Centro de ayuda.</p>
+  </div>
+</section>
+<div class="wrap feat-layout">
+  <nav class="feat-toc" aria-label="Funciones"><ul>
+    <li class="toc-group">Cuentas y privacidad</li><li><a href="#accounts">Más cuentas</a></li><li><a href="#double-bottom">Doble fondo</a></li><li><a href="#hidden-chats">Chats ocultos</a></li><li><a href="#unblock">Canales restringidos</a></li><li class="toc-group">Mensajes e idioma</li><li><a href="#translate-in">Traducir mensajes</a></li><li><a href="#translate-out">Traducir antes de enviar</a></li><li><a href="#voice-text">Voz a texto</a></li><li><a href="#plus-panel">Panel + de la barra de escritura</a></li><li><a href="#quick-replies">Respuestas rápidas</a></li><li><a href="#forward-anon">Reenviar sin nombre</a></li><li><a href="#select-all">Seleccionar todo</a></li><li><a href="#save-direct">Guardar con un toque</a></li><li class="toc-group">Multimedia, llamadas y almacenamiento</li><li><a href="#round-video">Videomensajes</a></li><li><a href="#call-rec">Grabación de llamadas</a></li><li><a href="#cache">Almacenamiento</a></li><li class="toc-group">Perfiles y organización</li><li><a href="#profile-info">Detalles del perfil</a></li><li><a href="#keyword-folders">Carpetas por palabra clave</a></li><li><a href="#user-notes">Notas privadas</a></li><li><a href="#shared-activity">Actividad</a></li><li class="toc-group">Descubrir</li><li><a href="#discover-tab">Pestaña Descubrir</a></li><li><a href="#nearby">Personas cerca</a></li><li><a href="#square">Plaza</a></li><li><a href="#scan">Escanear</a></li><li class="toc-group">IA</li><li><a href="#ai-chat">Asistente de IA</a></li><li><a href="#ai-summary">Resumen del chat</a></li><li><a href="#ai-reply">Borradores de respuesta</a></li><li><a href="#ai-writing">Escritura con IA</a></li><li><a href="#ai-agents">Agentes de IA</a></li><li><a href="#agent-market">Mercado de agentes</a></li><li><a href="#ai-image">Imágenes con IA</a></li><li><a href="#ai-post">Publicaciones con IA</a></li><li class="toc-group">Luckgram Pro</li><li><a href="#pro">Luckgram Pro</a></li><li><a href="#cloud-backup">Copia de seguridad en la nube</a></li><li><a href="#pro-community">Comunidad Pro</a></li><li class="toc-group">Inicio de sesión y red</li><li><a href="#proxy">Ajustes de proxy</a></li><li><a href="#login-code">Ayuda con el código</a></li>
+  </ul></nav>
+  <div class="feat-list">
+<section class="feat" id="accounts">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/accounts.jpg?v=4" width="576" height="768" aria-label="Animación: 10 cuentas gratis, ilimitadas con Pro"><source data-src="/media/web/accounts.webm?v=4" type="video/webm"><source data-src="/media/web/accounts.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>10 cuentas gratis, ilimitadas con Pro</h2>
+    <p>Telegram permite 3 cuentas en un dispositivo. Con Luckgram inicias sesión en 10 gratis, y en todas las que quieras con Luckgram Pro: tus cuentas personales, de trabajo, de clientes y de administración de canales conviven una junto a otra, cada una con sus propias notificaciones, y cambias entre ellas con un toque.</p>
+    <p class="feat-web"><span class="tag ok">Web</span> También en la versión web. La versión web admite hasta 20 cuentas, sin necesidad de Pro. <a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Abrir la versión web</a></p>
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/privacy.html#accounts">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="double-bottom">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/double-bottom.jpg?v=4" width="576" height="768" aria-label="Animación: Doble fondo: un segundo código de acceso con su propia vista"><source data-src="/media/web/double-bottom.webm?v=4" type="video/webm"><source data-src="/media/web/double-bottom.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Doble fondo: un segundo código de acceso con su propia vista</h2>
+    <p>Configura un segundo código de acceso que abre Luckgram solo con las cuentas que elijas. Tu código habitual sigue abriéndolo todo, así que tú decides qué se ve cuando alguien más está mirando.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/privacy.html#double-bottom">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="hidden-chats">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/hidden-chats.jpg?v=4" width="576" height="768" aria-label="Animación: Oculta chats sin eliminarlos"><source data-src="/media/web/hidden-chats.webm?v=4" type="video/webm"><source data-src="/media/web/hidden-chats.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Oculta chats sin eliminarlos</h2>
+    <p>Desliza un chat para sacarlo de tu lista sin eliminarlo ni salir del grupo. Los chats ocultos siguen a un gesto de distancia cuando los necesites.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/privacy.html#hidden-chats">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="unblock">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/unblock.jpg?v=4" width="576" height="768" aria-label="Animación: Abre gratis los canales que ocultan las apps de las tiendas"><source data-src="/media/web/unblock.webm?v=4" type="video/webm"><source data-src="/media/web/unblock.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Abre gratis los canales que ocultan las apps de las tiendas</h2>
+    <p>Algunos canales y grupos solo están ocultos en las versiones de Telegram de App Store y Google Play. Activa un interruptor en Ajustes y Luckgram los abre, gratis y de forma permanente, sin iniciar sesión en ningún sitio web. Los canales que Telegram bloquea para todos, o que están bloqueados donde vives, siguen bloqueados.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/privacy.html#unblock">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="translate-in">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/translate-in.jpg?v=4" width="576" height="768" aria-label="Animación: Lee los mensajes en tu idioma"><source data-src="/media/web/translate-in.webm?v=4" type="video/webm"><source data-src="/media/web/translate-in.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Lee los mensajes en tu idioma</h2>
+    <p>Mantén pulsado un mensaje y toca “Traducir”: la traducción aparece justo debajo del original, en la misma burbuja, y “Deshacer traducción” lo deja como estaba. O activa el botón de traducción con un toque junto a los mensajes en otro idioma. La primera vez eliges el idioma al que quieres traducir y Luckgram lo recuerda; toca la línea del idioma en cualquier traducción para cambiarlo. Los mensajes de voz se pueden traducir una vez convertidos en texto. Gratis y sin necesidad de Telegram Premium: cuando Telegram no puede traducir, se encarga la traducción propia de Luckgram.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/translation-and-voice.html#translate-in">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="translate-out">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/translate-out.jpg?v=4" width="576" height="768" aria-label="Animación: Traduce lo que escribes antes de enviarlo"><source data-src="/media/web/translate-out.webm?v=4" type="video/webm"><source data-src="/media/web/translate-out.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Traduce lo que escribes antes de enviarlo</h2>
+    <p>Escribe en el idioma en el que piensas y luego toca “Traducir” en el panel +, o mantén pulsado el botón de enviar y elige “Traducir” o “Traducir a…”. El texto se reemplaza en la barra de escritura, así que lo ves antes de enviar nada, y el idioma se recuerda para cada chat.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/translation-and-voice.html#translate-out">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="voice-text">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/voice-text.jpg?v=4" width="576" height="768" aria-label="Animación: Lee los mensajes de voz y dicta tus respuestas"><source data-src="/media/web/voice-text.webm?v=4" type="video/webm"><source data-src="/media/web/voice-text.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Lee los mensajes de voz y dicta tus respuestas</h2>
+    <p>Convierte en texto mensajes de voz y videomensajes de cualquier duración con un toque: muy práctico en una reunión o en un tren ruidoso. Dicta en lugar de escribir y mira cómo aparecen las palabras mientras hablas; la limpieza opcional con IA quita las muletillas y corrige la puntuación. Gratis, sin necesidad de Telegram Premium.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/translation-and-voice.html#voice-text">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="plus-panel">
+  
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Una barra de escritura más limpia, con todo en el +</h2>
+    <p>La barra de escritura conserva solo los emojis, el campo de texto, la voz y un botón +. Toca + para abrir una cuadrícula con Fotos, Cámara, Archivo, Ubicación, Contacto y Encuesta, además de Respuestas rápidas, Entrada de voz, Escritura con IA y Traducir. ¿Prefieres el diseño anterior? Desactiva la barra de escritura compacta en “Funciones de Luckgram”.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/messaging.html#plus-panel">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="quick-replies">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/quick-replies.jpg?v=4" width="576" height="768" aria-label="Animación: Responde con respuestas rápidas guardadas"><source data-src="/media/web/quick-replies.webm?v=4" type="video/webm"><source data-src="/media/web/quick-replies.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Responde con respuestas rápidas guardadas</h2>
+    <p>Guarda las respuestas que envías a todas horas, como “Llego tarde” o “Te llamo luego”, y envíalas con un toque desde el panel + de la barra de escritura.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/messaging.html#quick-replies">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="forward-anon">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/forward-anon.jpg?v=4" width="576" height="768" aria-label="Animación: Reenvía sin el nombre del remitente"><source data-src="/media/web/forward-anon.webm?v=4" type="video/webm"><source data-src="/media/web/forward-anon.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible (función de Telegram)</span>
+    <h2>Reenvía sin el nombre del remitente</h2>
+    <p>Al reenviar un mensaje, activa “Ocultar nombre del remitente” y llegará como si lo hubieras escrito tú, sin el autor original.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/messaging.html#forward-anon">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="select-all">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/select-all.jpg?v=4" width="576" height="768" aria-label="Animación: Selecciona todos los mensajes de una persona"><source data-src="/media/web/select-all.webm?v=4" type="video/webm"><source data-src="/media/web/select-all.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Selecciona todos los mensajes de una persona</h2>
+    <p>Mantén pulsado un mensaje y selecciona de una vez todo lo que esa persona escribió en el chat, no solo los últimos cien, para copiarlo, reenviarlo, guardarlo o eliminarlo.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/messaging.html#select-all">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="save-direct">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/save-direct.jpg?v=4" width="576" height="768" aria-label="Animación: Guarda en Mensajes guardados con un toque"><source data-src="/media/web/save-direct.webm?v=4" type="video/webm"><source data-src="/media/web/save-direct.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Guarda en Mensajes guardados con un toque</h2>
+    <p>Guarda una publicación o un mensaje para más tarde directamente desde el menú del mensaje, sin abrir la pantalla de reenvío ni buscar Mensajes guardados.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/messaging.html#save-direct">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="round-video">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/round-video.jpg?v=4" width="576" height="768" aria-label="Animación: Envía videos de la galería como videomensajes"><source data-src="/media/web/round-video.webm?v=4" type="video/webm"><source data-src="/media/web/round-video.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Envía videos de la galería como videomensajes</h2>
+    <p>Elige un video que ya tengas grabado y envíalo como videomensaje, igual que uno que grabas en el chat.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/media-and-calls.html#round-video">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="call-rec">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/call-rec.jpg?v=4" width="576" height="768" aria-label="Animación: Graba llamadas, con transcripción y resumen de IA"><source data-src="/media/web/call-rec.webm?v=4" type="video/webm"><source data-src="/media/web/call-rec.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Graba llamadas, con transcripción y resumen de IA</h2>
+    <p>Graba una llamada con un toque, en iPhone y Android. Al colgar, la grabación llega a Mensajes guardados o al chat que elijas, con una transcripción en la que puedes buscar y un resumen de IA de lo acordado. Las leyes sobre grabación varían según el país; avisa a la otra persona antes de grabar.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/media-and-calls.html#call-rec">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="cache">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/cache.jpg?v=4" width="576" height="768" aria-label="Animación: Mira qué ocupa espacio y libéralo"><source data-src="/media/web/cache.webm?v=4" type="video/webm"><source data-src="/media/web/cache.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Mira qué ocupa espacio y libéralo</h2>
+    <p>“Uso de almacenamiento” muestra cuánto espacio ocupan los videos, fotos, archivos y música en tu teléfono, y tú borras los tipos que elijas. Elige cualquier tamaño de caché, desde 1 GB hasta sin límite, conserva los archivos multimedia desde una hora hasta para siempre y define reglas distintas para cada chat.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/media-and-calls.html#cache">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="profile-info">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/profile-info.jpg?v=4" width="576" height="768" aria-label="Animación: ID de Telegram, fecha de registro y enlaces activos en la biografía"><source data-src="/media/web/profile-info.webm?v=4" type="video/webm"><source data-src="/media/web/profile-info.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>ID de Telegram, fecha de registro y enlaces activos en la biografía</h2>
+    <p>Los perfiles muestran el ID de Telegram de la cuenta, que puedes copiar con un toque, una estimación de cuándo se creó la cuenta y enlaces en la biografía que se abren al tocarlos.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/profiles-and-folders.html#profile-info">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="keyword-folders">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/keyword-folders.jpg?v=4" width="576" height="768" aria-label="Animación: Carpetas por palabra clave que encuentran los chats por ti"><source data-src="/media/web/keyword-folders.webm?v=4" type="video/webm"><source data-src="/media/web/keyword-folders.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Carpetas por palabra clave que encuentran los chats por ti</h2>
+    <p>Crea una carpeta a partir de una palabra, como “factura” o “vuelo”, y reunirá todos los chats que la mencionen, con la palabra resaltada.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/profiles-and-folders.html#keyword-folders">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="user-notes">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/user-notes.jpg?v=4" width="576" height="768" aria-label="Animación: Notas privadas sobre cualquier contacto"><source data-src="/media/web/user-notes.webm?v=4" type="video/webm"><source data-src="/media/web/user-notes.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Notas privadas sobre cualquier contacto</h2>
+    <p>Escribe una nota en el perfil de alguien, por ejemplo dónde lo conociste o qué pidió. Solo tú puedes verla, aparece en la parte superior de tu chat con esa persona y puedes buscar en todas tus notas a la vez.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/profiles-and-folders.html#user-notes">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="shared-activity">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/shared-activity.jpg?v=4" width="576" height="768" aria-label="Animación: Mira lo que dijo un contacto en los grupos en común"><source data-src="/media/web/shared-activity.webm?v=4" type="video/webm"><source data-src="/media/web/shared-activity.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Mira lo que dijo un contacto en los grupos en común</h2>
+    <p>Abre un perfil y la pestaña “Actividad” muestra los últimos mensajes de esa persona en los grupos que tienes en común con ella, con un toque para ir a cada uno. Solo muestra mensajes que ya podías leer en esos grupos.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/profiles-and-folders.html#shared-activity">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="discover-tab">
+  
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Una pestaña Descubrir para Plaza y Personas cerca</h2>
+    <p>La tercera pestaña de la parte inferior es “Descubrir”, donde están Plaza y Personas cerca. Los ajustes bajaron un nivel: abre la pestaña “Perfil” y toca “Ajustes”.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/discover.html#discover-tab">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="nearby">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/nearby.jpg?v=4" width="576" height="768" aria-label="Animación: Conoce gente cerca, solo cuando tú quieras"><source data-src="/media/web/nearby.webm?v=4" type="video/webm"><source data-src="/media/web/nearby.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Conoce gente cerca, solo cuando tú quieras</h2>
+    <p>Activa “Visible para personas cerca” y verás a quienes están a tu alrededor y hicieron lo mismo; escríbeles con un toque. Los demás solo ven a qué distancia estás, por ejemplo a menos de 500 m, nunca dónde estás, y se desactiva solo a las 24 horas. Puedes reportar o bloquear a cualquiera.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/discover.html#nearby">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="square">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/square.jpg?v=4" width="576" height="768" aria-label="Animación: Plaza: publicaciones públicas de la comunidad de Luckgram"><source data-src="/media/web/square.webm?v=4" type="video/webm"><source data-src="/media/web/square.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Plaza: publicaciones públicas de la comunidad de Luckgram</h2>
+    <p>Comparte texto, fotos y videos cortos en un feed público que todos los usuarios de Luckgram pueden ver. Las publicaciones aparecen en cuanto las publicas. Explora “Recientes” y “Populares”, da me gusta y comenta, o inicia un chat privado desde el perfil del autor. Puedes reportar contenido inapropiado y bloquear a cualquiera en todo momento.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/discover.html#square">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="scan">
+  
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Escanea un código QR para añadir a un amigo</h2>
+    <p>Abre el menú ⋮ en la parte superior de la lista de chats y toca “Escanear” para leer el código QR de Telegram de alguien y abrir su perfil, un grupo o un enlace. “Mi código QR” está en la misma pantalla, listo para mostrar.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/discover.html#scan">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="ai-chat">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/ai-chat.jpg?v=4" width="576" height="768" aria-label="Animación: Un asistente de IA dentro de tus chats"><source data-src="/media/web/ai-chat.webm?v=4" type="video/webm"><source data-src="/media/web/ai-chat.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Un asistente de IA dentro de tus chats</h2>
+    <p>Haz una pregunta, pide que te explique un tema con un ejemplo, que resuma o reescriba un texto largo o que resuelva un problema de matemáticas paso a paso, en un chat como cualquier otro. Compártele un mensaje, un enlace o un archivo directamente desde cualquier chat.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#ai-chat">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="ai-summary">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/ai-summary.jpg?v=4" width="576" height="768" aria-label="Animación: Ponte al día en un chat muy activo con un resumen"><source data-src="/media/web/ai-summary.webm?v=4" type="video/webm"><source data-src="/media/web/ai-summary.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Ponte al día en un chat muy activo con un resumen</h2>
+    <p>¿Vuelves y te esperan cientos de mensajes sin leer? Ten las decisiones, las fechas y las preguntas pendientes en unas pocas líneas antes de ponerte a leer. Haz tu propia pregunta, como qué aceptó el cliente, y toca cualquier punto para ir a los mensajes de los que sale.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#ai-summary">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="ai-reply">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/ai-reply.jpg?v=4" width="576" height="768" aria-label="Animación: Convierte unas notas rápidas en una respuesta"><source data-src="/media/web/ai-reply.webm?v=4" type="video/webm"><source data-src="/media/web/ai-reply.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Convierte unas notas rápidas en una respuesta</h2>
+    <p>Escribe lo que quieres decir, aunque sea a toda prisa, y elige entre respuestas pulidas que encajan con la conversación. Edita la que elijas antes de enviarla.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#ai-reply">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="ai-writing">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/ai-writing.jpg?v=4" width="576" height="768" aria-label="Animación: Pule cualquier mensaje antes de enviarlo"><source data-src="/media/web/ai-writing.webm?v=4" type="video/webm"><source data-src="/media/web/ai-writing.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Pule cualquier mensaje antes de enviarlo</h2>
+    <p>Escribe en cualquier chat, mantén pulsado el botón de enviar, elige “Escritura con IA” y decide qué quieres: mejor redacción, más formal, más cercano, más corto o solo corregir la gramática. El texto se reescribe ahí mismo, en tu idioma.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#ai-writing">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="ai-agents">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/ai-agents.jpg?v=4" width="576" height="768" aria-label="Animación: Agentes de IA para cada tarea, o crea el tuyo"><source data-src="/media/web/ai-agents.webm?v=4" type="video/webm"><source data-src="/media/web/ai-agents.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Agentes de IA para cada tarea, o crea el tuyo</h2>
+    <p>Elige un agente hecho para la tarea, como un planificador de viajes, un redactor, un tutor de idiomas o un investigador, y chatea con él como con cualquier otra persona. ¿Necesitas algo específico? Crea tu propio agente con tus propias instrucciones.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#ai-agents">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="agent-market">
+  
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Explora agentes de IA listos para usar en el mercado</h2>
+    <p>Abre “Agentes” en el asistente de IA y cambia a “Mercado”: explora por categoría, busca, lee qué hace cada agente e inicia un chat con un toque. Los agentes nuevos se añaden desde nuestro lado, sin necesidad de actualizar. Los agentes marcados como “Pro” requieren Luckgram Pro.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#agent-market">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="ai-image">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/ai-image.jpg?v=4" width="576" height="768" aria-label="Animación: Crea imágenes a partir de una frase"><source data-src="/media/web/ai-image.webm?v=4" type="video/webm"><source data-src="/media/web/ai-image.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Crea imágenes a partir de una frase</h2>
+    <p>Describe la imagen que quieres y aparecerá en el chat. Envíala a cualquier chat o canal, guárdala o pide otra versión.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#ai-image">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="ai-post">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/ai-post.jpg?v=4" width="576" height="768" aria-label="Animación: Publicaciones escritas con el estilo de tu canal"><source data-src="/media/web/ai-post.webm?v=4" type="video/webm"><source data-src="/media/web/ai-post.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Publicaciones escritas con el estilo de tu canal</h2>
+    <p>Indica un tema y recibe una publicación lista para editar que sigue el tono de tus publicaciones anteriores. Acórtala, añade emojis o tradúcela, y publícala desde la misma pantalla.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/ai.html#ai-post">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="pro">
+  
+  <div class="feat-text">
+    <span class="tag pro">Pro</span>
+    <h2>Luckgram Pro: más IA, más cuentas, sin mensajes patrocinados</h2>
+    <p>Luckgram Pro es la suscripción propia de Luckgram, independiente de Telegram Premium. Aumenta tus límites diarios de IA y traducción, y añade créditos mensuales de IA para el modelo avanzado, resúmenes de chat más largos con preguntas de seguimiento, agentes exclusivos de Pro, cuentas ilimitadas y copia de seguridad en la nube; además, oculta los mensajes patrocinados de Telegram en los canales. La página de suscripción muestra las ventajas actuales y los créditos que te quedan.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/pro.html#pro">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="cloud-backup">
+  
+  <div class="feat-text">
+    <span class="tag pro">Pro</span>
+    <h2>Haz una copia de seguridad cifrada de tus cuentas en la nube</h2>
+    <p>Elige las cuentas que quieres respaldar y define una contraseña para la copia. La copia se cifra en tu teléfono antes de subirse, así que Luckgram solo guarda datos que no puede leer. En un teléfono nuevo, iPhone o Android, inicia sesión en una cuenta cualquiera, elige “Restaurar desde la nube”, escribe la contraseña y tus cuentas vuelven sin iniciar sesión en cada una. Si olvidas la contraseña, la copia no se puede restaurar.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/pro.html#cloud-backup">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="pro-community">
+  
+  <div class="feat-text">
+    <span class="tag pro">Pro</span>
+    <h2>Únete al grupo privado para miembros Pro</h2>
+    <p>Los miembros Pro pueden unirse al grupo privado de Luckgram en Telegram con una invitación de un solo uso desde Funciones de Luckgram → Luckgram Pro. Cuando la suscripción termina, sales del grupo automáticamente.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/pro.html#pro-community">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat" id="proxy">
+  <video class="demo" muted loop playsinline preload="none" data-lazy poster="/media/web/proxy.jpg?v=4" width="576" height="768" aria-label="Animación: Añade proxies desde un código QR, un enlace o una suscripción, incluso antes de iniciar sesión"><source data-src="/media/web/proxy.webm?v=4" type="video/webm"><source data-src="/media/web/proxy.mp4?v=4" type="video/mp4"></video>
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Añade proxies desde un código QR, un enlace o una suscripción, incluso antes de iniciar sesión</h2>
+    <p>¿No puedes conectarte a Telegram? El botón de proxy está en la esquina superior derecha de todas las pantallas de inicio de sesión, así que puedes añadir un proxy SOCKS5 o MTProto antes de recibir tu código. Ahora hay dos formas más rápidas de añadir uno. Escanea el código QR de un proxy o pega un enlace tg://, t.me o socks5:// y entra directamente en tu lista, sin escribir servidor ni puerto. O pega la URL de una suscripción de Clash o mihomo para importar de una vez todos sus proxies SOCKS5; actualízala con un toque, y al eliminar la suscripción se quitan los proxies que añadió. La lista de proxies muestra el país de salida y la IP de cada proxy SOCKS5, y una fila “Directo” en la parte superior muestra tu propia salida sin proxy. Después de iniciar sesión, encontrarás “Ajustes de proxy” en la parte superior del menú ⋮ de la lista de chats.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/sign-in-and-network.html#proxy">Más información en el Centro de ayuda</a></p>
+  </div>
+</section><section class="feat novid" id="login-code">
+  
+  <div class="feat-text">
+    <span class="tag ok">Disponible</span>
+    <h2>Averigua adónde llegó tu código de inicio de sesión</h2>
+    <p>Cuando Telegram envía tu código de inicio de sesión a la app de Telegram en otro dispositivo en lugar de por SMS, la pantalla del código explica dónde encontrarlo, y “¿Cómo puedo recibir el código?” explica qué hacer si no tienes la sesión iniciada en ningún otro dispositivo.</p>
+    
+    <p class="feat-more"><a href="https://wiki.luckgram.cc/en/features/sign-in-and-network.html#login-code">Más información en el Centro de ayuda</a></p>
+  </div>
+</section>
+  </div>
+</div>
+<section class="cta">
+  <div class="wrap">
+    <div class="mark" aria-hidden="true"></div>
+    <h2>Empieza por lo que ya funciona hoy</h2>
+    <p>Inicia sesión con tu cuenta de Telegram. Las funciones nuevas llegan con las actualizaciones.</p>
+    <div class="btns" data-smart>
+      <a class="btn platform primary" href="https://dl.luckgram.cc/ios/ios-13.1.1-36444/Luckgram-13.1.1-36444.ipa" data-dl="ios" data-os="ios" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span><small>iPhone y iPad · fírmalo tú mismo</small>Descargar IPA</span></a>
+        <a class="btn platform" href="https://luckgram.evztet.cn/yx6sv23c" data-ios-install data-os="ios" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span><small>iPhone y iPad · sin computadora</small>Instalar en iPhone</span></a>
+        <a class="btn platform" href="https://dl.luckgram.cc/android/android-13.0.3-414/luckgram-13.0.3-arm64-v8a.apk" data-dl="android" data-os="android" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span><small>Android 6.0 o posterior</small>Descargar APK</span></a>
+        <a class="btn platform" href="https://dl.luckgram.cc/windows/windows-7.4.2-145/Luckgram-Setup-7.4.2-145-x64.exe" data-dl="windows" data-os="windows" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.1l7.4-1v7.2H3V5.1zm8.3-1.2L21 2.5v8.8h-9.7V3.9zM3 12.7h7.4v7.2L3 18.9v-6.2zm8.3 0H21v8.8l-9.7-1.4v-7.4z"/></svg><span><small>Windows 10/11 · beta</small>Descargar para Windows</span></a>
+        <a class="btn platform" href="https://web.luckgram.cc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span><small>En tu navegador · sin instalar nada</small>Abrir la versión web</span></a>
+    </div>
+  </div>
+</section>
+<script>
+// Highlight the feature being read in the list.
+(function () {
+  var links = {}; document.querySelectorAll('.feat-toc a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; var a = links[e.target.id]; if (!a) return;
+      document.querySelectorAll('.feat-toc a.on').forEach(function (x) { x.classList.remove('on'); }); a.classList.add('on');
+      // keep the current item centred in the list without moving the page
+      var toc = document.querySelector('.feat-toc'), wide = window.innerWidth >= 980;
+      toc.scrollTo(wide ? {top: a.offsetTop - toc.clientHeight / 2 + a.offsetHeight / 2, behavior: 'smooth'}
+                        : {left: a.offsetLeft - toc.clientWidth / 2 + a.offsetWidth / 2, behavior: 'smooth'}); });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  document.querySelectorAll('.feat').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="top">
+      <div class="about"><a class="logo" href="/es/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>Un cliente de Telegram independiente y de código abierto.</p></div>
+      <div><h2>Producto</h2><ul>
+        <li><a href="/es/download/">Descargar</a></li>
+        <li><a href="/es/features/">Funciones</a></li>
+        <li><a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Versión web</a></li>
+        <li><a href="https://wiki.luckgram.cc/en/">Centro de ayuda</a></li>
+      </ul></div>
+      <div><h2>Código fuente</h2><ul>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">Luckgram para iOS</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Luckgram para Android</a></li>
+      </ul></div>
+      <div><h2>Legal</h2><ul>
+        <li><a href="/en/privacy-policy/">Política de privacidad</a></li>
+        <li><a href="/en/terms-of-use/">Términos de uso</a></li>
+      </ul></div>
+      <div><h2>Contacto</h2><ul>
+        <li><a href="mailto:support@luckgram.cc">support@luckgram.cc</a></li>
+        <li><a href="mailto:contact@luckgram.cc">contact@luckgram.cc</a></li>
+        <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
+      </ul></div>
+    </div>
+    <nav class="all-langs" aria-label="Idioma"><ul><li><a href="/features/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="/en/features/" hreflang="en" lang="en">English</a></li><li><a href="/zh-hant/features/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li><li><a href="/ru/features/" hreflang="ru" lang="ru">Русский</a></li><li><a href="/es/features/" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/features/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/ar/features/" hreflang="ar" lang="ar">العربية</a></li><li><a href="/fa/features/" hreflang="fa" lang="fa">فارسی</a></li><li><a href="/id/features/" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/tr/features/" hreflang="tr" lang="tr">Türkçe</a></li></ul></nav>
+    <div class="legal">
+      <p>Luckgram es una app independiente basada en las apps de código abierto de Telegram. No está desarrollada por Telegram, ni afiliada a Telegram, ni cuenta con su respaldo. Telegram es una marca comercial de Telegram FZ-LLC.</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
+  </div>
+</footer>
+<script>
+// Menus (language, navigation on a phone): one open at a time, closed by Escape or a click elsewhere.
+(function () {
+  var menus = document.querySelectorAll("details.menu");
+  function close(except) { menus.forEach(function (m) { if (m !== except) m.open = false; }); }
+  menus.forEach(function (m) { m.addEventListener("toggle", function () { if (m.open) close(m); }); });
+  document.addEventListener("click", function (e) { if (!e.target.closest || !e.target.closest("details.menu")) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+})();
+
+// The page is never changed for the visitor: when the browser asks for another language this page
+// has, a bar offers it, in that language. Closing it is remembered.
+(function () {
+  var offers = {"zh-hans": ["/features/", "本页有简体中文版", "切换", "关闭"], "en": ["/en/features/", "This page is available in English", "Switch", "Close"], "zh-hant": ["/zh-hant/features/", "本頁有繁體中文版", "切換", "關閉"], "ru": ["/ru/features/", "Эта страница есть на русском", "Перейти", "Закрыть"], "es": ["/es/features/", "Esta página está disponible en español", "Cambiar", "Cerrar"], "pt-br": ["/pt-br/features/", "Esta página está disponível em português", "Mudar", "Fechar"], "ar": ["/ar/features/", "هذه الصفحة متوفرة بالعربية", "تبديل", "إغلاق"], "fa": ["/fa/features/", "این صفحه به فارسی در دسترس است", "تغییر", "بستن"], "id": ["/id/features/", "Halaman ini tersedia dalam bahasa Indonesia", "Ganti", "Tutup"], "tr": ["/tr/features/", "Bu sayfa Türkçe olarak mevcut", "Değiştir", "Kapat"]}, here = document.documentElement.lang.toLowerCase(), wanted = navigator.languages || [navigator.language || ""];
+  function match(l) {
+    l = String(l).toLowerCase();
+    if (l.indexOf("zh") === 0) return /hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans";
+    if (offers[l]) return l;
+    var base = l.split("-")[0];
+    for (var k in offers) if (k.split("-")[0] === base) return k;
+  }
+  var want = match(wanted[0]);
+  try { if (localStorage.getItem("lg-lang-offer") === "no") return; } catch (e) {}
+  if (!want || want === here || !offers[want]) return;
+  var o = offers[want], bar = document.createElement("div"), a = document.createElement("a"), x = document.createElement("button");
+  bar.className = "offer"; bar.lang = want; bar.dir = /^(ar|fa)/.test(want) ? "rtl" : "ltr";
+  bar.appendChild(document.createTextNode(o[1] + " "));
+  a.href = o[0]; a.textContent = o[2]; a.hreflang = want; bar.appendChild(a);
+  x.type = "button"; x.textContent = "\u00d7"; x.setAttribute("aria-label", o[3]);
+  x.onclick = function () { bar.remove(); try { localStorage.setItem("lg-lang-offer", "no"); } catch (e) {} };
+  bar.appendChild(x); document.body.insertBefore(bar, document.body.firstChild);
+})();
+
+// The download buttons of this visitor's device come first.
+(function () {
+  var ua = navigator.userAgent, os = /Android/i.test(ua) ? "android" : (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) ? "ios" : /Windows/i.test(ua) ? "windows" : "";
+  if (!os) return;
+  document.querySelectorAll("[data-smart]").forEach(function (box) {
+    var mine = box.querySelectorAll('[data-os="' + os + '"]'); if (!mine.length) return;
+    box.setAttribute("data-smart", os);
+    box.querySelectorAll("[data-os]").forEach(function (b) { b.classList.remove("primary"); });
+    // on an iPhone the build that installs without a computer is the one to offer first
+    var first = (os === "ios" && box.querySelector("[data-ios-install]")) || mine[0];
+    mine.forEach(function (b) { b.classList.add("mine"); }); first.classList.add("primary", "first");
+  });
+})();
+
+// Download buttons: /download/latest.json is written by the app CI after each master release
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
+(function () {
+  var words = {"version": "Versión", "build": "compilación"};
+  function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
+  function day(s) { return (s || "").slice(0, 10); }
+  function meta(el, r, f) {
+    if (!el || !f) return;
+    var line = words.version + " " + r.version + " \u00b7 " + words.build + " " + r.build +
+      " \u00b7 " + day(r.published_at) + " \u00b7 " + mb(f.size);
+    el.textContent = "";
+    var p = document.createElement("p"); p.textContent = line; p.dir = "auto"; el.appendChild(p);
+    var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
+    s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
+    el.hidden = false;
+  }
+  // Mirror (specs#160): on lg-www.cat158.com, or when dl.luckgram.cc can't be reached from this
+  // network, the buttons use lg-dl.cat158.com, which serves the same files.
+  var DL = "https://dl.luckgram.cc/", ALT = "https://lg-dl.cat158.com/";
+  var dlBase = location.hostname === "lg-www.cat158.com" ? ALT : DL;
+  function dlURL(u) { return u.indexOf(DL) === 0 ? dlBase + u.slice(DL.length) : u; }
+  function useAlt() {
+    dlBase = ALT;
+    document.querySelectorAll("[data-dl]").forEach(function (a) { a.href = dlURL(a.href); });
+  }
+  if (window.fetch && dlBase === DL && document.querySelector("[data-dl]")) {
+    var probe = setTimeout(useAlt, 6000);
+    fetch(DL + "ping", {method: "HEAD", mode: "no-cors", cache: "no-store"})
+      .then(function () { clearTimeout(probe); }, function () { clearTimeout(probe); useAlt(); });
+  }
+  function set(key, r, f) {
+    if (!f || f.url.indexOf(DL) !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = dlURL(f.url); });
+    meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
+    return true;
+  }
+  // Signed iOS install: the service's install domain changes, so the buttons get the current one at page load.
+  if (window.fetch && document.querySelector("[data-ios-install]")) {
+    fetch("https://api.owcywmpr.com/api/mdm/link/yx6sv23c").then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || String(j.link_jump || "").indexOf("https://") !== 0) return;
+      document.querySelectorAll("[data-ios-install]").forEach(function (a) { a.href = j.link_jump; });
+    }).catch(function () {});
+  }
+  if (!window.fetch || !document.querySelector("[data-dl]")) return;
+  fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (!j) return;
+    if (j.ios) set("ios", j.ios, j.ios);
+    if (j.android) {
+      set("android", j.android, j.android.arm64);
+      if (set("android-x86_64", j.android, j.android.x86_64)) {
+        var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
+      }
+    }
+    if (j.windows) {
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
+    }
+  }).catch(function () {});
+})();
+
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
+</body>
+</html>
