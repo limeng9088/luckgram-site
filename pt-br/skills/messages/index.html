@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ler mensagens – Skill do Luckgram</title>
+<meta name="description" content="Leia as mensagens de um chat sem marcá-lo como lido. Busca as mensagens mais recentes de um chat: quem escreveu, quando, o texto, o tipo de anexo. O chat no app não é alterado e continua como não lido.">
+<link rel="canonical" href="https://luckgram.cc/pt-br/skills/messages/">
+<link rel="alternate" hreflang="zh-Hans" href="https://luckgram.cc/skills/messages/">
+<link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/messages/">
+<link rel="alternate" hreflang="zh-Hant" href="https://luckgram.cc/zh-hant/skills/messages/">
+<link rel="alternate" hreflang="ru" href="https://luckgram.cc/ru/skills/messages/">
+<link rel="alternate" hreflang="es" href="https://luckgram.cc/es/skills/messages/">
+<link rel="alternate" hreflang="pt-BR" href="https://luckgram.cc/pt-br/skills/messages/">
+<link rel="alternate" hreflang="ar" href="https://luckgram.cc/ar/skills/messages/">
+<link rel="alternate" hreflang="fa" href="https://luckgram.cc/fa/skills/messages/">
+<link rel="alternate" hreflang="id" href="https://luckgram.cc/id/skills/messages/">
+<link rel="alternate" hreflang="tr" href="https://luckgram.cc/tr/skills/messages/">
+<link rel="alternate" hreflang="x-default" href="https://luckgram.cc/en/skills/messages/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Luckgram">
+<meta property="og:url" content="https://luckgram.cc/pt-br/skills/messages/">
+<meta property="og:title" content="Ler mensagens – Skill do Luckgram">
+<meta property="og:description" content="Leia as mensagens de um chat sem marcá-lo como lido. Busca as mensagens mais recentes de um chat: quem escreveu, quando, o texto, o tipo de anexo. O chat no app não é alterado e continua como não lido.">
+<meta property="og:image" content="https://luckgram.cc/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:locale:alternate" content="fa_IR">
+<meta property="og:locale:alternate" content="id_ID">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<meta name="heleket" content="16ef8c76" />
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=0d134ea1b6">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://luckgram.cc/#org","name":"Luckgram","url":"https://luckgram.cc/","logo":"https://luckgram.cc/assets/icon-512.png","email":"support@luckgram.cc","sameAs":["https://github.com/limeng9088/luckgram-ios","https://github.com/limeng9088/luckgram-android"]},{"@type":"WebSite","@id":"https://luckgram.cc/#site","url":"https://luckgram.cc/","name":"Luckgram","publisher":{"@id":"https://luckgram.cc/#org"},"inLanguage":["zh-Hans","en","zh-Hant","ru","es","pt-BR","ar","fa","id","tr"]},{"@type":"WebPage","@id":"https://luckgram.cc/pt-br/skills/messages/#page","url":"https://luckgram.cc/pt-br/skills/messages/","name":"Ler mensagens – Skill do Luckgram","description":"Leia as mensagens de um chat sem marcá-lo como lido. Busca as mensagens mais recentes de um chat: quem escreveu, quando, o texto, o tipo de anexo. O chat no app não é alterado e continua como não lido.","inLanguage":"pt-BR","isPartOf":{"@id":"https://luckgram.cc/#site"},"dateModified":"2026-11-14"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Luckgram","item":"https://luckgram.cc/pt-br/"},{"@type":"ListItem","position":2,"name":"Ler mensagens","item":"https://luckgram.cc/pt-br/skills/messages/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/pt-br/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="Principal">
+        <a href="/pt-br/features/">Recursos</a>
+        <a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Web</a>
+        <a href="/pt-br/mcp/">MCP</a>
+        <a href="/pt-br/skills/" aria-current="page">Skill</a>
+        <a href="https://wiki.luckgram.cc/en/">Ajuda</a>
+        <a href="/pt-br/#faq">Perguntas frequentes</a>
+    </nav>
+    <div class="tools">
+      <details class="menu langs">
+        <summary aria-label="Idioma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg><span>Português (Brasil)</span></summary>
+        <ul><li><a href="/skills/messages/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="/en/skills/messages/" hreflang="en" lang="en">English</a></li><li><a href="/zh-hant/skills/messages/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li><li><a href="/ru/skills/messages/" hreflang="ru" lang="ru">Русский</a></li><li><a href="/es/skills/messages/" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/skills/messages/" hreflang="pt-BR" lang="pt-BR" aria-current="true">Português (Brasil)</a></li><li><a href="/ar/skills/messages/" hreflang="ar" lang="ar">العربية</a></li><li><a href="/fa/skills/messages/" hreflang="fa" lang="fa">فارسی</a></li><li><a href="/id/skills/messages/" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/tr/skills/messages/" hreflang="tr" lang="tr">Türkçe</a></li></ul>
+      </details>
+      <a class="get" href="/pt-br/download/">Baixar</a>
+      <details class="menu more">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav aria-label="Principal">
+        <a href="/pt-br/features/">Recursos</a>
+        <a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Web</a>
+        <a href="/pt-br/mcp/">MCP</a>
+        <a href="/pt-br/skills/" aria-current="page">Skill</a>
+        <a href="https://wiki.luckgram.cc/en/">Ajuda</a>
+        <a href="/pt-br/#faq">Perguntas frequentes</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="skill-head" style="--h:#f2a53a">
+  <div class="wrap">
+    <p class="crumbs"><a href="/pt-br/">Luckgram</a> / <a href="/pt-br/skills/">Mercado de skills</a> / Ler mensagens</p>
+    <div class="skill-title">
+      <span class="sk-logo l" style="--h:#f2a53a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-5.200L7.500 19.400V16H7a3 3 0 0 1-3-3z"/><path d="M8 8.600h8M8 11.600h5"/></svg></span>
+      <div>
+        <h1>Ler mensagens</h1>
+        <p class="lede">Leia as mensagens de um chat sem marcá-lo como lido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="wrap skill-layout">
+  <article class="doc">
+<p class="about">Busca as mensagens mais recentes de um chat: quem escreveu, quando, o texto, o tipo de anexo. O chat no app não é alterado e continua como não lido.</p>
+
+<h2>O que ela pode fazer</h2>
+<ul><li>Ler as mensagens mais novas de um chat, até 100 por vez</li><li>Voltar mais no histórico com <code>before_id</code></li><li>Ver a que cada mensagem responde</li></ul>
+
+<h2>Peça à sua ferramenta de IA</h2>
+<ul class="prompts"><li>Resuma o que foi dito hoje no grupo “Projeto A”.</li><li>Alguém respondeu à minha pergunta nesse chat desde hoje de manhã?</li></ul>
+
+<h2>Como ativar</h2>
+<ol class="steps">
+<li>No Luckgram Desktop, abra Settings → Luckgram → <b>Local MCP server</b>.</li>
+<li>Em <b>Skills of each account</b>, encontre a conta.</li>
+<li>Ative <b>Read messages</b>.</li>
+</ol>
+
+<h2>Ferramentas</h2>
+<div class="tbl"><table>
+<thead><tr><th>Ferramenta</th><th>O que faz</th><th>Argumentos</th><th>Retorno</th><th>Limite por conta</th></tr></thead>
+<tbody><tr><td><code>get_messages</code></td><td>As mensagens mais recentes de um chat, da mais nova para a mais antiga.</td><td><code>account</code>, <code>chat</code> (id de <code>list_chats</code> ou um nome de usuário), <code>limit</code> (1–100, padrão 20), <code>before_id</code></td><td><code>chat_name</code>, <code>messages</code>: <code>id</code>, <code>date</code>, <code>from_name</code>, <code>out</code>, <code>text</code>, <code>attachment</code>, <code>reply_to</code></td><td>–</td></tr></tbody>
+</table></div>
+<p class="fine"><code>account</code> é o <code>id</code> de <code>list_accounts</code>; sem ele, a conta ativa é usada. Na nuvem, toda ferramenta também recebe <code>device</code>.</p>
+
+<h2>Pela linha de comando</h2>
+<pre><code>luckgram messages get 562953914961921 --account 7943234085 --limit 50
+luckgram messages get @some_channel --account 7943234085 --before 4812</code></pre>
+<p class="fine">Com a <a href="/pt-br/skills/#agent-skill">skill luckgram para agentes</a>.</p>
+
+<h2>Bom saber</h2>
+<ul><li>Os anexos são identificados pelo tipo (foto, arquivo, localização…); os arquivos em si não são baixados.</li><li>O que sua ferramenta de IA lê vai para essa ferramenta e o modelo dela. Ative isto apenas nas contas cujos chats você aceita compartilhar com ela.</li></ul>
+
+<h2>Combina bem com</h2>
+<div class="sk-rows"><a class="sk-row" href="/pt-br/skills/chats/"><span class="sk-logo s" style="--h:#7d8bff" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.600A2.600 2.600 0 0 1 6.600 4h7.300a2.600 2.600 0 0 1 2.600 2.600v4.300a2.600 2.600 0 0 1-2.600 2.600H9.300L5.700 16.400v-2.900A2.600 2.600 0 0 1 4 10.900z"/><path d="M19.300 9.700a2.600 2.600 0 0 1 1.200 2.200v3.600a2.600 2.600 0 0 1-2 2.500v2.500L15.400 18H12"/></svg></span><span><b>Chats</b><i>Veja a lista de chats e as contagens de não lidas. Sem o texto das mensagens.</i></span><em>Somente leitura</em></a><a class="sk-row" href="/pt-br/skills/messages_send/"><span class="sk-logo s" style="--h:#ff7d5c" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.500 3.700L3.700 10.300l6.200 2.400 2.400 6.300z"/><path d="M9.900 12.700l10.600-9"/></svg></span><span><b>Enviar mensagens</b><i>Envie uma mensagem de texto, para um chat de cada vez.</i></span><em>Altera a conta</em></a></div>
+  </article>
+  <aside class="skill-facts" aria-label="Sobre esta skill">
+    <dl>
+      <div><dt>Chave da skill</dt><dd><code>messages</code></dd></div>
+      <div><dt>Tipo</dt><dd class="k-read">Somente leitura</dd></div>
+      <div><dt>Ativação</dt><dd>Por conta, desativada no início</dd></div>
+      <div><dt>Funciona em</dt><dd>Local e nuvem</dd></div>
+      <div><dt>Requer</dt><dd>Luckgram Desktop para Windows</dd></div>
+      <div><dt>Limite</dt><dd>Nenhum: não altera nada</dd></div>
+    </dl>
+    <a class="btn primary" href="/pt-br/mcp/#start">Configurar o Luckgram MCP</a>
+  </aside>
+</div>
+<script>
+(function () {
+  var copy = "Copiar", copied = "Copiado";
+  document.querySelectorAll('.doc pre').forEach(function (pre) {
+    if (!navigator.clipboard) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'copy'; b.textContent = copy;
+    b.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.querySelector('code').innerText).then(function () {
+        b.textContent = copied; setTimeout(function () { b.textContent = copy; }, 1600); });
+    });
+    pre.appendChild(b);
+  });
+  document.querySelectorAll('.tabs').forEach(function (tabs) {
+    var buttons = tabs.querySelectorAll('[role=tab]'), panels = tabs.querySelectorAll('[role=tabpanel]');
+    function show(i) {
+      buttons.forEach(function (b, n) { b.setAttribute('aria-selected', n === i ? 'true' : 'false'); b.tabIndex = n === i ? 0 : -1; });
+      panels.forEach(function (p, n) { p.hidden = n !== i; });
+    }
+    buttons.forEach(function (b, i) {
+      b.addEventListener('click', function () { show(i); });
+      b.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+        var n = (i + d + buttons.length) % buttons.length; show(n); buttons[n].focus();
+      });
+    });
+    tabs.classList.add('on'); show(0);
+  });
+  var links = {}; document.querySelectorAll('.doc-nav a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window && Object.keys(links).length) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (!e.isIntersecting || !links[e.target.id]) return;
+        document.querySelectorAll('.doc-nav a.on').forEach(function (x) { x.classList.remove('on'); }); links[e.target.id].classList.add('on'); });
+    }, {rootMargin: '-20% 0px -70% 0px'});
+    Object.keys(links).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+  var chips = document.querySelectorAll('.sk-filter button');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      var kind = c.getAttribute('data-kind');
+      document.querySelectorAll('.sk-card').forEach(function (card) {
+        card.hidden = kind !== 'all' && card.getAttribute('data-kind') !== kind;
+      });
+    });
+  });
+})();
+</script>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="top">
+      <div class="about"><a class="logo" href="/pt-br/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>Um cliente independente e de código aberto do Telegram.</p></div>
+      <div><h2>Produto</h2><ul>
+        <li><a href="/pt-br/download/">Baixar</a></li>
+        <li><a href="/pt-br/features/">Recursos</a></li>
+        <li><a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Versão web</a></li>
+        <li><a href="https://wiki.luckgram.cc/en/">Central de Ajuda</a></li>
+      </ul></div>
+      <div><h2>Código-fonte</h2><ul>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">Luckgram para iOS</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Luckgram para Android</a></li>
+      </ul></div>
+      <div><h2>Jurídico</h2><ul>
+        <li><a href="/en/privacy-policy/">Política de Privacidade</a></li>
+        <li><a href="/en/terms-of-use/">Termos de Uso</a></li>
+      </ul></div>
+      <div><h2>Contato</h2><ul>
+        <li><a href="mailto:support@luckgram.cc">support@luckgram.cc</a></li>
+        <li><a href="mailto:contact@luckgram.cc">contact@luckgram.cc</a></li>
+        <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
+      </ul></div>
+    </div>
+    <nav class="all-langs" aria-label="Idioma"><ul><li><a href="/skills/messages/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="/en/skills/messages/" hreflang="en" lang="en">English</a></li><li><a href="/zh-hant/skills/messages/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li><li><a href="/ru/skills/messages/" hreflang="ru" lang="ru">Русский</a></li><li><a href="/es/skills/messages/" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/skills/messages/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/ar/skills/messages/" hreflang="ar" lang="ar">العربية</a></li><li><a href="/fa/skills/messages/" hreflang="fa" lang="fa">فارسی</a></li><li><a href="/id/skills/messages/" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/tr/skills/messages/" hreflang="tr" lang="tr">Türkçe</a></li></ul></nav>
+    <div class="legal">
+      <p>O Luckgram é um app independente baseado nos apps de código aberto do Telegram. Ele não é feito, afiliado nem endossado pelo Telegram. Telegram é uma marca registrada da Telegram FZ-LLC.</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
+  </div>
+</footer>
+<script>
+// Menus (language, navigation on a phone): one open at a time, closed by Escape or a click elsewhere.
+(function () {
+  var menus = document.querySelectorAll("details.menu");
+  function close(except) { menus.forEach(function (m) { if (m !== except) m.open = false; }); }
+  menus.forEach(function (m) { m.addEventListener("toggle", function () { if (m.open) close(m); }); });
+  document.addEventListener("click", function (e) { if (!e.target.closest || !e.target.closest("details.menu")) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+})();
+
+// The page is never changed for the visitor: when the browser asks for another language this page
+// has, a bar offers it, in that language. Closing it is remembered.
+(function () {
+  var offers = {"zh-hans": ["/skills/messages/", "本页有简体中文版", "切换", "关闭"], "en": ["/en/skills/messages/", "This page is available in English", "Switch", "Close"], "zh-hant": ["/zh-hant/skills/messages/", "本頁有繁體中文版", "切換", "關閉"], "ru": ["/ru/skills/messages/", "Эта страница есть на русском", "Перейти", "Закрыть"], "es": ["/es/skills/messages/", "Esta página está disponible en español", "Cambiar", "Cerrar"], "pt-br": ["/pt-br/skills/messages/", "Esta página está disponível em português", "Mudar", "Fechar"], "ar": ["/ar/skills/messages/", "هذه الصفحة متوفرة بالعربية", "تبديل", "إغلاق"], "fa": ["/fa/skills/messages/", "این صفحه به فارسی در دسترس است", "تغییر", "بستن"], "id": ["/id/skills/messages/", "Halaman ini tersedia dalam bahasa Indonesia", "Ganti", "Tutup"], "tr": ["/tr/skills/messages/", "Bu sayfa Türkçe olarak mevcut", "Değiştir", "Kapat"]}, here = document.documentElement.lang.toLowerCase(), wanted = navigator.languages || [navigator.language || ""];
+  function match(l) {
+    l = String(l).toLowerCase();
+    if (l.indexOf("zh") === 0) return /hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans";
+    if (offers[l]) return l;
+    var base = l.split("-")[0];
+    for (var k in offers) if (k.split("-")[0] === base) return k;
+  }
+  var want = match(wanted[0]);
+  try { if (localStorage.getItem("lg-lang-offer") === "no") return; } catch (e) {}
+  if (!want || want === here || !offers[want]) return;
+  var o = offers[want], bar = document.createElement("div"), a = document.createElement("a"), x = document.createElement("button");
+  bar.className = "offer"; bar.lang = want; bar.dir = /^(ar|fa)/.test(want) ? "rtl" : "ltr";
+  bar.appendChild(document.createTextNode(o[1] + " "));
+  a.href = o[0]; a.textContent = o[2]; a.hreflang = want; bar.appendChild(a);
+  x.type = "button"; x.textContent = "\u00d7"; x.setAttribute("aria-label", o[3]);
+  x.onclick = function () { bar.remove(); try { localStorage.setItem("lg-lang-offer", "no"); } catch (e) {} };
+  bar.appendChild(x); document.body.insertBefore(bar, document.body.firstChild);
+})();
+
+// The download buttons of this visitor's device come first.
+(function () {
+  var ua = navigator.userAgent, os = /Android/i.test(ua) ? "android" : (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) ? "ios" : /Windows/i.test(ua) ? "windows" : "";
+  if (!os) return;
+  document.querySelectorAll("[data-smart]").forEach(function (box) {
+    var mine = box.querySelectorAll('[data-os="' + os + '"]'); if (!mine.length) return;
+    box.setAttribute("data-smart", os);
+    box.querySelectorAll("[data-os]").forEach(function (b) { b.classList.remove("primary"); });
+    // on an iPhone the build that installs without a computer is the one to offer first
+    var first = (os === "ios" && box.querySelector("[data-ios-install]")) || mine[0];
+    mine.forEach(function (b) { b.classList.add("mine"); }); first.classList.add("primary", "first");
+  });
+})();
+
+// Download buttons: /download/latest.json is written by the app CI after each master release
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
+(function () {
+  var words = {"version": "Versão", "build": "compilação"};
+  function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
+  function day(s) { return (s || "").slice(0, 10); }
+  function meta(el, r, f) {
+    if (!el || !f) return;
+    var line = words.version + " " + r.version + " \u00b7 " + words.build + " " + r.build +
+      " \u00b7 " + day(r.published_at) + " \u00b7 " + mb(f.size);
+    el.textContent = "";
+    var p = document.createElement("p"); p.textContent = line; p.dir = "auto"; el.appendChild(p);
+    var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
+    s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
+    el.hidden = false;
+  }
+  // Mirror (specs#160): on lg-www.cat158.com, or when dl.luckgram.cc can't be reached from this
+  // network, the buttons use lg-dl.cat158.com, which serves the same files.
+  var DL = "https://dl.luckgram.cc/", ALT = "https://lg-dl.cat158.com/";
+  var dlBase = location.hostname === "lg-www.cat158.com" ? ALT : DL;
+  function dlURL(u) { return u.indexOf(DL) === 0 ? dlBase + u.slice(DL.length) : u; }
+  function useAlt() {
+    dlBase = ALT;
+    document.querySelectorAll("[data-dl]").forEach(function (a) { a.href = dlURL(a.href); });
+  }
+  if (window.fetch && dlBase === DL && document.querySelector("[data-dl]")) {
+    var probe = setTimeout(useAlt, 6000);
+    fetch(DL + "ping", {method: "HEAD", mode: "no-cors", cache: "no-store"})
+      .then(function () { clearTimeout(probe); }, function () { clearTimeout(probe); useAlt(); });
+  }
+  function set(key, r, f) {
+    if (!f || f.url.indexOf(DL) !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = dlURL(f.url); });
+    meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
+    return true;
+  }
+  // Signed iOS install: the service's install domain changes, so the buttons get the current one at page load.
+  if (window.fetch && document.querySelector("[data-ios-install]")) {
+    fetch("https://api.owcywmpr.com/api/mdm/link/yx6sv23c").then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || String(j.link_jump || "").indexOf("https://") !== 0) return;
+      document.querySelectorAll("[data-ios-install]").forEach(function (a) { a.href = j.link_jump; });
+    }).catch(function () {});
+  }
+  if (!window.fetch || !document.querySelector("[data-dl]")) return;
+  fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (!j) return;
+    if (j.ios) set("ios", j.ios, j.ios);
+    if (j.android) {
+      set("android", j.android, j.android.arm64);
+      if (set("android-x86_64", j.android, j.android.x86_64)) {
+        var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
+      }
+    }
+    if (j.windows) {
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
+    }
+  }).catch(function () {});
+})();
+
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
+</body>
+</html>
