@@ -763,6 +763,28 @@ SKILLS = [
           "<code>account</code>、<code>chat</code>、<code>text</code>，可选 <code>reply_to</code>"),
          ("30 an hour, 200 a day", "每小时 30 次，每天 200 次")),
      ]),
+    ("chats_manage", ("Manage chats", "管理会话"),
+     ("Mark chats as read.", "把会话标记为已读。"), True, [
+        ("mark_chat_read", ("Mark every message of one chat as read.", "把一个会话里的消息全部标记为已读。"),
+         ("<code>account</code>, <code>chat</code>", "<code>account</code>、<code>chat</code>"),
+         ("60 an hour, 500 a day", "每小时 60 次，每天 500 次")),
+     ]),
+    ("groups", ("Groups and channels", "群组和频道"),
+     ("Join public groups and channels, and leave them.", "加入公开的群组或频道，退出群组或频道。"), True, [
+        ("join_chat", ("Join one public group or channel.", "加入一个公开的群组或频道。"),
+         ("<code>account</code>, <code>chat</code>", "<code>account</code>、<code>chat</code>"),
+         ("5 an hour, 20 a day", "每小时 5 次，每天 20 次")),
+        ("leave_chat", ("Leave one supergroup or channel. A chat the account owns is not left this way.", "退出一个超级群或频道。自己创建的不能用它退出。"),
+         ("<code>account</code>, <code>chat</code>", "<code>account</code>、<code>chat</code>"),
+         ("10 an hour, 30 a day", "每小时 10 次，每天 30 次")),
+     ]),
+    ("profile", ("Profile", "资料"),
+     ("Change the account's name and bio.", "修改账号的昵称和简介。"), True, [
+        ("update_profile", ("Change the name and / or the bio; what is left out stays.", "修改昵称和（或）简介，没填的保持不变。"),
+         ("<code>account</code>, at least one of <code>first_name</code>, <code>last_name</code>, <code>bio</code>",
+          "<code>account</code>，<code>first_name</code>、<code>last_name</code>、<code>bio</code> 至少一个"),
+         ("5 an hour, 10 a day", "每小时 5 次，每天 10 次")),
+     ]),
 ]
 
 MCP_CONFIG = """{
@@ -884,17 +906,11 @@ def skills():
 
 {"".join(cards)}
 
-<h2>{t("Coming next", "接下来")}</h2>
-<ul>
-<li>{t("Groups and channels: join, leave, members.", "群组和频道：加入、退出、成员列表。")}</li>
-<li>{t("Profile: name, photo, bio.", "资料：昵称、头像、简介。")}</li>
-</ul>
-
 <p class="note">{t("Limits are counted per account and per tool, and survive a restart. They keep accounts from being restricted by Telegram and cannot be switched off.", "频率上限按账号、按工具计数，重启后仍然有效。它用来避免账号被 Telegram 限制，不能关闭。")}</p>
 </article>"""
     page("/skills/", t("Luckgram Skills – what AI tools can do per account", "Luckgram Skill – AI 工具能对每个账号做什么"),
-         t("The skills of Luckgram MCP: accounts, friends, chats, messages. Each one is switched on per account.",
-           "Luckgram MCP 的 Skill：账号、好友、会话、消息。每个 Skill 按账号单独开启。"),
+         t("The skills of Luckgram MCP: accounts, friends, chats, messages, groups, profile. Each one is switched on per account.",
+           "Luckgram MCP 的 Skill：账号、好友、会话、消息、群组、资料。每个 Skill 按账号单独开启。"),
          body, "skills")
 
 

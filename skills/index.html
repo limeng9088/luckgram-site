@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Luckgram Skill – AI 工具能对每个账号做什么</title>
-<meta name="description" content="Luckgram MCP 的 Skill：账号、好友、会话、消息。每个 Skill 按账号单独开启。">
+<meta name="description" content="Luckgram MCP 的 Skill：账号、好友、会话、消息、群组、资料。每个 Skill 按账号单独开启。">
 <meta property="og:title" content="Luckgram Skill – AI 工具能对每个账号做什么">
-<meta property="og:description" content="Luckgram MCP 的 Skill：账号、好友、会话、消息。每个 Skill 按账号单独开启。">
+<meta property="og:description" content="Luckgram MCP 的 Skill：账号、好友、会话、消息、群组、资料。每个 Skill 按账号单独开启。">
 <meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
 <link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/skills/">
 <link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/">
@@ -70,13 +70,22 @@
 <div class="tbl"><table>
 <thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
 <tbody><tr><td><code>send_message</code></td><td>向一个会话发送一条纯文本消息，走应用自己的发送流程。</td><td><code>account</code>、<code>chat</code>、<code>text</code>，可选 <code>reply_to</code></td><td>每小时 30 次，每天 200 次</td></tr></tbody>
+</table></div><h2 id="chats_manage">管理会话 <code>chats_manage</code></h2>
+<p>把会话标记为已读。 <span class="kind">会改动账号 · 开启时确认一次</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>mark_chat_read</code></td><td>把一个会话里的消息全部标记为已读。</td><td><code>account</code>、<code>chat</code></td><td>每小时 60 次，每天 500 次</td></tr></tbody>
+</table></div><h2 id="groups">群组和频道 <code>groups</code></h2>
+<p>加入公开的群组或频道，退出群组或频道。 <span class="kind">会改动账号 · 开启时确认一次</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>join_chat</code></td><td>加入一个公开的群组或频道。</td><td><code>account</code>、<code>chat</code></td><td>每小时 5 次，每天 20 次</td></tr><tr><td><code>leave_chat</code></td><td>退出一个超级群或频道。自己创建的不能用它退出。</td><td><code>account</code>、<code>chat</code></td><td>每小时 10 次，每天 30 次</td></tr></tbody>
+</table></div><h2 id="profile">资料 <code>profile</code></h2>
+<p>修改账号的昵称和简介。 <span class="kind">会改动账号 · 开启时确认一次</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>update_profile</code></td><td>修改昵称和（或）简介，没填的保持不变。</td><td><code>account</code>，<code>first_name</code>、<code>last_name</code>、<code>bio</code> 至少一个</td><td>每小时 5 次，每天 10 次</td></tr></tbody>
 </table></div>
-
-<h2>接下来</h2>
-<ul>
-<li>群组和频道：加入、退出、成员列表。</li>
-<li>资料：昵称、头像、简介。</li>
-</ul>
 
 <p class="note">频率上限按账号、按工具计数，重启后仍然有效。它用来避免账号被 Telegram 限制，不能关闭。</p>
 </article>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Luckgram Skills – what AI tools can do per account</title>
-<meta name="description" content="The skills of Luckgram MCP: accounts, friends, chats, messages. Each one is switched on per account.">
+<meta name="description" content="The skills of Luckgram MCP: accounts, friends, chats, messages, groups, profile. Each one is switched on per account.">
 <meta property="og:title" content="Luckgram Skills – what AI tools can do per account">
-<meta property="og:description" content="The skills of Luckgram MCP: accounts, friends, chats, messages. Each one is switched on per account.">
+<meta property="og:description" content="The skills of Luckgram MCP: accounts, friends, chats, messages, groups, profile. Each one is switched on per account.">
 <meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
 <link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/skills/">
 <link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/">
@@ -70,13 +70,22 @@
 <div class="tbl"><table>
 <thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
 <tbody><tr><td><code>send_message</code></td><td>Send one plain text message to one chat, through the app's normal sending.</td><td><code>account</code>, <code>chat</code>, <code>text</code>, optional <code>reply_to</code></td><td>30 an hour, 200 a day</td></tr></tbody>
+</table></div><h2 id="chats_manage">Manage chats <code>chats_manage</code></h2>
+<p>Mark chats as read. <span class="kind">Changes the account · asks once when switched on</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>mark_chat_read</code></td><td>Mark every message of one chat as read.</td><td><code>account</code>, <code>chat</code></td><td>60 an hour, 500 a day</td></tr></tbody>
+</table></div><h2 id="groups">Groups and channels <code>groups</code></h2>
+<p>Join public groups and channels, and leave them. <span class="kind">Changes the account · asks once when switched on</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>join_chat</code></td><td>Join one public group or channel.</td><td><code>account</code>, <code>chat</code></td><td>5 an hour, 20 a day</td></tr><tr><td><code>leave_chat</code></td><td>Leave one supergroup or channel. A chat the account owns is not left this way.</td><td><code>account</code>, <code>chat</code></td><td>10 an hour, 30 a day</td></tr></tbody>
+</table></div><h2 id="profile">Profile <code>profile</code></h2>
+<p>Change the account's name and bio. <span class="kind">Changes the account · asks once when switched on</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>update_profile</code></td><td>Change the name and / or the bio; what is left out stays.</td><td><code>account</code>, at least one of <code>first_name</code>, <code>last_name</code>, <code>bio</code></td><td>5 an hour, 10 a day</td></tr></tbody>
 </table></div>
-
-<h2>Coming next</h2>
-<ul>
-<li>Groups and channels: join, leave, members.</li>
-<li>Profile: name, photo, bio.</li>
-</ul>
 
 <p class="note">Limits are counted per account and per tool, and survive a restart. They keep accounts from being restricted by Telegram and cannot be switched off.</p>
 </article>
