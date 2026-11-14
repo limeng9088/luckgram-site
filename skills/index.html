@@ -8,6 +8,14 @@
 <link rel="canonical" href="https://luckgram.cc/skills/">
 <link rel="alternate" hreflang="zh-Hans" href="https://luckgram.cc/skills/">
 <link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/">
+<link rel="alternate" hreflang="zh-Hant" href="https://luckgram.cc/zh-hant/skills/">
+<link rel="alternate" hreflang="ru" href="https://luckgram.cc/ru/skills/">
+<link rel="alternate" hreflang="es" href="https://luckgram.cc/es/skills/">
+<link rel="alternate" hreflang="pt-BR" href="https://luckgram.cc/pt-br/skills/">
+<link rel="alternate" hreflang="ar" href="https://luckgram.cc/ar/skills/">
+<link rel="alternate" hreflang="fa" href="https://luckgram.cc/fa/skills/">
+<link rel="alternate" hreflang="id" href="https://luckgram.cc/id/skills/">
+<link rel="alternate" hreflang="tr" href="https://luckgram.cc/tr/skills/">
 <link rel="alternate" hreflang="x-default" href="https://luckgram.cc/en/skills/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Luckgram">
@@ -19,6 +27,14 @@
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:locale:alternate" content="fa_IR">
+<meta property="og:locale:alternate" content="id_ID">
+<meta property="og:locale:alternate" content="tr_TR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#000000">
 <meta name="heleket" content="16ef8c76" />
@@ -44,7 +60,7 @@
     <div class="tools">
       <details class="menu langs">
         <summary aria-label="语言"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg><span>简体中文</span></summary>
-        <ul><li><a href="/skills/" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a></li><li><a href="/en/skills/" hreflang="en" lang="en">English</a></li></ul>
+        <ul><li><a href="/skills/" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a></li><li><a href="/en/skills/" hreflang="en" lang="en">English</a></li><li><a href="/zh-hant/skills/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li><li><a href="/ru/skills/" hreflang="ru" lang="ru">Русский</a></li><li><a href="/es/skills/" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/skills/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/ar/skills/" hreflang="ar" lang="ar">العربية</a></li><li><a href="/fa/skills/" hreflang="fa" lang="fa">فارسی</a></li><li><a href="/id/skills/" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/tr/skills/" hreflang="tr" lang="tr">Türkçe</a></li></ul>
       </details>
       <a class="get" href="/download/">下载</a>
       <details class="menu more">
@@ -271,7 +287,7 @@ node ~/.claude/skills/luckgram/bin/luckgram config --local --token-stdin</code><
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
-    <nav class="all-langs" aria-label="语言"><ul><li><a href="/skills/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="/en/skills/" hreflang="en" lang="en">English</a></li></ul></nav>
+    <nav class="all-langs" aria-label="语言"><ul><li><a href="/skills/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="/en/skills/" hreflang="en" lang="en">English</a></li><li><a href="/zh-hant/skills/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li><li><a href="/ru/skills/" hreflang="ru" lang="ru">Русский</a></li><li><a href="/es/skills/" hreflang="es" lang="es">Español</a></li><li><a href="/pt-br/skills/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="/ar/skills/" hreflang="ar" lang="ar">العربية</a></li><li><a href="/fa/skills/" hreflang="fa" lang="fa">فارسی</a></li><li><a href="/id/skills/" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="/tr/skills/" hreflang="tr" lang="tr">Türkçe</a></li></ul></nav>
     <div class="legal">
       <p>Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
       <p>&copy; 2026 Luckgram</p>
@@ -291,7 +307,7 @@ node ~/.claude/skills/luckgram/bin/luckgram config --local --token-stdin</code><
 // The page is never changed for the visitor: when the browser asks for another language this page
 // has, a bar offers it, in that language. Closing it is remembered.
 (function () {
-  var offers = {"zh-hans": ["/skills/", "本页有简体中文版", "切换", "关闭"], "en": ["/en/skills/", "This page is available in English", "Switch", "Close"]}, here = document.documentElement.lang.toLowerCase(), wanted = navigator.languages || [navigator.language || ""];
+  var offers = {"zh-hans": ["/skills/", "本页有简体中文版", "切换", "关闭"], "en": ["/en/skills/", "This page is available in English", "Switch", "Close"], "zh-hant": ["/zh-hant/skills/", "本頁有繁體中文版", "切換", "關閉"], "ru": ["/ru/skills/", "Эта страница есть на русском", "Перейти", "Закрыть"], "es": ["/es/skills/", "Esta página está disponible en español", "Cambiar", "Cerrar"], "pt-br": ["/pt-br/skills/", "Esta página está disponível em português", "Mudar", "Fechar"], "ar": ["/ar/skills/", "هذه الصفحة متوفرة بالعربية", "تبديل", "إغلاق"], "fa": ["/fa/skills/", "این صفحه به فارسی در دسترس است", "تغییر", "بستن"], "id": ["/id/skills/", "Halaman ini tersedia dalam bahasa Indonesia", "Ganti", "Tutup"], "tr": ["/tr/skills/", "Bu sayfa Türkçe olarak mevcut", "Değiştir", "Kapat"]}, here = document.documentElement.lang.toLowerCase(), wanted = navigator.languages || [navigator.language || ""];
   function match(l) {
     l = String(l).toLowerCase();
     if (l.indexOf("zh") === 0) return /hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans";

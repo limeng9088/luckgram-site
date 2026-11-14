@@ -68,8 +68,6 @@ LANGS = tuple(c for c in LANGUAGES if c in ("zh", "en") or os.path.exists(os.pat
 # Pages written in Chinese and English only (legal text is not machine-translated): the other
 # languages link to the English one, traditional Chinese to the simplified one.
 LEGAL_LANGS = ("zh", "en")
-# The MCP and Skill pages: technical documentation, kept in step with the app by hand.
-DOC_LANGS = ("zh", "en")
 X_DEFAULT = "en"   # what a visitor whose language is not listed is offered
 LANG = "zh"  # the language currently being rendered
 CATALOG = {}   # code -> {English text: translation}
@@ -141,11 +139,6 @@ def legal(path):
     return u(path, LANG if LANG in LEGAL_LANGS else ("zh" if LANG == "zh-hant" else "en"))
 
 
-def doc(path):
-    """The address of a page written in Chinese and English only (see DOC_LANGS)."""
-    return u(path, LANG if LANG in DOC_LANGS else ("zh" if LANG == "zh-hant" else "en"))
-
-
 def wiki(path="/"):
     """Help Center link: it is written in Chinese (at /) and English (at /en/)."""
     return WIKI_HOST + (path if chinese() else "/en" + path)
@@ -199,8 +192,8 @@ def header(current, here, langs):
     links = "\n        ".join([
         link(u("/features/"), t("Features", "功能"), "features"),
         link("https://web.luckgram.cc/", t("Web", "网页版"), "web", new_tab=True),
-        link(doc("/mcp/"), "MCP", "mcp"),
-        link(doc("/skills/"), "Skill", "skills"),
+        link(u("/mcp/"), "MCP", "mcp"),
+        link(u("/skills/"), "Skill", "skills"),
         link(wiki(), t("Help", "帮助"), "help"),
         link(u("/#faq"), t("FAQ", "常见问题"), "faq"),
     ])
@@ -972,7 +965,7 @@ def features():
          body, "features", ld=[listing], crumb=t("Features", "功能"))
 
 
-# ---- MCP documentation and the Skill market (Chinese and English, see DOC_LANGS) ----
+# ---- MCP documentation and the Skill market ----
 
 MCP_CONFIG = """{
   "mcpServers": {
@@ -1230,7 +1223,7 @@ def mcp():
     page("/mcp/", t("Luckgram MCP – connect AI tools to your Telegram accounts", "Luckgram MCP – 让 AI 工具操作你的 Telegram 账号"),
          t("Luckgram Desktop has an MCP server built in: AI tools list your accounts, switch between them and use the skills you allow for each account.",
            "Luckgram 桌面版内置 MCP 接口：AI 工具可以列出账号、切换账号，并使用你为每个账号开启的 Skill。"),
-         body, "mcp", langs=DOC_LANGS, crumb="MCP")
+         body, "mcp", crumb="MCP")
 
 
 def switchboard():
@@ -1319,7 +1312,7 @@ def skills():
     page("/skills/", t("Luckgram Skill market – what AI tools can do with each account", "Luckgram Skill 市场 – AI 工具能对每个账号做什么"),
          t("The skills of Luckgram MCP: accounts, friends, chats, messages, groups, profile. Each one is switched on per account.",
            "Luckgram MCP 的 Skill：账号、好友、会话、消息、群组、资料。每个 Skill 按账号单独开启。"),
-         body, "skills", langs=DOC_LANGS, crumb="Skill")
+         body, "skills", crumb="Skill")
 
 
 def skill_page(sk):
@@ -1403,7 +1396,7 @@ def skill_page(sk):
 </div>
 {doc_script()}"""
     page(here, t(f"{sk['name'][0]} – Luckgram Skill", f"{sk['name'][1]} – Luckgram Skill"),
-         plain(t(*sk["tagline"]) + " " + t(*sk["about"])), body, "skills", langs=DOC_LANGS, crumb=name)
+         plain(t(*sk["tagline"]) + " " + t(*sk["about"])), body, "skills", crumb=name)
 
 
 def not_found():
@@ -1511,14 +1504,14 @@ if __name__ == "__main__":
         home()
         download()
         features()
+        mcp()
+        skills()
+        for skill in SKILLS:
+            skill_page(skill)
         if LANG in LEGAL_LANGS:
             RECORD = False
             privacy()
             terms()
-            mcp()
-            skills()
-            for skill in SKILLS:
-                skill_page(skill)
             RECORD = True
         if LANG == "zh":
             not_found()
