@@ -568,5 +568,14 @@
  "When BotFather refuses (“Sorry, this username is already taken”), the tool stops and returns its words.": "حين يرفض BotFather (“Sorry, this username is already taken”)، تتوقف الأداة وتعيد كلماته.",
  "Switch on <b>BotFather</b>.": "فعّل <b>BotFather</b>.",
  "Talks to @BotFather for one account, and to nobody else: makes a new bot and hands back its API token, changes a bot's name, description, about text and commands, switches group privacy, and deletes a bot. For everything else there are three general tools that send a line, press a button and read the chat. It sees only the chat with BotFather, not the account's other chats.": "تتحدث مع @BotFather لحساب واحد، ولا مع أحد سواه: تنشئ بوتًا جديدًا وتعيد رمز API الخاص به، وتغيّر اسم البوت ووصفه ونص نبذته وأوامره، وتبدّل خصوصية المجموعات، وتحذف بوتًا. ولكل ما عدا ذلك ثلاث أدوات عامة ترسل سطرًا وتضغط زرًا وتقرأ المحادثة. لا ترى إلا المحادثة مع BotFather، لا محادثات الحساب الأخرى.",
- "BotFather – Luckgram Skill": "BotFather – مهارة Luckgram"
+ "BotFather – Luckgram Skill": "BotFather – مهارة Luckgram",
+ "About the web app": "حول نسخة الويب",
+ "Also in the web app.": "متاح أيضًا في نسخة الويب.",
+ "Chrome, Edge or Safari can install it as a desktop app": "يمكن تثبيتها كتطبيق سطح مكتب عبر Chrome أو Edge أو Safari",
+ "In your browser · nothing to install": "في متصفحك · دون تثبيت أي شيء",
+ "Open the web app": "فتح نسخة الويب",
+ "Runs in the browser on any computer or phone, nothing to download": "تعمل في المتصفح على أي حاسوب أو هاتف، دون تنزيل أي شيء",
+ "The web app holds up to 20 accounts, no Pro needed.": "نسخة الويب تتسع لما يصل إلى 20 حسابًا، دون الحاجة إلى Pro.",
+ "Up to 20 accounts": "حتى 20 حسابًا",
+ "Web app": "نسخة الويب"
 }

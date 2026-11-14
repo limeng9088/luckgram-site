@@ -257,6 +257,9 @@ html:lang(zh) .page-head h1, html:lang(ar) .page-head h1, html:lang(fa) .page-he
 .feat.novid .feat-text { max-width: 44em; }
 .feat h2 { margin-top: 12px; font-size: clamp(24px, 2.7vw, 34px); letter-spacing: calc(var(--tight) * .4); line-height: 1.2; }
 .feat-text > p { margin-top: 14px; color: var(--soft); font-size: 16.5px; max-width: 34em; }
+.feat-web { margin-top: 14px !important; font-size: 15px !important; color: var(--muted); }
+.feat-web .tag { margin-right: 6px; }
+.feat-web a { color: var(--ink); text-underline-offset: 4px; white-space: nowrap; }
 .feat-more { margin-top: 18px !important; font-size: 15px !important; }
 .feat-more a { color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 4px; }
 .feat-more a:hover { text-decoration-color: var(--ink); }

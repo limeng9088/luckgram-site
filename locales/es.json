@@ -568,5 +568,14 @@
  "When BotFather refuses (“Sorry, this username is already taken”), the tool stops and returns its words.": "Cuando BotFather se niega (“Sorry, this username is already taken”), la herramienta se detiene y devuelve sus palabras.",
  "Switch on <b>BotFather</b>.": "Activa <b>BotFather</b>.",
  "Talks to @BotFather for one account, and to nobody else: makes a new bot and hands back its API token, changes a bot's name, description, about text and commands, switches group privacy, and deletes a bot. For everything else there are three general tools that send a line, press a button and read the chat. It sees only the chat with BotFather, not the account's other chats.": "Habla con @BotFather en nombre de una cuenta, y con nadie más: crea un bot nuevo y devuelve su token de API, cambia el nombre, la descripción, el texto «Acerca de» y los comandos de un bot, cambia la privacidad en grupos y elimina un bot. Para todo lo demás hay tres herramientas generales que envían una línea, pulsan un botón y leen el chat. Solo ve el chat con BotFather, no los demás chats de la cuenta.",
- "BotFather – Luckgram Skill": "BotFather – Skill de Luckgram"
+ "BotFather – Luckgram Skill": "BotFather – Skill de Luckgram",
+ "About the web app": "Acerca de la versión web",
+ "Also in the web app.": "También en la versión web.",
+ "Chrome, Edge or Safari can install it as a desktop app": "Chrome, Edge o Safari pueden instalarla como aplicación de escritorio",
+ "In your browser · nothing to install": "En tu navegador · sin instalar nada",
+ "Open the web app": "Abrir la versión web",
+ "Runs in the browser on any computer or phone, nothing to download": "Funciona en el navegador de cualquier ordenador o teléfono, sin descargar nada",
+ "The web app holds up to 20 accounts, no Pro needed.": "La versión web admite hasta 20 cuentas, sin necesidad de Pro.",
+ "Up to 20 accounts": "Hasta 20 cuentas",
+ "Web app": "Versión web"
 }

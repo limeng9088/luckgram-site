@@ -155,6 +155,8 @@ def plain(text):
 
 ICON_APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>'
 ICON_WINDOWS = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.1l7.4-1v7.2H3V5.1zm8.3-1.2L21 2.5v8.8h-9.7V3.9zM3 12.7h7.4v7.2L3 18.9v-6.2zm8.3 0H21v8.8l-9.7-1.4v-7.4z"/></svg>'
+ICON_WEB = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>'
+WEB_APP = "https://web.luckgram.cc/"
 ICON_ANDROID = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.6-2.8a.4.4 0 0 0-.7-.4l-1.6 2.8a9.9 9.9 0 0 0-7.8 0L7.5 6.3a.4.4 0 1 0-.7.4l1.6 2.8A9.2 9.2 0 0 0 3.5 17h17a9.2 9.2 0 0 0-2.9-7.5zM8 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>'
 ICON_GITHUB = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg>'
 
@@ -528,15 +530,16 @@ def video(slug, label, lazy=True):
 
 
 def download_buttons():
-    """The four downloads. The script in footer() puts the visitor's own system first (data-smart)."""
+    """The four downloads and the web app. The script in footer() puts the visitor's own system first (data-smart)."""
     return f'''<a class="btn platform primary" href="{IOS_LATEST}" data-dl="ios" data-os="ios" target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · sign it yourself", "iPhone 和 iPad · 需自行签名")}</small>{t("Download IPA", "下载 IPA")}</span></a>
         <a class="btn platform" href="{IOS_INSTALL}" data-ios-install data-os="ios" target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · no computer needed", "iPhone 和 iPad · 无需电脑")}</small>{t("Install on iPhone", "直接安装 iOS 版")}</span></a>
         <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android" data-os="android" target="_blank" rel="noopener">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>
-        <a class="btn platform" href="{WIN_LATEST}" data-dl="windows" data-os="windows" target="_blank" rel="noopener">{ICON_WINDOWS}<span><small>{t("Windows 10/11 · beta", "Windows 10/11 · 测试版")}</small>{t("Download for Windows", "下载 Windows 版")}</span></a>'''
+        <a class="btn platform" href="{WIN_LATEST}" data-dl="windows" data-os="windows" target="_blank" rel="noopener">{ICON_WINDOWS}<span><small>{t("Windows 10/11 · beta", "Windows 10/11 · 测试版")}</small>{t("Download for Windows", "下载 Windows 版")}</span></a>
+        <a class="btn platform" href="{WEB_APP}" target="_blank" rel="noopener">{ICON_WEB}<span><small>{t("In your browser · nothing to install", "浏览器直接用 · 无需安装")}</small>{t("Open the web app", "打开网页版")}</span></a>'''
 
 
 def feature_by_slug():
-    return {slug: (short, title, status, body) for _, items in feature_groups() for slug, short, title, status, body, _, _ in items}
+    return {slug: (short, title, status, body) for _, items in feature_groups() for slug, short, title, status, body, _, _, _ in items}
 
 
 def software(description):
@@ -733,6 +736,16 @@ def download():
         <div class="dl-meta" data-dl-meta="windows-portable"></div>
       </details>
     </div>
+    <div class="dl-card">
+      <svg class="os" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">{ICON_WEB[ICON_WEB.index("<circle"):ICON_WEB.index("</svg>")]}</svg>
+      <h2>{t("Web app", "网页版")}</h2>
+      <ul>
+        <li>{t("Runs in the browser on any computer or phone, nothing to download", "在电脑或手机的浏览器里直接使用，不用下载")}</li>
+        <li>{t("Up to 20 accounts", "最多登录 20 个账号")}</li>
+        <li>{t("Chrome, Edge or Safari can install it as a desktop app", "Chrome、Edge、Safari 可以把它安装成桌面应用")}</li>
+      </ul>
+      <div class="btns"><a class="btn primary" href="{WEB_APP}" target="_blank" rel="noopener">{t("Open the web app", "打开网页版")}</a><a class="btn" href="{wiki("/getting-started/web.html")}">{t("About the web app", "网页版说明")}</a></div>
+    </div>
   </div>
   <p class="note">{t("If you previously installed a test build of Luckgram on Android, uninstall it first: builds signed with a different key cannot update each other. Only download Luckgram from this page or the GitHub repositories it links to.",
                      "如果你之前在 Android 上装过 Luckgram 的测试版，请先卸载：签名密钥不同的版本不能相互覆盖升级。请只从本页或本页链接的 GitHub 仓库下载 Luckgram。")}</p>
@@ -882,15 +895,24 @@ def load_features():
         return json.load(f)
 
 
+def web_line(f):
+    """The feature in the web app (field "web" of features.json): a line for the features page, or nothing."""
+    if f.get("web") != "live":
+        return ""
+    note = f.get("web_note")
+    text = t("Also in the web app.", "网页版也可用。") + (" " + t(note["en"], note["zh"]) if note else "")
+    return f'<p class="feat-web"><span class="tag ok">{t("Web", "网页版")}</span> {text} <a href="{WEB_APP}" target="_blank" rel="noopener">{t("Open the web app", "打开网页版")}</a></p>'
+
+
 def feature_groups():
-    """[((group en, zh), [(slug, short, title, (css class, label), body, wiki path, has video)])] from features.json.
+    """[((group en, zh), [(slug, short, title, (css class, label), body, wiki path, has video, web line)])] from features.json.
     features.json keeps Chinese and English (the Help Center copies it); t() finds the other languages by the English."""
     data = load_features()
     pair = lambda d: (d["en"], d["zh"])
     out = []
     for g in data["groups"]:
         items = [(f["id"], pair(f["name"]), pair(f["title"]), (STATUS_CLASS[f["status"]], pair(data["statuses"][f["status"]])),
-                  pair(f["description"]), f["wiki"], f["video"])
+                  pair(f["description"]), f["wiki"], f["video"], web_line(f))
                  for f in data["features"] if f["group"] == g["id"]]
         out.append((pair(g["name"]), items))
     return out
@@ -900,7 +922,7 @@ def features():
     toc, sections, names = [], [], []
     for group, items in feature_groups():
         toc.append(f'<li class="toc-group">{t(*group)}</li>')
-        for slug, short, title, (key, label), body, help_path, has_video in items:
+        for slug, short, title, (key, label), body, help_path, has_video, web in items:
             title = t(*title)
             names.append((slug, title))
             toc.append(f'<li><a href="#{slug}">{t(*short)}</a></li>')
@@ -911,6 +933,7 @@ def features():
     <span class="tag {key}">{t(*label)}</span>
     <h2>{title}</h2>
     <p>{t(*body)}</p>
+    {web}
     <p class="feat-more"><a href="{wiki(help_path)}">{t("Read more in the Help Center", "在帮助中心了解更多")}</a></p>
   </div>
 </section>''')
@@ -1481,8 +1504,8 @@ def llms():
              "Status: Available = free for everyone; Pro = needs Luckgram Pro; In development = not released yet.", ""]
     for group, items in groups:
         full += [f"### {group[0]}", ""]
-        for slug, short, title, (_, label), body, help_path, _ in items:
-            full += [f"- {title[0]} ({label[0]}). {plain(body[0])} More: {WIKI_HOST}/en{help_path}"]
+        for slug, short, title, (_, label), body, help_path, _, web in items:
+            full += [f"- {title[0]} ({label[0]}). {plain(body[0])}{' Also in the web app (web.luckgram.cc).' if web else ''} More: {WIKI_HOST}/en{help_path}"]
         full += [""]
     full += ["## Questions and answers", ""]
     for q, a in faq():

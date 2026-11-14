@@ -568,5 +568,14 @@
  "When BotFather refuses (“Sorry, this username is already taken”), the tool stops and returns its words.": "Saat BotFather menolak (“Sorry, this username is already taken”), tool berhenti dan mengembalikan kata-katanya.",
  "Switch on <b>BotFather</b>.": "Aktifkan <b>BotFather</b>.",
  "Talks to @BotFather for one account, and to nobody else: makes a new bot and hands back its API token, changes a bot's name, description, about text and commands, switches group privacy, and deletes a bot. For everything else there are three general tools that send a line, press a button and read the chat. It sees only the chat with BotFather, not the account's other chats.": "Berbicara dengan @BotFather untuk satu akun, dan tidak dengan siapa pun lainnya: membuat bot baru dan menyerahkan token API-nya, mengubah nama, deskripsi, teks tentang, dan perintah bot, mengubah privasi grup, serta menghapus bot. Untuk hal lainnya ada tiga tool umum yang mengirim satu baris, menekan tombol, dan membaca obrolan. Skill ini hanya melihat obrolan dengan BotFather, bukan obrolan lain milik akun.",
- "BotFather – Luckgram Skill": "BotFather – Skill Luckgram"
+ "BotFather – Luckgram Skill": "BotFather – Skill Luckgram",
+ "About the web app": "Tentang versi web",
+ "Also in the web app.": "Juga tersedia di versi web.",
+ "Chrome, Edge or Safari can install it as a desktop app": "Chrome, Edge, atau Safari dapat memasangnya sebagai aplikasi desktop",
+ "In your browser · nothing to install": "Di browser · tanpa perlu memasang apa pun",
+ "Open the web app": "Buka versi web",
+ "Runs in the browser on any computer or phone, nothing to download": "Berjalan di browser pada komputer atau ponsel apa pun, tanpa perlu mengunduh",
+ "The web app holds up to 20 accounts, no Pro needed.": "Versi web menampung hingga 20 akun, tanpa perlu Pro.",
+ "Up to 20 accounts": "Hingga 20 akun",
+ "Web app": "Versi web"
 }

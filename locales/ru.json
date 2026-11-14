@@ -568,5 +568,14 @@
  "When BotFather refuses (“Sorry, this username is already taken”), the tool stops and returns its words.": "Когда BotFather отказывает («Sorry, this username is already taken»), инструмент останавливается и возвращает его слова.",
  "Switch on <b>BotFather</b>.": "Включите <b>BotFather</b>.",
  "Talks to @BotFather for one account, and to nobody else: makes a new bot and hands back its API token, changes a bot's name, description, about text and commands, switches group privacy, and deletes a bot. For everything else there are three general tools that send a line, press a button and read the chat. It sees only the chat with BotFather, not the account's other chats.": "Общается с @BotFather от имени одного аккаунта и больше ни с кем: создаёт нового бота и возвращает его API-токен, меняет имя, описание, текст «О боте» и команды бота, переключает приватность в группах и удаляет бота. Для всего остального есть три общих инструмента: отправить строку, нажать кнопку и прочитать чат. Навык видит только чат с BotFather, но не другие чаты аккаунта.",
- "BotFather – Luckgram Skill": "BotFather – навык Luckgram"
+ "BotFather – Luckgram Skill": "BotFather – навык Luckgram",
+ "About the web app": "О веб-версии",
+ "Also in the web app.": "Есть и в веб-версии.",
+ "Chrome, Edge or Safari can install it as a desktop app": "Chrome, Edge или Safari могут установить её как приложение для компьютера",
+ "In your browser · nothing to install": "В браузере · ничего не нужно устанавливать",
+ "Open the web app": "Открыть веб-версию",
+ "Runs in the browser on any computer or phone, nothing to download": "Работает в браузере на любом компьютере или телефоне, скачивать ничего не нужно",
+ "The web app holds up to 20 accounts, no Pro needed.": "В веб-версии до 20 аккаунтов, Pro не нужен.",
+ "Up to 20 accounts": "До 20 аккаунтов",
+ "Web app": "Веб-версия"
 }

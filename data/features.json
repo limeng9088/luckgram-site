@@ -1,5 +1,5 @@
 {
-  "_comment": "Single source of the Luckgram feature list for luckgram.cc/features and wiki.luckgram.cc. Edit here, run scripts/build.py; the wiki copies it with scripts/sync-features.py.",
+  "_comment": "Single source of the Luckgram feature list for luckgram.cc/features and wiki.luckgram.cc. Edit here, run scripts/build.py; the wiki copies it with scripts/sync-features.py. Field \"web\" of a feature: its state in the web app (web.luckgram.cc) — \"live\" or \"none\" (not in the web app); \"web_note\" says what differs there.",
   "statuses": {
     "live": {
       "zh": "已上线",
@@ -81,6 +81,11 @@
       "id": "accounts",
       "group": "accounts-privacy",
       "status": "live",
+      "web": "live",
+      "web_note": {
+        "zh": "网页版最多登录 20 个账号，不需要 Pro。",
+        "en": "The web app holds up to 20 accounts, no Pro needed."
+      },
       "name": {
         "zh": "更多账号",
         "en": "More accounts"
@@ -100,6 +105,7 @@
       "id": "double-bottom",
       "group": "accounts-privacy",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "双重空间",
         "en": "Double Bottom"
@@ -119,6 +125,7 @@
       "id": "hidden-chats",
       "group": "accounts-privacy",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "隐藏聊天",
         "en": "Hidden chats"
@@ -138,6 +145,7 @@
       "id": "unblock",
       "group": "accounts-privacy",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "受限频道",
         "en": "Restricted channels"
@@ -157,6 +165,7 @@
       "id": "translate-in",
       "group": "messages-language",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "翻译消息",
         "en": "Translate messages"
@@ -176,6 +185,7 @@
       "id": "translate-out",
       "group": "messages-language",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "发送前翻译",
         "en": "Translate before sending"
@@ -198,6 +208,7 @@
       "id": "voice-text",
       "group": "messages-language",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "语音转文字",
         "en": "Voice to text"
@@ -217,6 +228,7 @@
       "id": "plus-panel",
       "group": "messages-language",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "输入框「+」面板",
         "en": "Input bar + panel"
@@ -236,6 +248,7 @@
       "id": "quick-replies",
       "group": "messages-language",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "快捷回复",
         "en": "Quick replies"
@@ -255,6 +268,7 @@
       "id": "forward-anon",
       "group": "messages-language",
       "status": "telegram",
+      "web": "none",
       "name": {
         "zh": "隐藏来源转发",
         "en": "Forward without name"
@@ -274,6 +288,7 @@
       "id": "select-all",
       "group": "messages-language",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "全选",
         "en": "Select all"
@@ -293,6 +308,7 @@
       "id": "save-direct",
       "group": "messages-language",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "一键收藏",
         "en": "Save in one tap"
@@ -312,6 +328,7 @@
       "id": "round-video",
       "group": "media-calls-storage",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "圆形视频",
         "en": "Round videos"
@@ -331,6 +348,7 @@
       "id": "call-rec",
       "group": "media-calls-storage",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "通话录音",
         "en": "Call recording"
@@ -350,6 +368,7 @@
       "id": "cache",
       "group": "media-calls-storage",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "存储空间",
         "en": "Storage"
@@ -369,6 +388,7 @@
       "id": "profile-info",
       "group": "profiles-organizing",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "资料详情",
         "en": "Profile details"
@@ -388,6 +408,7 @@
       "id": "keyword-folders",
       "group": "profiles-organizing",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "关键词文件夹",
         "en": "Keyword folders"
@@ -407,6 +428,7 @@
       "id": "user-notes",
       "group": "profiles-organizing",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "私人备注",
         "en": "Private notes"
@@ -426,6 +448,7 @@
       "id": "shared-activity",
       "group": "profiles-organizing",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "共同群动态",
         "en": "Activity"
@@ -445,6 +468,7 @@
       "id": "discover-tab",
       "group": "discover",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "发现标签",
         "en": "Discover tab"
@@ -464,6 +488,7 @@
       "id": "nearby",
       "group": "discover",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "附近的人",
         "en": "People Nearby"
@@ -483,6 +508,7 @@
       "id": "square",
       "group": "discover",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "广场",
         "en": "Square"
@@ -502,6 +528,7 @@
       "id": "scan",
       "group": "discover",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "扫一扫",
         "en": "Scan"
@@ -521,6 +548,7 @@
       "id": "ai-chat",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "AI 助手",
         "en": "AI assistant"
@@ -540,6 +568,7 @@
       "id": "ai-summary",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "聊天总结",
         "en": "Chat summary"
@@ -562,6 +591,7 @@
       "id": "ai-reply",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "AI 回复",
         "en": "Reply drafts"
@@ -581,6 +611,7 @@
       "id": "ai-writing",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "AI 写作",
         "en": "AI writing"
@@ -600,6 +631,7 @@
       "id": "ai-agents",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "AI 智能体",
         "en": "AI agents"
@@ -619,6 +651,7 @@
       "id": "agent-market",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "智能体市场",
         "en": "Agent market"
@@ -641,6 +674,7 @@
       "id": "ai-image",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "AI 画图",
         "en": "AI images"
@@ -660,6 +694,7 @@
       "id": "ai-post",
       "group": "ai",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "AI 写帖子",
         "en": "AI posts"
@@ -679,6 +714,7 @@
       "id": "pro",
       "group": "pro",
       "status": "pro",
+      "web": "none",
       "name": {
         "zh": "Luckgram Pro",
         "en": "Luckgram Pro"
@@ -698,6 +734,7 @@
       "id": "cloud-backup",
       "group": "pro",
       "status": "pro",
+      "web": "none",
       "name": {
         "zh": "云备份",
         "en": "Cloud backup"
@@ -717,6 +754,7 @@
       "id": "pro-community",
       "group": "pro",
       "status": "pro",
+      "web": "none",
       "name": {
         "zh": "Pro 社群",
         "en": "Pro community"
@@ -736,6 +774,7 @@
       "id": "proxy",
       "group": "sign-in-network",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "代理配置",
         "en": "Proxy settings"
@@ -755,6 +794,7 @@
       "id": "login-code",
       "group": "sign-in-network",
       "status": "live",
+      "web": "none",
       "name": {
         "zh": "收码说明",
         "en": "Sign-in code help"

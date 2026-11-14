@@ -568,5 +568,14 @@
  "When BotFather refuses (“Sorry, this username is already taken”), the tool stops and returns its words.": "BotFather 拒絕時（例如「這個使用者名稱已被使用」），工具會立即停下並原樣回傳它的話。",
  "Switch on <b>BotFather</b>.": "開啟<b>BotFather</b>。",
  "Talks to @BotFather for one account, and to nobody else: makes a new bot and hands back its API token, changes a bot's name, description, about text and commands, switches group privacy, and deletes a bot. For everything else there are three general tools that send a line, press a button and read the chat. It sees only the chat with BotFather, not the account's other chats.": "以某個帳號的身分和 @BotFather 對話，而且只和它對話：建立新機器人並取回 API 權杖，修改機器人的名稱、說明、簡介和指令，切換群組隱私模式，刪除機器人。其餘的事情有三個通用工具：傳一句話、點一個按鈕、讀這個聊天。它只能看到和 BotFather 的聊天，看不到帳號的其他聊天。",
- "BotFather – Luckgram Skill": "BotFather 機器人管理 – Luckgram Skill"
+ "BotFather – Luckgram Skill": "BotFather 機器人管理 – Luckgram Skill",
+ "About the web app": "網頁版說明",
+ "Also in the web app.": "網頁版也可用。",
+ "Chrome, Edge or Safari can install it as a desktop app": "可用 Chrome、Edge 或 Safari 安裝成桌面應用程式",
+ "In your browser · nothing to install": "瀏覽器直接用 · 無需安裝",
+ "Open the web app": "開啟網頁版",
+ "Runs in the browser on any computer or phone, nothing to download": "在任何電腦或手機的瀏覽器裡就能用，無需下載",
+ "The web app holds up to 20 accounts, no Pro needed.": "網頁版最多登入 20 個帳號，無需 Pro。",
+ "Up to 20 accounts": "最多 20 個帳號",
+ "Web app": "網頁版"
 }

@@ -67,6 +67,9 @@ and the feature cards on the home page are generated from it, and wiki.luckgram.
 copies the same file (`scripts/sync-features.py` in luckgram-wiki) for its feature
 catalog and the status line on each feature page.
 
+Each feature also says where it stands in the web app (web.luckgram.cc): `"web": "live"` or `"none"`,
+and `web_note` for what differs there (the features page shows a line for the ones that are live).
+
 When a feature ships or changes, edit `data/features.json`, run
 `python3 scripts/build.py`, and then sync the wiki.
 
