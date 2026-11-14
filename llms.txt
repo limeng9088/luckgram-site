@@ -19,6 +19,8 @@
 - [Download](https://luckgram.cc/en/download/): the latest builds for Android (APK), iPhone and iPad (IPA or direct install) and Windows
 - [Features](https://luckgram.cc/en/features/): every feature Luckgram adds, with its status
 - [Help Center](https://wiki.luckgram.cc/en/): installation, accounts and a guide to each feature
+- [Luckgram MCP](https://luckgram.cc/en/mcp/): the MCP server built into Luckgram Desktop - setup, connecting Claude Code, Kiro, Codex and opencode, the cloud, security
+- [Skill market](https://luckgram.cc/en/skills/): what an AI tool may do with each Telegram account - Accounts, Friends, Manage friends, Chats, Manage chats, Read messages, Send messages, Groups and channels, Profile
 - [Privacy Policy](https://luckgram.cc/en/privacy-policy/)
 - [Terms of Use](https://luckgram.cc/en/terms-of-use/)
 - [Full text for AI assistants](https://luckgram.cc/llms-full.txt)

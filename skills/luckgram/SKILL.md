@@ -1,56 +1,85 @@
 ---
 name: luckgram
-description: Work with the Telegram accounts in Luckgram Desktop through its MCP server (local or cloud) - list and switch accounts, friends, chats, messages, groups, profile. Use when the user asks to do something with their Telegram / Luckgram accounts and a "luckgram" or "luckgram-cloud" MCP server is connected.
+description: Work with the Telegram accounts in Luckgram Desktop through its MCP server, local or cloud: accounts, friends, chats, messages, groups, profile. Tokens stay masked.
 ---
 
 # Luckgram
 
-Luckgram Desktop exposes the Telegram accounts logged in on a computer as MCP tools. This skill is the way to use them well.
+> **Command:** `luckgram`. It talks to the MCP server built into Luckgram Desktop — on this computer, or on every computer of a cloud key through `mcp.luckgram.cc`.
+> The access token and the cloud key are stored in `~/cicy-ai/db/luckgram.json` (0600) and never printed.
 
-## Before anything else
+## Scope
 
-1. Call `list_accounts`. Every other tool takes `account`: the `id` from this list, as a string. Do not guess ids and do not use names as ids.
-2. On the cloud server (`luckgram-cloud`) call `list_devices` first. Every tool then also takes `device` (the id or the name of a computer). With one computer online it may be left out.
-3. Tools work on any logged-in account without switching the window. Call `switch_account` only when the user wants to see that account on screen.
+Use this skill when the user asks to do something with their Telegram accounts in Luckgram: see which accounts are logged in, switch the active one, look at friends, chats or messages, send a message, add or remove a friend, join or leave a group, change a name or bio.
+
+Do not use it for Telegram bots, for the Telegram Web matrix (`telegram-matrix`), or for bulk messaging — there is no bulk command, by design.
+
+## Security: hard rules
+
+- **Never read, cat, grep or print** `~/cicy-ai/db/luckgram.json`. `luckgram status` shows the token masked — trust it.
+- **Never put a token on a command line.** `luckgram config` takes it from stdin only (`--token-stdin`). Do not ask the user to paste a token into chat; ask them to run the config command themselves.
+- A cloud key reaches every computer of that key. Treat it like a password.
+
+## Bootstrap
+
+1. `luckgram status` — is a connection saved, and does it answer?
+2. Not configured: the user opens Luckgram Desktop → Settings → Luckgram → **Local MCP server**, switches it on, copies the access token (or, for the cloud, switches on **Connect through the cloud** and copies the cloud key), then runs one of:
+   ```sh
+   luckgram config --local --token-stdin      # this computer
+   luckgram config --cloud --token-stdin      # every computer on the cloud key
+   ```
+3. `luckgram accounts` — the ids every other command takes as `--account`.
+
+## How to work
+
+1. **Start with `luckgram accounts`.** `--account` is the id from that list. Never guess ids, never use a name as an id.
+2. On the cloud, **`luckgram devices` first**; pass `--device <name>` when more than one computer is online.
+3. Commands work on any logged-in account without switching the window. Use `luckgram switch` only when the user wants to see that account on screen.
+4. `<chat>` is an id from `luckgram chats list`, or a username.
+
+```sh
+luckgram accounts
+luckgram chats list --account 7943234085 --unread
+luckgram messages get 562953914961921 --account 7943234085 --limit 20
+luckgram messages send @someone "See you at 3" --account 7943234085
+luckgram friends find @someone --account 7943234085
+luckgram friends add @someone --account 7943234085
+```
 
 ## Skills are switched on by the user
 
-Tools are grouped into skills, switched on per account inside Luckgram Desktop (Settings → Luckgram → Local MCP server). All are off at first.
+Each group of commands is a skill the user switches on **per account** inside Luckgram Desktop. All are off at first.
 
-| Skill | Tools | Changes the account |
+| Commands | Skill in the app | Changes the account |
 |---|---|---|
-| (always on) | `list_accounts`, `get_active_account`, `switch_account` | no |
-| `friends` | `list_friends`, `find_user` | no |
-| `friends_manage` | `add_friend`, `remove_friend` | yes |
-| `chats` | `list_chats` | no |
-| `chats_manage` | `mark_chat_read` | yes |
-| `messages` | `get_messages` | no |
-| `messages_send` | `send_message` | yes |
-| `groups` | `join_chat`, `leave_chat` | yes |
-| `profile` | `update_profile` | yes |
+| `accounts`, `active`, `switch` | always on | no |
+| `friends list`, `friends find` | `friends` | no |
+| `friends add`, `friends remove` | `friends_manage` | yes |
+| `chats list` | `chats` | no |
+| `chats read` | `chats_manage` | yes |
+| `messages get` | `messages` | no |
+| `messages send` | `messages_send` | yes |
+| `groups join`, `groups leave` | `groups` | yes |
+| `profile set` | `profile` | yes |
 
-When a call answers that a skill is off for an account, you cannot switch it on. Tell the user which skill and which account, and where the switch is. Do not try another account instead unless the user asked for that.
+When a command exits with code 1 and says a skill is off, you cannot switch it on. Tell the user **which skill** and **which account**, and where the switch is. Do not try another account instead unless the user asked for that.
 
 ## Rules
 
-- **Rate limits are final.** Tools that change something are limited per account (for example `add_friend` 5 an hour and 20 a day, `send_message` 30 an hour and 200 a day). A refused call says how many seconds to wait. Do not retry sooner, and do not move the same action to another account to get around the limit: the limits protect accounts from being restricted by Telegram.
-- **`FLOOD_WAIT` comes from Telegram.** Stop using that tool on that account for the stated time.
-- **One message, one chat.** There is no bulk tool. Do not loop `send_message` or `add_friend` over a list of people who did not ask to be contacted. If the user asks for that, explain that unsolicited bulk messages get accounts banned and ask what they actually need.
-- **Say what you did.** After any tool that changes an account, tell the user which account, which chat or user, and the result the tool returned.
-- **Reading does not mark as read.** `get_messages` leaves the chat unread. Use `mark_chat_read` only when the user wants that.
-- **`send_message` is queued, not confirmed.** It answers `queued: true` when the app accepted it. A failure shows in the chat like for a message typed by hand; check with `get_messages` when delivery matters.
-- **A locked app answers nothing.** When Luckgram is locked with a passcode every tool says so; the user has to unlock it.
+- **Rate limits are final.** Commands that change an account are limited per account (`friends add` 5 an hour and 20 a day, `messages send` 30 an hour and 200 a day, …). A refused call says how many seconds to wait. Do not retry sooner and do not move the action to another account to get around it: the limits keep accounts from being restricted by Telegram.
+- **`FLOOD_WAIT` comes from Telegram.** Stop using that command on that account for the stated time.
+- **One message, one chat.** Do not loop `messages send` or `friends add` over people who did not ask to be contacted. If the user asks for that, say that unsolicited bulk messages get accounts banned and ask what they actually need.
+- **Show before you send.** Draft the text, show it, send after the user agrees — unless they told you the exact text to send.
+- **Say what changed.** After a command that changes an account, report the account, the chat or user, and what the command answered.
+- **Reading does not mark as read.** `messages get` leaves the chat unread; `chats read` is its own step.
+- **`messages send` is queued, not confirmed.** Check with `messages get` when delivery matters.
+- **A locked app answers nothing.** When Luckgram is locked with a passcode every command says so; the user has to unlock it.
 
-## Typical flows
+## Exit codes
 
-**Check what is unread everywhere**: `list_accounts` → for each account with the `chats` skill, `list_chats` with `unread_only: true` → summarize by account. Skip accounts whose skill is off and list them at the end.
+`0` ok · `1` the tool refused (skill off, rate limit, not found, locked) · `2` usage · `3` not configured · `4` cannot reach the server or the token was refused.
 
-**Reply in a chat**: `list_chats` (find the chat `id`) → `get_messages` with `chat` → draft the reply and show it to the user → `send_message` after they agree → report.
+## References
 
-**Add a contact**: `find_user` by username or phone → show who was found → `add_friend` with the `user_id` → report `added` or `already_friend`.
-
-## Setup, for the user
-
-- Local: Settings → Luckgram → Local MCP server → switch on → Copy client config.
-- Cloud: the same page → Connect through the cloud → Copy cloud client config. Other computers join with "Use the cloud key of another computer".
-- Details: https://luckgram.cc/mcp/ and https://luckgram.cc/skills/
+- [help.md](./references/help.md) — every command with examples
+- [tools.md](./references/tools.md) — config file, environment, MCP tools behind each command
