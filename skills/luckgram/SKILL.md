@@ -1,6 +1,6 @@
 ---
 name: luckgram
-description: Work with the Telegram accounts in Luckgram Desktop through its MCP server, local or cloud: accounts, friends, chats, messages, groups, profile. Tokens stay masked.
+description: Work with the Telegram accounts in Luckgram Desktop through its MCP server, local or cloud: accounts, friends, chats, messages, groups, profile, bots via BotFather. Tokens stay masked.
 ---
 
 # Luckgram
@@ -10,7 +10,7 @@ description: Work with the Telegram accounts in Luckgram Desktop through its MCP
 
 ## Scope
 
-Use this skill when the user asks to do something with their Telegram accounts in Luckgram: see which accounts are logged in, switch the active one, look at friends, chats or messages, send a message, add or remove a friend, join or leave a group, change a name or bio.
+Use this skill when the user asks to do something with their Telegram accounts in Luckgram: see which accounts are logged in, switch the active one, look at friends, chats or messages, send a message, add or remove a friend, join or leave a group, change a name or bio, create or configure a bot with @BotFather.
 
 Do not use it for Telegram bots, for the Telegram Web matrix (`telegram-matrix`), or for bulk messaging — there is no bulk command, by design.
 
@@ -61,6 +61,7 @@ Each group of commands is a skill the user switches on **per account** inside Lu
 | `messages send` | `messages_send` | yes |
 | `groups join`, `groups leave` | `groups` | yes |
 | `profile set` | `profile` | yes |
+| `bots …`, `botfather …` | `botfather` | yes |
 
 When a command exits with code 1 and says a skill is off, you cannot switch it on. Tell the user **which skill** and **which account**, and where the switch is. Do not try another account instead unless the user asked for that.
 
@@ -74,6 +75,22 @@ When a command exits with code 1 and says a skill is off, you cannot switch it o
 - **Reading does not mark as read.** `messages get` leaves the chat unread; `chats read` is its own step.
 - **`messages send` is queued, not confirmed.** Check with `messages get` when delivery matters.
 - **A locked app answers nothing.** When Luckgram is locked with a passcode every command says so; the user has to unlock it.
+
+## Bots (@BotFather)
+
+```sh
+luckgram bots list --account 7943234085
+luckgram bots create my_shop_bot --name "My Shop" --out ~/my_shop_bot.token --account 7943234085
+luckgram bots set my_shop_bot --description "Orders and delivery status" --about "Official bot of My Shop"
+luckgram bots commands my_shop_bot 'start=Start' 'order=Track an order' 'help=How it works'
+luckgram bots token my_shop_bot --out ~/my_shop_bot.token
+```
+
+- **A bot token is a secret**: whoever has it controls the bot. Use `--out <file>` so the token goes to a file only the owner can read and the output shows it masked. Without `--out` the token is printed: do that only when the user asked to see it. Never paste a token into a chat, a commit or a log.
+- **`bots delete` cannot be undone.** Ask the user first, every time, and name the bot. It needs the username twice (`--confirm`).
+- **`bots token --revoke` breaks the running bot** until its new token is put where the bot runs. Ask first.
+- For anything the `bots` commands do not cover (photo, inline mode, payments, menu button): `luckgram botfather send /mybots`, read the answer and its buttons, then `luckgram botfather press <message id> <button>` or `botfather send <answer>`, one step at a time. `luckgram botfather read` shows where the conversation stands.
+- When BotFather refuses, the command exits 1 with its words ("Sorry, this username is already taken…"). Tell the user what it said; do not try variations in a loop.
 
 ## Exit codes
 
