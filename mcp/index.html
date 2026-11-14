@@ -25,7 +25,7 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=37b52cb773">
+<link rel="stylesheet" href="/assets/site.css?v=031563fda1">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://luckgram.cc/#org","name":"Luckgram","url":"https://luckgram.cc/","logo":"https://luckgram.cc/assets/icon-512.png","email":"support@luckgram.cc","sameAs":["https://github.com/limeng9088/luckgram-ios","https://github.com/limeng9088/luckgram-android"]},{"@type":"WebSite","@id":"https://luckgram.cc/#site","url":"https://luckgram.cc/","name":"Luckgram","publisher":{"@id":"https://luckgram.cc/#org"},"inLanguage":["zh-Hans","en","zh-Hant","ru","es","pt-BR","ar","fa","id","tr"]},{"@type":"WebPage","@id":"https://luckgram.cc/mcp/#page","url":"https://luckgram.cc/mcp/","name":"Luckgram MCP – 让 AI 工具操作你的 Telegram 账号","description":"Luckgram 桌面版内置 MCP 接口：AI 工具可以列出账号、切换账号，并使用你为每个账号开启的 Skill。","inLanguage":"zh-Hans","isPartOf":{"@id":"https://luckgram.cc/#site"},"dateModified":"2026-11-14"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Luckgram","item":"https://luckgram.cc/"},{"@type":"ListItem","position":2,"name":"MCP","item":"https://luckgram.cc/mcp/"}]}]}</script>
 </head>
 <body>
@@ -83,10 +83,44 @@
     }
   }
 }</code></pre>
-<p>Claude Code 也可以用一条命令添加：</p>
+<p>在同一页里，按账号开启需要的 <a href="/skills/">Skill</a>。不开启时，工具只能列出账号和切换账号。</p>
+
+<h2 id="connect">连接你的 AI 工具</h2>
+<p>下面是四种常用工具的接法。<code>&lt;TOKEN&gt;</code> 是设置页里<b>复制访问令牌</b>得到的令牌。接云端时，把地址换成 <code>https://mcp.luckgram.cc/mcp</code>、令牌换成云端密钥，其余步骤相同。</p>
+
+<h3 id="claude-code">Claude Code</h3>
 <pre><code>claude mcp add --transport http luckgram http://127.0.0.1:28765/mcp \
   --header "Authorization: Bearer &lt;TOKEN&gt;"</code></pre>
-<p>在同一页里，按账号开启需要的 <a href="/skills/">Skill</a>。不开启时，工具只能列出账号和切换账号。</p>
+<p>用 <code>claude mcp list</code> 检查：<code>luckgram</code> 那一行末尾显示 <b>Connected</b>。</p>
+
+<h3 id="kiro">Kiro</h3>
+<p>把下面的内容写到项目里的 <code>.kiro/settings/mcp.json</code>；想对所有项目生效，就写到 <code>~/.kiro/settings/mcp.json</code>：</p>
+<pre><code>{
+  "mcpServers": {
+    "luckgram": {
+      "url": "http://127.0.0.1:28765/mcp",
+      "headers": { "Authorization": "Bearer &lt;TOKEN&gt;" }
+    }
+  }
+}</code></pre>
+<p>然后让 Kiro 调用 <code>list_accounts</code> 试一下。</p>
+
+<h3 id="codex">Codex</h3>
+<p>Codex 从环境变量读取令牌，令牌不会写进它的配置文件：</p>
+<pre><code>export LUCKGRAM_MCP_TOKEN="&lt;TOKEN&gt;"
+codex mcp add luckgram --url http://127.0.0.1:28765/mcp \
+  --bearer-token-env-var LUCKGRAM_MCP_TOKEN</code></pre>
+<p>Windows 上用 <code>setx LUCKGRAM_MCP_TOKEN "&lt;TOKEN&gt;"</code> 设置变量，然后重新打开终端。上面的命令会在 <code>~/.codex/config.toml</code> 里写入：</p>
+<pre><code>[mcp_servers.luckgram]
+url = "http://127.0.0.1:28765/mcp"
+bearer_token_env_var = "LUCKGRAM_MCP_TOKEN"</code></pre>
+
+<h3 id="opencode">opencode</h3>
+<pre><code>opencode mcp add luckgram --url http://127.0.0.1:28765/mcp \
+  --header "Authorization=Bearer &lt;TOKEN&gt;"</code></pre>
+<p>请求头的写法是 <code>名称=值</code>。用 <code>opencode mcp list</code> 检查，显示 <b>connected</b> 即可。刚添加完可能还显示 pending，过几秒再运行一次。</p>
+
+<p class="note">以上在 Claude Code 2.1、Kiro CLI 2.31、Codex CLI 0.144、opencode 2.0 上用本机地址和云端地址都测试过。其他支持 MCP 的工具接法相同：HTTP 类型的服务，地址如上，请求头 <code>Authorization: Bearer &lt;TOKEN&gt;</code>。</p>
 
 <h2>能做什么，不能做什么</h2>
 <ul>

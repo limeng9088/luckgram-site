@@ -25,7 +25,7 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=37b52cb773">
+<link rel="stylesheet" href="/assets/site.css?v=031563fda1">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://luckgram.cc/#org","name":"Luckgram","url":"https://luckgram.cc/","logo":"https://luckgram.cc/assets/icon-512.png","email":"support@luckgram.cc","sameAs":["https://github.com/limeng9088/luckgram-ios","https://github.com/limeng9088/luckgram-android"]},{"@type":"WebSite","@id":"https://luckgram.cc/#site","url":"https://luckgram.cc/","name":"Luckgram","publisher":{"@id":"https://luckgram.cc/#org"},"inLanguage":["zh-Hans","en","zh-Hant","ru","es","pt-BR","ar","fa","id","tr"]},{"@type":"WebPage","@id":"https://luckgram.cc/en/mcp/#page","url":"https://luckgram.cc/en/mcp/","name":"Luckgram MCP – connect AI tools to your Telegram accounts","description":"Luckgram Desktop has an MCP server built in: AI tools list your accounts, switch between them and use the skills you allow for each account.","inLanguage":"en","isPartOf":{"@id":"https://luckgram.cc/#site"},"dateModified":"2026-11-14"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Luckgram","item":"https://luckgram.cc/en/"},{"@type":"ListItem","position":2,"name":"MCP","item":"https://luckgram.cc/en/mcp/"}]}]}</script>
 </head>
 <body>
@@ -83,10 +83,44 @@
     }
   }
 }</code></pre>
-<p>In Claude Code you can add it with one command:</p>
+<p>On the same page, switch on the <a href="/en/skills/">skills</a> you want for each account. Until you do, the tool can only list accounts and switch between them.</p>
+
+<h2 id="connect">Connect your AI tool</h2>
+<p>The steps for four common tools. <code>&lt;TOKEN&gt;</code> is the access token from <b>Copy access token</b> on the settings page. For the cloud, use <code>https://mcp.luckgram.cc/mcp</code> as the address and the cloud key as the token; everything else is the same.</p>
+
+<h3 id="claude-code">Claude Code</h3>
 <pre><code>claude mcp add --transport http luckgram http://127.0.0.1:28765/mcp \
   --header "Authorization: Bearer &lt;TOKEN&gt;"</code></pre>
-<p>On the same page, switch on the <a href="/en/skills/">skills</a> you want for each account. Until you do, the tool can only list accounts and switch between them.</p>
+<p>Check with <code>claude mcp list</code>: the line for <code>luckgram</code> ends with <b>Connected</b>.</p>
+
+<h3 id="kiro">Kiro</h3>
+<p>Put this in <code>.kiro/settings/mcp.json</code> in your project, or in <code>~/.kiro/settings/mcp.json</code> for every project:</p>
+<pre><code>{
+  "mcpServers": {
+    "luckgram": {
+      "url": "http://127.0.0.1:28765/mcp",
+      "headers": { "Authorization": "Bearer &lt;TOKEN&gt;" }
+    }
+  }
+}</code></pre>
+<p>Then ask Kiro to call <code>list_accounts</code>.</p>
+
+<h3 id="codex">Codex</h3>
+<p>Codex reads the token from an environment variable, so it is not written into its config file:</p>
+<pre><code>export LUCKGRAM_MCP_TOKEN="&lt;TOKEN&gt;"
+codex mcp add luckgram --url http://127.0.0.1:28765/mcp \
+  --bearer-token-env-var LUCKGRAM_MCP_TOKEN</code></pre>
+<p>On Windows set the variable with <code>setx LUCKGRAM_MCP_TOKEN "&lt;TOKEN&gt;"</code> and open a new terminal. The command writes this to <code>~/.codex/config.toml</code>:</p>
+<pre><code>[mcp_servers.luckgram]
+url = "http://127.0.0.1:28765/mcp"
+bearer_token_env_var = "LUCKGRAM_MCP_TOKEN"</code></pre>
+
+<h3 id="opencode">opencode</h3>
+<pre><code>opencode mcp add luckgram --url http://127.0.0.1:28765/mcp \
+  --header "Authorization=Bearer &lt;TOKEN&gt;"</code></pre>
+<p>The header is written as <code>name=value</code>. Check with <code>opencode mcp list</code>: it shows <b>connected</b>. Right after adding it may still say pending; run it again a few seconds later.</p>
+
+<p class="note">Tested with Claude Code 2.1, Kiro CLI 2.31, Codex CLI 0.144 and opencode 2.0, against both the local and the cloud address. Other MCP clients work the same way: an HTTP server at the address above with the header <code>Authorization: Bearer &lt;TOKEN&gt;</code>.</p>
 
 <h2>What it can and cannot do</h2>
 <ul>

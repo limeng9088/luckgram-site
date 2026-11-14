@@ -299,6 +299,7 @@ html:lang(zh) .page-head h1, html:lang(ar) .page-head h1, html:lang(fa) .page-he
 .doc code { font: 13.5px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--raise); border: 1px solid var(--line-soft); border-radius: 6px; padding: 1px 6px; }
 .doc pre { margin: 0 0 18px; padding: 16px 18px; background: var(--raise); border: 1px solid var(--line); border-radius: 14px; overflow-x: auto; }
 .doc pre code { background: none; border: 0; padding: 0; white-space: pre; }
+.doc h3 { font-size: 17px; margin: 28px 0 10px; letter-spacing: 0; }
 .doc h2 code { font-size: 14px; margin-inline-start: 6px; color: var(--muted); }
 .doc .soon, .doc .kind { display: inline-block; margin-inline-start: 10px; padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; font: 600 12px/1.6 var(--body); color: var(--muted); vertical-align: middle; white-space: nowrap; }
 .doc .kind { margin-inline-start: 4px; }
