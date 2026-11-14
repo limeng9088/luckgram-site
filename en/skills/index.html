@@ -87,6 +87,11 @@
 <tbody><tr><td><code>update_profile</code></td><td>Change the name and / or the bio; what is left out stays.</td><td><code>account</code>, at least one of <code>first_name</code>, <code>last_name</code>, <code>bio</code></td><td>5 an hour, 10 a day</td></tr></tbody>
 </table></div>
 
+<h2 id="agent-skill">Skill file for your agent</h2>
+<p>Agents that support skills (Claude Code and others) work better with instructions: call <code>list_accounts</code> first, respect the limits, report what changed. Download <a href="/skills/luckgram/SKILL.md" download>SKILL.md</a> and put it where your agent loads skills from. For Claude Code:</p>
+<pre><code>mkdir -p ~/.claude/skills/luckgram
+curl -o ~/.claude/skills/luckgram/SKILL.md https://luckgram.cc/skills/luckgram/SKILL.md</code></pre>
+
 <p class="note">Limits are counted per account and per tool, and survive a restart. They keep accounts from being restricted by Telegram and cannot be switched off.</p>
 </article>
 </main>

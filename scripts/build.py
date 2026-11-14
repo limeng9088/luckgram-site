@@ -906,6 +906,12 @@ def skills():
 
 {"".join(cards)}
 
+<h2 id="agent-skill">{t("Skill file for your agent", "给 Agent 用的 Skill 文件")}</h2>
+<p>{t('Agents that support skills (Claude Code and others) work better with instructions: call <code>list_accounts</code> first, respect the limits, report what changed. Download <a href="/skills/luckgram/SKILL.md" download>SKILL.md</a> and put it where your agent loads skills from. For Claude Code:',
+      '支持 Skill 的 Agent（Claude Code 等）有了使用说明会用得更好：先调用 <code>list_accounts</code>、遵守频率上限、汇报改动了什么。下载 <a href="/skills/luckgram/SKILL.md" download>SKILL.md</a>，放到 Agent 加载 Skill 的目录里。以 Claude Code 为例：')}</p>
+<pre><code>mkdir -p ~/.claude/skills/luckgram
+curl -o ~/.claude/skills/luckgram/SKILL.md https://luckgram.cc/skills/luckgram/SKILL.md</code></pre>
+
 <p class="note">{t("Limits are counted per account and per tool, and survive a restart. They keep accounts from being restricted by Telegram and cannot be switched off.", "频率上限按账号、按工具计数，重启后仍然有效。它用来避免账号被 Telegram 限制，不能关闭。")}</p>
 </article>"""
     page("/skills/", t("Luckgram Skills – what AI tools can do per account", "Luckgram Skill – AI 工具能对每个账号做什么"),

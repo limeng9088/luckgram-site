@@ -87,6 +87,11 @@
 <tbody><tr><td><code>update_profile</code></td><td>修改昵称和（或）简介，没填的保持不变。</td><td><code>account</code>，<code>first_name</code>、<code>last_name</code>、<code>bio</code> 至少一个</td><td>每小时 5 次，每天 10 次</td></tr></tbody>
 </table></div>
 
+<h2 id="agent-skill">给 Agent 用的 Skill 文件</h2>
+<p>支持 Skill 的 Agent（Claude Code 等）有了使用说明会用得更好：先调用 <code>list_accounts</code>、遵守频率上限、汇报改动了什么。下载 <a href="/skills/luckgram/SKILL.md" download>SKILL.md</a>，放到 Agent 加载 Skill 的目录里。以 Claude Code 为例：</p>
+<pre><code>mkdir -p ~/.claude/skills/luckgram
+curl -o ~/.claude/skills/luckgram/SKILL.md https://luckgram.cc/skills/luckgram/SKILL.md</code></pre>
+
 <p class="note">频率上限按账号、按工具计数，重启后仍然有效。它用来避免账号被 Telegram 限制，不能关闭。</p>
 </article>
 </main>
