@@ -1,0 +1,129 @@
+# Luckgram
+
+> Luckgram is an independent, open-source Telegram client for iPhone, iPad, Android and Windows. People sign in with their existing Telegram account and get everything Telegram has, plus extras such as more accounts in one app, hidden chats, free translation and AI tools. Luckgram is not made by, affiliated with, or endorsed by Telegram.
+
+## Facts
+
+- What it is: An independent Telegram client: an app that connects to the Telegram network with your own Telegram account.
+- Who makes it: The Luckgram team. It is not made by, affiliated with, or endorsed by Telegram.
+- Where it runs: iPhone and iPad, Android, Windows (beta), and in a browser at web.luckgram.cc.
+- Price: Free. Luckgram Pro is an optional membership.
+- Accounts: 10 Telegram accounts in one app for free, unlimited with Luckgram Pro.
+- Source code: Public on GitHub for iOS and Android.
+- Languages of this website: 简体中文, English, 繁體中文, Русский, Español, Português (Brasil), العربية, فارسی, Bahasa Indonesia, Türkçe
+- Contact: support@luckgram.cc
+
+## What works from Telegram
+
+- Chats and groups: Cloud chats that sync across your devices, groups of up to 200,000 members, replies, reactions and polls.
+- Channels: Follow and run channels, with comments, scheduled posts and statistics where Telegram offers them.
+- Voice and video calls: End-to-end encrypted one-on-one calls, plus group calls and live streams.
+- Secret Chats: Device-to-device encrypted chats with self-destructing messages.
+- Stories, bots and mini apps: Everything that runs on the Telegram platform works in Luckgram.
+- Several accounts: Switch between Telegram accounts in one app: 10 for free, unlimited with Luckgram Pro (Telegram itself allows 3).
+
+## Features Luckgram adds
+
+Status: Available = free for everyone; Pro = needs Luckgram Pro; In development = not released yet.
+
+### Accounts and privacy
+
+- 10 accounts free, unlimited with Pro (Available). Telegram allows 3 accounts on one device. Luckgram lets you sign in to 10 for free, and as many as you like with Luckgram Pro, so personal, work, client and channel-admin accounts sit side by side, each with its own notifications, and you switch between them in a tap. More: https://wiki.luckgram.cc/en/features/privacy.html#accounts
+- Double Bottom: a second passcode with its own view (Available). Set a second passcode that opens Luckgram with only the accounts you pick. Your usual passcode still opens everything, so you decide what shows up when someone else is looking. More: https://wiki.luckgram.cc/en/features/privacy.html#double-bottom
+- Hide chats without deleting them (Available). Swipe a chat out of your list without deleting it or leaving the group. Hidden chats stay one gesture away whenever you need them. More: https://wiki.luckgram.cc/en/features/privacy.html#hidden-chats
+- Open channels the store apps hide, for free (Available). Some channels and groups are hidden only in the App Store and Google Play builds of Telegram. Turn on one switch in Settings and Luckgram opens them, free and permanently, with no website login. Channels that Telegram blocks for everyone, or that are blocked where you live, stay blocked. More: https://wiki.luckgram.cc/en/features/privacy.html#unblock
+
+### Messages and language
+
+- Read messages in your language (Available). Press and hold a message and tap Translate: the translation appears right under the original, in the same bubble, and Undo Translate puts it back. Or turn on the one-tap translate button next to messages in another language. The first time, you pick the language to translate into, and Luckgram remembers it; tap the language line on any translation to change it. Voice messages can be translated once they are turned into text. Free, with no Telegram Premium needed: when Telegram can't translate, Luckgram's own translation takes over. More: https://wiki.luckgram.cc/en/features/translation-and-voice.html#translate-in
+- Translate what you write before you send it (Available). Write in the language you think in, then tap Translate in the + panel, or hold the send button and choose Translate or Translate to…. The text is replaced in the input bar, so you see it before anything is sent, and the language is remembered for each chat. More: https://wiki.luckgram.cc/en/features/translation-and-voice.html#translate-out
+- Read voice messages, dictate your replies (Available). Turn voice messages and round videos of any length into text with one tap, handy in a meeting or on a noisy train. Dictate instead of typing and watch the words appear as you speak; optional AI cleanup removes filler words and fixes punctuation. Free, no Telegram Premium needed. More: https://wiki.luckgram.cc/en/features/translation-and-voice.html#voice-text
+- A cleaner input bar with everything under + (Available). The input bar keeps just emoji, the text field, voice and a + button. Tap + for a grid with Photos, Camera, File, Location, Contact and Poll, plus Quick replies, Voice input, AI writing and Translate. Prefer the old layout? Turn the compact input bar off in Luckgram Features. More: https://wiki.luckgram.cc/en/features/messaging.html#plus-panel
+- Answer with saved quick replies (Available). Keep the answers you send all the time, such as running late or I will call you back, and send them with one tap from the + panel in the input bar. More: https://wiki.luckgram.cc/en/features/messaging.html#quick-replies
+- Forward without the sender's name (Available (Telegram feature)). When you forward a message, turn on Hide sender's name and it arrives as if you wrote it, without the original author attached. More: https://wiki.luckgram.cc/en/features/messaging.html#forward-anon
+- Select every message from one person (Available). Long-press a message and select everything that person wrote in the chat at once, not just the last hundred, ready to copy, forward, save or delete. More: https://wiki.luckgram.cc/en/features/messaging.html#select-all
+- Save to Saved Messages in one tap (Available). Keep a post or message for later straight from the message menu, without opening the forward screen and looking for Saved Messages. More: https://wiki.luckgram.cc/en/features/messaging.html#save-direct
+
+### Media, calls and storage
+
+- Send gallery videos as round video messages (Available). Pick a video you already recorded and send it as a round video message, the same way as one you film in the chat. More: https://wiki.luckgram.cc/en/features/media-and-calls.html#round-video
+- Record calls, with a transcript and AI summary (Available). Record a call with one tap, on iPhone and Android. When you hang up, the recording lands in Saved Messages or any chat you choose, with a searchable transcript and an AI summary of what was agreed. Recording laws differ by country; let the other person know before you record. More: https://wiki.luckgram.cc/en/features/media-and-calls.html#call-rec
+- See what takes up space and clear it (Available). Storage Usage shows how much space videos, photos, files and music take on your phone, and you clear the types you choose. Pick any cache size from 1 GB to no limit, keep media from one hour to forever, and set different rules for each chat. More: https://wiki.luckgram.cc/en/features/media-and-calls.html#cache
+
+### Profiles and organizing
+
+- Telegram ID, sign-up date and clickable bio links (Available). Profiles show the account's Telegram ID, which you can copy in a tap, an estimate of when the account was created, and links in bios that open when you tap them. More: https://wiki.luckgram.cc/en/features/profiles-and-folders.html#profile-info
+- Keyword folders that find chats for you (Available). Create a folder from a word, such as invoice or flight, and it gathers every chat that mentions it, with the word highlighted. More: https://wiki.luckgram.cc/en/features/profiles-and-folders.html#keyword-folders
+- Private notes on any contact (Available). Write a note on someone's profile, such as where you met or what they ordered. Only you can see it, it shows at the top of your chat with them, and you can search all your notes at once. More: https://wiki.luckgram.cc/en/features/profiles-and-folders.html#user-notes
+- See what a contact said in groups you share (Available). Open a profile and the Activity tab lists that person's latest messages in the groups you are both in, with a tap to jump to each one. It only shows messages you could already read in those groups. More: https://wiki.luckgram.cc/en/features/profiles-and-folders.html#shared-activity
+
+### Discover
+
+- A Discover tab for Square and People Nearby (Available). The third tab at the bottom is Discover, where Square and People Nearby live. Settings moved one level down: open the Profile tab and tap Settings. More: https://wiki.luckgram.cc/en/features/discover.html#discover-tab
+- Meet people nearby, only when you choose to (Available). Turn on Visible to people nearby and you see others around you who did the same, then message them in a tap. People see only how far away you are, such as within 500 m, never where you are, and it turns itself off after 24 hours. You can report or block anyone. More: https://wiki.luckgram.cc/en/features/discover.html#nearby
+- Square: public posts from the Luckgram community (Available). Share text, photos and short videos to a public feed that every Luckgram user can see. Posts go live as soon as you publish them. Browse Latest and Hot, like and comment, or start a private chat from the author's profile. You can report inappropriate content and block anyone at any time. More: https://wiki.luckgram.cc/en/features/discover.html#square
+- Scan a QR code to add a friend (Available). Open the ⋮ menu at the top of the chat list and tap Scan to read someone's Telegram QR code and open their profile, a group or a link. My QR code is on the same screen, ready to show. More: https://wiki.luckgram.cc/en/features/discover.html#scan
+
+### AI
+
+- An AI assistant inside your chats (Available). Ask a question, get a topic explained with an example, have a long text summarized or rewritten, or a math problem worked through step by step, in a chat like any other. Share a message, a link or a file with it straight from any chat. More: https://wiki.luckgram.cc/en/features/ai.html#ai-chat
+- Catch up on a busy chat with a summary (Available). Coming back to hundreds of unread messages? Get the decisions, dates and open questions in a few lines before you scroll. Ask your own question, such as what the client agreed to, and tap any point to jump to the messages behind it. More: https://wiki.luckgram.cc/en/features/ai.html#ai-summary
+- Turn rough notes into a reply (Available). Type what you mean, however quickly, and choose from polished replies that fit the conversation. Edit the one you pick before you send it. More: https://wiki.luckgram.cc/en/features/ai.html#ai-reply
+- Polish any message before you send it (Available). Type in any chat, long-press the send button, pick AI writing and choose what you want: better wording, more formal, friendlier, shorter or just fixed grammar. The text is rewritten in place, in your language. More: https://wiki.luckgram.cc/en/features/ai.html#ai-writing
+- AI agents for every task, or build your own (Available). Pick an agent made for the job, such as a travel planner, copywriter, language tutor or researcher, and chat with it like with anyone else. Need something specific? Create your own agent with your own instructions. More: https://wiki.luckgram.cc/en/features/ai.html#ai-agents
+- Browse ready-made AI agents in the market (Available). Open Agents in the AI assistant and switch to Market: browse by category, search, read what each agent does and start a chat in a tap. New agents are added on our side, no update needed. Agents marked Pro need Luckgram Pro. More: https://wiki.luckgram.cc/en/features/ai.html#agent-market
+- Create images from a sentence (Available). Describe the picture you want and it appears in the chat. Send it to any chat or channel, save it, or ask for another version. More: https://wiki.luckgram.cc/en/features/ai.html#ai-image
+- Channel posts written in your channel's style (Available). Give a topic and get a ready-to-edit post that matches the tone of your earlier posts. Make it shorter, add emoji or translate it, then publish from the same screen. More: https://wiki.luckgram.cc/en/features/ai.html#ai-post
+
+### Luckgram Pro
+
+- Luckgram Pro: more AI, more accounts, no sponsored messages (Pro). Luckgram Pro is Luckgram's own membership, separate from Telegram Premium. It raises your daily AI and translation limits, adds monthly AI credits for the premium model, longer chat summaries with follow-up questions, Pro-only agents, unlimited accounts and cloud backup, and hides Telegram's sponsored messages in channels. The subscription page shows the current perks and your remaining credits. More: https://wiki.luckgram.cc/en/features/pro.html#pro
+- Back up your accounts to the cloud, encrypted (Pro). Pick the accounts to back up and set a backup password. The backup is encrypted on your phone before upload, so Luckgram stores only data it cannot read. On a new phone, iPhone or Android, sign in to any one account, choose Restore from cloud, enter the password and your accounts come back without signing in to each one. Forget the password and the backup cannot be restored. More: https://wiki.luckgram.cc/en/features/pro.html#cloud-backup
+- Join the private group for Pro members (Pro). Pro members can join Luckgram's private Telegram group with a one-time invite from Luckgram Features → Luckgram Pro. When the membership ends, you leave the group automatically. More: https://wiki.luckgram.cc/en/features/pro.html#pro-community
+
+### Sign-in and network
+
+- Add proxies from a QR code, a link or a subscription, even before you sign in (Available). Can't reach Telegram? The proxy button sits in the top-right corner of every sign-in screen, so you can add a SOCKS5 or MTProto proxy before you get your code. There are now two faster ways to add one. Scan a proxy QR code or paste a tg://, t.me or socks5:// link, and it goes straight into your list, with no server and port to type. Or paste a Clash or mihomo subscription URL to import all its SOCKS5 proxies at once; refresh it with one tap, and deleting the subscription removes the proxies it added. The proxy list shows the exit country and IP of every SOCKS5 proxy, and a Direct row at the top shows your own exit without one. After signing in, find Proxy settings at the top of the ⋮ menu in the chat list. More: https://wiki.luckgram.cc/en/features/sign-in-and-network.html#proxy
+- Know where your sign-in code went (Available). When Telegram sends your sign-in code to the Telegram app on another device instead of by SMS, the code screen explains where to find it, and How can I receive the code? covers what to do if no other device is signed in. More: https://wiki.luckgram.cc/en/features/sign-in-and-network.html#login-code
+
+## Questions and answers
+
+### What is Luckgram?
+
+Luckgram is an independent, open-source Telegram client for iPhone, iPad, Android and Windows. You sign in with your existing Telegram account and get everything Telegram has, plus extras such as more accounts in one app, hidden chats, free translation and AI tools.
+
+### Is Luckgram an official Telegram app?
+
+No. Luckgram is an independent app built from the open-source Telegram apps for iOS and Android. It is not made by, affiliated with, or endorsed by Telegram.
+
+### Can I use my existing Telegram account?
+
+Yes. Sign in with your phone number. Your cloud chats, contacts and channels load from Telegram as they do in any Telegram app.
+
+### Can Luckgram read my messages?
+
+No. Your messages go to Telegram's servers, as they would from any Telegram app, and Luckgram runs no message servers of its own. Features that use Luckgram's servers, such as AI, only send what you choose to process. The source code of the apps is public.
+
+### Is Luckgram free?
+
+Yes. Every feature not marked Pro is free. Luckgram Pro is an optional membership with more AI, unlimited accounts, cloud backup and no sponsored messages. Telegram Premium and Telegram Stars are Telegram's own services and are sold and managed by Telegram.
+
+### Why isn't Luckgram on the App Store or Google Play?
+
+Luckgram is currently distributed from luckgram.cc. The Download page always links to the latest build.
+
+### How do I install Luckgram on an iPhone?
+
+There are two ways. “Install on iPhone” on the Download page is a signed build: open the page in Safari on the device and follow the steps, no computer needed. The IPA is unsigned: sign it with a tool such as Sideloadly or AltStore, or with your own Apple developer certificate, then install it. The install guide walks through each step.
+
+### Which Android phones are supported?
+
+Android 6.0 or later on a 64-bit ARM phone (arm64-v8a), which covers almost every phone sold in recent years. Allow installs from your browser or file manager when asked.
+
+### Which extra features can I use?
+
+The features page lists every feature Luckgram adds. Those marked Available work in the current version, and those marked Pro need Luckgram Pro.
+
+### How do I get help?
+
+Start with the Help Center. If it does not answer your question, write to support@luckgram.cc.

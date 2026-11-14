@@ -1,0 +1,29 @@
+# Luckgram
+
+> Luckgram is an independent, open-source Telegram client for iPhone, iPad, Android and Windows. People sign in with their existing Telegram account and get everything Telegram has, plus extras such as more accounts in one app, hidden chats, free translation and AI tools. Luckgram is not made by, affiliated with, or endorsed by Telegram.
+
+## Facts
+
+- What it is: An independent Telegram client: an app that connects to the Telegram network with your own Telegram account.
+- Who makes it: The Luckgram team. It is not made by, affiliated with, or endorsed by Telegram.
+- Where it runs: iPhone and iPad, Android, Windows (beta), and in a browser at web.luckgram.cc.
+- Price: Free. Luckgram Pro is an optional membership.
+- Accounts: 10 Telegram accounts in one app for free, unlimited with Luckgram Pro.
+- Source code: Public on GitHub for iOS and Android.
+- Languages of this website: 简体中文, English, 繁體中文, Русский, Español, Português (Brasil), العربية, فارسی, Bahasa Indonesia, Türkçe
+- Contact: support@luckgram.cc
+
+## Pages
+
+- [Home](https://luckgram.cc/en/): what Luckgram is and what it adds to Telegram
+- [Download](https://luckgram.cc/en/download/): the latest builds for Android (APK), iPhone and iPad (IPA or direct install) and Windows
+- [Features](https://luckgram.cc/en/features/): every feature Luckgram adds, with its status
+- [Help Center](https://wiki.luckgram.cc/en/): installation, accounts and a guide to each feature
+- [Privacy Policy](https://luckgram.cc/en/privacy-policy/)
+- [Terms of Use](https://luckgram.cc/en/terms-of-use/)
+- [Full text for AI assistants](https://luckgram.cc/llms-full.txt)
+
+## Source code
+
+- [Luckgram for iOS](https://github.com/limeng9088/luckgram-ios)
+- [Luckgram for Android](https://github.com/limeng9088/luckgram-android)

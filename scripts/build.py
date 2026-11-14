@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
-"""Render the static pages of luckgram.cc in Chinese (default, at /) and English (at /en/).
-Every piece of copy is written as t("English", "中文"). Edit the page bodies here, then run:
+"""Render the static pages of luckgram.cc: Chinese at /, English at /en/, and every language of
+LANGUAGES at its own path (/ru/, /es/, ...).
+
+Every piece of copy is written as t("English", "中文"). The other languages are looked up by the
+English text in locales/<code>.json; a text with no translation is shown in English and reported
+at the end of the build. Edit the page bodies here, then run:
     python3 scripts/build.py
+    python3 scripts/build.py --export   # also writes locales/source.json, what there is to translate
+The script needs nothing but the Python standard library (the apps' release jobs run it).
 """
 import hashlib
 import json
 import re
 import os
+import sys
+import html as _html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WIKI_HOST = "https://wiki.luckgram.cc"
@@ -35,25 +43,111 @@ IOS_INSTALL_API = "https://api.owcywmpr.com/api/mdm/link/yx6sv23c"
 IOS_INSTALL = "https://luckgram.evztet.cn/yx6sv23c"
 UPDATED = ("October 24, 2026", "2026 年 10 月 24 日")
 PRIVACY_UPDATED = ("November 4, 2026", "2026 年 11 月 4 日")
-LANGS = ("zh", "en")
+MODIFIED = "2026-11-14"   # the day the pages' content last changed (structured data, sitemap.xml)
+SITE = "https://luckgram.cc"
+# code: (BCP 47 tag for lang/hreflang, path prefix, the language's own name, direction, og:locale)
+# Chinese and English are written in this file; the others come from locales/<code>.json.
+LANGUAGES = {
+    "zh":      ("zh-Hans", "",         "简体中文",            "ltr", "zh_CN"),
+    "en":      ("en",      "/en",      "English",             "ltr", "en_US"),
+    "zh-hant": ("zh-Hant", "/zh-hant", "繁體中文",            "ltr", "zh_TW"),
+    "ru":      ("ru",      "/ru",      "Русский",             "ltr", "ru_RU"),
+    "es":      ("es",      "/es",      "Español",             "ltr", "es_ES"),
+    "pt-br":   ("pt-BR",   "/pt-br",   "Português (Brasil)",  "ltr", "pt_BR"),
+    "ar":      ("ar",      "/ar",      "العربية",             "rtl", "ar_AR"),
+    "fa":      ("fa",      "/fa",      "فارسی",               "rtl", "fa_IR"),
+    "id":      ("id",      "/id",      "Bahasa Indonesia",    "ltr", "id_ID"),
+    "tr":      ("tr",      "/tr",      "Türkçe",              "ltr", "tr_TR"),
+}
+LOCALES_DIR = os.path.join(ROOT, "locales")
+# A language is built only when its translation file is there.
+LANGS = tuple(c for c in LANGUAGES if c in ("zh", "en") or os.path.exists(os.path.join(LOCALES_DIR, c + ".json")))
+# Pages written in Chinese and English only (legal text is not machine-translated): the other
+# languages link to the English one, traditional Chinese to the simplified one.
+LEGAL_LANGS = ("zh", "en")
+X_DEFAULT = "en"   # what a visitor whose language is not listed is offered
 LANG = "zh"  # the language currently being rendered
+CATALOG = {}   # code -> {English text: translation}
+SOURCE = {}    # English text -> Chinese text, everything that went through t()
+RECORD = True  # False while a page that is not translated (LEGAL_LANGS) is rendered
+MISSING = {}   # code -> set of English texts with no translation
 # Changes whenever site.css changes, so browsers and Cloudflare never pair new pages with an old stylesheet.
 MEDIA_VERSION = "4"   # bump when the feature videos are re-rendered, so cached copies are skipped
 CSS_VERSION = hashlib.sha1(open(os.path.join(ROOT, "assets", "site.css"), "rb").read()).hexdigest()[:10]
 
 
+def tag(code=None):
+    return LANGUAGES[code or LANG][0]
+
+
+def prefix(code=None):
+    return LANGUAGES[code or LANG][1]
+
+
+def rtl():
+    return LANGUAGES[LANG][3] == "rtl"
+
+
+def chinese():
+    return LANG in ("zh", "zh-hant")
+
+
+def load_catalogs():
+    for code in LANGS:
+        if code in ("zh", "en"):
+            continue
+        with open(os.path.join(LOCALES_DIR, code + ".json"), encoding="utf-8") as f:
+            CATALOG[code] = json.load(f)
+
+
+def _key(en):
+    """A text's key: its English, with links of the current language written as English ones."""
+    if LANG in ("zh", "en"):
+        return en
+    en = en.replace('href="' + prefix() + "/", 'href="/en/')
+    return en.replace(WIKI_HOST + "/", WIKI_HOST + "/en/") if chinese() else en
+
+
 def t(en, zh):
-    return zh if LANG == "zh" else en
+    if LANG == "zh":
+        return zh
+    if LANG == "en":
+        if en and RECORD:
+            SOURCE[en] = zh
+        return en
+    if not en:
+        return en
+    found = CATALOG[LANG].get(_key(en))
+    if found is None:
+        MISSING.setdefault(LANG, set()).add(_key(en))
+        return en
+    if chinese():
+        found = found.replace(WIKI_HOST + "/en/", WIKI_HOST + "/")
+    return found.replace('href="/en/', 'href="' + prefix() + "/")
 
 
-def u(path):
+def u(path, code=None):
     """Site path in the current language: /download/ -> /en/download/ for English."""
-    return path if LANG == "zh" else "/en" + path
+    return prefix(code) + path
+
+
+def legal(path):
+    """A legal page's address for the current language (see LEGAL_LANGS)."""
+    return u(path, LANG if LANG in LEGAL_LANGS else ("zh" if LANG == "zh-hant" else "en"))
 
 
 def wiki(path="/"):
-    """Help Center link in the current language (Chinese at /, English at /en/)."""
-    return WIKI_HOST + (path if LANG == "zh" else "/en" + path)
+    """Help Center link: it is written in Chinese (at /) and English (at /en/)."""
+    return WIKI_HOST + (path if chinese() else "/en" + path)
+
+
+def esc(text):
+    return _html.escape(text, quote=True)
+
+
+def plain(text):
+    """Text without its tags, for meta tags, structured data and llms.txt."""
+    return _html.unescape(re.sub(r"<[^>]+>", "", text)).strip()
 
 
 ICON_APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>'
@@ -62,55 +156,96 @@ ICON_ANDROID = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 ICON_GITHUB = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg>'
 
 
-def header(current, here):
-    def link(href, label, key, cls="", new_tab=False):
+ICON_GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg>'
+ICON_MENU = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
+
+# "This page is in <language>": each line in its own language, shown to a visitor whose browser asks for it.
+OFFER = {
+    "zh": ("本页有简体中文版", "切换", "关闭"),
+    "en": ("This page is available in English", "Switch", "Close"),
+    "zh-hant": ("本頁有繁體中文版", "切換", "關閉"),
+    "ru": ("Эта страница есть на русском", "Перейти", "Закрыть"),
+    "es": ("Esta página está disponible en español", "Cambiar", "Cerrar"),
+    "pt-br": ("Esta página está disponível em português", "Mudar", "Fechar"),
+    "ar": ("هذه الصفحة متوفرة بالعربية", "تبديل", "إغلاق"),
+    "fa": ("این صفحه به فارسی در دسترس است", "تغییر", "بستن"),
+    "id": ("Halaman ini tersedia dalam bahasa Indonesia", "Ganti", "Tutup"),
+    "tr": ("Bu sayfa Türkçe olarak mevcut", "Değiştir", "Kapat"),
+}
+
+
+def language_links(here, langs, mark=True):
+    return "".join(
+        '<li><a href="{}" hreflang="{}" lang="{}"{}>{}</a></li>'.format(
+            u(here, c), tag(c), tag(c), ' aria-current="true"' if mark and c == LANG else "", LANGUAGES[c][2])
+        for c in langs)
+
+
+def header(current, here, langs):
+    def link(href, label, key, new_tab=False):
         cur = ' aria-current="page"' if key == current else ""
-        c = f' class="{cls}"' if cls else ""
         nt = ' target="_blank" rel="noopener"' if new_tab else ""
-        return f'<a href="{href}"{c}{cur}{nt}>{label}</a>'
-    other = ("/en" + here) if LANG == "zh" else here
-    switch = f'<a class="lang" href="{other}" hreflang="{"en" if LANG == "zh" else "zh-CN"}" lang="{"en" if LANG == "zh" else "zh-CN"}">{"EN" if LANG == "zh" else "中文"}</a>'
-    return f'''<header class="site-header">
+        return f'<a href="{href}"{cur}{nt}>{label}</a>'
+    links = "\n        ".join([
+        link(u("/features/"), t("Features", "功能"), "features"),
+        link("https://web.luckgram.cc/", t("Web", "网页版"), "web", new_tab=True),
+        link(wiki(), t("Help", "帮助"), "help"),
+        link(u("/#faq"), t("FAQ", "常见问题"), "faq"),
+    ])
+    get_current = ' aria-current="page"' if current == "download" else ""
+    return f'''<a class="skip" href="#main">{t("Skip to content", "跳到正文")}</a>
+<header class="site-header">
   <div class="wrap">
     <a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
     <nav class="nav" aria-label="{t("Main", "主导航")}">
-      {link(u("/features/"), t("Features", "功能"), "features")}
-      {link("https://web.luckgram.cc/", t("Web", "网页版"), "web", new_tab=True)}
-      {link(wiki(), t("Help", "帮助"), "help")}
-      {link(u("/#faq"), t("FAQ", "常见问题"), "faq", "opt")}
-      {switch}
-      {link(u("/download/"), t("Download", "下载"), "download", "get")}
+        {links}
     </nav>
+    <div class="tools">
+      <details class="menu langs">
+        <summary aria-label="{t("Language", "语言")}">{ICON_GLOBE}<span>{LANGUAGES[LANG][2]}</span></summary>
+        <ul>{language_links(here, langs)}</ul>
+      </details>
+      <a class="get" href="{u("/download/")}"{get_current}>{t("Download", "下载")}</a>
+      <details class="menu more">
+        <summary aria-label="{t("Menu", "菜单")}">{ICON_MENU}</summary>
+        <nav aria-label="{t("Main", "主导航")}">
+        {links}
+        </nav>
+      </details>
+    </div>
   </div>
 </header>'''
 
 
-def footer():
+def footer(here, langs):
+    offers = json.dumps({tag(c).lower(): [u(here, c), *OFFER[c]] for c in langs}, ensure_ascii=False)
+    words = json.dumps({"version": t("Version", "版本"), "build": t("build", "构建号")}, ensure_ascii=False)
     return f'''<footer class="site-footer">
   <div class="wrap">
     <div class="top">
-      <div><a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+      <div class="about"><a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
         <p>{t("An independent, open-source Telegram client.", "独立、开源的 Telegram 客户端。")}</p></div>
-      <div><h4>{t("Product", "产品")}</h4><ul>
+      <div><h2>{t("Product", "产品")}</h2><ul>
         <li><a href="{u("/download/")}">{t("Download", "下载")}</a></li>
         <li><a href="{u("/features/")}">{t("Features", "功能")}</a></li>
         <li><a href="https://web.luckgram.cc/" target="_blank" rel="noopener">{t("Web version", "网页版")}</a></li>
         <li><a href="{wiki()}">{t("Help Center", "帮助中心")}</a></li>
       </ul></div>
-      <div><h4>{t("Source code", "源代码")}</h4><ul>
+      <div><h2>{t("Source code", "源代码")}</h2><ul>
         <li><a href="{IOS_REPO}">{t("Luckgram for iOS", "iOS 版")}</a></li>
         <li><a href="{ANDROID_REPO}">{t("Luckgram for Android", "Android 版")}</a></li>
       </ul></div>
-      <div><h4>{t("Legal", "法律")}</h4><ul>
-        <li><a href="{u("/privacy-policy/")}">{t("Privacy Policy", "隐私政策")}</a></li>
-        <li><a href="{u("/terms-of-use/")}">{t("Terms of Use", "使用条款")}</a></li>
+      <div><h2>{t("Legal", "法律")}</h2><ul>
+        <li><a href="{legal("/privacy-policy/")}">{t("Privacy Policy", "隐私政策")}</a></li>
+        <li><a href="{legal("/terms-of-use/")}">{t("Terms of Use", "使用条款")}</a></li>
       </ul></div>
-      <div><h4>{t("Contact", "联系我们")}</h4><ul>
+      <div><h2>{t("Contact", "联系我们")}</h2><ul>
         <li><a href="mailto:support@luckgram.cc">support@luckgram.cc</a></li>
         <li><a href="mailto:contact@luckgram.cc">contact@luckgram.cc</a></li>
         <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
       </ul></div>
     </div>
+    <nav class="all-langs" aria-label="{t("Language", "语言")}"><ul>{language_links(here, langs, mark=False)}</ul></nav>
     <div class="legal">
       <p>{t("Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.",
             "Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。")}</p>
@@ -119,18 +254,64 @@ def footer():
   </div>
 </footer>
 <script>
+// Menus (language, navigation on a phone): one open at a time, closed by Escape or a click elsewhere.
+(function () {{
+  var menus = document.querySelectorAll("details.menu");
+  function close(except) {{ menus.forEach(function (m) {{ if (m !== except) m.open = false; }}); }}
+  menus.forEach(function (m) {{ m.addEventListener("toggle", function () {{ if (m.open) close(m); }}); }});
+  document.addEventListener("click", function (e) {{ if (!e.target.closest || !e.target.closest("details.menu")) close(); }});
+  document.addEventListener("keydown", function (e) {{ if (e.key === "Escape") close(); }});
+}})();
+
+// The page is never changed for the visitor: when the browser asks for another language this page
+// has, a bar offers it, in that language. Closing it is remembered.
+(function () {{
+  var offers = {offers}, here = document.documentElement.lang.toLowerCase(), wanted = navigator.languages || [navigator.language || ""];
+  function match(l) {{
+    l = String(l).toLowerCase();
+    if (l.indexOf("zh") === 0) return /hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans";
+    if (offers[l]) return l;
+    var base = l.split("-")[0];
+    for (var k in offers) if (k.split("-")[0] === base) return k;
+  }}
+  var want = match(wanted[0]);
+  try {{ if (localStorage.getItem("lg-lang-offer") === "no") return; }} catch (e) {{}}
+  if (!want || want === here || !offers[want]) return;
+  var o = offers[want], bar = document.createElement("div"), a = document.createElement("a"), x = document.createElement("button");
+  bar.className = "offer"; bar.lang = want; bar.dir = /^(ar|fa)/.test(want) ? "rtl" : "ltr";
+  bar.appendChild(document.createTextNode(o[1] + " "));
+  a.href = o[0]; a.textContent = o[2]; a.hreflang = want; bar.appendChild(a);
+  x.type = "button"; x.textContent = "\\u00d7"; x.setAttribute("aria-label", o[3]);
+  x.onclick = function () {{ bar.remove(); try {{ localStorage.setItem("lg-lang-offer", "no"); }} catch (e) {{}} }};
+  bar.appendChild(x); document.body.insertBefore(bar, document.body.firstChild);
+}})();
+
+// The download buttons of this visitor's device come first.
+(function () {{
+  var ua = navigator.userAgent, os = /Android/i.test(ua) ? "android" : (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) ? "ios" : /Windows/i.test(ua) ? "windows" : "";
+  if (!os) return;
+  document.querySelectorAll("[data-smart]").forEach(function (box) {{
+    var mine = box.querySelectorAll('[data-os="' + os + '"]'); if (!mine.length) return;
+    box.setAttribute("data-smart", os);
+    box.querySelectorAll("[data-os]").forEach(function (b) {{ b.classList.remove("primary"); }});
+    // on an iPhone the build that installs without a computer is the one to offer first
+    var first = (os === "ios" && box.querySelector("[data-ios-install]")) || mine[0];
+    mine.forEach(function (b) {{ b.classList.add("mine"); }}); first.classList.add("primary", "first");
+  }});
+}})();
+
 // Download buttons: /download/latest.json is written by the app CI after each master release
 // (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
 (function () {{
-  var zh = document.documentElement.lang.indexOf("zh") === 0;
+  var words = {words};
   function mb(n) {{ return (n / 1048576).toFixed(1) + " MB"; }}
   function day(s) {{ return (s || "").slice(0, 10); }}
   function meta(el, r, f) {{
     if (!el || !f) return;
-    var line = (zh ? "版本 " : "Version ") + r.version + (zh ? " · 构建号 " : " · build ") + r.build +
-      " · " + day(r.published_at) + " · " + mb(f.size);
+    var line = words.version + " " + r.version + " \\u00b7 " + words.build + " " + r.build +
+      " \\u00b7 " + day(r.published_at) + " \\u00b7 " + mb(f.size);
     el.textContent = "";
-    var p = document.createElement("p"); p.textContent = line; el.appendChild(p);
+    var p = document.createElement("p"); p.textContent = line; p.dir = "auto"; el.appendChild(p);
     var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
     s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
     el.hidden = false;
@@ -192,36 +373,71 @@ def footer():
 </script>'''
 
 
+PAGES = []   # (here, [language codes]) of every indexable page written, for sitemap.xml
 
-def page(here, title, description, body, current=""):
-    """here: the page's path without the language prefix, e.g. "/download/" or "/404.html"."""
+
+def organization():
+    return {"@type": "Organization", "@id": SITE + "/#org", "name": "Luckgram", "url": SITE + "/",
+            "logo": SITE + "/assets/icon-512.png", "email": "support@luckgram.cc",
+            "sameAs": [IOS_REPO, ANDROID_REPO]}
+
+
+def page(here, title, description, body, current="", langs=None, ld=(), index=True, crumb=None):
+    """here: the page's path without the language prefix, e.g. "/download/" or "/404.html".
+    langs: the languages the page exists in; ld: schema.org objects of the page;
+    crumb: its name in the breadcrumb; index=False keeps it out of search engines and the sitemap."""
+    langs = [c for c in LANGS if c in (langs or LANGS)]
     file = here + "index.html" if here.endswith("/") else here
-    path = file.lstrip("/") if LANG == "zh" else "en" + file
-    alt_zh, alt_en = "https://luckgram.cc" + here, "https://luckgram.cc/en" + here
+    path = (prefix() + file).lstrip("/")
+    url = SITE + u(here)
+    alternates = "\n".join(f'<link rel="alternate" hreflang="{tag(c)}" href="{SITE}{u(here, c)}">' for c in langs)
+    alternates += f'\n<link rel="alternate" hreflang="x-default" href="{SITE}{u(here, X_DEFAULT)}">'
+    og_alt = "\n".join(f'<meta property="og:locale:alternate" content="{LANGUAGES[c][4]}">' for c in langs if c != LANG)
+    graph = [organization(),
+             {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Luckgram",
+              "publisher": {"@id": SITE + "/#org"}, "inLanguage": [tag(c) for c in LANGS]},
+             {"@type": "WebPage", "@id": url + "#page", "url": url, "name": plain(title), "description": plain(description),
+              "inLanguage": tag(), "isPartOf": {"@id": SITE + "/#site"}, "dateModified": MODIFIED}]
+    if crumb:
+        graph.append({"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Luckgram", "item": SITE + u("/")},
+            {"@type": "ListItem", "position": 2, "name": crumb, "item": url}]})
+    graph.extend(ld)
+    data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    seo = f'<link rel="canonical" href="{url}">\n{alternates}' if index else '<meta name="robots" content="noindex">'
     html = f'''<!doctype html>
-<html lang="{"zh-CN" if LANG == "zh" else "en"}">
+<html lang="{tag()}" dir="{LANGUAGES[LANG][3]}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}</title>
-<meta name="description" content="{description}">
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{description}">
-<meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
-<link rel="alternate" hreflang="zh-CN" href="{alt_zh}">
-<link rel="alternate" hreflang="en" href="{alt_en}">
-<link rel="alternate" hreflang="x-default" href="{alt_zh}">
+<title>{esc(plain(title))}</title>
+<meta name="description" content="{esc(plain(description))}">
+{seo}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Luckgram">
+<meta property="og:url" content="{url}">
+<meta property="og:title" content="{esc(plain(title))}">
+<meta property="og:description" content="{esc(plain(description))}">
+<meta property="og:image" content="{SITE}/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="{LANGUAGES[LANG][4]}">
+{og_alt}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
 <meta name="heleket" content="16ef8c76" />
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css?v={CSS_VERSION}">
+<script type="application/ld+json">{data}</script>
 </head>
 <body>
-{header(current, here)}
-<main>
+{header(current, here, langs)}
+<main id="main">
 {body}
 </main>
-{footer()}
+{footer(here, langs)}
 </body>
 </html>
 '''
@@ -229,6 +445,8 @@ def page(here, title, description, body, current=""):
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8") as f:
         f.write(html)
+    if index and LANG == langs[0]:
+        PAGES.append((here, langs))
 
 
 # 24px line icons for the works-today list, in the same order as available()
@@ -261,21 +479,27 @@ def available():
 
 def faq():
     return [
+        (t("What is Luckgram?", "Luckgram 是什么？"),
+         t("Luckgram is an independent, open-source Telegram client for iPhone, iPad, Android and Windows. You sign in with your existing Telegram account and get everything Telegram has, plus extras such as more accounts in one app, hidden chats, free translation and AI tools.",
+           "Luckgram 是独立、开源的 Telegram 客户端，支持 iPhone、iPad、Android 和 Windows。用你现有的 Telegram 账号登录，Telegram 有的功能都在，另外还有一个应用登录更多账号、隐藏聊天、免费翻译和 AI 等功能。")),
         (t("Is Luckgram an official Telegram app?", "Luckgram 是 Telegram 官方应用吗？"),
          t("No. Luckgram is an independent app built from the open-source Telegram apps for iOS and Android. It is not made by, affiliated with, or endorsed by Telegram.",
            "不是。Luckgram 是基于开源的 Telegram iOS 和 Android 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。")),
         (t("Can I use my existing Telegram account?", "可以用我现有的 Telegram 账号吗？"),
          t("Yes. Sign in with your phone number. Your cloud chats, contacts and channels load from Telegram as they do in any Telegram app.",
            "可以。用手机号登录即可，云端聊天、联系人和频道会像在任何 Telegram 应用里一样从 Telegram 加载。")),
+        (t("Can Luckgram read my messages?", "Luckgram 能看到我的消息吗？"),
+         t("No. Your messages go to Telegram's servers, as they would from any Telegram app, and Luckgram runs no message servers of its own. Features that use Luckgram's servers, such as AI, only send what you choose to process. The source code of the apps is public.",
+           "不能。你的消息和在任何 Telegram 应用里一样，发送到 Telegram 的服务器，Luckgram 没有自己的消息服务器。AI 等用到 Luckgram 服务器的功能，只发送你选择处理的内容。应用的源代码是公开的。")),
         (t("Is Luckgram free?", "Luckgram 免费吗？"),
          t("Yes. Every feature not marked Pro is free. Luckgram Pro is an optional membership with more AI, unlimited accounts, cloud backup and no sponsored messages. Telegram Premium and Telegram Stars are Telegram's own services and are sold and managed by Telegram.",
            "免费。没有标注“Pro 专享”的功能都免费使用。Luckgram Pro 是可选的会员，提供更多 AI、不限数量的账号、云备份和去除赞助消息。Telegram Premium 和 Telegram Stars 是 Telegram 自己的服务，由 Telegram 销售和管理。")),
         (t("Why isn't Luckgram on the App Store or Google Play?", "为什么 App Store 和 Google Play 上找不到 Luckgram？"),
-         t("Luckgram is currently distributed through GitHub Releases. The Download page always links to the latest build.",
-           "Luckgram 目前通过 GitHub Releases 发布。下载页上的链接始终指向最新版本。")),
+         t(f'Luckgram is currently distributed from luckgram.cc. The <a href="{u("/download/")}">Download page</a> always links to the latest build.',
+           f'Luckgram 目前直接在 luckgram.cc 发布。<a href="{u("/download/")}">下载页</a>上的链接始终指向最新版本。')),
         (t("How do I install Luckgram on an iPhone?", "怎么在 iPhone 上安装 Luckgram？"),
-         t("The iOS build is an unsigned IPA. Sign it with a tool such as Sideloadly or AltStore, or with your own Apple developer certificate, then install it. The install guide walks through each step.",
-           "iOS 版是未签名的 IPA。先用 Sideloadly、AltStore 等工具或你自己的 Apple 开发者证书签名，再安装。安装指南里有每一步的说明。")),
+         t(f'There are two ways. “Install on iPhone” on the Download page is a signed build: open the page in Safari on the device and follow the steps, no computer needed. The IPA is unsigned: sign it with a tool such as Sideloadly or AltStore, or with your own Apple developer certificate, then install it. The <a href="{wiki("/getting-started/install.html")}">install guide</a> walks through each step.',
+           f'有两种方式。下载页的「直接安装」是已签名的版本：在 iPhone 的 Safari 里打开下载页，按提示操作即可，不需要电脑。IPA 是未签名的：先用 Sideloadly、AltStore 等工具或你自己的 Apple 开发者证书签名，再安装。<a href="{wiki("/getting-started/install.html")}">安装指南</a>里有每一步的说明。')),
         (t("Which Android phones are supported?", "支持哪些 Android 手机？"),
          t("Android 6.0 or later on a 64-bit ARM phone (arm64-v8a), which covers almost every phone sold in recent years. Allow installs from your browser or file manager when asked.",
            "Android 6.0 及以上、64 位 ARM 处理器（arm64-v8a）的手机，近几年卖的手机基本都支持。安装时如有提示，请允许浏览器或文件管理器安装应用。")),
@@ -290,7 +514,7 @@ def faq():
 
 def video(slug, label, lazy=True):
     # The website cut of each demo (luckgram-promo render-web.sh): just the phone, faded into black, no baked-in title.
-    sfx = "" if LANG == "en" else "-zh"   # Chinese pages use the videos with the Chinese phone UI
+    sfx = "-zh" if chinese() else ""   # Chinese pages use the videos with the Chinese phone UI
     src = "data-src" if lazy else "src"
     attrs = 'preload="none" data-lazy' if lazy else 'autoplay preload="auto"'
     base = f"/media/web/{slug}{sfx}"
@@ -298,16 +522,41 @@ def video(slug, label, lazy=True):
             f'<source {src}="{base}.webm?v={MEDIA_VERSION}" type="video/webm"><source {src}="{base}.mp4?v={MEDIA_VERSION}" type="video/mp4"></video>')
 
 
-def download_buttons(primary=True):
-    cls = "btn platform primary" if primary else "btn platform"
-    return f'''<a class="{cls}" href="{IOS_LATEST}" data-dl="ios" target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · sign it yourself", "iPhone 和 iPad · 需自行签名")}</small>{t("Download IPA", "下载 IPA")}</span></a>
-        <a class="btn platform" href="{IOS_INSTALL}" data-ios-install target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · no computer needed", "iPhone 和 iPad · 无需电脑")}</small>{t("Install on iPhone", "直接安装 iOS 版")}</span></a>
-        <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android" target="_blank" rel="noopener">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>
-        <a class="btn platform" href="{WIN_LATEST}" data-dl="windows" target="_blank" rel="noopener">{ICON_WINDOWS}<span><small>{t("Windows 10/11 · beta", "Windows 10/11 · 测试版")}</small>{t("Download for Windows", "下载 Windows 版")}</span></a>'''
+def download_buttons():
+    """The four downloads. The script in footer() puts the visitor's own system first (data-smart)."""
+    return f'''<a class="btn platform primary" href="{IOS_LATEST}" data-dl="ios" data-os="ios" target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · sign it yourself", "iPhone 和 iPad · 需自行签名")}</small>{t("Download IPA", "下载 IPA")}</span></a>
+        <a class="btn platform" href="{IOS_INSTALL}" data-ios-install data-os="ios" target="_blank" rel="noopener">{ICON_APPLE}<span><small>{t("iPhone and iPad · no computer needed", "iPhone 和 iPad · 无需电脑")}</small>{t("Install on iPhone", "直接安装 iOS 版")}</span></a>
+        <a class="btn platform" href="{ANDROID_LATEST}" data-dl="android" data-os="android" target="_blank" rel="noopener">{ICON_ANDROID}<span><small>{t("Android 6.0 or later", "Android 6.0 及以上")}</small>{t("Download APK", "下载 APK")}</span></a>
+        <a class="btn platform" href="{WIN_LATEST}" data-dl="windows" data-os="windows" target="_blank" rel="noopener">{ICON_WINDOWS}<span><small>{t("Windows 10/11 · beta", "Windows 10/11 · 测试版")}</small>{t("Download for Windows", "下载 Windows 版")}</span></a>'''
 
 
 def feature_by_slug():
     return {slug: (short, title, status, body) for _, items in feature_groups() for slug, short, title, status, body, _, _ in items}
+
+
+def software(description):
+    """schema.org description of the app, the same on every page that carries it."""
+    return {"@type": "SoftwareApplication", "@id": SITE + "/#app", "name": "Luckgram",
+            "description": plain(description), "url": SITE + u("/"), "downloadUrl": SITE + u("/download/"),
+            "applicationCategory": "CommunicationApplication", "operatingSystem": "iOS, Android, Windows",
+            "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+            "publisher": {"@id": SITE + "/#org"}, "inLanguage": tag()}
+
+
+def facts():
+    """What Luckgram is, in the plainest words: the answers people (and the search and AI tools they ask) look for."""
+    return [
+        (t("What it is", "是什么"), t("An independent Telegram client: an app that connects to the Telegram network with your own Telegram account.",
+                                   "独立的 Telegram 客户端：用你自己的 Telegram 账号连接 Telegram 网络的应用。")),
+        (t("Who makes it", "谁做的"), t("The Luckgram team. It is not made by, affiliated with, or endorsed by Telegram.",
+                                     "Luckgram 团队。并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。")),
+        (t("Where it runs", "支持的平台"), t("iPhone and iPad, Android, Windows (beta), and in a browser at web.luckgram.cc.",
+                                         "iPhone 和 iPad、Android、Windows（测试版），以及浏览器里的 web.luckgram.cc。")),
+        (t("Price", "价格"), t("Free. Luckgram Pro is an optional membership.", "免费。Luckgram Pro 是可选的会员。")),
+        (t("Accounts", "账号数量"), t("10 Telegram accounts in one app for free, unlimited with Luckgram Pro.",
+                                   "一个应用里免费登录 10 个 Telegram 账号，开通 Luckgram Pro 后不限数量。")),
+        (t("Source code", "源代码"), t("Public on GitHub for iOS and Android.", "iOS 和 Android 版的代码在 GitHub 上公开。")),
+    ]
 
 
 def home():
@@ -320,28 +569,40 @@ def home():
     for slug in ("accounts", "double-bottom", "translate-out", "voice-text", "round-video", "ai-summary"):
         short, title, (key, label), body = feats[slug]
         # subtitle: the full title, minus a leading "Name: " that would repeat the heading
-        sub = re.sub(r"^.{1,24}?[:：]\s*", "", t(*title)) if t(*title).startswith(t(*short)) else t(*title)
+        sub = re.sub(r"^.{1,40}?[:：]\s*", "", t(*title)) if t(*title).startswith(t(*short)) else t(*title)
         sub = sub[:1].upper() + sub[1:]
         cells.append(f'''<a class="cell" href="{u("/features/")}#{slug}">{video(slug, t(*title))}
         <span class="tag {key}">{t(*label)}</span><h3>{t(*short)}</h3><p>{sub}</p></a>''')
     qa = "\n".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faq())
+    glance = "\n".join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in facts())
+    lede = t("Luckgram is an independent, open-source Telegram client for iOS, Android and Windows. Sign in with your Telegram account and your chats, channels and calls are all there, plus more accounts, hidden chats, free translation and AI tools.",
+             "Luckgram 是独立、开源的 iOS、Android 和 Windows Telegram 客户端。用你的 Telegram 账号登录，聊天、频道和通话都在，还有多账号、隐藏聊天、免费翻译和 AI 等功能。")
+    count = t("{n} features in all.", "共 {n} 个功能。").replace("{n}", str(n))
     body = f'''<section class="hero">
   <div class="wrap">
-    <div class="hero-text">
-      <h1>{t("Telegram,<br>flying further", "Telegram，<br>飞得更远")}</h1>
-      <p class="lede">{t("Luckgram is an independent, open-source Telegram client for iOS, Android and Windows. Sign in with your Telegram account and your chats, channels and calls are all there, plus more accounts, hidden chats, free translation and AI tools.",
-                         "Luckgram 是独立、开源的 iOS、Android 和 Windows Telegram 客户端。用你的 Telegram 账号登录，聊天、频道和通话都在，还有多账号、隐藏聊天、免费翻译和 AI 等功能。")}</p>
-      <div class="btns">
+    <h1>{t("Telegram,<br>flying further", "Telegram，<br>飞得更远")}</h1>
+    <p class="lede">{lede}</p>
+    <div class="btns" data-smart>
         {download_buttons()}
-      </div>
-      <p class="fine">{t(f'Free. Installing on iPhone? Read the <a href="{wiki("/getting-started/install.html")}">install guide</a>.', f'免费使用。在 iPhone 上安装，请先看<a href="{wiki("/getting-started/install.html")}">安装指南</a>。')}</p>
     </div>
-    <figure class="stage" style="margin:0">
+    <p class="fine">{t(f'Free. Installing on iPhone? Read the <a href="{wiki("/getting-started/install.html")}">install guide</a>.', f'免费使用。在 iPhone 上安装，请先看<a href="{wiki("/getting-started/install.html")}">安装指南</a>。')}</p>
+  </div>
+  <div class="horizon">
+    <div class="side">{video("accounts", t(*feats["accounts"][1]))}</div>
+    <figure class="stage">
       {video("translate-in", t("Translate messages", "翻译消息"), lazy=False)}
       <figcaption><span class="tag ok">{t("Available now: translate incoming messages", "现已可用：翻译收到的消息")}</span></figcaption>
     </figure>
-    <svg class="route" aria-hidden="true"><path id="route"/></svg>
-    <div class="plane" id="plane" aria-hidden="true"></div>
+    <div class="side">{video("ai-summary", t(*feats["ai-summary"][1]))}</div>
+  </div>
+</section>
+
+<section class="block glance">
+  <div class="wrap">
+    <h2>{t("Luckgram at a glance", "一眼看懂 Luckgram")}</h2>
+    <dl>
+{glance}
+    </dl>
   </div>
 </section>
 
@@ -362,7 +623,7 @@ def home():
     <div class="wall">
 {"".join(cells)}
     </div>
-    <div class="wall-foot"><span>{t(f"{n} features in all.", f"共 {n} 个功能。")}</span><a class="btn" href="{u("/features/")}">{t("See all features", "查看全部功能")}</a></div>
+    <div class="wall-foot"><span>{count}</span><a class="btn" href="{u("/features/")}">{t("See all features", "查看全部功能")}</a></div>
   </div>
 </section>
 
@@ -382,17 +643,6 @@ def home():
   </div>
 </section>
 
-<section class="cta" id="download">
-  <div class="wrap">
-    <div class="mark" aria-hidden="true"></div>
-    <h2>{t("Take your Telegram with you", "带上你的 Telegram，出发")}</h2>
-    <p>{t("Free for iPhone, iPad, Android and Windows. Sign in with the account you already have.", "iPhone、iPad、Android 和 Windows 均可免费使用，用你现有的账号登录。")}</p>
-    <div class="btns">
-      {download_buttons()}
-    </div>
-  </div>
-</section>
-
 <section class="block" id="faq">
   <div class="wrap faq">
     <div class="head solo"><h2>{t("Questions", "常见问题")}</h2>
@@ -402,24 +652,23 @@ def home():
     </div>
   </div>
 </section>
-<script>
-// Draw the paper plane's route from under the buttons to the corner of the demo, then fly it once.
-(function () {{
-  var hero = document.querySelector('.hero .wrap'), path = document.getElementById('route'), plane = document.getElementById('plane');
-  function draw() {{
-    if (window.innerWidth < 980) {{ path.setAttribute('d', ''); plane.style.display = 'none'; return; }}
-    var h = hero.getBoundingClientRect(), b = hero.querySelector('.fine').getBoundingClientRect(), s = hero.querySelector('.stage video').getBoundingClientRect();
-    var x0 = b.left - h.left + 4, y0 = b.bottom - h.top + 44, x1 = s.left - h.left + 18, y1 = s.top - h.top + 6, dx = x1 - x0;
-    var d = 'M' + x0 + ' ' + y0 + ' C' + (x0 + dx * .55) + ' ' + (y0 + 70) + ' ' + (x1 - dx * .5) + ' ' + (y1 + 40) + ' ' + x1 + ' ' + y1;
-    path.setAttribute('d', d); plane.style.display = ''; plane.style.offsetPath = "path('" + d + "')";
-  }}
-  draw(); window.addEventListener('resize', draw);
-}})();
-</script>'''
+
+<section class="cta" id="download">
+  <div class="wrap">
+    <div class="mark" aria-hidden="true"></div>
+    <h2>{t("Take your Telegram with you", "带上你的 Telegram，出发")}</h2>
+    <p>{t("Free for iPhone, iPad, Android and Windows. Sign in with the account you already have.", "iPhone、iPad、Android 和 Windows 均可免费使用，用你现有的账号登录。")}</p>
+    <div class="btns" data-smart>
+      {download_buttons()}
+    </div>
+  </div>
+</section>'''
+    description = t("Luckgram is an independent, open-source Telegram client for iOS, Android and Windows. Sign in with your Telegram account and keep everything you use today.",
+                    "Luckgram 是独立、开源的 iOS、Android 和 Windows Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。")
+    questions = {"@type": "FAQPage", "@id": SITE + u("/") + "#faq", "inLanguage": tag(), "mainEntity": [
+        {"@type": "Question", "name": plain(q), "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq()]}
     page("/", t("Luckgram – an independent Telegram client for iOS, Android and Windows", "Luckgram – 独立的 iOS、Android 和 Windows Telegram 客户端"),
-         t("Luckgram is an independent, open-source Telegram client for iOS, Android and Windows. Sign in with your Telegram account and keep everything you use today.",
-           "Luckgram 是独立、开源的 iOS、Android 和 Windows Telegram 客户端。用你的 Telegram 账号登录，现在用的一切都还在。"),
-         body)
+         description, body, ld=[software(description), questions])
 
 
 def download():
@@ -484,14 +733,15 @@ def download():
                      "如果你之前在 Android 上装过 Luckgram 的测试版，请先卸载：签名密钥不同的版本不能相互覆盖升级。请只从本页或本页链接的 GitHub 仓库下载 Luckgram。")}</p>
 </div>'''
     page("/download/", t("Download Luckgram for Android, iOS and Windows", "下载 Luckgram（Android、iOS 和 Windows）"),
-         t("Download the latest Luckgram builds for Android (APK), iOS (IPA) and Windows.", "下载最新版 Luckgram：Android（APK）、iOS（IPA）和 Windows。"), body, "download")
+         t("Download the latest Luckgram builds for Android (APK), iOS (IPA) and Windows.", "下载最新版 Luckgram：Android（APK）、iOS（IPA）和 Windows。"), body, "download",
+         crumb=t("Download", "下载"))
 
 
 
 def privacy():
     body = f'''<article class="prose">
 <h1>{t("Privacy Policy", "隐私政策")}</h1>
-<p class="meta">{t("Last updated", "最后更新：")}{" " if LANG == "en" else ""}{t(*PRIVACY_UPDATED)}</p>
+<p class="meta">{t("Last updated", "最后更新：")}{"" if chinese() else " "}{t(*PRIVACY_UPDATED)}</p>
 
 <p>{t("This policy explains what happens to your information when you use the Luckgram apps for iOS and Android and the luckgram.cc websites. Luckgram is an independent app built from the open-source Telegram apps.",
       "本政策说明你使用 Luckgram iOS 和 Android 应用以及 luckgram.cc 网站时，你的信息会如何处理。Luckgram 是基于开源 Telegram 应用开发的独立应用。")}</p>
@@ -563,13 +813,13 @@ def privacy():
 {t("", '<p class="note">本政策以中文和英文发布。两种版本如有不一致，以英文版为准。</p>')}
 </article>'''
     page("/privacy-policy/", t("Privacy Policy – Luckgram", "隐私政策 – Luckgram"),
-         t("How Luckgram handles your information.", "Luckgram 如何处理你的信息。"), body)
+         t("How Luckgram handles your information.", "Luckgram 如何处理你的信息。"), body, langs=LEGAL_LANGS, crumb=t("Privacy Policy", "隐私政策"))
 
 
 def terms():
     body = f'''<article class="prose">
 <h1>{t("Terms of Use", "使用条款")}</h1>
-<p class="meta">{t("Last updated", "最后更新：")}{" " if LANG == "en" else ""}{t(*UPDATED)}</p>
+<p class="meta">{t("Last updated", "最后更新：")}{"" if chinese() else " "}{t(*UPDATED)}</p>
 
 <p>{t("These terms apply to your use of the Luckgram apps and the luckgram.cc websites. By using Luckgram you agree to them.",
       "本条款适用于你对 Luckgram 应用和 luckgram.cc 网站的使用。使用 Luckgram 即表示你同意本条款。")}</p>
@@ -611,7 +861,7 @@ def terms():
 {t("", '<p class="note">本条款以中文和英文发布。两种版本如有不一致，以英文版为准。</p>')}
 </article>'''
     page("/terms-of-use/", t("Terms of Use – Luckgram", "使用条款 – Luckgram"),
-         t("The terms for using Luckgram.", "使用 Luckgram 的条款。"), body)
+         t("The terms for using Luckgram.", "使用 Luckgram 的条款。"), body, langs=LEGAL_LANGS, crumb=t("Terms of Use", "使用条款"))
 
 
 
@@ -628,7 +878,8 @@ def load_features():
 
 
 def feature_groups():
-    """[((group en, zh), [(slug, short, title, (css class, label), body, wiki path, has video)])] from features.json."""
+    """[((group en, zh), [(slug, short, title, (css class, label), body, wiki path, has video)])] from features.json.
+    features.json keeps Chinese and English (the Help Center copies it); t() finds the other languages by the English."""
     data = load_features()
     pair = lambda d: (d["en"], d["zh"])
     out = []
@@ -641,11 +892,12 @@ def feature_groups():
 
 
 def features():
-    toc, sections = [], []
+    toc, sections, names = [], [], []
     for group, items in feature_groups():
         toc.append(f'<li class="toc-group">{t(*group)}</li>')
         for slug, short, title, (key, label), body, help_path, has_video in items:
             title = t(*title)
+            names.append((slug, title))
             toc.append(f'<li><a href="#{slug}">{t(*short)}</a></li>')
             demo = video(slug, title) if has_video else ""
             sections.append(f'''<section class="feat{"" if has_video else " novid"}" id="{slug}">
@@ -677,7 +929,7 @@ def features():
     <div class="mark" aria-hidden="true"></div>
     <h2>{t("Start with what works today", "先从现在能用的开始")}</h2>
     <p>{t("Sign in with your Telegram account. New features arrive with updates.", "用你的 Telegram 账号登录，新功能会随更新到来。")}</p>
-    <div class="btns">
+    <div class="btns" data-smart>
       {download_buttons()}
     </div>
   </div>
@@ -698,45 +950,139 @@ def features():
   document.querySelectorAll('.feat').forEach(function (s) {{ io.observe(s); }});
 }})();
 </script>'''
-    page("/features/", t("Luckgram features", "Luckgram 功能"),
+    listing = {"@type": "ItemList", "@id": SITE + u("/features/") + "#list", "name": t("Luckgram features", "Luckgram 功能"),
+               "numberOfItems": len(names), "itemListElement": [
+                   {"@type": "ListItem", "position": i + 1, "name": plain(name), "url": SITE + u("/features/") + "#" + slug}
+                   for i, (slug, name) in enumerate(names)]}
+    page("/features/", t("Luckgram features: everything it adds to Telegram", "Luckgram 功能：在 Telegram 之上增加了什么"),
          t("Every feature Luckgram adds to Telegram, with its status: available for everyone or part of Luckgram Pro.",
            "Luckgram 在 Telegram 之上增加的全部功能及状态：所有人可用，或属于 Luckgram Pro。"),
-         body, "features")
+         body, "features", ld=[listing], crumb=t("Features", "功能"))
 
 
 def not_found():
-    body = f'''<article class="prose">
+    """GitHub Pages serves this one page for every address that does not exist, in any language."""
+    links = "".join(f'<li><a href="{u("/", c)}" hreflang="{tag(c)}" lang="{tag(c)}">{LANGUAGES[c][2]}</a></li>' for c in LANGS)
+    body = f"""<article class="prose">
 <h1>{t("Page not found", "页面不存在")}</h1>
 <p>{t(f'This page does not exist. Go to the <a href="{u("/")}">home page</a> or the <a href="{u("/download/")}">downloads</a>.',
       f'这个页面不存在。去<a href="{u("/")}">首页</a>或<a href="{u("/download/")}">下载页</a>看看吧。')}</p>
-<p><a href="/en/">English</a> · <a href="/">中文</a></p>
-</article>'''
-    page("/404.html", t("Page not found – Luckgram", "页面不存在 – Luckgram"), t("Page not found.", "页面不存在。"), body)
+<ul class="langs-list">{links}</ul>
+</article>"""
+    page("/404.html", t("Page not found – Luckgram", "页面不存在 – Luckgram"), t("Page not found.", "页面不存在。"), body, langs=[LANG], index=False)
 
 
 def redirect(path, target):
     out = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8") as f:
-        f.write(f'''<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8">
+        f.write(f"""<!doctype html>
+<html lang="{tag()}"><head><meta charset="utf-8">
 <title>Luckgram</title>
+<meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="0; url={target}">
 <link rel="canonical" href="{target}">
 </head><body><p><a href="{target}">{target}</a></p></body></html>
-''')
+""")
+
+
+def write(path, text):
+    with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def sitemap():
+    """Every indexable page in every language it exists in, each naming the others (hreflang)."""
+    out = ['<?xml version="1.0" encoding="UTF-8"?>',
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+    for here, langs in PAGES:
+        alternates = "".join(f'<xhtml:link rel="alternate" hreflang="{tag(c)}" href="{SITE}{u(here, c)}"/>' for c in langs)
+        alternates += f'<xhtml:link rel="alternate" hreflang="x-default" href="{SITE}{u(here, X_DEFAULT)}"/>'
+        for c in langs:
+            out.append(f"<url><loc>{SITE}{u(here, c)}</loc><lastmod>{MODIFIED}</lastmod>{alternates}</url>")
+    out.append("</urlset>")
+    write("sitemap.xml", "\n".join(out) + "\n")
+
+
+def robots():
+    write("robots.txt", f"""# luckgram.cc: everything here is public and may be read by search engines and AI assistants.
+User-agent: *
+Allow: /
+
+Sitemap: {SITE}/sitemap.xml
+""")
+
+
+def llms():
+    """llms.txt: the site in plain Markdown for AI assistants, from the same texts as the pages (English)."""
+    global LANG
+    LANG = "en"
+    groups = feature_groups()
+    lines = ["# Luckgram", "",
+             "> Luckgram is an independent, open-source Telegram client for iPhone, iPad, Android and Windows. People sign in with their existing Telegram account and get everything Telegram has, plus extras such as more accounts in one app, hidden chats, free translation and AI tools. Luckgram is not made by, affiliated with, or endorsed by Telegram.", "",
+             "## Facts", ""]
+    lines += [f"- {k}: {plain(v)}" for k, v in facts()]
+    lines += [f"- Languages of this website: {', '.join(LANGUAGES[c][2] for c in LANGS)}",
+              "- Contact: support@luckgram.cc", "",
+              "## Pages", "",
+              f"- [Home]({SITE}/en/): what Luckgram is and what it adds to Telegram",
+              f"- [Download]({SITE}/en/download/): the latest builds for Android (APK), iPhone and iPad (IPA or direct install) and Windows",
+              f"- [Features]({SITE}/en/features/): every feature Luckgram adds, with its status",
+              f"- [Help Center]({WIKI_HOST}/en/): installation, accounts and a guide to each feature",
+              f"- [Privacy Policy]({SITE}/en/privacy-policy/)",
+              f"- [Terms of Use]({SITE}/en/terms-of-use/)",
+              f"- [Full text for AI assistants]({SITE}/llms-full.txt)", "",
+              "## Source code", "", f"- [Luckgram for iOS]({IOS_REPO})", f"- [Luckgram for Android]({ANDROID_REPO})", ""]
+    write("llms.txt", "\n".join(lines))
+    full = lines[:lines.index("## Pages")]
+    full += ["## What works from Telegram", ""] + [f"- {a}: {plain(d)}" for a, d in available()] + [""]
+    full += ["## Features Luckgram adds", "",
+             "Status: Available = free for everyone; Pro = needs Luckgram Pro; In development = not released yet.", ""]
+    for group, items in groups:
+        full += [f"### {group[0]}", ""]
+        for slug, short, title, (_, label), body, help_path, _ in items:
+            full += [f"- {title[0]} ({label[0]}). {plain(body[0])} More: {WIKI_HOST}/en{help_path}"]
+        full += [""]
+    full += ["## Questions and answers", ""]
+    for q, a in faq():
+        full += [f"### {plain(q)}", "", plain(a), ""]
+    write("llms-full.txt", "\n".join(full))
+
+
+def export():
+    """locales/source.json: every text there is to translate, English -> Chinese."""
+    os.makedirs(LOCALES_DIR, exist_ok=True)
+    with open(os.path.join(LOCALES_DIR, "source.json"), "w", encoding="utf-8") as f:
+        json.dump(SOURCE, f, ensure_ascii=False, indent=1)
+        f.write("\n")
 
 
 if __name__ == "__main__":
+    load_catalogs()
     for LANG in LANGS:
         home()
         download()
-        privacy()
-        terms()
         features()
+        if LANG in LEGAL_LANGS:
+            RECORD = False
+            privacy()
+            terms()
+            RECORD = True
         if LANG == "zh":
-            not_found()   # GitHub Pages serves one 404 page for the whole site
+            not_found()
         # Paths referenced by the Help Center.
-        redirect(("" if LANG == "zh" else "en/") + "faq/index.html", wiki("/help/"))
-        redirect(("" if LANG == "zh" else "en/") + "hub/index.html", wiki("/features/ai.html"))
-    print("built")
+        redirect((prefix() + "/faq/index.html").lstrip("/"), wiki("/help/"))
+        redirect((prefix() + "/hub/index.html").lstrip("/"), wiki("/features/ai.html"))
+    sitemap()
+    robots()
+    llms()
+    if "--export" in sys.argv:
+        export()
+    for code, texts in sorted(MISSING.items()):
+        print(f"{code}: {len(texts)} texts are not translated and are shown in English")
+        if "--missing" in sys.argv:
+            for text in sorted(texts):
+                print("   ", text[:110])
+    print(f"built {len(LANGS)} languages: {', '.join(LANGS)}")
+    if MISSING and "--strict" in sys.argv:
+        sys.exit(1)
