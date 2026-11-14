@@ -749,6 +749,20 @@ SKILLS = [
          ("<code>account</code>, <code>unread_only</code>, <code>limit</code>, <code>offset</code>",
           "<code>account</code>、<code>unread_only</code>、<code>limit</code>、<code>offset</code>"), None),
      ]),
+    ("messages", ("Read messages", "读消息"),
+     ("Read the messages of a chat. Does not mark the chat as read.", "读取会话里的消息内容，不会把会话标记为已读。"), False, [
+        ("get_messages", ("The latest messages of a chat, newest first: id, date, sender, text, kind of attachment.",
+                          "会话的最近消息，从新到旧：id、时间、发送者、文字、附件类型。"),
+         ("<code>account</code>, <code>chat</code>, <code>limit</code>, <code>before_id</code>",
+          "<code>account</code>、<code>chat</code>、<code>limit</code>、<code>before_id</code>"), None),
+     ]),
+    ("messages_send", ("Send messages", "发消息"),
+     ("Send a text message as the account, to one chat at a time. There is no bulk tool.", "以该账号的身份发送文字消息，一次只发给一个会话，没有群发工具。"), True, [
+        ("send_message", ("Send one plain text message to one chat, through the app's normal sending.", "向一个会话发送一条纯文本消息，走应用自己的发送流程。"),
+         ("<code>account</code>, <code>chat</code>, <code>text</code>, optional <code>reply_to</code>",
+          "<code>account</code>、<code>chat</code>、<code>text</code>，可选 <code>reply_to</code>"),
+         ("30 an hour, 200 a day", "每小时 30 次，每天 200 次")),
+     ]),
 ]
 
 MCP_CONFIG = """{
@@ -757,6 +771,16 @@ MCP_CONFIG = """{
       "type": "http",
       "url": "http://127.0.0.1:28765/mcp",
       "headers": { "Authorization": "Bearer &lt;TOKEN&gt;" }
+    }
+  }
+}"""
+
+MCP_CLOUD_CONFIG = """{
+  "mcpServers": {
+    "luckgram-cloud": {
+      "type": "http",
+      "url": "https://mcp.luckgram.cc/mcp",
+      "headers": { "Authorization": "Bearer lgc_..." }
     }
   }
 }"""
@@ -791,7 +815,7 @@ def mcp():
 <ul>
 <li>{t("It lists accounts, switches the active account, and runs the tools of the skills you switched on.", "列出账号、切换当前账号，以及运行你已开启的 Skill 里的工具。")}</li>
 <li>{t("Every skill is switched on per account and is off at first. A skill that changes something asks you to confirm once when you switch it on.", "每个 Skill 都按账号单独开启，默认全部关闭。会改动账号的 Skill 在开启时要你确认一次。")}</li>
-<li>{t("It does not read message texts and does not send messages.", "读不到消息内容，也不能发消息。")}</li>
+<li>{t("Reading messages and sending messages are two separate skills. Without them the tool sees no message texts and sends nothing.", "读消息和发消息是两个单独的 Skill。不开启时，工具读不到消息内容，也不能发消息。")}</li>
 <li>{t("Tools that change something are rate limited per account, so a tool stuck in a loop cannot get an account restricted by Telegram.", "会改动账号的工具按账号限制频率，避免工具陷入循环导致账号被 Telegram 限制。")}</li>
 <li>{t("While Luckgram is locked with a passcode, nothing is listed and nothing runs.", "Luckgram 被本地密码锁住时，不列出任何账号，也不执行任何操作。")}</li>
 </ul>
@@ -808,12 +832,23 @@ def mcp():
 <p>{t("The local server is not open to the network. When your AI tool runs on another machine, forward the port over SSH and connect to it as if it were local:", "本机接口不对外开放。AI 工具运行在别的机器上时，用 SSH 把端口转发过去，再像本机一样连接：")}</p>
 <pre><code>{MCP_SSH}</code></pre>
 
-<h2>{t("Cloud: all your computers at one address", "云端版：一个地址管理所有电脑")}<span class="soon">{t("In development", "开发中")}</span></h2>
-<p>{t("Cloud MCP is not available yet. This is what it will do:", "云端 MCP 还没有上线，计划是这样的：")}</p>
+<h2 id="cloud">{t("Cloud: all your computers at one address", "云端版：一个地址管理所有电脑")}</h2>
+<p>{t("The local server works on one computer. With Cloud MCP on, Luckgram Desktop connects out to <code>mcp.luckgram.cc</code>, so your AI tool can reach it from anywhere, and several computers share one address. No public IP and no port forwarding.",
+      "本机接口只能在一台电脑上用。打开云端 MCP 后，桌面版会主动连到 <code>mcp.luckgram.cc</code>，AI 工具从任何地方都能连上，多台电脑共用一个地址。不需要公网 IP，也不需要端口转发。")}</p>
+<ol>
+<li>{t("On the first computer: Settings → Luckgram → Local MCP server → switch on <b>Connect through the cloud</b>. A cloud key is made on your computer.", "在第一台电脑上：设置 → Luckgram 功能 → 本机 MCP 接口 → 打开<b>通过云端连接</b>。云端密钥在你的电脑上生成。")}</li>
+<li>{t("Click <b>Copy cloud client config</b> and paste it into your AI tool:", "点<b>复制云端客户端配置</b>，粘贴到 AI 工具里：")}</li>
+</ol>
+<pre><code>{MCP_CLOUD_CONFIG}</code></pre>
+<ol start="3">
+<li>{t("On every other computer: the same page → <b>Use the cloud key of another computer</b>, paste the key, then switch on <b>Connect through the cloud</b>.", "在其他每台电脑上：同一页 → <b>使用另一台电脑的云端密钥</b>，粘贴密钥，再打开<b>通过云端连接</b>。")}</li>
+</ol>
 <ul>
-<li>{t("Sign in to your Luckgram account in Luckgram Desktop and switch on Cloud MCP. The app connects out to Luckgram, so no public address or port forwarding is needed.", "在桌面版里登录 Luckgram 账号并打开云端 MCP。应用主动连到 Luckgram，不需要公网地址和端口转发。")}</li>
-<li>{t("One address for your AI tools, with sign-in through your Luckgram account. Tools take a device and an account, so one agent can work across every computer you connected.", "AI 工具只用连一个地址，用 Luckgram 账号授权。工具可以指定设备和账号，一个 Agent 就能操作你接入的所有电脑。")}</li>
-<li>{t("Skills stay per account and are switched on in the app on each computer. The cloud only passes requests on and keeps a record of who called what; it does not store chats.", "Skill 仍然按账号开启，在每台电脑的应用里设置。云端只转发请求并记录调用日志，不保存聊天内容。")}</li>
+<li>{t("The tools are the same, each with one more argument, <code>device</code>. The tool calls <code>list_devices</code> first to see your computers and which are online.", "工具和本机版相同，每个工具多一个 <code>device</code> 参数。AI 工具先调用 <code>list_devices</code> 查看你的电脑和在线状态。")}</li>
+<li>{t(f'<a href="{u("/skills/")}">Skills</a> stay per account and are switched on in the app on each computer. Rate limits are counted on each computer too.', f'<a href="{u("/skills/")}">Skill</a> 仍然按账号开启，在每台电脑各自的应用里设置。频率上限也在每台电脑上各自计数。')}</li>
+<li>{t("The cloud only passes requests on. It does not store arguments, results or chats, and it does not store the cloud key itself.", "云端只转发请求：不保存参数和结果，不保存聊天内容，也不保存云端密钥本身。")}</li>
+<li>{t("<code>list_recent_calls</code> shows the last 200 calls that went through the cloud: time, tool, computer, account, failed or not.", "<code>list_recent_calls</code> 可以查看最近 200 次经过云端的调用：时间、工具、电脑、账号、是否失败。")}</li>
+<li>{t("Whoever has the cloud key can use what is switched on, on every computer of that key. If it leaks, regenerate it on the same page: the old key stops working at once.", "拿到云端密钥的人可以使用所有接入电脑上已开启的功能。密钥泄露后请在同一页重新生成，旧密钥立即失效。")}</li>
 </ul>
 
 <p class="note">{t("Luckgram is an independent client that uses the Telegram API. It is not an official Telegram app. Use automation within Telegram's Terms of Service.", "Luckgram 是使用 Telegram API 的第三方客户端，不是 Telegram 官方应用。请在 Telegram 服务条款允许的范围内使用自动化功能。")}</p>
@@ -851,7 +886,6 @@ def skills():
 
 <h2>{t("Coming next", "接下来")}</h2>
 <ul>
-<li>{t("Messages: read, send, reply and forward, each account with its own switch.", "消息：读取、发送、回复、转发，每个账号单独开关。")}</li>
 <li>{t("Groups and channels: join, leave, members.", "群组和频道：加入、退出、成员列表。")}</li>
 <li>{t("Profile: name, photo, bio.", "资料：昵称、头像、简介。")}</li>
 </ul>
@@ -859,8 +893,8 @@ def skills():
 <p class="note">{t("Limits are counted per account and per tool, and survive a restart. They keep accounts from being restricted by Telegram and cannot be switched off.", "频率上限按账号、按工具计数，重启后仍然有效。它用来避免账号被 Telegram 限制，不能关闭。")}</p>
 </article>"""
     page("/skills/", t("Luckgram Skills – what AI tools can do per account", "Luckgram Skill – AI 工具能对每个账号做什么"),
-         t("The skills of Luckgram MCP: accounts, friends, chats. Each one is switched on per account.",
-           "Luckgram MCP 的 Skill：账号、好友、会话。每个 Skill 按账号单独开启。"),
+         t("The skills of Luckgram MCP: accounts, friends, chats, messages. Each one is switched on per account.",
+           "Luckgram MCP 的 Skill：账号、好友、会话、消息。每个 Skill 按账号单独开启。"),
          body, "skills")
 
 

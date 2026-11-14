@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Luckgram Skills – what AI tools can do per account</title>
-<meta name="description" content="The skills of Luckgram MCP: accounts, friends, chats. Each one is switched on per account.">
+<meta name="description" content="The skills of Luckgram MCP: accounts, friends, chats, messages. Each one is switched on per account.">
 <meta property="og:title" content="Luckgram Skills – what AI tools can do per account">
-<meta property="og:description" content="The skills of Luckgram MCP: accounts, friends, chats. Each one is switched on per account.">
+<meta property="og:description" content="The skills of Luckgram MCP: accounts, friends, chats, messages. Each one is switched on per account.">
 <meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
 <link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/skills/">
 <link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/">
@@ -60,11 +60,20 @@
 <div class="tbl"><table>
 <thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
 <tbody><tr><td><code>list_chats</code></td><td>The chat list in its own order: type, name, unread count, muted, pinned, time of the last message.</td><td><code>account</code>, <code>unread_only</code>, <code>limit</code>, <code>offset</code></td><td>–</td></tr></tbody>
+</table></div><h2 id="messages">Read messages <code>messages</code></h2>
+<p>Read the messages of a chat. Does not mark the chat as read. <span class="kind">Read only</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>get_messages</code></td><td>The latest messages of a chat, newest first: id, date, sender, text, kind of attachment.</td><td><code>account</code>, <code>chat</code>, <code>limit</code>, <code>before_id</code></td><td>–</td></tr></tbody>
+</table></div><h2 id="messages_send">Send messages <code>messages_send</code></h2>
+<p>Send a text message as the account, to one chat at a time. There is no bulk tool. <span class="kind">Changes the account · asks once when switched on</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>send_message</code></td><td>Send one plain text message to one chat, through the app's normal sending.</td><td><code>account</code>, <code>chat</code>, <code>text</code>, optional <code>reply_to</code></td><td>30 an hour, 200 a day</td></tr></tbody>
 </table></div>
 
 <h2>Coming next</h2>
 <ul>
-<li>Messages: read, send, reply and forward, each account with its own switch.</li>
 <li>Groups and channels: join, leave, members.</li>
 <li>Profile: name, photo, bio.</li>
 </ul>

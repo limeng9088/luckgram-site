@@ -63,7 +63,7 @@
 <ul>
 <li>It lists accounts, switches the active account, and runs the tools of the skills you switched on.</li>
 <li>Every skill is switched on per account and is off at first. A skill that changes something asks you to confirm once when you switch it on.</li>
-<li>It does not read message texts and does not send messages.</li>
+<li>Reading messages and sending messages are two separate skills. Without them the tool sees no message texts and sends nothing.</li>
 <li>Tools that change something are rate limited per account, so a tool stuck in a loop cannot get an account restricted by Telegram.</li>
 <li>While Luckgram is locked with a passcode, nothing is listed and nothing runs.</li>
 </ul>
@@ -80,12 +80,30 @@
 <p>The local server is not open to the network. When your AI tool runs on another machine, forward the port over SSH and connect to it as if it were local:</p>
 <pre><code>ssh -N -L 28765:127.0.0.1:28765 user@computer-with-luckgram</code></pre>
 
-<h2>Cloud: all your computers at one address<span class="soon">In development</span></h2>
-<p>Cloud MCP is not available yet. This is what it will do:</p>
+<h2 id="cloud">Cloud: all your computers at one address</h2>
+<p>The local server works on one computer. With Cloud MCP on, Luckgram Desktop connects out to <code>mcp.luckgram.cc</code>, so your AI tool can reach it from anywhere, and several computers share one address. No public IP and no port forwarding.</p>
+<ol>
+<li>On the first computer: Settings → Luckgram → Local MCP server → switch on <b>Connect through the cloud</b>. A cloud key is made on your computer.</li>
+<li>Click <b>Copy cloud client config</b> and paste it into your AI tool:</li>
+</ol>
+<pre><code>{
+  "mcpServers": {
+    "luckgram-cloud": {
+      "type": "http",
+      "url": "https://mcp.luckgram.cc/mcp",
+      "headers": { "Authorization": "Bearer lgc_..." }
+    }
+  }
+}</code></pre>
+<ol start="3">
+<li>On every other computer: the same page → <b>Use the cloud key of another computer</b>, paste the key, then switch on <b>Connect through the cloud</b>.</li>
+</ol>
 <ul>
-<li>Sign in to your Luckgram account in Luckgram Desktop and switch on Cloud MCP. The app connects out to Luckgram, so no public address or port forwarding is needed.</li>
-<li>One address for your AI tools, with sign-in through your Luckgram account. Tools take a device and an account, so one agent can work across every computer you connected.</li>
-<li>Skills stay per account and are switched on in the app on each computer. The cloud only passes requests on and keeps a record of who called what; it does not store chats.</li>
+<li>The tools are the same, each with one more argument, <code>device</code>. The tool calls <code>list_devices</code> first to see your computers and which are online.</li>
+<li><a href="/en/skills/">Skills</a> stay per account and are switched on in the app on each computer. Rate limits are counted on each computer too.</li>
+<li>The cloud only passes requests on. It does not store arguments, results or chats, and it does not store the cloud key itself.</li>
+<li><code>list_recent_calls</code> shows the last 200 calls that went through the cloud: time, tool, computer, account, failed or not.</li>
+<li>Whoever has the cloud key can use what is switched on, on every computer of that key. If it leaks, regenerate it on the same page: the old key stops working at once.</li>
 </ul>
 
 <p class="note">Luckgram is an independent client that uses the Telegram API. It is not an official Telegram app. Use automation within Telegram's Terms of Service.</p>

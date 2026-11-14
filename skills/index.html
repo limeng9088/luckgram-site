@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Luckgram Skill – AI 工具能对每个账号做什么</title>
-<meta name="description" content="Luckgram MCP 的 Skill：账号、好友、会话。每个 Skill 按账号单独开启。">
+<meta name="description" content="Luckgram MCP 的 Skill：账号、好友、会话、消息。每个 Skill 按账号单独开启。">
 <meta property="og:title" content="Luckgram Skill – AI 工具能对每个账号做什么">
-<meta property="og:description" content="Luckgram MCP 的 Skill：账号、好友、会话。每个 Skill 按账号单独开启。">
+<meta property="og:description" content="Luckgram MCP 的 Skill：账号、好友、会话、消息。每个 Skill 按账号单独开启。">
 <meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
 <link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/skills/">
 <link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/">
@@ -60,11 +60,20 @@
 <div class="tbl"><table>
 <thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
 <tbody><tr><td><code>list_chats</code></td><td>按会话列表的顺序返回：类型、名称、未读数、是否静音、是否置顶、最后一条消息的时间。</td><td><code>account</code>、<code>unread_only</code>、<code>limit</code>、<code>offset</code></td><td>–</td></tr></tbody>
+</table></div><h2 id="messages">读消息 <code>messages</code></h2>
+<p>读取会话里的消息内容，不会把会话标记为已读。 <span class="kind">只读</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>get_messages</code></td><td>会话的最近消息，从新到旧：id、时间、发送者、文字、附件类型。</td><td><code>account</code>、<code>chat</code>、<code>limit</code>、<code>before_id</code></td><td>–</td></tr></tbody>
+</table></div><h2 id="messages_send">发消息 <code>messages_send</code></h2>
+<p>以该账号的身份发送文字消息，一次只发给一个会话，没有群发工具。 <span class="kind">会改动账号 · 开启时确认一次</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>send_message</code></td><td>向一个会话发送一条纯文本消息，走应用自己的发送流程。</td><td><code>account</code>、<code>chat</code>、<code>text</code>，可选 <code>reply_to</code></td><td>每小时 30 次，每天 200 次</td></tr></tbody>
 </table></div>
 
 <h2>接下来</h2>
 <ul>
-<li>消息：读取、发送、回复、转发，每个账号单独开关。</li>
 <li>群组和频道：加入、退出、成员列表。</li>
 <li>资料：昵称、头像、简介。</li>
 </ul>

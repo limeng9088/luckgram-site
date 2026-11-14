@@ -63,7 +63,7 @@
 <ul>
 <li>列出账号、切换当前账号，以及运行你已开启的 Skill 里的工具。</li>
 <li>每个 Skill 都按账号单独开启，默认全部关闭。会改动账号的 Skill 在开启时要你确认一次。</li>
-<li>读不到消息内容，也不能发消息。</li>
+<li>读消息和发消息是两个单独的 Skill。不开启时，工具读不到消息内容，也不能发消息。</li>
 <li>会改动账号的工具按账号限制频率，避免工具陷入循环导致账号被 Telegram 限制。</li>
 <li>Luckgram 被本地密码锁住时，不列出任何账号，也不执行任何操作。</li>
 </ul>
@@ -80,12 +80,30 @@
 <p>本机接口不对外开放。AI 工具运行在别的机器上时，用 SSH 把端口转发过去，再像本机一样连接：</p>
 <pre><code>ssh -N -L 28765:127.0.0.1:28765 user@computer-with-luckgram</code></pre>
 
-<h2>云端版：一个地址管理所有电脑<span class="soon">开发中</span></h2>
-<p>云端 MCP 还没有上线，计划是这样的：</p>
+<h2 id="cloud">云端版：一个地址管理所有电脑</h2>
+<p>本机接口只能在一台电脑上用。打开云端 MCP 后，桌面版会主动连到 <code>mcp.luckgram.cc</code>，AI 工具从任何地方都能连上，多台电脑共用一个地址。不需要公网 IP，也不需要端口转发。</p>
+<ol>
+<li>在第一台电脑上：设置 → Luckgram 功能 → 本机 MCP 接口 → 打开<b>通过云端连接</b>。云端密钥在你的电脑上生成。</li>
+<li>点<b>复制云端客户端配置</b>，粘贴到 AI 工具里：</li>
+</ol>
+<pre><code>{
+  "mcpServers": {
+    "luckgram-cloud": {
+      "type": "http",
+      "url": "https://mcp.luckgram.cc/mcp",
+      "headers": { "Authorization": "Bearer lgc_..." }
+    }
+  }
+}</code></pre>
+<ol start="3">
+<li>在其他每台电脑上：同一页 → <b>使用另一台电脑的云端密钥</b>，粘贴密钥，再打开<b>通过云端连接</b>。</li>
+</ol>
 <ul>
-<li>在桌面版里登录 Luckgram 账号并打开云端 MCP。应用主动连到 Luckgram，不需要公网地址和端口转发。</li>
-<li>AI 工具只用连一个地址，用 Luckgram 账号授权。工具可以指定设备和账号，一个 Agent 就能操作你接入的所有电脑。</li>
-<li>Skill 仍然按账号开启，在每台电脑的应用里设置。云端只转发请求并记录调用日志，不保存聊天内容。</li>
+<li>工具和本机版相同，每个工具多一个 <code>device</code> 参数。AI 工具先调用 <code>list_devices</code> 查看你的电脑和在线状态。</li>
+<li><a href="/skills/">Skill</a> 仍然按账号开启，在每台电脑各自的应用里设置。频率上限也在每台电脑上各自计数。</li>
+<li>云端只转发请求：不保存参数和结果，不保存聊天内容，也不保存云端密钥本身。</li>
+<li><code>list_recent_calls</code> 可以查看最近 200 次经过云端的调用：时间、工具、电脑、账号、是否失败。</li>
+<li>拿到云端密钥的人可以使用所有接入电脑上已开启的功能。密钥泄露后请在同一页重新生成，旧密钥立即失效。</li>
 </ul>
 
 <p class="note">Luckgram 是使用 Telegram API 的第三方客户端，不是 Telegram 官方应用。请在 Telegram 服务条款允许的范围内使用自动化功能。</p>
