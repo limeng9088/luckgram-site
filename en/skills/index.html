@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luckgram Skills – what AI tools can do per account</title>
+<meta name="description" content="The skills of Luckgram MCP: accounts, friends, chats. Each one is switched on per account.">
+<meta property="og:title" content="Luckgram Skills – what AI tools can do per account">
+<meta property="og:description" content="The skills of Luckgram MCP: accounts, friends, chats. Each one is switched on per account.">
+<meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
+<link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/skills/">
+<link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/">
+<link rel="alternate" hreflang="x-default" href="https://luckgram.cc/skills/">
+<meta name="heleket" content="16ef8c76" />
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css?v=5aa0dba9da">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/en/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="Main">
+      <a href="/en/features/">Features</a>
+      <a href="https://web.luckgram.cc/" class="opt2" target="_blank" rel="noopener">Web</a>
+      <a href="/en/mcp/">MCP</a>
+      <a href="/en/skills/" aria-current="page">Skill</a>
+      <a href="https://wiki.luckgram.cc/en/" class="opt2">Help</a>
+      <a href="/en/#faq" class="opt">FAQ</a>
+      <a class="lang" href="/skills/" hreflang="zh-CN" lang="zh-CN">中文</a>
+      <a href="/en/download/" class="get">Download</a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="prose doc">
+<h1>Skills</h1>
+<p class="meta">What an AI tool may do with each of your accounts.</p>
+
+<p>A skill is a group of tools for the <a href="/en/mcp/">Luckgram MCP</a> server. Skills are switched on <b>per account</b> in Luckgram Desktop (Settings → Luckgram → Local MCP server), and every one is off at first. An AI tool that calls a skill you have not switched on is refused and told which account and skill it needs.</p>
+<p>Skill tools take an optional <code>account</code> (the <code>id</code> from <code>list_accounts</code>). They work on any logged-in account without switching the window; without it they use the active account.</p>
+
+<h2 id="accounts">Accounts <code>accounts</code></h2>
+<p>See the accounts logged in to Luckgram Desktop and switch the active one. Always on while the MCP server is on. <span class="kind">Always on</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>list_accounts</code></td><td>List the logged-in accounts: id, name, username, phone, unread count, which one is active.</td><td>none</td><td>–</td></tr><tr><td><code>get_active_account</code></td><td>The account the main window shows now.</td><td>none</td><td>–</td></tr><tr><td><code>switch_account</code></td><td>Make another account the active one, like clicking it in the account list.</td><td>one of <code>id</code>, <code>username</code>, <code>phone</code>, <code>index</code></td><td>–</td></tr></tbody>
+</table></div><h2 id="friends">Friends <code>friends</code></h2>
+<p>See an account's friends and look users up. <span class="kind">Read only</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>list_friends</code></td><td>The contacts of an account, with the total count.</td><td><code>account</code>, <code>query</code>, <code>limit</code>, <code>offset</code></td><td>–</td></tr><tr><td><code>find_user</code></td><td>Look a user up by username or phone, as seen from the account.</td><td><code>account</code>, one of <code>username</code>, <code>phone</code></td><td>30 an hour, 100 a day</td></tr></tbody>
+</table></div><h2 id="friends_manage">Manage friends <code>friends_manage</code></h2>
+<p>Add and remove friends. Sends no messages. <span class="kind">Changes the account · asks once when switched on</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>add_friend</code></td><td>Add a user to the account's contacts.</td><td><code>account</code>, one of <code>user_id</code>, <code>username</code>, <code>phone</code>, optional <code>first_name</code>, <code>last_name</code></td><td>5 an hour, 20 a day</td></tr><tr><td><code>remove_friend</code></td><td>Remove a user from the account's contacts. The chat stays.</td><td><code>account</code>, one of <code>user_id</code>, <code>username</code></td><td>20 an hour, 50 a day</td></tr></tbody>
+</table></div><h2 id="chats">Chats <code>chats</code></h2>
+<p>See an account's chat list and unread counts. No message texts. <span class="kind">Read only</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Tool</th><th>What it does</th><th>Arguments</th><th>Limit per account</th></tr></thead>
+<tbody><tr><td><code>list_chats</code></td><td>The chat list in its own order: type, name, unread count, muted, pinned, time of the last message.</td><td><code>account</code>, <code>unread_only</code>, <code>limit</code>, <code>offset</code></td><td>–</td></tr></tbody>
+</table></div>
+
+<h2>Coming next</h2>
+<ul>
+<li>Messages: read, send, reply and forward, each account with its own switch.</li>
+<li>Groups and channels: join, leave, members.</li>
+<li>Profile: name, photo, bio.</li>
+</ul>
+
+<p class="note">Limits are counted per account and per tool, and survive a restart. They keep accounts from being restricted by Telegram and cannot be switched off.</p>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="top">
+      <div><a class="logo" href="/en/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>An independent, open-source Telegram client.</p></div>
+      <div><h4>Product</h4><ul>
+        <li><a href="/en/download/">Download</a></li>
+        <li><a href="/en/features/">Features</a></li>
+        <li><a href="https://web.luckgram.cc/" target="_blank" rel="noopener">Web version</a></li>
+        <li><a href="https://wiki.luckgram.cc/en/">Help Center</a></li>
+      </ul></div>
+      <div><h4>Source code</h4><ul>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">Luckgram for iOS</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Luckgram for Android</a></li>
+      </ul></div>
+      <div><h4>Legal</h4><ul>
+        <li><a href="/en/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/en/terms-of-use/">Terms of Use</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:support@luckgram.cc">support@luckgram.cc</a></li>
+        <li><a href="mailto:contact@luckgram.cc">contact@luckgram.cc</a></li>
+        <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
+      </ul></div>
+    </div>
+    <div class="legal">
+      <p>Luckgram is an independent app based on the open-source Telegram apps. It is not made by, affiliated with, or endorsed by Telegram. Telegram is a trademark of Telegram FZ-LLC.</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
+  </div>
+</footer>
+<script>
+// Download buttons: /download/latest.json is written by the app CI after each master release
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
+(function () {
+  var zh = document.documentElement.lang.indexOf("zh") === 0;
+  function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
+  function day(s) { return (s || "").slice(0, 10); }
+  function meta(el, r, f) {
+    if (!el || !f) return;
+    var line = (zh ? "版本 " : "Version ") + r.version + (zh ? " · 构建号 " : " · build ") + r.build +
+      " · " + day(r.published_at) + " · " + mb(f.size);
+    el.textContent = "";
+    var p = document.createElement("p"); p.textContent = line; el.appendChild(p);
+    var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
+    s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
+    el.hidden = false;
+  }
+  // Mirror (specs#160): on lg-www.cat158.com, or when dl.luckgram.cc can't be reached from this
+  // network, the buttons use lg-dl.cat158.com, which serves the same files.
+  var DL = "https://dl.luckgram.cc/", ALT = "https://lg-dl.cat158.com/";
+  var dlBase = location.hostname === "lg-www.cat158.com" ? ALT : DL;
+  function dlURL(u) { return u.indexOf(DL) === 0 ? dlBase + u.slice(DL.length) : u; }
+  function useAlt() {
+    dlBase = ALT;
+    document.querySelectorAll("[data-dl]").forEach(function (a) { a.href = dlURL(a.href); });
+  }
+  if (window.fetch && dlBase === DL && document.querySelector("[data-dl]")) {
+    var probe = setTimeout(useAlt, 6000);
+    fetch(DL + "ping", {method: "HEAD", mode: "no-cors", cache: "no-store"})
+      .then(function () { clearTimeout(probe); }, function () { clearTimeout(probe); useAlt(); });
+  }
+  function set(key, r, f) {
+    if (!f || f.url.indexOf(DL) !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = dlURL(f.url); });
+    meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
+    return true;
+  }
+  // Signed iOS install: the service's install domain changes, so the buttons get the current one at page load.
+  if (window.fetch && document.querySelector("[data-ios-install]")) {
+    fetch("https://api.owcywmpr.com/api/mdm/link/yx6sv23c").then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || String(j.link_jump || "").indexOf("https://") !== 0) return;
+      document.querySelectorAll("[data-ios-install]").forEach(function (a) { a.href = j.link_jump; });
+    }).catch(function () {});
+  }
+  if (!window.fetch || !document.querySelector("[data-dl]")) return;
+  fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (!j) return;
+    if (j.ios) set("ios", j.ios, j.ios);
+    if (j.android) {
+      set("android", j.android, j.android.arm64);
+      if (set("android-x86_64", j.android, j.android.x86_64)) {
+        var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
+      }
+    }
+    if (j.windows) {
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
+    }
+  }).catch(function () {});
+})();
+
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
+</body>
+</html>

@@ -75,8 +75,10 @@ def header(current, here):
     <a class="logo" href="{u("/")}"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
     <nav class="nav" aria-label="{t("Main", "主导航")}">
       {link(u("/features/"), t("Features", "功能"), "features")}
-      {link("https://web.luckgram.cc/", t("Web", "网页版"), "web", new_tab=True)}
-      {link(wiki(), t("Help", "帮助"), "help")}
+      {link("https://web.luckgram.cc/", t("Web", "网页版"), "web", "opt2", new_tab=True)}
+      {link(u("/mcp/"), "MCP", "mcp")}
+      {link(u("/skills/"), "Skill", "skills")}
+      {link(wiki(), t("Help", "帮助"), "help", "opt2")}
       {link(u("/#faq"), t("FAQ", "常见问题"), "faq", "opt")}
       {switch}
       {link(u("/download/"), t("Download", "下载"), "download", "get")}
@@ -704,6 +706,164 @@ def features():
          body, "features")
 
 
+# MCP skills of Luckgram Desktop: (key, (en, zh) name, (en, zh) summary, write?, tools).
+# A tool: (name, (en, zh) what it does, (en, zh) arguments, (en, zh) limit or None).
+# Keep in step with docs/local-mcp.md in luckgram-desktop.
+SKILLS = [
+    ("accounts", ("Accounts", "账号"),
+     ("See the accounts logged in to Luckgram Desktop and switch the active one. Always on while the MCP server is on.",
+      "查看桌面版里已登录的账号，切换当前账号。MCP 接口开启后始终可用。"), False, [
+        ("list_accounts", ("List the logged-in accounts: id, name, username, phone, unread count, which one is active.",
+                           "列出已登录账号：id、昵称、用户名、手机号、未读数、哪个是当前账号。"), ("none", "无"), None),
+        ("get_active_account", ("The account the main window shows now.", "主窗口当前显示的账号。"), ("none", "无"), None),
+        ("switch_account", ("Make another account the active one, like clicking it in the account list.",
+                            "切换到另一个账号，和点侧栏里的账号一样。"),
+         ("one of <code>id</code>, <code>username</code>, <code>phone</code>, <code>index</code>",
+          "<code>id</code>、<code>username</code>、<code>phone</code>、<code>index</code> 四选一"), None),
+     ]),
+    ("friends", ("Friends", "好友"),
+     ("See an account's friends and look users up.", "查看某个账号的好友，按用户名或手机号查找用户。"), False, [
+        ("list_friends", ("The contacts of an account, with the total count.", "账号的好友列表和总数。"),
+         ("<code>account</code>, <code>query</code>, <code>limit</code>, <code>offset</code>",
+          "<code>account</code>、<code>query</code>、<code>limit</code>、<code>offset</code>"), None),
+        ("find_user", ("Look a user up by username or phone, as seen from the account.", "以该账号的身份按用户名或手机号查找用户。"),
+         ("<code>account</code>, one of <code>username</code>, <code>phone</code>",
+          "<code>account</code>，<code>username</code>、<code>phone</code> 二选一"),
+         ("30 an hour, 100 a day", "每小时 30 次，每天 100 次")),
+     ]),
+    ("friends_manage", ("Manage friends", "管理好友"),
+     ("Add and remove friends. Sends no messages.", "加好友、删好友。不会发送任何消息。"), True, [
+        ("add_friend", ("Add a user to the account's contacts.", "把用户加为该账号的好友。"),
+         ("<code>account</code>, one of <code>user_id</code>, <code>username</code>, <code>phone</code>, optional <code>first_name</code>, <code>last_name</code>",
+          "<code>account</code>，<code>user_id</code>、<code>username</code>、<code>phone</code> 三选一，可选 <code>first_name</code>、<code>last_name</code>"),
+         ("5 an hour, 20 a day", "每小时 5 次，每天 20 次")),
+        ("remove_friend", ("Remove a user from the account's contacts. The chat stays.", "把用户从该账号的好友里删除，聊天记录保留。"),
+         ("<code>account</code>, one of <code>user_id</code>, <code>username</code>",
+          "<code>account</code>，<code>user_id</code>、<code>username</code> 二选一"),
+         ("20 an hour, 50 a day", "每小时 20 次，每天 50 次")),
+     ]),
+    ("chats", ("Chats", "会话"),
+     ("See an account's chat list and unread counts. No message texts.", "查看某个账号的会话列表和未读数，不含消息内容。"), False, [
+        ("list_chats", ("The chat list in its own order: type, name, unread count, muted, pinned, time of the last message.",
+                        "按会话列表的顺序返回：类型、名称、未读数、是否静音、是否置顶、最后一条消息的时间。"),
+         ("<code>account</code>, <code>unread_only</code>, <code>limit</code>, <code>offset</code>",
+          "<code>account</code>、<code>unread_only</code>、<code>limit</code>、<code>offset</code>"), None),
+     ]),
+]
+
+MCP_CONFIG = """{
+  "mcpServers": {
+    "luckgram": {
+      "type": "http",
+      "url": "http://127.0.0.1:28765/mcp",
+      "headers": { "Authorization": "Bearer &lt;TOKEN&gt;" }
+    }
+  }
+}"""
+
+MCP_CLAUDE = """claude mcp add --transport http luckgram http://127.0.0.1:28765/mcp \\
+  --header "Authorization: Bearer &lt;TOKEN&gt;\""""
+
+MCP_SSH = "ssh -N -L 28765:127.0.0.1:28765 user@computer-with-luckgram"
+
+
+def mcp():
+    body = f"""<article class="prose doc">
+<h1>{t("Luckgram MCP", "Luckgram MCP")}</h1>
+<p class="meta">{t("Let your AI tools work with the Telegram accounts in Luckgram Desktop.", "让你的 AI 工具直接操作 Luckgram 桌面版里的 Telegram 账号。")}</p>
+
+<p>{t('Luckgram Desktop has an <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a> server built in. Turn it on, paste one piece of config into Claude Code, Cursor or any other MCP client, and the tool can see the accounts logged in on that computer, switch between them, and use the skills you allow for each account.',
+      'Luckgram 桌面版内置了 <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a> 接口。打开开关，把一段配置粘贴到 Claude Code、Cursor 或其他支持 MCP 的工具里，它就能看到这台电脑上已登录的账号、在账号之间切换，并使用你为每个账号开启的 Skill。')}</p>
+
+<h2>{t("Local: on your own computer", "本机版：在自己的电脑上用")}</h2>
+<ol>
+<li>{t(f'Install <a href="{u("/download/")}">Luckgram Desktop</a> for Windows and sign in to your accounts.', f'安装 Windows 版 <a href="{u("/download/")}">Luckgram 桌面版</a>并登录账号。')}</li>
+<li>{t("Open Settings → Luckgram → <b>Local MCP server</b> and switch it on. It is off by default.", "打开 设置 → Luckgram 功能 → <b>本机 MCP 接口</b>，把开关打开。默认是关闭的。")}</li>
+<li>{t("Click the row, then <b>Copy client config</b>, and paste it into the MCP settings of your AI tool:", "点进这一行，点<b>复制客户端配置</b>，粘贴到 AI 工具的 MCP 配置里：")}</li>
+</ol>
+<pre><code>{MCP_CONFIG}</code></pre>
+<p>{t("In Claude Code you can add it with one command:", "Claude Code 也可以用一条命令添加：")}</p>
+<pre><code>{MCP_CLAUDE}</code></pre>
+<p>{t(f'On the same page, switch on the <a href="{u("/skills/")}">skills</a> you want for each account. Until you do, the tool can only list accounts and switch between them.',
+      f'在同一页里，按账号开启需要的 <a href="{u("/skills/")}">Skill</a>。不开启时，工具只能列出账号和切换账号。')}</p>
+
+<h2>{t("What it can and cannot do", "能做什么，不能做什么")}</h2>
+<ul>
+<li>{t("It lists accounts, switches the active account, and runs the tools of the skills you switched on.", "列出账号、切换当前账号，以及运行你已开启的 Skill 里的工具。")}</li>
+<li>{t("Every skill is switched on per account and is off at first. A skill that changes something asks you to confirm once when you switch it on.", "每个 Skill 都按账号单独开启，默认全部关闭。会改动账号的 Skill 在开启时要你确认一次。")}</li>
+<li>{t("It does not read message texts and does not send messages.", "读不到消息内容，也不能发消息。")}</li>
+<li>{t("Tools that change something are rate limited per account, so a tool stuck in a loop cannot get an account restricted by Telegram.", "会改动账号的工具按账号限制频率，避免工具陷入循环导致账号被 Telegram 限制。")}</li>
+<li>{t("While Luckgram is locked with a passcode, nothing is listed and nothing runs.", "Luckgram 被本地密码锁住时，不列出任何账号，也不执行任何操作。")}</li>
+</ul>
+
+<h2>{t("Security", "安全")}</h2>
+<ul>
+<li>{t("The server listens on <code>127.0.0.1</code> only. It cannot be reached from your network or the internet.", "只监听 <code>127.0.0.1</code>，局域网和外网都连不上。")}</li>
+<li>{t("Every request needs the access token. It is generated on your computer, kept in the system credential store, and you can regenerate it at any time.", "每个请求都要带访问令牌。令牌在你的电脑上生成，保存在系统凭据库里，随时可以重新生成。")}</li>
+<li>{t("Requests from web pages are refused, so a site you visit cannot call it through your browser.", "来自网页的请求会被拒绝，你访问的网站无法借浏览器调用它。")}</li>
+<li>{t("Any program on your computer that has the token can use what you switched on. Keep the token private.", "拿到令牌的本机程序都能使用你已开启的功能，请不要把令牌发给别人。")}</li>
+</ul>
+
+<h2>{t("From another computer", "从另一台电脑调用")}</h2>
+<p>{t("The local server is not open to the network. When your AI tool runs on another machine, forward the port over SSH and connect to it as if it were local:", "本机接口不对外开放。AI 工具运行在别的机器上时，用 SSH 把端口转发过去，再像本机一样连接：")}</p>
+<pre><code>{MCP_SSH}</code></pre>
+
+<h2>{t("Cloud: all your computers at one address", "云端版：一个地址管理所有电脑")}<span class="soon">{t("In development", "开发中")}</span></h2>
+<p>{t("Cloud MCP is not available yet. This is what it will do:", "云端 MCP 还没有上线，计划是这样的：")}</p>
+<ul>
+<li>{t("Sign in to your Luckgram account in Luckgram Desktop and switch on Cloud MCP. The app connects out to Luckgram, so no public address or port forwarding is needed.", "在桌面版里登录 Luckgram 账号并打开云端 MCP。应用主动连到 Luckgram，不需要公网地址和端口转发。")}</li>
+<li>{t("One address for your AI tools, with sign-in through your Luckgram account. Tools take a device and an account, so one agent can work across every computer you connected.", "AI 工具只用连一个地址，用 Luckgram 账号授权。工具可以指定设备和账号，一个 Agent 就能操作你接入的所有电脑。")}</li>
+<li>{t("Skills stay per account and are switched on in the app on each computer. The cloud only passes requests on and keeps a record of who called what; it does not store chats.", "Skill 仍然按账号开启，在每台电脑的应用里设置。云端只转发请求并记录调用日志，不保存聊天内容。")}</li>
+</ul>
+
+<p class="note">{t("Luckgram is an independent client that uses the Telegram API. It is not an official Telegram app. Use automation within Telegram's Terms of Service.", "Luckgram 是使用 Telegram API 的第三方客户端，不是 Telegram 官方应用。请在 Telegram 服务条款允许的范围内使用自动化功能。")}</p>
+</article>"""
+    page("/mcp/", t("Luckgram MCP – connect AI tools to your Telegram accounts", "Luckgram MCP – 让 AI 工具操作你的 Telegram 账号"),
+         t("Luckgram Desktop has an MCP server built in: AI tools list your accounts, switch between them and use the skills you allow for each account.",
+           "Luckgram 桌面版内置 MCP 接口：AI 工具可以列出账号、切换账号，并使用你为每个账号开启的 Skill。"),
+         body, "mcp")
+
+
+def skills():
+    cards = []
+    for key, name, about, write, tools in SKILLS:
+        rows = "".join(
+            f'<tr><td><code>{tool}</code></td><td>{t(*what)}</td><td>{t(*args)}</td><td>{t(*limit) if limit else "–"}</td></tr>'
+            for tool, what, args, limit in tools)
+        kind = (t("Changes the account · asks once when switched on", "会改动账号 · 开启时确认一次") if write
+                else t("Always on", "始终开启") if key == "accounts" else t("Read only", "只读"))
+        cards.append(f"""<h2 id="{key}">{t(*name)} <code>{key}</code></h2>
+<p>{t(*about)} <span class="kind">{kind}</span></p>
+<div class="tbl"><table>
+<thead><tr><th>{t("Tool", "工具")}</th><th>{t("What it does", "作用")}</th><th>{t("Arguments", "参数")}</th><th>{t("Limit per account", "每账号上限")}</th></tr></thead>
+<tbody>{rows}</tbody>
+</table></div>""")
+    body = f"""<article class="prose doc">
+<h1>{t("Skills", "Skill")}</h1>
+<p class="meta">{t("What an AI tool may do with each of your accounts.", "AI 工具可以对你的每个账号做什么。")}</p>
+
+<p>{t(f'A skill is a group of tools for the <a href="{u("/mcp/")}">Luckgram MCP</a> server. Skills are switched on <b>per account</b> in Luckgram Desktop (Settings → Luckgram → Local MCP server), and every one is off at first. An AI tool that calls a skill you have not switched on is refused and told which account and skill it needs.',
+      f'Skill 是 <a href="{u("/mcp/")}">Luckgram MCP</a> 接口里的一组工具。Skill 在桌面版里<b>按账号</b>单独开启（设置 → Luckgram 功能 → 本机 MCP 接口），默认全部关闭。AI 工具调用没有开启的 Skill 会被拒绝，并被告知需要哪个账号的哪个 Skill。')}</p>
+<p>{t('Skill tools take an optional <code>account</code> (the <code>id</code> from <code>list_accounts</code>). They work on any logged-in account without switching the window; without it they use the active account.',
+      'Skill 工具都有可选参数 <code>account</code>（<code>list_accounts</code> 返回的 <code>id</code>）。指定后直接对那个账号操作，不用切换界面；不填就是当前账号。')}</p>
+
+{"".join(cards)}
+
+<h2>{t("Coming next", "接下来")}</h2>
+<ul>
+<li>{t("Messages: read, send, reply and forward, each account with its own switch.", "消息：读取、发送、回复、转发，每个账号单独开关。")}</li>
+<li>{t("Groups and channels: join, leave, members.", "群组和频道：加入、退出、成员列表。")}</li>
+<li>{t("Profile: name, photo, bio.", "资料：昵称、头像、简介。")}</li>
+</ul>
+
+<p class="note">{t("Limits are counted per account and per tool, and survive a restart. They keep accounts from being restricted by Telegram and cannot be switched off.", "频率上限按账号、按工具计数，重启后仍然有效。它用来避免账号被 Telegram 限制，不能关闭。")}</p>
+</article>"""
+    page("/skills/", t("Luckgram Skills – what AI tools can do per account", "Luckgram Skill – AI 工具能对每个账号做什么"),
+         t("The skills of Luckgram MCP: accounts, friends, chats. Each one is switched on per account.",
+           "Luckgram MCP 的 Skill：账号、好友、会话。每个 Skill 按账号单独开启。"),
+         body, "skills")
+
+
 def not_found():
     body = f'''<article class="prose">
 <h1>{t("Page not found", "页面不存在")}</h1>
@@ -734,6 +894,8 @@ if __name__ == "__main__":
         privacy()
         terms()
         features()
+        mcp()
+        skills()
         if LANG == "zh":
             not_found()   # GitHub Pages serves one 404 page for the whole site
         # Paths referenced by the Help Center.

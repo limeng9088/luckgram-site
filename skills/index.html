@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luckgram Skill – AI 工具能对每个账号做什么</title>
+<meta name="description" content="Luckgram MCP 的 Skill：账号、好友、会话。每个 Skill 按账号单独开启。">
+<meta property="og:title" content="Luckgram Skill – AI 工具能对每个账号做什么">
+<meta property="og:description" content="Luckgram MCP 的 Skill：账号、好友、会话。每个 Skill 按账号单独开启。">
+<meta property="og:image" content="https://luckgram.cc/assets/icon-512.png">
+<link rel="alternate" hreflang="zh-CN" href="https://luckgram.cc/skills/">
+<link rel="alternate" hreflang="en" href="https://luckgram.cc/en/skills/">
+<link rel="alternate" hreflang="x-default" href="https://luckgram.cc/skills/">
+<meta name="heleket" content="16ef8c76" />
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css?v=5aa0dba9da">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="/features/">功能</a>
+      <a href="https://web.luckgram.cc/" class="opt2" target="_blank" rel="noopener">网页版</a>
+      <a href="/mcp/">MCP</a>
+      <a href="/skills/" aria-current="page">Skill</a>
+      <a href="https://wiki.luckgram.cc/" class="opt2">帮助</a>
+      <a href="/#faq" class="opt">常见问题</a>
+      <a class="lang" href="/en/skills/" hreflang="en" lang="en">EN</a>
+      <a href="/download/" class="get">下载</a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="prose doc">
+<h1>Skill</h1>
+<p class="meta">AI 工具可以对你的每个账号做什么。</p>
+
+<p>Skill 是 <a href="/mcp/">Luckgram MCP</a> 接口里的一组工具。Skill 在桌面版里<b>按账号</b>单独开启（设置 → Luckgram 功能 → 本机 MCP 接口），默认全部关闭。AI 工具调用没有开启的 Skill 会被拒绝，并被告知需要哪个账号的哪个 Skill。</p>
+<p>Skill 工具都有可选参数 <code>account</code>（<code>list_accounts</code> 返回的 <code>id</code>）。指定后直接对那个账号操作，不用切换界面；不填就是当前账号。</p>
+
+<h2 id="accounts">账号 <code>accounts</code></h2>
+<p>查看桌面版里已登录的账号，切换当前账号。MCP 接口开启后始终可用。 <span class="kind">始终开启</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>list_accounts</code></td><td>列出已登录账号：id、昵称、用户名、手机号、未读数、哪个是当前账号。</td><td>无</td><td>–</td></tr><tr><td><code>get_active_account</code></td><td>主窗口当前显示的账号。</td><td>无</td><td>–</td></tr><tr><td><code>switch_account</code></td><td>切换到另一个账号，和点侧栏里的账号一样。</td><td><code>id</code>、<code>username</code>、<code>phone</code>、<code>index</code> 四选一</td><td>–</td></tr></tbody>
+</table></div><h2 id="friends">好友 <code>friends</code></h2>
+<p>查看某个账号的好友，按用户名或手机号查找用户。 <span class="kind">只读</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>list_friends</code></td><td>账号的好友列表和总数。</td><td><code>account</code>、<code>query</code>、<code>limit</code>、<code>offset</code></td><td>–</td></tr><tr><td><code>find_user</code></td><td>以该账号的身份按用户名或手机号查找用户。</td><td><code>account</code>，<code>username</code>、<code>phone</code> 二选一</td><td>每小时 30 次，每天 100 次</td></tr></tbody>
+</table></div><h2 id="friends_manage">管理好友 <code>friends_manage</code></h2>
+<p>加好友、删好友。不会发送任何消息。 <span class="kind">会改动账号 · 开启时确认一次</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>add_friend</code></td><td>把用户加为该账号的好友。</td><td><code>account</code>，<code>user_id</code>、<code>username</code>、<code>phone</code> 三选一，可选 <code>first_name</code>、<code>last_name</code></td><td>每小时 5 次，每天 20 次</td></tr><tr><td><code>remove_friend</code></td><td>把用户从该账号的好友里删除，聊天记录保留。</td><td><code>account</code>，<code>user_id</code>、<code>username</code> 二选一</td><td>每小时 20 次，每天 50 次</td></tr></tbody>
+</table></div><h2 id="chats">会话 <code>chats</code></h2>
+<p>查看某个账号的会话列表和未读数，不含消息内容。 <span class="kind">只读</span></p>
+<div class="tbl"><table>
+<thead><tr><th>工具</th><th>作用</th><th>参数</th><th>每账号上限</th></tr></thead>
+<tbody><tr><td><code>list_chats</code></td><td>按会话列表的顺序返回：类型、名称、未读数、是否静音、是否置顶、最后一条消息的时间。</td><td><code>account</code>、<code>unread_only</code>、<code>limit</code>、<code>offset</code></td><td>–</td></tr></tbody>
+</table></div>
+
+<h2>接下来</h2>
+<ul>
+<li>消息：读取、发送、回复、转发，每个账号单独开关。</li>
+<li>群组和频道：加入、退出、成员列表。</li>
+<li>资料：昵称、头像、简介。</li>
+</ul>
+
+<p class="note">频率上限按账号、按工具计数，重启后仍然有效。它用来避免账号被 Telegram 限制，不能关闭。</p>
+</article>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="top">
+      <div><a class="logo" href="/"><img src="/assets/logo-white-144.png" alt="" width="30" height="25">Luckgram</a>
+        <p>独立、开源的 Telegram 客户端。</p></div>
+      <div><h4>产品</h4><ul>
+        <li><a href="/download/">下载</a></li>
+        <li><a href="/features/">功能</a></li>
+        <li><a href="https://web.luckgram.cc/" target="_blank" rel="noopener">网页版</a></li>
+        <li><a href="https://wiki.luckgram.cc/">帮助中心</a></li>
+      </ul></div>
+      <div><h4>源代码</h4><ul>
+        <li><a href="https://github.com/limeng9088/luckgram-ios">iOS 版</a></li>
+        <li><a href="https://github.com/limeng9088/luckgram-android">Android 版</a></li>
+      </ul></div>
+      <div><h4>法律</h4><ul>
+        <li><a href="/privacy-policy/">隐私政策</a></li>
+        <li><a href="/terms-of-use/">使用条款</a></li>
+      </ul></div>
+      <div><h4>联系我们</h4><ul>
+        <li><a href="mailto:support@luckgram.cc">support@luckgram.cc</a></li>
+        <li><a href="mailto:contact@luckgram.cc">contact@luckgram.cc</a></li>
+        <li><a href="mailto:ads@luckgram.cc">ads@luckgram.cc</a></li>
+      </ul></div>
+    </div>
+    <div class="legal">
+      <p>Luckgram 是基于开源 Telegram 应用开发的独立应用，并非由 Telegram 制作，与 Telegram 没有关联，也未获其认可。Telegram 是 Telegram FZ-LLC 的商标。</p>
+      <p>&copy; 2026 Luckgram</p>
+    </div>
+  </div>
+</footer>
+<script>
+// Download buttons: /download/latest.json is written by the app CI after each master release
+// (luckgram-specs#100). Buttons keep their build-time link if the file cannot be loaded.
+(function () {
+  var zh = document.documentElement.lang.indexOf("zh") === 0;
+  function mb(n) { return (n / 1048576).toFixed(1) + " MB"; }
+  function day(s) { return (s || "").slice(0, 10); }
+  function meta(el, r, f) {
+    if (!el || !f) return;
+    var line = (zh ? "版本 " : "Version ") + r.version + (zh ? " · 构建号 " : " · build ") + r.build +
+      " · " + day(r.published_at) + " · " + mb(f.size);
+    el.textContent = "";
+    var p = document.createElement("p"); p.textContent = line; el.appendChild(p);
+    var d = document.createElement("details"), s = document.createElement("summary"), c = document.createElement("code");
+    s.textContent = "SHA-256"; c.textContent = f.sha256; d.appendChild(s); d.appendChild(c); el.appendChild(d);
+    el.hidden = false;
+  }
+  // Mirror (specs#160): on lg-www.cat158.com, or when dl.luckgram.cc can't be reached from this
+  // network, the buttons use lg-dl.cat158.com, which serves the same files.
+  var DL = "https://dl.luckgram.cc/", ALT = "https://lg-dl.cat158.com/";
+  var dlBase = location.hostname === "lg-www.cat158.com" ? ALT : DL;
+  function dlURL(u) { return u.indexOf(DL) === 0 ? dlBase + u.slice(DL.length) : u; }
+  function useAlt() {
+    dlBase = ALT;
+    document.querySelectorAll("[data-dl]").forEach(function (a) { a.href = dlURL(a.href); });
+  }
+  if (window.fetch && dlBase === DL && document.querySelector("[data-dl]")) {
+    var probe = setTimeout(useAlt, 6000);
+    fetch(DL + "ping", {method: "HEAD", mode: "no-cors", cache: "no-store"})
+      .then(function () { clearTimeout(probe); }, function () { clearTimeout(probe); useAlt(); });
+  }
+  function set(key, r, f) {
+    if (!f || f.url.indexOf(DL) !== 0) return false;
+    document.querySelectorAll('[data-dl="' + key + '"]').forEach(function (a) { a.href = dlURL(f.url); });
+    meta(document.querySelector('[data-dl-meta="' + key + '"]'), r, f);
+    return true;
+  }
+  // Signed iOS install: the service's install domain changes, so the buttons get the current one at page load.
+  if (window.fetch && document.querySelector("[data-ios-install]")) {
+    fetch("https://api.owcywmpr.com/api/mdm/link/yx6sv23c").then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || String(j.link_jump || "").indexOf("https://") !== 0) return;
+      document.querySelectorAll("[data-ios-install]").forEach(function (a) { a.href = j.link_jump; });
+    }).catch(function () {});
+  }
+  if (!window.fetch || !document.querySelector("[data-dl]")) return;
+  fetch("/download/latest.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (!j) return;
+    if (j.ios) set("ios", j.ios, j.ios);
+    if (j.android) {
+      set("android", j.android, j.android.arm64);
+      if (set("android-x86_64", j.android, j.android.x86_64)) {
+        var o = document.querySelector('[data-dl-other="android"]'); if (o) o.hidden = false;
+      }
+    }
+    if (j.windows) {
+      set("windows", j.windows, j.windows.setup);
+      set("windows-portable", j.windows, j.windows.portable);
+    }
+  }).catch(function () {});
+})();
+
+// Feature videos load and play only while they are on screen.
+(function () {
+  var vids = document.querySelectorAll('video[data-lazy]');
+  function load(v) { if (v.dataset.loaded) return; v.querySelectorAll('source').forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = 1; }
+  if (!('IntersectionObserver' in window)) { vids.forEach(load); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); });
+  }, {rootMargin: '200px 0px'});
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
+</body>
+</html>
