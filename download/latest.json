@@ -18,29 +18,29 @@
   },
   "ios": {
     "version": "13.1.1",
-    "build": 36424,
-    "commit": "7ac9539",
-    "tag": "ios-13.1.1-36424",
-    "published_at": "2026-11-13T15:15:16Z",
-    "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36424/Luckgram-13.1.1-36424.ipa",
-    "sha256": "d99a43a497185b85e89acdf7b2d889cfbde3afd098a26cf5f33f31202a7d88ad",
-    "size": 84991863
+    "build": 36427,
+    "commit": "742157e",
+    "tag": "ios-13.1.1-36427",
+    "published_at": "2026-11-14T04:05:24Z",
+    "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36427/Luckgram-13.1.1-36427.ipa",
+    "sha256": "615712cf42f3299876d1579421b97846332c0642b728d6a39b5657655ef18106",
+    "size": 84992369
   },
   "windows": {
     "version": "7.4.2",
-    "build": 17,
-    "commit": "2cf9cb3",
-    "tag": "windows-7.4.2-17",
-    "published_at": "2026-11-13T01:38:43Z",
+    "build": 110,
+    "commit": "428945e",
+    "tag": "windows-7.4.2-110",
+    "published_at": "2026-11-14T04:15:51Z",
     "setup": {
-      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-17/Luckgram-Setup-7.4.2-17-x64.exe",
-      "sha256": "9772480f687ddf5bb696eedc310cc78eec80048d0c567093dbe5ed76e5778b55",
-      "size": 66621059
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-110/Luckgram-Setup-7.4.2-110-x64.exe",
+      "sha256": "d8c45da4861e5c729abe842021df47333e90242998fd63fc4950b82723c29868",
+      "size": 76653532
     },
     "portable": {
-      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-17/Luckgram-7.4.2-17-x64-portable.zip",
-      "sha256": "73c4d9f98beb57849e9c6b2ad544c0f2d217f11750048842ce5ecff756bfd976",
-      "size": 89873744
+      "url": "https://dl.luckgram.cc/windows/windows-7.4.2-110/Luckgram-7.4.2-110-x64-portable.zip",
+      "sha256": "21250e839857a6bf73f010753708a1433dc316585789744e4873c2a14b7acb74",
+      "size": 107752535
     }
   }
 }
