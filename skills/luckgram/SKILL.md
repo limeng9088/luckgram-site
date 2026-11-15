@@ -1,6 +1,6 @@
 ---
 name: luckgram
-description: Work with the Telegram accounts in Luckgram Desktop through its MCP server, local or cloud: accounts, friends, chats, messages, groups, profile, bots via BotFather. Tokens stay masked.
+description: Work with the Telegram accounts in Luckgram Desktop through its MCP server, local or cloud: accounts, friends, chats, messages, groups, profile, proxy, bots via BotFather. Tokens stay masked.
 ---
 
 # Luckgram
@@ -60,10 +60,31 @@ Each group of commands is a skill the user switches on **per account** inside Lu
 | `messages get` | `messages` | no |
 | `messages send` | `messages_send` | yes |
 | `groups join`, `groups leave` | `groups` | yes |
+| `groups join-all`, `groups leave-all` | `groups` on every account | yes |
 | `profile set` | `profile` | yes |
+| `proxy list` | `proxy` | no |
+| `proxy add`, `proxy use`, `proxy remove` | `proxy` | yes |
 | `bots …`, `botfather …` | `botfather` | yes |
 
+### Every account into one group or channel
+
+`luckgram groups join-all <@username|https://t.me/name>` joins the group or channel with **every** logged-in account, one after another (2 seconds apart; `--delay <seconds>` changes it, `--only` / `--skip` take account ids, usernames or list numbers separated by commas). Progress goes to stderr, the summary to stdout (`--json` for the full list). `leave-all` is the opposite.
+
+- Use it only when the user asked for all accounts. For one account use `groups join --account <id>`.
+- Each account needs its own `groups` skill switched on. Accounts where it is off are listed as `skill off` and the exit code is 1; the others are still joined. Running it again is safe: accounts already in answer `already member`.
+- Right after Luckgram Desktop starts, accounts are still connecting and answers can take a minute. The command asks once more by itself after a timeout.
+- Each account may join 5 chats an hour and 20 a day.
+
 When a command exits with code 1 and says a skill is off, you cannot switch it on. Tell the user **which skill** and **which account**, and where the switch is. Do not try another account instead unless the user asked for that.
+
+### The proxy
+
+`luckgram proxy list` shows the proxies saved in Luckgram and which one is in use (`*`). `proxy add`, `proxy use` and `proxy remove` change it.
+
+- The proxy belongs to the whole app: every account connects through it, whichever `--account` the command names.
+- Luckgram does not test a proxy before switching to it. A proxy that does not work takes Luckgram offline, and the cloud connection with it: after that no command reaches it, and the user has to change the proxy in the app. Ask the user before `proxy add` or `proxy use`, and prefer `proxy add … --no-use` when they only want it saved.
+- A password or an MTProto secret goes in on stdin (`--password-stdin`, `--secret-stdin`), never as an argument. `proxy list` never shows them.
+- Indexes change after `proxy remove`: run `proxy list` again before the next `use` or `remove`.
 
 ## Rules
 
