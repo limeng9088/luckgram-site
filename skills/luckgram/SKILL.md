@@ -83,7 +83,7 @@ When a command exits with code 1 and says a skill is off, you cannot switch it o
 
 - The proxy belongs to the whole app: every account connects through it, whichever `--account` the command names.
 - Luckgram does not test a proxy before switching to it. A proxy that does not work takes Luckgram offline, and the cloud connection with it: after that no command reaches it, and the user has to change the proxy in the app. Ask the user before `proxy add` or `proxy use`, and prefer `proxy add … --no-use` when they only want it saved.
-- A password or an MTProto secret goes in on stdin (`--password-stdin`, `--secret-stdin`), never as an argument. `proxy list` never shows them.
+- A password or an MTProto secret goes in on stdin (`--password-stdin`, `--secret-stdin`), never as an argument. A link that carries `pass=` or `secret=` goes in with `proxy add --link-stdin`. `proxy list` never shows them.
 - Indexes change after `proxy remove`: run `proxy list` again before the next `use` or `remove`.
 
 ## Rules
