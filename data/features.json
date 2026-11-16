@@ -168,7 +168,7 @@
       "web": "live",
       "web_note": {
         "zh": "网页版：右键消息选「翻译」，或点外语消息旁的翻译图标；目标语言在「设置 → Luckgram 功能」里选。",
-        "en": "On the web: right-click a message and choose Translate, or click the translate icon beside a message in another language. The target language is set in Settings → Luckgram features."
+        "en": "On the web: right-click a message and choose Translate, or click the translate icon beside a message in another language. The target language is set in Settings → Luckgram Features."
       },
       "name": {
         "zh": "翻译消息",
@@ -459,7 +459,7 @@
       "web": "live",
       "web_note": {
         "zh": "网页版：备注只保存在这台设备的浏览器里，不与手机同步；可以在「设置 → Luckgram 功能 → 全部备注」里导出和导入。",
-        "en": "On the web: notes are kept in this browser only and do not sync with your phone; export and import them in Settings → Luckgram features → All notes."
+        "en": "On the web: notes are kept in this browser only and do not sync with your phone; export and import them in Settings → Luckgram Features → All notes."
       },
       "name": {
         "zh": "私人备注",
