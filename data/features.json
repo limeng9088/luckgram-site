@@ -216,7 +216,11 @@
       "id": "voice-text",
       "group": "messages-language",
       "status": "live",
-      "web": "none",
+      "web": "live",
+      "web_note": {
+        "zh": "网页版：点语音消息或圆形视频上的转写按钮。非 Telegram Premium 账号由 Luckgram 免费转写，Premium 账号用的是 Telegram 自己的转写；超过 3 分钟的语音会分段转写，需要多等一会儿。语音输入：点表情按钮旁的「语音输入」，说完再点一次，文字填进输入框（说完才出字，不是边说边出）。建议使用电脑上的 Chrome 或 Edge；Safari 和手机浏览器尚未实测。",
+        "en": "On the web: click the transcribe button on a voice message or a round video. Accounts without Telegram Premium are transcribed by Luckgram for free; Premium accounts use Telegram’s own transcription. A voice message over 3 minutes is transcribed in parts and takes longer. To dictate, click Dictation beside the emoji button and click it again when you are done: the text is put into the message field once you finish, not as you speak. Chrome or Edge on a computer is recommended; Safari and mobile browsers have not been tested yet."
+      },
       "name": {
         "zh": "语音转文字",
         "en": "Voice to text"
