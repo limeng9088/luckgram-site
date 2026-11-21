@@ -18,13 +18,13 @@
   },
   "ios": {
     "version": "13.1.1",
-    "build": 36491,
-    "commit": "516df96",
-    "tag": "ios-13.1.1-36491",
-    "published_at": "2026-11-19T23:06:38Z",
-    "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36491/Luckgram-13.1.1-36491.ipa",
-    "sha256": "355e8c19c64d30543e95a0de5fe444ef1b75c04350408f0dbbef76748e732ed2",
-    "size": 85026068
+    "build": 36494,
+    "commit": "cd96b65",
+    "tag": "ios-13.1.1-36494",
+    "published_at": "2026-11-21T05:35:06Z",
+    "url": "https://dl.luckgram.cc/ios/ios-13.1.1-36494/Luckgram-13.1.1-36494.ipa",
+    "sha256": "08a2834ec190e86ece77d4cf8dae92f69d15ce554637df4be68beacbd870f1b7",
+    "size": 85027837
   },
   "windows": {
     "version": "7.4.2",
